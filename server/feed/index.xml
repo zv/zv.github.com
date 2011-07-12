@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="//css/feed.min.css"?> 
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+<title>A new kind of sentience</title>
+<subtitle>Its nothing I cant handle.</subtitle>
+
+<link href="http://zv.github.com/feed/" rel="self" />
+<link href="http://zv.github.com/" />
+
+<id>http://zv.github.com/feed/</id>
+
+<updated>2011-12-15T14:31:43-08:00</updated>
+<rights>Copyright © 2011, Zephyr Pellerin</rights>
+
+<author>
+	<name>Zephyr Pellerin</name>
+	<email>zephyr.pellerin@gmail.com</email>
+</author>
+
+
+<entry>
+	<title>What if the foundations of mathematics are inconsistant?</title>
+	<link href="http://zv.github.com/note/inconsistant-foundations/" />
+	<id>tag:zv.github.com,2011:/note/inconsistant-foundations/</id>
+	<updated>2011-12-15T00:00:00-08:00</updated>
+	<author>
+		<name>Zephyr Pellerin</name>
+		<uri>http://zv.github.com/</uri>
+	</author>
+	<summary>The end of the Axiom of Choice</summary>
+	<content type="html">&lt;p&gt;The end of the Axiom of Choice&lt;/p&gt;</content>
+</entry>
+
+<entry>
+	<title>Learning Model Selection</title>
+	<link href="http://zv.github.com/note/learning_algorithms/" />
+	<id>tag:zv.github.com,2011:/note/learning_algorithms/</id>
+	<updated>2011-09-02T00:00:00-07:00</updated>
+	<author>
+		<name>Zephyr Pellerin</name>
+		<uri>http://zv.github.com/</uri>
+	</author>
+	<summary>A trusty comparison of regression and classification algorithms</summary>
+	<content type="html">&lt;p&gt;A trusty comparison of regression and classification algorithms&lt;/p&gt;</content>
+</entry>
+
+<entry>
+	<title>The Transcendence of π</title>
+	<link href="http://zv.github.com/note/transcendentiality/" />
+	<id>tag:zv.github.com,2011:/note/transcendentiality/</id>
+	<updated>2011-09-01T00:00:00-07:00</updated>
+	<author>
+		<name>Zephyr Pellerin</name>
+		<uri>http://zv.github.com/</uri>
+	</author>
+	<summary>Knowing the roots requires deep digging.</summary>
+	<content type="html">&lt;p&gt;Knowing the roots requires deep digging.&lt;/p&gt;</content>
+</entry>
+
+</feed>

@@ -1,0 +1,12 @@
+---
+layout: post
+title: Sumazi 
+category: work
+excerpt: 
+thumb: /images/sumazi.png
+---
+
+<div class="txt">
+<p id="link"><a href="http://beta.sumazi.com/">Sumazi</a></p>
+<p>I was contracted by Sumazi to build a simple, but working, machine learning network expert system.</p>
+</div>

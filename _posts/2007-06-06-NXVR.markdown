@@ -1,0 +1,21 @@
+---
+layout: post
+title: NXVR 
+category: work
+excerpt: Not really that great of an idea to be honest 
+thumb: /images/NXVR.png
+---
+
+<div class="txt">
+<p id="text">Eschewing the then contemporary stylistic traditions of the torrent
+site genre such as degenerate ranting about the moral legitimacy of internet piracy, pornographic ads
+and poorly disguised Trojan downloads.
+NXVR was made of a softer, gentler kind of downloadable content.
+Housed with troves of probing and ponderous philosophical texts, commercially fruitless cult classics
+and acclaimed relics of the past. 
+</p>
+
+<p id="text">
+The site was later taken down by my host after some surely well meaning DMCA requests. 
+</p>
+</div>

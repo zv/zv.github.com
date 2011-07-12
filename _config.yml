@@ -1,0 +1,33 @@
+# folder settings
+source: .
+destination: ./_site
+
+# site settings
+permalink: /:categories/:title
+# site url
+url: zv.github.com 
+
+# prod: true
+prod: false
+markdown: rdiscount
+# used by css url in default.html and index.xml
+css-path: /css
+
+# custom vars, most of them are used by index.xml
+name: A new kind of sentience 
+full-name: Zephyr Pellerin
+email: zephyr.pellerin@gmail.com
+slogan: Its nothing I cant handle.
+twitter: zefyear 
+
+
+# fire up a localhost and auto generate when files change
+auto: true
+server_port: 4321
+
+# exclude files for generated site
+exclude: 
+- README.md
+- LICENSE
+- Rakefile
+- nite.tmproj

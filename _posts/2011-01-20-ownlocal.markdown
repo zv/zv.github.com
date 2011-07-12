@@ -1,0 +1,14 @@
+---
+layout: post
+title: OwnLocal 
+category: work
+excerpt: 
+thumb: /images/ownlocal.png
+---
+
+<div class="txt">
+<p>Wrote and maintained significant server infrastructure, lead comprehensive restructuring of server infrastructure resulting in signifigant cost reduction.</p>
+<p>Wrote many different types of Ruby on Rails applications with drastically different operation models and business logic.</p>
+<p>Migrated earlier web framework applications to newer versions of Ruby on Rails.</p>
+<p><a href="http://www.ownlocal.com/">OwnLocal</a></p>
+</div>

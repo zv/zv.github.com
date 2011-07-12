@@ -1,0 +1,11 @@
+---
+layout: post
+title: MixRank 
+category: work
+excerpt: 
+thumb: /images/mixrank.png
+---
+
+<div class="txt">
+<p>I did some python work for these guys. <a href="http://mixrank.com">Mixrank</a></p>
+</div>
