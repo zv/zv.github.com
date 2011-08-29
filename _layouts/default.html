@@ -11,7 +11,7 @@
 
 <link rel=alternate href={% if site.prod %}//{{ site.url }}{% endif %}/feed/ type=application/atom+xml>
 <link rel=stylesheet href={% if site.prod %}//{{ site.url }}{% endif %}{{ site.css-path }}/a.min.css>
-<link rel=dns-prefetch href={{ site.file }}>
+{% if page.title == 'Sparanoid' %}<link rel=dns-prefetch href={{ site.file }}>{% endif %}
 
 <title>{% if page.title != 'Sparanoid' %}{{ site.name }} - {% endif %}{{ page.title }}</title>
 
