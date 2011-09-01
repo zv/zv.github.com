@@ -2,7 +2,6 @@
 
 # Jekyll specified
 _site
-*.min.css
 *.min.js
 Rakefile
 
