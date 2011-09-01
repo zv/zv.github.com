@@ -7,26 +7,20 @@ permalink: /:categories/:title
 markdown: rdiscount
 
 # site url
-url: sparanoid.com
+url: zv.github.com 
 
 # Focus domain name to site.url, used for CloudFront production only
 # prod: true
 prod: false
 
-# used by images inserted in posts
-file: http://rsrc.sparanoid.com
-
-# used by specified background images
-assets-cdn: http://a2.sparanoid.com
-
 # used by css url in default.html and index.xml
 css-path: /css
 
 # custom vars, most of them are used by index.xml
-name: Sparanoid
-full-name: Tunghiao Liu
-email: info@sparanoid.com
-slogan: I make things that don't suck.
+name: A new kind of sentience 
+full-name: Zephyr Pellerin
+email: zephyr.pellerin@gmail.com
+slogan: Its nothing I cant handle.
 twitter: sparanoid
 
 # fire up a localhost and auto generate when files change
