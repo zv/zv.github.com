@@ -318,7 +318,7 @@ footer {
 }
 
 ::selection {
-	background: rgba(255, 255, 0, .8);
+	background: red; 
 }
 
 @media (min-width: 1600px) {
