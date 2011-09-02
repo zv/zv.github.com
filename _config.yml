@@ -4,15 +4,13 @@ destination: ./_site
 
 # site settings
 permalink: /:categories/:title
-markdown: rdiscount
 
 # site url
 url: zv.github.com 
 
-# Focus domain name to site.url, used for CloudFront production only
 # prod: true
 prod: false
-
+markdown: rdiscount
 # used by css url in default.html and index.xml
 css-path: /css
 
@@ -21,11 +19,11 @@ name: A new kind of sentience
 full-name: Zephyr Pellerin
 email: zephyr.pellerin@gmail.com
 slogan: Its nothing I cant handle.
-twitter: sparanoid
+twitter: zefyear 
+
 
 # fire up a localhost and auto generate when files change
 auto: true
-server: ture
 server_port: 4321
 
 # exclude files for generated site

@@ -13,6 +13,9 @@
 	text-decoration: none;
 }
 
+h1 {
+  font-family: sans-serif;
+}
 :root {
 	color: #000;
 /*	color: rgba(255, 255, 255, .3);*/
@@ -167,6 +170,7 @@ article code, article pre {
 }
 
 article .txt {
+  text-align: justify;
 	max-width: 600px;
 }
 
@@ -375,4 +379,5 @@ screen and (max-device-width: 480px),
 	article {
 		text-align: justify;
 	}
+
 }

@@ -2,7 +2,7 @@
 layout: post
 title: The Transcendence of π
 category: note
-excerpt: How mathematicians proved the obvious
+excerpt: Knowing the roots requires deep digging.
 ---
 <div class=txt>
 
@@ -22,8 +22,5 @@ The French mathematician Liouville proved the first transcendentals by showing i
 
 <p>So it becomes imperative to pin down the difference between f(α) being zero and approximating zero. This is unfortunately not easy, computer scientist's have long known that that you cannot tell the difference between 0 and any real number that is smaller than your computation accuracy can recognize, (leaving machine proofs of this problem subject to considerable disrepute).
 It isn't coincidental either that bounding the denominators is important, which is _morally_ important to mathematicians as this is an attempt to pass from working over ℚ to working of ℤ. Why? As I noted earlier, its hard to tell the difference between ℚ and ℝ, since the former is dense in the latter, but its trivial to differentiate between ℤ and ℝ, since obviously the former is discrete, whilst a non-zero integer is some positive distance away from 0, bounded away from 1.</p>
-
-
-The preceding remarks are somewhat philosophical, and they reflect my (limited) experience of thinking about these kinds of questions. If you look at the proofs in the link above, it may not be obvious that they are relevant, but I believe that they in fact do have some relevance: e.g. you will see that the arguments reduce to considering integer rather than rational polynomials, and that growth considerations play a key role. Another thing you will see is that certain auxiliary polynomials enter the proof, and a key fact about them is that they have a high order of vanishing at their zeroes. The appearance of auxiliary polynomials, often with a high order of vanishing, is ubiquitous in this theory.
 </div>
 
