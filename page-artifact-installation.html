@@ -1,11 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+---
+layout: artifact 
+title: Artifact Installation 
+permalink: /artifact/docs/installation/
+---
+
+<!doctype html>
+
+
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     
     <title>Installing Artifact ::  Artifact Documentation</title>
     
-    <link rel="stylesheet" href="flasky.css" type="text/css">
-    <link rel="stylesheet" href="pygments.css" type="text/css">
+    <link rel="stylesheet" href="/flasky.css" type="text/css">
     
   </head>
   <body>
@@ -42,7 +49,7 @@ To get started, we're going to start by running the server as a lone node, isola
 </p>
 <p>
 To get started, open up artifact.config, The majority of the configuration parameters are self explanatory, however, this line may stand out to you.
-<pre>{quorum, {1,1,1}}</pre>
+<pre>{quorum, { 1,1,1\}\}</pre>
 These three values describe replication, read and write scaling multipliers respectively. The value of changing these multipliers will be discussed in later chapters.
 To invoke artifact, run this in your terminal.
 <pre>$ erl -config artifact.config -pa ebin
@@ -52,7 +59,7 @@ The config flag take a parameter giving the name of the configuration file, the 
 <br>Upon running, you should see something like the following pop up.
 <pre>
 [info] (<0.42.0>) ./artifact_hash.erl:189: {update,
-           [{{{127,
+           [\{\{\{127,
                0,
                1,
                1},
@@ -88,7 +95,7 @@ See, wasn't that easy!
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo"><a href="/docs/">
-  <img class="logo" src="artifact-small.png" alt="Logo">
+  <img class="logo" src="/artifact-small.png" alt="Logo">
 </a></p>
   <h3><a href="/artifact/docs/">Table Of Contents</a></h3>
   <ul>
