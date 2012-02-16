@@ -23,9 +23,9 @@
 use cases.</p>
 <div class="section" id="what-does-micro-mean">
 <h2>Why Artifact?<a class="headerlink" href="#what-does-micro-mean" title="Permalink to this headline">¶</a></h2>
-<p>Reliability and speed at scale is one of the largest challenges I've faced working at MixRank. Slow performance periods and outages have major financial consequences and impacts both
-trust in the technical team and our investor's faith in the business. We provide millions of records, implemented on top of servers and network components
-that, at our sufficient scale, effectively fail continously. It became distinctly apparent early on that handling failure while remaining fast is integral.</p>
+<p>Reliability and speed at scale is one of the largest challenges I've faced. Slow performance periods and outages have major financial consequences and impacts both
+trust in a technical team and your teams's faith in the business. We provide millions of records, implemented on top of servers and network components
+that, at sufficient scale, effectively fail continously. It became distinctly apparent early on that handling failure while remaining fast is integral.</p>
 <p>One of the things I've learned from Scott Miliken and the rest of the team is that the design of managing a datastore's state is critical. MixRank is built on top of decentralized, loosely coupled
 interacting services consisting of hundreds of concurrent indexing operations. Therefore, Artifact is constructed in such a fashion that failure is a given,
 and recovery should be guaranteed.</p>
