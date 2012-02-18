@@ -9,16 +9,12 @@ graciously taken from sparanoid
 </script>
 <link rel=alternate href={% if site.prod %}//{{ site.url }}{% endif %}/feed/ type=application/atom+xml>
 <link rel=stylesheet href={% if site.prod %}//{{ site.url }}{% endif %}{{ site.css-path }}/a.min.css>
-{% if page.title == 'Sparanoid' %}<link rel=dns-prefetch href={{ site.file }}>{% endif %}
-
 <title>A New Kind of Sentience</title>
 
-{% if page.title == 'Sparanoid' %}
 <header>
 	<h2>a companion for the age of spiritual machines</h2>
 	<h1 lang=ja><a href={% if site.prod %}//{{ site.url }}{% endif %}/ rel=home accesskey=x>a new kind of sentience</a></h1>
 </header>
-{% endif %}
 
 <nav>
 		<h2>&lt; <a href={% if site.prod %}//{{ site.url }}{% endif %}/ rel=home accesskey=x>origin</a></h2>
