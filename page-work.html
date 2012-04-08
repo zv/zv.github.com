@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Work ／ ワークス ／ 作品
+title: A Record of Works Past 
 permalink: /work/
-desc: Design works, drawings and projects 
+desc: "Judge a man by his deeds" 
 ---
 
 <ul class=al>
-{% for post in site.categories.work %}<li><img src="{{ site.file }}/thumb/{% if post.thumb %}{{ post.thumb }}{% else %}na.png{% endif %}" alt="{{ post.title }}"><a href={% if site.prod %}//{{ site.url }}{% endif %}{{ post.url }}/>{{ post.title }}</a></li>{% endfor %}
+    {% for post in site.categories.work %}<li><img src="{{ post.thumb }}" alt="{{ post.title }}"><a href={% if site.prod %}//{{ site.url }}{% endif %}{{ post.url }}/>{{ post.title }}</a></li>{% endfor %}
 </ul>
