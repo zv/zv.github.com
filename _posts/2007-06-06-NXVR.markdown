@@ -1,0 +1,12 @@
+---
+layout: post
+title: NXVR 
+category: work
+excerpt: Not really that great of an idea to be honest 
+thumb: /images/NXVR.png
+---
+
+<div class="txt">
+In his younger years, Zephyr, like some children, grew attracted to a naive ideal that they're forced to abandon when they grow accustomed to the mercilessness of reality, for Zephyr, this was his quickly devised dream of NXVR. Eschewing stylistic traditions of the open torrent site genre such as degenerate ranting and poorly disguised Trojan downloads. No, NXVR was made of a softer kind of illegally downloadble content such as philosophical foreign cult films, commercially fruitless
+yet critically acclaimed classics and forgotten artistic relics. Unfortunately, as they say, all copyright crimes have to come to an end at some point, the site was later taken down by those dastardly oppressive savages who crafted the DMCA. Maybe you'll cry manly and/or feminine tears at how awesome the whole idea was.
+</div>
