@@ -1,3 +1,0 @@
-puts "hhh"
-`bash`
-
