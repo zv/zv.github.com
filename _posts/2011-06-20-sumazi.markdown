@@ -1,0 +1,11 @@
+---
+layout: post
+title: Sumazi 
+category: work
+excerpt: 
+thumb: /images/sumazi.png
+---
+
+<div class="txt">
+<p></p>
+</div>

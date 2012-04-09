@@ -1,0 +1,11 @@
+---
+layout: post
+title: RedForth 
+category: work
+excerpt: 
+thumb: /images/forth.png
+---
+
+<div class="txt">
+<p>RedForth was derived from another attempt to create a forth emulator, at one point I had some pretensions about getting this junker to support p-adic integer expansion.</p>
+</div>
