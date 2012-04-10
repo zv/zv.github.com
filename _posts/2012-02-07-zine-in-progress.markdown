@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ZIP - Zine In Progress 
+title: ZiP 
 category: work
 excerpt: 
 thumb: /images/zip.png
