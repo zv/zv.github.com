@@ -7,5 +7,6 @@ thumb: /images/sumazi.png
 ---
 
 <div class="txt">
-<p></p>
+<p id="link"><a href="http://beta.sumazi.com/">Sumazi</a></p>
+<p>I helped these girls briefly build a simple, but working, machine learning network minimax expert system.</p>
 </div>

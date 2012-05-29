@@ -1,0 +1,11 @@
+---
+layout: post
+title: Dotfiles (of the owned and the lamest) 
+category: work
+excerpt: 
+thumb: /images/dotfiles.png
+---
+
+<div class="txt">
+<p></p>
+</div>

@@ -1,0 +1,11 @@
+---
+layout: post
+title: Artifact 
+category: work
+excerpt: 
+thumb: /images/artifacto.png
+---
+
+<div class="txt">
+<p></p>
+</div>

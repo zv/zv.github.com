@@ -1,0 +1,14 @@
+---
+layout: post
+title: Code Hero 
+category: work
+excerpt: 
+thumb: /images/codehero.png
+---
+
+<div class="txt">
+<img src="/images/codehero.jpg"></img>
+<p>As long as I've known my hack-rade (Hacker-Comrade?) Alex he's been hacking on Code Hero and teaching young people to code, which is pretty inspirational and even as a cold, hardened husk of a hacker, I find downright heartwarming. After hacking for months, sleeping in cars / street (and, god forbid, Noisebridge!), it all came together on a fateful February night -- From the minds of Alex Peake, Gavin Knight, Dan Cote, Ross Colby, Antonio Gusshoven, Mek Karpeles, intern Cooper LeBrun and yours truely, the hit educational game to teach you to code lead by the consummate hacker Alex Peake came together with a bang -- <a href="http://www.kickstarter.com/projects/primerist/code-hero-a-game-that-teaches-you-to-make-games-he">producing the wildly successful 200,000$ kickstarter which rocked the game world.</a></p>
+
+<p>Yeah, that was us.</p>
+</div>

@@ -7,6 +7,6 @@ thumb: /images/ownlocal.png
 ---
 
 <div class="txt">
-<p>I worked for these guys doing Rails and a little Erlang on the side. I also set up their infrastructure and architected their internal cloud as well as AWS.</p>
+<p>I worked for these guys doing Rails and a little Erlang on the side. I also set up their infrastructure and was part of the architects of their internal cloud as well as AWS.</p>
 <p><a href="http://www.ownlocal.com/">OwnLocal</a></p>
 </div>

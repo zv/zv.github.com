@@ -7,6 +7,21 @@ thumb: /images/NXVR.png
 ---
 
 <div class="txt">
-In his younger years, Zephyr, like some children, grew attracted to a naive ideal that they're forced to abandon when they grow accustomed to the mercilessness of reality, for Zephyr, this was his quickly devised dream of NXVR. Eschewing stylistic traditions of the open torrent site genre such as degenerate ranting and poorly disguised Trojan downloads. No, NXVR was made of a softer kind of illegally downloadble content such as philosophical foreign cult films, commercially fruitless
-yet critically acclaimed classics and forgotten artistic relics. Unfortunately, as they say, all copyright crimes have to come to an end at some point, the site was later taken down by those dastardly oppressive savages who crafted the DMCA. Maybe you'll cry manly and/or feminine tears at how awesome the whole idea was.
+<p id="text">In my younger years, like many children, I grew attached to a
+naive, yet pure ideal. One that they are forced to abandon when they grow
+accustomed to the mercilessness of reality, for me, this was my hastily
+devised dream of NXVR. Eschewing prior stylistic traditions of the torrent
+site genre such as degenerate ranting and poorly masquering Trojan downloads.
+NXVR was made of a softer, gentler kind of illegally downloadable content.
+Probing and ponderous philosophical texts, commercially fruitless cult classics
+and acclaimed relics of a bygone era.
+</p>
+
+<p id="text">
+Unfortunately, as they say, all good copyright crimes have to come to an end.
+The site was later taken down by some surely well meaning DMCA requests. <br>
+Perhaps, you'll be able to cry tears and how marvelously naive this whole ideal
+of sharing the elements of the meaning of the human experience was. Art costs
+money.
+</p>
 </div>

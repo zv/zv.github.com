@@ -7,5 +7,5 @@ thumb: /images/allmobileoffice.png
 ---
 
 <div class="txt">
-<p></p>
+<p>This was an</p>
 </div>

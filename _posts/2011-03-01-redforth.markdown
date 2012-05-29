@@ -7,5 +7,10 @@ thumb: /images/forth.png
 ---
 
 <div class="txt">
-<p>RedForth was derived from another attempt to create a forth emulator, at one point I had some pretensions about getting this junker to support p-adic integer expansion.</p>
+<p>RedForth was derived from another, early attempt to create a forth stack machine,
+at one point I even had some pretensions about getting this junker to support p-adic
+integer expansion. An interesting derivation of this, original intent notwithstanding,
+is the interestingly elegant  proof of why mathematicians shouldn't 
+bother with language design</p>
+
 </div>
