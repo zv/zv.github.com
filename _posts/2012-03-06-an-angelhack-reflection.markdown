@@ -2,7 +2,7 @@
 layout: post
 title: AngelHack - A Postmortem 
 category: note
-excerpt: The devil is in the details 
+excerpt: Devil is in the details 
 ---
 <div class=txt>
 
@@ -12,22 +12,18 @@ produced a <a href="http://www.youtube.com/watch?v=F4pgP7IPOqs">new facial
 recognition application called 'SavingFace'</a> from scratch in about 24 hours and won in San Francisco (the hackathon was split into Boston and San Francisco regions). We came for the prizes (specifically the new Intel AppUp laptops) and met some very interesting people. The whole thing left me with the feeling of deep, existential dread about the nature of funding and hackers in general in the valley after the event.</p>
 
 <p>Our actual hacking was exceptionally fun (though uneventful), but we did notice a distinct lack of, well, hacking (at a hackathon).</p>
-
 <p>Lots of people talking about hacking, lots of people talking about popular web technologies, but very little actual hacking. For that matter, everyone else in the building seemed equally incredulous at the number of "hustlers" vs "hackers", like the whole hackathon was some sort ofbizzare trick at their expense.</p>
-
-<p>When the time came to submit our applications, the whole angelhack submission process broke. We sent text messages to try to get our app in. We accidentally XSSed self-crafted angelhack chat bar which caused some rucus and lame copycat attacks, like some sort of real life IRC channel.</p>
-
+<p>When the time came to submit our applications, the whole angelhack submission process broke. We sent text messages to try to get our app in. We accidentally XSSed the self-crafted angelhack chat bar which caused some rucus and lame copycat attacks, we were in some sort of bizzaro-world real life IRC channel.</p>
 <p>After some delays, when those who were nominated to participate were called out, we noticed that our group's name "Lambda Herders" was conspiciously absent.</p>
-
 <p>
 As the groups prepared to speak, we stood dejected as the intentionally comedic "Download4Me" graced the stage. In that moment I wondered if the world even cared, if the years of linear algebra, stochastic calculus and collected computer science we had accrued were totally meaningless. Maybe I really was the sucker here, maybe book learning was just for squares who hadn't yet figured out the mechanics of life? Who was I to judge though? I'm just a programmer on a small blue planet in some disconsolate corner of the long arm of the galaxy. Feeling just a bit sad, Just as we were about to leave the building, the loadspeakers blared "Lumbda, uhhh, Lambduh Harders?"
 </p>
-
 <p>
-What? Did you seriously nominate us but forget to tell us? (Also, didn't you study math or science, or anything that involved greek letters?)
+What? Did you seriously nominate us but forget to tell us? (fairness, this was quite a chaotic event)
 </p>
+<p>We all scrambled to pull ourselves together, living in the moment the strange pretense that somehow the results of this hackathon actually meant something. <p>
 
-<p>We all scrambled to pull ourselves together, living under the strange pretense that somehow the results of this hackathon actually meant something. Luckily I know good people, no, I take that back, I know fucking geniuses. With absolutely no preparation Steven launched into the various modalities of this application, the potential and the existing technology. The Angel Investors we very impressed.</p>
+<p>I'm lucky enough to know good people, actually, I take that back, I know fucking geniuses. With absolutely no preparation Steven and Mek launched into the various modalities of this application, the potential and the existing technology. After apps to show you cat pictures and download a link to your dropbox, The angel investor judge panel was very impressed.</p>
 
 <p>Without missing a beat, after our presentation, a young "journalist" (whatever that designation may imply) ran up to me after our presentation
 and asked me how I came to this station in life (As flattering at these questions
@@ -40,20 +36,14 @@ day for 100 years, it's still doesn't come close in comparison to the feeling
 of doing things that I think matter. Creating things that matter -- breathing
 life into the soul of a new kind of machine. That is what consumes me, so
 that's what I always have and always will pursue"</p>
-
 <p>She paused, seemingly surprised, she stared into my eyes with a look that
 appeared to straddle the uncomfortable region between concern and fear.</p>
-
 <p>These overly serious answers are a weakness of mine. In my defense, I didn't think these sort of answers would be unusual at a "hacker" event.</p>
-
 <p>A few really skilled people come up onto the stage and pitch their demos, a few not so skilled people do as well (it shows). I've never believed in the whole "great programmers do 100x what good programmers do" until now.</p>
-
 <p>A older, well meaning health startup entrepreneur pitches his idea for a stress meter to the judges, yelling at them to show how quickly stress can change.</p>
-
 <p>After a long pause, the prospective wantrepreneur continued on with his web 2.0 
 health app pitch. Dave McClure was not happy, and beginning to show it.
 </p>
-
 <p>Mid pitch, like a scene from Mulholland Drive , McClure launches into a (possibly drug addled) fury. "I'm NOT YOUR FUCKING DEMO, DON'T DEMO ME BRO!"
 is yelled at ear piercing intensity. Dave leaves the judging panel never to 
 return. We're all fucking stunned, completely silenced, everyone on edge a little
