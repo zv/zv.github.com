@@ -6,7 +6,9 @@ excerpt: A trusty comparison of regression and classification algorithms
 ---
 <div class=txt>
 
-<p>Given some training data *T*, some predicates, *X*, and an object to classify *Y* as well as your prior information *I*, As probability theory goes, just calculate it's probability, conditional on the information available to you:</p>
+<p>This article is here for personal reference, it is an amalgam of techniques on regression and classification algorithms</p>
+
+<p>Given some training data T, some predicates, X, and an object to classify Y as well as your prior information I, As probability theory goes, just calculate it's probability, conditional on the information available to you:</p>
 
 $$P(Y|T,X,I)$$
 
@@ -52,7 +54,6 @@ There will be another set of equations for \(\overline{Y}\)
 
 $$P(X|Y,T,I)\approx P(X|\theta_{Y}^{(j)},M_{j},Y,T,I)_{\theta_{Y}^{(j)}=\hat{\theta}_{Y}^{(j)}}$$
 
-Which is the "standard" approach to this kind of problem.
 </div>
 
 
