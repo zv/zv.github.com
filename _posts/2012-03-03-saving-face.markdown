@@ -8,7 +8,7 @@ thumb: /images/savingface.png
 
 <div class="txt">
 <p><iframe width="420" height="315" src="http://www.youtube.com/embed/F4pgP7IPOqs" frameborder="0" allowfullscreen></iframe></p>
-<p>Turns out, me and my totally bitchin' (sorry for the course language, but sometimes "rad" will not suffice) roomates Mek <i>"Guitar Man"</i> Karpeles and Stephen <i>"Brain Man"</i> Balaban are considered pretty good hackers</p> 
+<p>Turns out, me and my totally bitchin' (sorry for the course language, but sometimes "rad" will not suffice) roomates Mek <i>"Guitar Man"</i> Karpeles and Stephen <i>"Brain Man"</i> Balaban can totally hack the planet</p> 
 
 <p>We participated in the eminent & world-renowned (may be strecthing here) hackathon - Angelhack. We hacked on a facial recognition app implementing our own detection algorithm and the excellent recognition backend <a href="http://www.face.com">Face.com</a> to produce a project for automatically recognizing friends and pulling up their facebook information, just from a picture! All in less than 30 hours! </p>
 

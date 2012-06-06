@@ -15,7 +15,7 @@ excerpt: How the financial system has implicitly admitted that software develope
 
 <p>now their 'really cool' software runs the Internet, runs Android, runs Apple's OSX system and will probably run virtually all computers of the future. (Apparently it also runs our financial markets)</p>
 
-<p>Equally interesting is that the businessman's approach to computer software has yielded some of the most hated software companies in the world that invariably implode because of lack of technical competence - Microsoft comes to mind.</p>
+<p>Equally interesting is that the businessman's approach to some software has yielded some software companies that implode because of lack of technical competence - Microsoft comes to mind.</p>
 
 <p>What does this say about computer programmers? What does this say about our culture's fierce belief that the pursuit of money is our highest goal, much less that it even matters? </p>
 
