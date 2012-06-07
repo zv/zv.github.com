@@ -19,7 +19,7 @@ thumb: /images/zip.png
 
 <p>Tony LeTigre still operates as the editor at large, while I work on as "Technical Editor"</p>
 
-<p>After a lot of extremely hard work to put together the issues. Following a resounding success and praise for extremely high quality of social and technical commentary -- ZiP is carried today in bookstores and zine publication collations around San Francisco, speaking for a disaffected generation of makers, phreaks and and anyone who lives under the pithy slogan "hack the pl8"</p>
+<p>After an extraordinary amount of work writing the articles, editing submissions, finding a publisher, ZiP was released as an unexpectedly resounding success with praise for the extremely high quality of social and technical commentary. ZiP is carried today in bookstores and zine publication collations around San Francisco, speaking for a disaffected generation of makers, phreaks and and anyone who lives under the pithy slogan "hack the pl8"</p>
 
 <p>You can pick up a copy at Bridge Bookstore, Mission Comics and a few other selected purveyors of this fine publication.</p>
 

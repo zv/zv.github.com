@@ -7,5 +7,5 @@ thumb: /images/mixrank.png
 ---
 
 <div class="txt">
-<p></p>
+<p>I did some python work for these guys. <a href="http://mixrank.com">Mixrank</a></p>
 </div>
