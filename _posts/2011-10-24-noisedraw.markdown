@@ -26,8 +26,8 @@ comes out, you can't explain that!).
 <p>
 Since then, the winter has come and gone. The birds are starting to sing again
 I cooler and smaller demos with more interesting effects have been written. 
-Nevertheless, this is a neat demo of utilizing the lagrangian change instead of 
-stochastic branching to achieve performant, small, pretty neato blitter counts.
+Nevertheless, this is a neat demo of utilizing the minreg change 
+achieve performant, small, pretty neato blitter counts.
 </p>
 
 <p>
