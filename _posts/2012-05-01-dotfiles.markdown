@@ -7,7 +7,7 @@ thumb: /images/dotfiles.png
 ---
 
 <div class="txt">
-<p>Philosophical Pandering? Years of dotfiles? All for the low, low price of absolutely nothing!</p>
+<p>I like my dotfiles alot, you might to.</p>
 
 <p><a href="http://www.github.com/zv/dotfilez">Dotfiles</a></p>
 </div>
