@@ -1,20 +1,17 @@
 ---
-# layout: post
-#title: How PTrace (really) works 
-#category: note
-#excerpt: A look inside the strange world of debuggers 
+layout: post
+title: Single Stepping with PTrace 
+category: note
+excerpt: A look into the abyss 
 ---
 <div class=txt>
 
-This post isn't done, if you're seeing it then something is wrong
 
-<p>PTrace is integral to the operation of all proccesses that examine another's execution -- it's the building block of every modern debugger implementation. It's versatile and well tested, and although the elements are quite simple, it can be used to quite an effect. Many books have been written about ptrace internals, so far be it from me to decieve you into the belief this is document somehow comprehensive. Like many posts of mine, this post is really written for my own benefit -- I find myself constantly trying to improve my technical writing skills and unfortunately also forgetting some very elementary system programming stuff as my time is consumed with web programming and math. Never the less, I hope you find it useful.</p>
+<p>PTrace is integral to the operation of all processes that examine another's execution in POSIX compatible operating systems -- it's the building block of every modern debugger implementation. It's versatile and well tested, and although the elements are quite simple, it's the perennial process examination library. Many books have been written about ptrace internals, so do not confuse this this document with a more comprehensive treatment of the subject.</p>
 
-<p>Before we dive in, consider for a moment the requisite knowledge it takes to write a debugger. First, you have to know what exactly a debugger does, secondly, you have to figure out how to attach yourself to an existing process, how to "step" through code and coalesce low-level assembly references to high level variable values and data structures. The issue is further complicated by the proliferation of debuggers which support scripting to change the examined proccess's image</p>
+<p>Before we dive in, consider the prerequisite knowledge involved in a debugger. First, you have to know what exactly the internals of a debugger do, secondly, you have to figure out how to attach yourself to an existing process, how to "step" through code and coalesce low-level assembly references to high level variable values and data structures. The issue is further complicated by the proliferation of debuggers which support scripting to change the examined proccess's image</p>
 
-<p>It is not a straitforward task in the least</p>
-
-<p>始めましょう</p>
+<p>So lets begin where it seems natural</p>
 
 <h3>Stepping</h3>
 
@@ -51,7 +48,7 @@ This post isn't done, if you're seeing it then something is wrong
 </pre>
 </p>
 
-<p>The mode of execution is quite trivial -- when this program runs, a new fork is created and the words "The child made a system call 11" (that would be execve) appear.</p> 
+<p>This should be somewhat self explanatory -- when this program runs, a new fork is created and the words "The child made a system call 11" (syscall 11 is execve) appear.</p> 
 
 <p>The signature for ptrace is as follows 
   <i>long ptrace(enum __ptrace_request request, pid_t pid, void *addr, void *data);</i>
@@ -59,11 +56,9 @@ This post isn't done, if you're seeing it then something is wrong
 
 <p>The first argument specifies the type of PTRACE request, the second the PID and the 3rd and forth are generic addr & data pointers if you'd like to manipulate memory.</p> 
 
-<p>As you can see, the ptrace call here makes the PTRACE_TRACEME request, which indicates that the child process may ask the OS to trace it, from here, any signal (save the highest interrupt level, SIGKILL) will cause the program to stop and the parent process to be sent a message. All susequent instructions will cause a trap signal to be sent, allowing the parent to control it before the program actually begins execution. </p> 
+<p>As you can see, the ptrace call here makes the PTRACE_TRACEME request, which indicates that the child process may ask the OS to trace it, from here, any signal (save the highest interrupt level, SIGKILL) will cause the program to stop and the parent process to be sent a message. All susequent instructions will cause a trap signal to be sent, allowing the parent to control it before the program actually begins execution.</p> 
 
-<p>Recall that once a remote thread[1] is created via exec(), it will stop and send the trap signal. The parent will wait() for this to happen with the first call, and wait() will return once a signal is sent to it. The parent then invokves ptrace with <i>PTRACE_SINGLESTEP</i> request containing the child process PID, this indicates to ptrace that it should restart the execution of the process but wait and after it executes the next instruction. The loop will terminate when the signal that came out of the wait call wasn’t about the child stopping. During a normal run of the tracer, this will be the signal that tells the parent that the child process exited (WIFEXITED would return true on it).</p>
-
-
+<p>When a remote thread[1] is created via exec(), it will stop and send the trap signal. The parent will wait() for this to happen with the first call, and wait() will return once a signal is sent to it. The parent then invokes ptrace with <i>PTRACE_SINGLESTEP</i> request containing the child process PID, this indicates to ptrace that it should restart the execution of the process but wait and after it executes the next instruction. The loop will terminate when the signal that came out of the wait call wasn’t about the child stopping. During a normal run of the tracer, this will be the signal that tells the parent that the child process exited (WIFEXITED would return true on it).</p>
 
 Let us now consider the case of a ptrace tracer that prints the number of instructions executed.
 Note that icounter counts the amount of instructions executed by the child process. So our simple example actually does something useful – given a program name on the command line, it executes the program and reports the amount of CPU instructions it took to run from start to finish. Let’s see it in action.
