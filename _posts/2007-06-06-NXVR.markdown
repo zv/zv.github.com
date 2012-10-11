@@ -7,22 +7,15 @@ thumb: /images/NXVR.png
 ---
 
 <div class="txt">
-<p id="text">In my younger years, like many children, I grew attached to a
-naive, yet pure ideal. One that they are forced to abandon when they grow
-accustomed to the mercilessness of reality, for me, this was my hastily
-devised dream of NXVR. Eschewing prior stylistic traditions of the torrent
-site genre such as degenerate ranting about the moral legitimacy of internet piracy and poorly disguised Trojan downloads.
-
-No, NXVR was made of a softer, gentler kind of illegal content.
-
+<p id="text">Eschewing the then contemporary stylistic traditions of the torrent
+site genre such as degenerate ranting about the moral legitimacy of internet piracy, pornographic ads
+and poorly disguised Trojan downloads.
+NXVR was made of a softer, gentler kind of downloadable content.
 Housed with troves of probing and ponderous philosophical texts, commercially fruitless cult classics
-and acclaimed relics of a bygone era. We had the entire Criterion Collection at some point. 
+and acclaimed relics of the past. 
 </p>
 
 <p id="text">
-Unfortunately, as they say, all good copyright crimes have to come to an end.
-The site was later taken down by some surely well meaning DMCA requests. <br>
-Perhaps, you'll be able to cry tears and how marvelously naive this whole ideal
-of sharing the elements of the meaning of the human experience was.  
+The site was later taken down by my host after some surely well meaning DMCA requests. 
 </p>
 </div>

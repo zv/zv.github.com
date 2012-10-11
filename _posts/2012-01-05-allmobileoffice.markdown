@@ -7,5 +7,6 @@ thumb: /images/allmobileoffice.png
 ---
 
 <div class="txt">
-<p>I worked for Divitas Networks to produce telephony systems that just work :)</p>
+<p>Wrote and maintained telecommunication software written in Ruby, C++ and Erlang.</p>
+<p>Designed and implemented a service oriented web architecture tying together disparate telecommunication infrastructure written in C++ (Asterisk) and Erlang ultimately providing "telecommunications as a service".</p>
 </div>
