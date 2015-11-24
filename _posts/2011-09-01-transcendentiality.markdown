@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: The Transcendence of π
 category: note
 excerpt: Knowing the roots requires deep digging.

@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<div class="blog-posts">
+  {% for post in site.posts %}
+  <div class="post-entry">
+    <header class="post-header">
+      <a href="{{ post.url }}" class="post-title" itemprop="headline">
+        {{ post.title }}
+      </a>
+      <p class="post-desc" itemprop="description">
+        {{ post.description }}
+      </p>
+      <p class="post-date">
+        <time itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}">
+          {{ post.date | date: "%-m/%-d" }}
+        </time>
+      </p>
+      <!--
+      Possibly Add Tags
+      -->
+    </header>
+  </div>
+  {% endfor %}
+</div>

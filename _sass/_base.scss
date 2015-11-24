@@ -1,0 +1,24 @@
+/**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 2px solid #8CACD8;
+}
+
+ul {
+    padding: 0 0 0 1em;
+    list-style-type: square;
+}
+
+ul > li {
+    margin: 0.5em 0;
+}

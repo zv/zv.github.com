@@ -1,0 +1,271 @@
+---
+layout: page
+title: A Review of ZSH Completion
+category: note
+---
+
+
+<section id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"></h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p display="none">
+In 2007, ZSH started to experience some real growth. Increasingly rabid
+IRC-based advocacy had finally stirred many into dissatisfaction with the
+comparatively inflexible tab-completion system of bash; one of the many new
+users was me.
+</p>
+
+<p>
+Despite it's maverick status amongst shells at the time (if I may flatter
+myself) switching was largely painless and ZSH has grown into it's own as a
+powerful shell with a developer community of intelligent and thoughtful hackers,
+subsequently rising to the status of the vogue choice of programmers everywhere.
+</p>
+
+<p>
+One thing that many new users of zsh found initially appealing was ZSH's lengthy
+and exceptionally comprehensive documentation; famous for it's enumeration of
+details and digressions that involve extensive use of man page 'end notes' (some
+of which themselves have manpage 'footnotes') occassionally even describing
+features or modules of zsh that never existed.
+</p>
+
+<p>
+ZSH's creator, Peter Stephenson is largely responsible for this possibly great
+documentation, but, like most of us who set out to change the world of
+programming, he found it difficult to manage his own programs.
+</p>
+
+<p>
+As ZSH and it's completion system became more sophisticated, the documentation
+itself began to become one of the largest source of question marks on zsh-user.
+</p>
+
+<p>
+ZSH completion documentation has the unique distinction of supporting a wide
+range of interpretations and has the potential to generate critical theory
+literature for years. Eschewing logical development or programming examples,
+reading the completion system or widget documentation begins for most readers as
+a science but quickly devolves into a mutated site-function guess-and-check.
+</p>
+
+<p>
+I will not be addressing any of the following:
+</p>
+<ul class="org-ul">
+<li>How to set up completion and associated zstyles</li>
+<li>Naming convention (e.g <code>_binary</code>)</li>
+<li>Adding completion</li>
+</ul>
+</div>
+</section>
+
+
+<section id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Examples</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+A statement about these examples should be made here
+</p>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Delimited values with final option</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<p>
+A common scenario that occurs in commands such as <i>libcap</i>'s capability
+manipulation toolchain, <i>bintools</i> and <i>coreutils</i> is the requirement to
+complete a list of arbitrary keywordsl, each with a unix-style (equal sign)
+option after each one.
+</p>
+
+<p>
+An example of such a command might read like the capability setting program in
+Linux:
+</p>
+
+<pre class="example">
+setcap cap_sys_rawio,cap_sys_pacct=ep
+</pre>
+
+<p>
+The following would complete 'e, i and p' with the following input string
+</p>
+
+<pre class="example">
+COMMAND foo=
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-shell-script"><span style="color: #BA36A5;">list_terminator</span>=<span style="color: #008000;">'*[=]'</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Corresponds to `=` </span>
+<span style="color: #BA36A5;">delimiter</span>=<span style="color: #008000;">','</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">The character that delimits the list</span>
+<span style="color: #BA36A5;">options</span>=<span style="color: #707183;">(</span><span style="color: #008000;">"e:effective"</span>, <span style="color: #008000;">"i:inheritable"</span>, <span style="color: #008000;">"p:permitted"</span><span style="color: #707183;">)</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Valid options</span>
+<span style="color: #0000FF;">case</span> $<span style="color: #BA36A5;">state</span><span style="color: #0000FF;"> in</span>
+  <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">compset -P checks if we've reached a user entering a $list_terminator</span>
+  <span style="color: #0000FF;">if</span> compset -P $<span style="color: #BA36A5;">list_terminator</span>; <span style="color: #0000FF;">then</span>
+    _describe -t options <span style="color: #008000;">"options"</span> options
+  <span style="color: #0000FF;">else</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Otherwise complete from these list of items.</span>
+    _values -s $<span style="color: #BA36A5;">delimiter</span> items 
+      <span style="color: #008000;">'foo[Description of foo]'</span> <span style="color: #008000;">\</span>
+      <span style="color: #008000;">'bar[Description of bar]'</span>
+  <span style="color: #0000FF;">fi</span>
+  ;;
+<span style="color: #0000FF;">esac</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">Scripts</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<p>
+<a href="https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap">- {zv/zsh-completions} setcap</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">Operating system specific flags with $OSTYPE</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+<div class="org-src-container">
+
+<pre class="src src-shell-script"><span style="color: #006FE0;">local</span> arguments
+<span style="color: #BA36A5;">arguments</span>=<span style="color: #707183;">(</span><span style="color: #008000;">'-b[Base argument]'</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">We might add additional arguments based on the operating system</span>
+<span style="color: #0000FF;">if</span> <span style="color: #707183;">[</span><span style="color: #7388D6;">[</span> <span style="color: #008000;">"$OSTYPE"</span> = <span style="color: #909183;">(</span>freebsd*|darwin*<span style="color: #909183;">)</span> <span style="color: #7388D6;">]</span><span style="color: #707183;">]</span>; <span style="color: #0000FF;">then</span>
+  <span style="color: #BA36A5;">arguments</span>+=<span style="color: #707183;">(</span><span style="color: #008000;">'-m[OSX or FreeBSD Specific Flag]'</span><span style="color: #707183;">)</span>
+<span style="color: #0000FF;">fi</span>
+<span style="color: #0000FF;">if</span> <span style="color: #707183;">[</span><span style="color: #7388D6;">[</span> $<span style="color: #BA36A5;">OSTYPE</span> = solaris* <span style="color: #7388D6;">]</span><span style="color: #707183;">]</span>; <span style="color: #0000FF;">then</span>
+  <span style="color: #BA36A5;">arguments</span>+=<span style="color: #707183;">(</span><span style="color: #008000;">'-s[Solaris specific flag]'</span><span style="color: #707183;">)</span>
+<span style="color: #0000FF;">fi</span>
+<span style="color: #0000FF;">if</span> <span style="color: #707183;">[</span><span style="color: #7388D6;">[</span> $<span style="color: #BA36A5;">OSTYPE</span> = linux* <span style="color: #7388D6;">]</span><span style="color: #707183;">]</span>; <span style="color: #0000FF;">then</span>
+  <span style="color: #BA36A5;">arguments</span>+=<span style="color: #707183;">(</span><span style="color: #008000;">'-l[Linux specific flag]'</span><span style="color: #707183;">)</span>
+<span style="color: #0000FF;">fi</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+
+<section id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12">Utility Functions</h2>
+<div class="outline-text-2" id="text-orgheadline12">
+</div><div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><code>_regex_argument</code> &amp; <code>_regex_words</code> to generate completion from a regular expression</h3>
+<div class="outline-text-3" id="text-orgheadline7">
+</div><div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">Created a dummy first argument</h4>
+<div class="outline-text-4" id="text-orgheadline6">
+<p>
+The following is an extract of the iproute2 argument handling in <a href="https://github.com/zsh-users/zsh/blob/master/Completion/Unix/Command/_ip"><code>_ip</code></a>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #006FE0;">local</span> args
+<span style="color: #BA36A5;">args</span>=<span style="color: #707183;">(</span>
+  <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Command word</span>
+  /$<span style="color: #008000;">'[^\0]#\0'</span>/
+  <span style="color: #008000;">'l*ink:configure network device:$link_cmds'</span> <span style="color: #008000;">\</span>
+  <span style="color: #008000;">'addrlabel:manage addrlabel:$addrlabel_cmds'</span> <span style="color: #008000;">\</span>
+  <span style="color: #008000;">'a*ddr:manage protocol address:$addr_cmds'</span> <span style="color: #008000;">\</span>
+<span style="color: #707183;">)</span>
+_regex_arguments _command
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><code>_pick_variant</code> to add options depending upon the version of a program.</h3>
+<div class="outline-text-3" id="text-orgheadline8">
+<div class="org-src-container">
+
+<pre class="src src-shell-script"><span style="color: #006FE0;">local</span> arguments
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">We supply a regex to _pick_variant, in this case checking gor the string `gnu`</span>
+<span style="color: #0000FF;">if</span> ! _pick_variant <span style="color: #BA36A5;">gnu</span>=gnu unix --help; <span style="color: #0000FF;">then</span>
+  <span style="color: #BA36A5;">arguments</span>=<span style="color: #707183;">(</span><span style="color: #008000;">'-g[This flag only works on gnu distributions of this binary]'</span><span style="color: #707183;">)</span>
+<span style="color: #0000FF;">else</span>
+  <span style="color: #BA36A5;">arguments</span>=<span style="color: #707183;">(</span><span style="color: #008000;">'-a[Otherwise this flag is available]'</span><span style="color: #707183;">)</span>
+<span style="color: #0000FF;">fi</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="todo TODO">TODO</span> Match an ambiguous clause with <code>_guard</code></h3>
+<div class="outline-text-3" id="text-orgheadline9">
+<p>
+The manual page describes the following situation as being easily satisfied with
+<code>_guard</code>
+</p>
+<blockquote>
+<p>
+As an example, consider a command taking the options -n and -none,
+where -n must be followed by a numeric value in the same word. 
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10">Example</h4>
+<div class="outline-text-4" id="text-orgheadline10">
+<p>
+<a href="file:///usr/share/zsh/5.1.1/functions/_fc">file:///usr/share/zsh/5.1.1/functions/_fc</a>
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"></h3>
+</div>
+</section>
+
+<section id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13">Style and Convention</h2>
+<div class="outline-text-2" id="text-orgheadline13">
+<p>
+ZSH completion scripts are (fortunately) never given the opportunity to evolve
+into the complex balls of mud that a 'real' programming environment affords;
+consequently there is much less attention given to the stylistic debates that
+are tied to other languages.
+</p>
+
+<p>
+This said, there are a few, largely unwritten, rules and conventions that
+are 
+</p>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14">Variables</h3>
+<div class="outline-text-3" id="text-orgheadline14">
+<ul class="org-ul">
+<li><code>$state</code> - The canonical variable for processing which tag you are in.</li>
+<li><code>$expl</code> - An idiom for options normally given to compadd at some point, typically an array</li>
+<li><code>$descr</code> - Description variables wh</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15">External Resources</h2>
+<div class="outline-text-2" id="text-orgheadline15">
+<p>
+<a href="http://zsh.sourceforge.net/Guide/zshguide06.html#l144">- The ZSH User Guide - Completion</a>
+</p>
+<ul class="org-ul">
+<li><a href="https://twitter.com/dailyzshtip">Daily ZSH Tips</a></li>
+</ul>
+</div>
+</section>

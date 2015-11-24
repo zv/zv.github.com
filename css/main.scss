@@ -1,0 +1,39 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+// Our variables
+
+//font: 17px/30px 'firasans', sans-serif;
+
+$spacing-unit:     30px;
+
+$text-color: white;
+$background-color: #002b36;
+$font: 17px/30px 'firasans', sans-serif;
+$base-line-height: 1.5;
+
+// Body
+$main-width: 600px;
+$main-wide-width: 810px;
+$menu-width: 80%;
+
+// Nav Items
+$nav-color: hsl(215, 50%, 77%);
+$nav-selected-color: white;
+$nav-selected-border: 2px solid hsl(45,98%,77%);
+
+// Width of the content area
+$content-width:    800px;
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+"fonts",
+"base",
+"layout"
+//"syntax-highlighting"
+;
