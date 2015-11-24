@@ -1,59 +1,11 @@
 <!DOCTYPE html>
-<!--
-graciously taken from sparanoid
--->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name=viewport content="width=device-width, initial-scale=1.0">
-<script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-30683739-1']);
-_gaq.push(['_trackPageview']);
-(function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-</script>
-
-<link rel=alternate href={% if site.prod %}//{{ site.url }}{% endif %}/feed/ type=application/atom+xml>
-<link rel=stylesheet href={% if site.prod %}//{{ site.url }}{% endif %}{{ site.css-path }}/a.min.css>
-{% if page.title == 'NewKindOfSentience' %}<link rel=dns-prefetch href={{ site.file }}>{% endif %}
-
-<title>A New Kind of Sentience</title>
-
-{% if page.title == 'NewKindOfSentience' %}
-<header>
-	<h2>a companion for the age of spiritual machines</h2>
-	<h1 lang=ja><a href={% if site.prod %}//{{ site.url }}{% endif %}/ rel=home accesskey=x>a new kind of sentience</a></h1>
-</header>
-{% endif %}
-<nav>
-		<h2>&lt; <a href={% if site.prod %}//{{ site.url }}{% endif %}/ rel=home accesskey=x>origin</a></h2>
-	<ul>
-        <li{% if page.permalink == '/work/' or page.category == 'work' %} class=current{% endif %}><a href={% if site.prod %}//{{ site.url }}{% endif %}/work/>work</a></li> 
-		<li{% if page.permalink == '/note/' or page.category == 'note' %} class=current{% endif %}><a href={% if site.prod %}//{{ site.url }}{% endif %}/note/>commentary</a></li>
-		<li{% if page.permalink == '/about/' or page.category == 'about' %} class=current{% endif %}><a href={% if site.prod %}//{{ site.url }}{% endif %}/about/>about</a></li>
-	</ul>
-</nav>
-
-{{ content }}
-
-{% if page.category == "work" or page.category == "note" %} 
-<nav>
-{% if page.next.url %}
-	<p><a href={% if site.prod %}//{{ site.url }}{% endif %}{{ page.next.url }}/>{{ page.next.title }}</a> |
-{% else %}
-	<p>You're viewing the latest post |
-{% endif %}
-{% if page.previous.url %}
-	Previous: <a href={% if site.prod %}//{{ site.url }}{% endif %}{{ page.previous.url }}/>{{ page.previous.title }}</a> &gt;</p>
-{% else %}
-	You're reading my first post</p>
-{% endif %}
-</nav>
-{% endif %}
-
+<html lang="en">
+  {% include head.html %}
+  <body>
+    {% include header.html %}
+    <main>
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

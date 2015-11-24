@@ -2,6 +2,7 @@
 
 # Jekyll specified
 _site
+.sass-cache
 *.min.js
 Rakefile
 

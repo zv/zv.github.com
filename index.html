@@ -1,4 +1,19 @@
 ---
 layout: default
-title: NewKindOfSentience
 ---
+
+<div class="home">
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li class="post-section">
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <span class="postlist-date" itemprop="datePublished" datetime='{{page.date | date: "%Y-%d-%b"}}'>2/23</span>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!--
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  -->
+
+</div>

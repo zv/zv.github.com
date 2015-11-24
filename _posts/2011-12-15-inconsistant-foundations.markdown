@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: What if the foundations of mathematics are inconsistant? 
 category: note
 excerpt: The end of the Axiom of Choice

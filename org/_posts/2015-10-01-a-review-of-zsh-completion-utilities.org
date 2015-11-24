@@ -1,0 +1,168 @@
+#+BEGIN_HTML
+---
+layout: page
+title: A Review of ZSH Completion
+category: note
+---
+#+END_HTML
+
+
+* 
+#+ATTR_HTML: :display none
+In 2007, ZSH started to experience some real growth. Increasingly rabid
+IRC-based advocacy had finally stirred many into dissatisfaction with the
+comparatively inflexible tab-completion system of bash; one of the many new
+users was me.
+
+Despite it's maverick status amongst shells at the time (if I may flatter
+myself) switching was largely painless and ZSH has grown into it's own as a
+powerful shell with a developer community of intelligent and thoughtful hackers,
+subsequently rising to the status of the vogue choice of programmers everywhere.
+
+One thing that many new users of zsh found initially appealing was ZSH's lengthy
+and exceptionally comprehensive documentation; famous for it's enumeration of
+details and digressions that involve extensive use of man page 'end notes' (some
+of which themselves have manpage 'footnotes') occassionally even describing
+features or modules of zsh that never existed.
+
+ZSH's creator, Peter Stephenson is largely responsible for this possibly great
+documentation, but, like most of us who set out to change the world of
+programming, he found it difficult to manage his own programs.
+
+As ZSH and it's completion system became more sophisticated, the documentation
+itself began to become one of the largest source of question marks on zsh-user.
+
+ZSH completion documentation has the unique distinction of supporting a wide
+range of interpretations and has the potential to generate critical theory
+literature for years. Eschewing logical development or programming examples,
+reading the completion system or widget documentation begins for most readers as
+a science but quickly devolves into a mutated site-function guess-and-check.
+
+I will not be addressing any of the following:
+- How to set up completion and associated zstyles
+- Naming convention (e.g ~_binary~)
+- Adding completion
+ 
+ 
+* Examples
+A statement about these examples should be made here
+
+** Delimited values with final option
+A common scenario that occurs in commands such as /libcap/'s capability
+manipulation toolchain, /bintools/ and /coreutils/ is the requirement to
+complete a list of arbitrary keywordsl, each with a unix-style (equal sign)
+option after each one.
+
+An example of such a command might read like the capability setting program in
+Linux:
+
+#+BEGIN_EXAMPLE
+setcap cap_sys_rawio,cap_sys_pacct=ep
+#+END_EXAMPLE
+
+The following would complete 'e, i and p' with the following input string
+
+#+BEGIN_EXAMPLE
+COMMAND foo=
+#+END_EXAMPLE
+
+#+BEGIN_SRC shell-script
+list_terminator='*[=]' # Corresponds to `=` 
+delimiter=',' # The character that delimits the list
+options=("e:effective", "i:inheritable", "p:permitted") # Valid options
+case $state in
+  # compset -P checks if we've reached a user entering a $list_terminator
+  if compset -P $list_terminator; then
+    _describe -t options "options" options
+  else # Otherwise complete from these list of items.
+    _values -s $delimiter items 
+      'foo[Description of foo]' \
+      'bar[Description of bar]'
+  fi
+  ;;
+esac
+#+END_SRC
+
+*** Scripts
+[[https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap][- {zv/zsh-completions} setcap]]
+
+** Operating system specific flags with $OSTYPE 
+#+BEGIN_SRC shell-script
+local arguments
+arguments=('-b[Base argument]')
+# We might add additional arguments based on the operating system
+if [[ "$OSTYPE" = (freebsd*|darwin*) ]]; then
+  arguments+=('-m[OSX or FreeBSD Specific Flag]')
+fi
+if [[ $OSTYPE = solaris* ]]; then
+  arguments+=('-s[Solaris specific flag]')
+fi
+if [[ $OSTYPE = linux* ]]; then
+  arguments+=('-l[Linux specific flag]')
+fi
+#+END_SRC
+
+
+* Utility Functions
+
+** ~_regex_argument~ & ~_regex_words~ to generate completion from a regular expression
+
+*** Created a dummy first argument
+The following is an extract of the iproute2 argument handling in [[https://github.com/zsh-users/zsh/blob/master/Completion/Unix/Command/_ip][=_ip=]]
+
+#+BEGIN_SRC sh
+local args
+args=(
+  # Command word
+  /$'[^\0]#\0'/
+  'l*ink:configure network device:$link_cmds' \
+  'addrlabel:manage addrlabel:$addrlabel_cmds' \
+  'a*ddr:manage protocol address:$addr_cmds' \
+)
+_regex_arguments _command 
+#+END_SRC
+
+
+** ~_pick_variant~ to add options depending upon the version of a program.
+#+BEGIN_SRC shell-script
+local arguments
+# We supply a regex to _pick_variant, in this case checking gor the string `gnu`
+if ! _pick_variant gnu=gnu unix --help; then
+  arguments=('-g[This flag only works on gnu distributions of this binary]')
+else
+  arguments=('-a[Otherwise this flag is available]')
+fi
+#+END_SRC
+
+
+** TODO Match an ambiguous clause with ~_guard~ 
+The manual page describes the following situation as being easily satisfied with
+=_guard=
+#+BEGIN_QUOTE
+  As an example, consider a command taking the options -n and -none,
+  where -n must be followed by a numeric value in the same word. 
+#+END_QUOTE
+
+*** Example
+file:/usr/share/zsh/5.1.1/functions/_fc
+
+
+** 
+
+* Style and Convention
+ZSH completion scripts are (fortunately) never given the opportunity to evolve
+into the complex balls of mud that a 'real' programming environment affords;
+consequently there is much less attention given to the stylistic debates that
+are tied to other languages.
+
+This said, there are a few, largely unwritten, rules and conventions that
+are 
+
+** Variables
++ =$state= - The canonical variable for processing which tag you are in.
++ =$expl= - An idiom for options normally given to compadd at some point, typically an array
++ =$descr= - Description variables wh
+
+* External Resources 
+[[http://zsh.sourceforge.net/Guide/zshguide06.html#l144][- The ZSH User Guide - Completion]]
+- [[https://twitter.com/dailyzshtip][Daily ZSH Tips]]

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: Single Stepping with PTrace 
 category: note
 excerpt: A look into the abyss 
