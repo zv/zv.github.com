@@ -2,7 +2,7 @@
  * Basic styling
  */
 body {
-    width: 600px;
+    width: 800px;
     background: $background-color;
     color: $text-color;
     font: $font;
@@ -90,24 +90,57 @@ li.post-section {
  Post Style
  **/
 
-article.post-content  p {
+section > div >  p {
     margin: 17px 0;
     font-size: 17px;
-    line-height: 29px;
+    line-height: 30px;
 }
 
 .org-src-container {
     // background-color: #073642;
-    font-size: 14px;
+    padding: 1px;
+    border: 3px solid #073642;
+    border-left: 14px solid #073642;
+    font-size: 0.95em;
     padding: 10px; 
 }
 
+// Footnotes/Asides
 aside {
+    p {
+      font: normal 1em "firasans";
+    }
     margin: auto;
     position: absolute;
-    padding-left: 60em;
+    padding-left: 62em;
     width: 10em;
     font-size: 80%;
     text-align: left;
     display: block;
+}
+
+
+// Quotes
+.post-content blockquote {
+    font: 200 1em "firasans"; 
+    width: 80%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    margin-left: 10%;
+
+    p:not(:last-of-type) {
+        border-left: 2px solid $red;
+        padding-left: 2%;
+        line-height: 1.5em;
+        margin-right: 3em;
+        margin-top: 1em; 
+    }
+
+    p:last-of-type {
+        font-size: 0.92em;
+        padding-top: 1%;
+        text-align: right;
+        font-style: italic;
+    }
 }
