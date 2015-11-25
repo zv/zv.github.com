@@ -2,7 +2,7 @@
  * Basic styling
  */
 body {
-    width: 800px;
+    width: 50em;
     background: $background-color;
     color: $text-color;
     font: $font;
@@ -96,13 +96,15 @@ section > div >  p {
     line-height: 30px;
 }
 
+// Source code container
 .org-src-container {
     // background-color: #073642;
     padding: 1px;
-    border: 3px solid #073642;
-    border-left: 14px solid #073642;
+    border: 3px solid $base02;
+    border-left: 14px solid $base02;
     font-size: 0.95em;
-    padding: 10px; 
+    padding: 7px 10px 7px 10px; 
+    margin: 5px 0 5px 0;
 }
 
 // Footnotes/Asides
@@ -112,7 +114,7 @@ aside {
     }
     margin: auto;
     position: absolute;
-    padding-left: 62em;
+    padding-left: 65em;
     width: 10em;
     font-size: 80%;
     text-align: left;
@@ -143,4 +145,10 @@ aside {
         text-align: right;
         font-style: italic;
     }
+}
+
+// Examples
+pre.example {
+    padding: 7px 0 7px 0;    
+    color: $base1;
 }
