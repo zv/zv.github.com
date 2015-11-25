@@ -46,22 +46,6 @@ pre, code {
     font: 0.95em/1.5em 'firamono', monospace;
 }
 
-h3 {
-    // font: 300 1em "firasans";
-    font-size: 1em;
-    margin: 2.5em 0 0.5em;
-}
-
-h1,h2 {
-    font: 200 1em "firasans";
-    font-size: 1.7em;
-    margin: 2.5em 0 0.5em;
-}
-
-h1.post-title {
-    margin-bottom: 1.7em;    
-}
-
 /**
  Site Layout
  **/
@@ -79,8 +63,39 @@ span.postlist-date {
 /**
  Post
  **/
-.post-content > section h2 {
-    margin-top: 2.5em;
-    font-size: 1.4em;    
-    font-weight: 200;
+/* .post-content > section h2 { */
+/*     margin-top: 2.5em; */
+/*     font-size: 1.4em;     */
+/*     font-weight: 200; */
+/* } */
+
+h1 {
+    font: 200 1em "firasans";
+    font-size: 1.7em;
+    margin: 2.5em 0 0.5em;
+}
+
+h1.post-title {
+    font: 400 1em "firasans";
+    letter-spacing: 0.05em;
+    font-size: 1.7em;
+    margin-bottom: 1.7em;    
+}
+
+// Level 1 headings
+.outline-2 h2 {
+    font: 400 1.4em "firasans";
+    margin: 1.5em 0 1.5em 0;
+    letter-spacing: 0.05em;
+}
+
+.outline-3 h3 {
+    font: 400 1.15em "firasans";
+    margin: 1.2em 0 1.2em 0;
+}
+
+.outline-4 h4 {
+    font: 400 1em "firasans";
+    margin: 1.2em 0 1.2em 0;
+    letter-spacing: 0.05em;
 }
