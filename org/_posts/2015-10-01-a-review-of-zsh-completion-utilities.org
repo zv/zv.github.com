@@ -45,6 +45,80 @@ I will not be addressing any of the following:
 - How to set up completion and associated zstyles
 - Naming convention (e.g ~_binary~)
 - Adding completion
+
+
+* Utility Functions
+
+** Creating a dummy first argument
+The following is an extract of the iproute2 argument handling in [[https://github.com/zsh-users/zsh/blob/master/Completion/Unix/Command/_ip][=_ip=]]
+
+#+BEGIN_SRC sh
+local args
+args=(
+  # Command word
+  /$'[^\0]#\0'/
+  'l*ink:configure network device:$link_cmds' \
+  'addrlabel:manage addrlabel:$addrlabel_cmds' \
+  'a*ddr:manage protocol address:$addr_cmds' \
+)
+_regex_arguments _command 
+#+END_SRC
+
+
+** ~_pick_variant~ to add options depending upon the version of a program.
+#+BEGIN_SRC shell-script
+local arguments
+# We supply a regex to _pick_variant, in this case checking gor the string `gnu`
+if ! _pick_variant gnu=gnu unix --help; then
+  arguments=('-g[This flag only works on gnu distributions of this binary]')
+else
+  arguments=('-a[Otherwise this flag is available]')
+fi
+#+END_SRC
+
+
+** Match an ambiguous clause with ~_guard~ 
+The ~_guard~ can break between two tags, dependent upon the regex; if this
+doesn't seem extraordinarily useful to you, you're not alone -- In the body of
+existing ZSH completion scripts, ~_guard~ is typically used an the /action/ for
+the specification pased into ~_arguments~ and similar functions.
+
+The =zshcompsys= manpage itself describes behavior reminiscent of the completion
+behavior of ~fc(1)~
+=_guard=
+#+BEGIN_QUOTE
+  As an example, consider a command taking the options -n and -none,
+  where -n must be followed by a numeric value in the same word. 
+
+zshcompsys(4)
+#+END_QUOTE
+
+In the interest of +laziness+ expedience, I will quote ~_fc~ here.
+#+BEGIN_SRC sh
+if [[ -n $state ]]; then
+  zstyle -s ":completion:${curcontext}:" list-separator sep || sep=--
+  if [[ -z ${line:#*=*} ]] && compset -P '*='; then
+    _message -e replacements 'replacement'
+  elif [[ -prefix [0-9] ]]; then
+    events=( ${(0)"$(printf "%-${#HISTNO}.${#HISTNO}s $sep %s\0" "${(kv)history[@]}")"} )
+    _wanted -2V events expl "$state_descr" compadd -M "B:0=" -ld events - \
+        "${events[@]%% *}"
+  elif [[ -prefix - ]]; then
+    for num cmd in "${(kv@)history}"; do
+      (( num=num - HISTNO ))
+      events+=( "${(r.1+$#HISTNO.)num} $sep $cmd" )
+    done
+    _wanted -2V events expl "$state_descr" compadd -ld events - \
+        "${events[@]%% *}"
+  else
+    _wanted events expl "$state_descr" compadd -S '' - \
+        ${${history%%[=[:IFS:]]*}:#[0-9-]*} || _guard "[0-9]#" event
+  fi
+fi && ret=0
+#+END_SRC
+
+*** Example
+file:/usr/share/zsh/5.1.1/functions/_fc
  
  
 * Examples
@@ -60,9 +134,9 @@ An example of such a command is exemplified by ~setcap~
 
 #+BEGIN_HTML
 <section class="terminal-example">
-<pre class="terminal">
-<samp class="terminal">
-$ setcap cap_sys_rawio,cap_sys_pacct=<div class="blinking-cursor">█</div>
+<pre class="terminal-example">
+<samp class="terminal-example">
+% setcap cap_sys_rawio,cap_sys_pacct=<div class="blinking-cursor">█</div>
 <span class="yellow"> -- operator -- </span>
 e  -- effective
 i  -- inheritable
@@ -94,9 +168,9 @@ esac
 #+END_SRC
 
 *** Scripts
-[[https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap][- {zv/zsh-completions} setcap]]
+[[https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap][- setcap]]
 
-** Operating system specific flags with $OSTYPE 
+** Operating system specific flags with ~$OSTYPE~
 #+BEGIN_SRC shell-script
 local arguments
 arguments=('-b[Base argument]')
@@ -113,50 +187,6 @@ fi
 #+END_SRC
 
 
-* Utility Functions
-
-** Created a dummy first argument
-The following is an extract of the iproute2 argument handling in [[https://github.com/zsh-users/zsh/blob/master/Completion/Unix/Command/_ip][=_ip=]]
-
-#+BEGIN_SRC sh
-local args
-args=(
-  # Command word
-  /$'[^\0]#\0'/
-  'l*ink:configure network device:$link_cmds' \
-  'addrlabel:manage addrlabel:$addrlabel_cmds' \
-  'a*ddr:manage protocol address:$addr_cmds' \
-)
-_regex_arguments _command 
-#+END_SRC
-
-
-** ~_pick_variant~ to add options depending upon the version of a program.
-#+BEGIN_SRC shell-script
-local arguments
-# We supply a regex to _pick_variant, in this case checking gor the string `gnu`
-if ! _pick_variant gnu=gnu unix --help; then
-  arguments=('-g[This flag only works on gnu distributions of this binary]')
-else
-  arguments=('-a[Otherwise this flag is available]')
-fi
-#+END_SRC
-
-
-** TODO Match an ambiguous clause with ~_guard~ 
-The manual page describes the following situation as being easily satisfied with
-=_guard=
-#+BEGIN_QUOTE
-  As an example, consider a command taking the options -n and -none,
-  where -n must be followed by a numeric value in the same word. 
-
-zshcompsys(4)
-#+END_QUOTE
-
-*** Example
-file:/usr/share/zsh/5.1.1/functions/_fc
-
-
 * Style and Convention
 ZSH completion scripts are (fortunately) never given the opportunity to evolve
 into the complex balls of mud that a 'real' programming environment affords;
@@ -168,8 +198,8 @@ are
 
 ** Variables
 + =$state= - The canonical variable for processing which tag you are in.
-+ =$expl= - An idiom for options normally given to compadd at some point, typically an array
-+ =$descr= - Description variables wh
++ =$expl=  - An idiom for options normally given to compadd at some point, typically an array
++ =$descr= - Argument description variables
 
 * External Resources 
 [[http://zsh.sourceforge.net/Guide/zshguide06.html#l144][- The ZSH User Guide - Completion]]
