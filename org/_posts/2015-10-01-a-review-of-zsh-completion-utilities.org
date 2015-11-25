@@ -6,6 +6,9 @@ category: note
 ---
 #+END_HTML
 
+#+BEGIN_HTML
+<hr>
+#+END_HTML
 
 * 
 #+ATTR_HTML: :display none
@@ -16,8 +19,8 @@ users was me.
 
 Despite it's maverick status amongst shells at the time (if I may flatter
 myself) switching was largely painless and ZSH has grown into it's own as a
-powerful shell with a developer community of intelligent and thoughtful hackers,
-subsequently rising to the status of the vogue choice of programmers everywhere.
+powerful shell with a large community, and has risen to be a vogue shell of
+bearded necks everywhere.
 
 One thing that many new users of zsh found initially appealing was ZSH's lengthy
 and exceptionally comprehensive documentation; famous for it's enumeration of
@@ -25,7 +28,7 @@ details and digressions that involve extensive use of man page 'end notes' (some
 of which themselves have manpage 'footnotes') occassionally even describing
 features or modules of zsh that never existed.
 
-ZSH's creator, Peter Stephenson is largely responsible for this possibly great
+ZSH's creator, Peter Stephenson is largely responsible for this largely great
 documentation, but, like most of us who set out to change the world of
 programming, he found it difficult to manage his own programs.
 
@@ -50,23 +53,30 @@ A statement about these examples should be made here
 ** Delimited values with final option
 A common scenario that occurs in commands such as /libcap/'s capability
 manipulation toolchain, /bintools/ and /coreutils/ is the requirement to
-complete a list of arbitrary keywordsl, each with a unix-style (equal sign)
+complete a list of arbitrary keywords, each with a unix-style (equal sign)
 option after each one.
 
-An example of such a command might read like the capability setting program in
-Linux:
+An example of such a command is exemplified by ~setcap~
 
-#+BEGIN_EXAMPLE
-setcap cap_sys_rawio,cap_sys_pacct=ep
-#+END_EXAMPLE
+#+BEGIN_HTML
+<section class="terminal-example">
+<pre class="terminal">
+<samp class="terminal">
+$ setcap cap_sys_rawio,cap_sys_pacct=<div class="blinking-cursor">█</div>
+<span class="yellow"> -- operator -- </span>
+e  -- effective
+i  -- inheritable
+p  -- permitted
+</samp>
+</pre>
+</section>
+#+END_HTML
 
-The following would complete 'e, i and p' with the following input string
+You might initially look at the ~chmod~ completion, and this would get you far,
+however the completion script itself is quite long. The core of the unix options
+completion lies in the following.
 
-#+BEGIN_EXAMPLE
-COMMAND foo=
-#+END_EXAMPLE
-
-#+BEGIN_SRC shell-script
+#+BEGIN_SRC sh
 list_terminator='*[=]' # Corresponds to `=` 
 delimiter=',' # The character that delimits the list
 options=("e:effective", "i:inheritable", "p:permitted") # Valid options
@@ -105,9 +115,7 @@ fi
 
 * Utility Functions
 
-** ~_regex_argument~ & ~_regex_words~ to generate completion from a regular expression
-
-*** Created a dummy first argument
+** Created a dummy first argument
 The following is an extract of the iproute2 argument handling in [[https://github.com/zsh-users/zsh/blob/master/Completion/Unix/Command/_ip][=_ip=]]
 
 #+BEGIN_SRC sh
@@ -141,13 +149,13 @@ The manual page describes the following situation as being easily satisfied with
 #+BEGIN_QUOTE
   As an example, consider a command taking the options -n and -none,
   where -n must be followed by a numeric value in the same word. 
+
+zshcompsys(4)
 #+END_QUOTE
 
 *** Example
 file:/usr/share/zsh/5.1.1/functions/_fc
 
-
-** 
 
 * Style and Convention
 ZSH completion scripts are (fortunately) never given the opportunity to evolve
