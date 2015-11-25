@@ -76,7 +76,9 @@ h1 {
 }
 
 h1.post-title {
+    color: $yellow;
     font: 400 1em "firasans";
+    font-weight: bold;
     letter-spacing: 0.05em;
     font-size: 1.7em;
     margin-bottom: 1.7em;    
@@ -84,18 +86,22 @@ h1.post-title {
 
 // Level 1 headings
 .outline-2 h2 {
+    color: $yellow;
     font: 400 1.4em "firasans";
     margin: 1.5em 0 1.5em 0;
     letter-spacing: 0.05em;
 }
 
 .outline-3 h3 {
+    color: $yellow;
     font: 400 1.15em "firasans";
     margin: 1.2em 0 1.2em 0;
 }
 
 .outline-4 h4 {
+    color: $base1;
     font: 400 1em "firasans";
-    margin: 1.2em 0 1.2em 0;
+    font-weight: bold;
+    margin: 1.2em 0 0.5em 0;
     letter-spacing: 0.05em;
 }
