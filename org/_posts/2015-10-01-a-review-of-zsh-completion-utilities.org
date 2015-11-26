@@ -1,3 +1,4 @@
+#+HTML_DOCTYPE: html5
 #+BEGIN_HTML
 ---
 layout: page
@@ -15,7 +16,8 @@ category: note
 In 2007, ZSH started to experience some real growth. Increasingly rabid
 IRC-based advocacy had finally stirred many into dissatisfaction with the
 comparatively inflexible tab-completion system of bash; one of the many new
-users was me.
+users was me. 
+
 
 Despite it's maverick status amongst shells at the time (if I may flatter
 myself) switching was largely painless and ZSH has grown into it's own as a
@@ -45,6 +47,56 @@ I will not be addressing any of the following:
 - How to set up completion and associated zstyles
 - Naming convention (e.g ~_binary~)
 - Adding completion
+
+*  Standard UNIX argument completion with ~_arguments~
+The general structure of a UNIX style command completion scripts is as follows
+
+
+1) An entry point that processes the command line string which is executed upon =<TAB>=, sometimes removing the command name to aid processing.
+2) A completion function for each subcommand that wraps ~_arguments~
+3) One function for each type of object, referred to as a /tag/ in ZSH nomenclature.
+4) A function to handle special values, files, sockets, fifos
+
+Understanding /_arguments/ will get you through the majority of completion
+scripts that you will need to write in ZSH and should be fully understood. 
+
+=zshcompsys(1)= itself provides a lengthy but occassionally ambiguous treatment
+of the function, I'll try to clear up some practical details here.
+
+** The structure of ~_arguments~ 
+
+The function _arguments has been described as having `the syntax from hell', but
+with the arguments already laid out in front of you it doesn't look so bad. The
+are three types of argument: options to _arguments itself, arguments saying how
+to handle options to the command (i.e. `p4 diff'), and arguments saying how to
+handle normal arguments to the command.
+
+The following is an excerpt from the /git-merge/ completion function and covers
+some important fundamentals of argument parsing.
+#+BEGIN_SRC sh
+  _arguments -w -S -s \
+    $merge_options \
+    '-m[set the commit message to be used for the merge commit]:merge message' \
+    '(--no-rerere-autoupdate)--rerere-autoupdate[allow the update the index]' \
+    '(--rerere-autoupdate)--no-rerere-autoupdate[do not allow update the index]' \
+    '--abort[restore the original branch and abort the merge operation]' \
+    '*: : __git_commits -O expl:git_commit_opts'
+#+END_SRC
+
+=-s= conveys that single-letter options are allowed, i.e. they can be combined
+as in `-ft', although this doesn't prevent you from acceping multiple word
+options either. ~-w~ is related; in combination with ~-s~ it means that the
+options can stack even if one of them itself takes an argument.
+
+For example, ~tar -cf $FILE~ could be processed in this way, as the option after
+~-f~ indicates the file we'd be processing (further options AFTER ~-f~ would be
+valid as well)
+
+
+~-S~ is completely unrelated, it indicates that the completion function
+shouldn't complete options after =--=, which is a common UNIX 'pattern' to
+indicate options have ended.
+
 
 
 * Utility Functions
@@ -186,6 +238,9 @@ if [[ $OSTYPE = linux* ]]; then
 fi
 #+END_SRC
 
+** Sharing implementation details between different completions with =$SERVICE=
+adfadf
+
 
 * Style and Convention
 ZSH completion scripts are (fortunately) never given the opportunity to evolve
@@ -196,6 +251,9 @@ are tied to other languages.
 This said, there are a few, largely unwritten, rules and conventions that
 are 
 
+** Terminology
++ =spec= : Argument Specification
++ =tag= : The 'varieties' of types of objects that are valid completions, e.x a command that takes a set of permissions OR a file as it's next argument. 
 ** Variables
 + =$state= - The canonical variable for processing which tag you are in.
 + =$expl=  - An idiom for options normally given to compadd at some point, typically an array
