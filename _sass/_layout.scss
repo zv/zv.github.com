@@ -49,8 +49,6 @@ nav#site-nav {
     }
 }
 
-div#blog-posts { }
-
 div.post-entry {
     font-size: 14px;
     width: 380px;
@@ -96,15 +94,20 @@ article > section > div >  p {
     line-height: 30px;
 }
 
+// Org Lists
+ol.org-ol {
+    list-style-position: inside;
+}
+
 // Source code container
 .org-src-container {
     // background-color: #073642;
     padding: 1px;
     border: 3px solid $base02;
-    border-left: 14px solid $base02;
+    border-left: 11px solid $base02;
     font-size: 0.95em;
     padding: 7px 10px 7px 10px; 
-    margin: 5px 0 5px 0;
+    margin: 1em 0 1em 0;
 }
 
 // Footnotes/Asides
@@ -151,4 +154,21 @@ aside {
 pre.example {
     padding: 7px 0 7px 0;    
     color: $base1;
+}
+
+// Terminal example
+section.terminal-example {
+    line-height: 20px;
+    background-color: rgba(0,0,0,0.4);
+    border-left: 11px solid $base01;
+    padding: 0 0 0 1.5em;
+    margin: 1em 0 1em 0;
+}
+
+pre.terminal-example {
+    display: inline;
+}
+
+span.yellow {
+    color: $yellow;
 }
