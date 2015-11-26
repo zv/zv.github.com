@@ -100,7 +100,7 @@ h1.post-title {
 }
 
 .outline-3 h3 {
-    color: $yellow;
+    color: $green;
     font: 400 1.15em "firasans";
     margin: 1.2em 0 1.2em 0;
 }
@@ -111,20 +111,4 @@ h1.post-title {
     font-weight: bold;
     margin: 1.2em 0 0.5em 0;
     letter-spacing: 0.05em;
-}
-
-section.terminal-example {
-    line-height: 20px;
-    background-color: rgba(0,0,0,0.4);
-    border-radius: 2px;
-    padding: 0 0 0 1.5em;
-    margin: 1em;
-}
-
-pre.terminal {
-    display: inline;
-}
-
-span.yellow {
-    color: $yellow;
 }
