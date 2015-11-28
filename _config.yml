@@ -24,9 +24,6 @@ sass:
 include:
   - commentary.html
 
-gems:
-  - jekyll-sitemap
-
 # exclude files for generated site
 exclude: 
 - org/
