@@ -1,4 +1,4 @@
-# TUNGHSIAO LIU'S FAVORITE GITIGNORE
+Gemfile.lock
 
 # Jekyll specified
 _site
@@ -23,3 +23,4 @@ Rakefile
 # I use this to test various org mode blocks, no need to see this.
 org/_posts/2015-10-02-test-org-mode.html
 _posts/2015-10-02-test-org-mode.html
+
