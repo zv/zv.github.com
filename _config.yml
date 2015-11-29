@@ -7,6 +7,10 @@ permalink: /:categories/:title
 # site url
 url: zv.github.com 
 
+# Site name
+name: zv.github.io -- A new kind of sentience
+description: zv's blog
+
 # Site settings
 full-name: Zephyr Pellerin
 title: A new kind of sentience
@@ -17,6 +21,10 @@ github_username:  zv
 
 # Build settings
 markdown: kramdown
+
+author:
+  name: zv
+  email: zv@nxvr.org
 
 sass:
     sass_dir: _sass

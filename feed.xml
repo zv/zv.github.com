@@ -33,7 +33,7 @@
     </author>
   {% endif %}
 
-  {% for post in site.posts limit: 10 %}
+  {% for post in site.posts limit: 15 %}
     <entry>
       <title>{{ post.title | markdownify | strip_html | strip_newlines | xml_escape }}</title>
       <link href="{{ post.url | prepend: url_base }}" rel="alternate" type="text/html" title="{{ post.title | xml_escape }}" />
@@ -47,18 +47,18 @@
       <id>{{ post.id | prepend: url_base | xml_escape }}</id>
       <content type="html" xml:base="{{ post.url | prepend: url_base | xml_escape }}">{{ post.content | markdownify | xml_escape }}</content>
 
-      {% if post.author %}
+      {% if site.author %}
         <author>
-          {% if post.author.name %}
-            <name>{{ post.author.name | xml_escape }}</name>
+          {% if site.author.name %}
+            <name>{{ site.author.name | xml_escape }}</name>
           {% else %}
-            <name>{{ post.author | xml_escape }}</name>
+            <name>{{ site.author | xml_escape }}</name>
           {% endif %}
-          {% if post.author.email %}
-            <email>{{ post.author.email | xml_escape }}</email>
+          {% if site.author.email %}
+            <email>{{ site.author.email | xml_escape }}</email>
           {% endif %}
-          {% if post.author.uri %}
-            <uri>{{ post.author.uri | xml_escape }}</uri>
+          {% if site.author.uri %}
+            <uri>{{ site.author.uri | xml_escape }}</uri>
           {% endif %}
         </author>
       {% endif %}
