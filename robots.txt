@@ -1,1 +1,3 @@
-Sitemap: http://sparanoid.com/sitemap.xml
+---
+---
+Sitemap: http://{{ site.url }}/sitemap.xml
