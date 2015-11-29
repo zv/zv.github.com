@@ -7,7 +7,7 @@
   <link href="{{ page.url | prepend: url_base }}" rel="self" type="application/atom+xml" />
   <link href="{{ url_base }}/" rel="alternate" type="text/html" />
   <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>{{ url_base | xml_escape }}</id>
+  <id>{{ url_base | xml_escape }}/</id>
 
   {% if site.name %}
     <title>{{ site.name | xml_escape }}</title>
@@ -47,7 +47,21 @@
       <id>{{ post.id | prepend: url_base | xml_escape }}</id>
       <content type="html" xml:base="{{ post.url | prepend: url_base | xml_escape }}">{{ post.content | markdownify | xml_escape }}</content>
 
-      {% if site.author %}
+      {% if post.author %}
+        <author>
+          {% if post.author.name %}
+            <name>{{ post.author.name | xml_escape }}</name>
+          {% else %}
+            <name>{{ post.author | xml_escape }}</name>
+          {% endif %}
+          {% if post.author.email %}
+            <email>{{ post.author.email | xml_escape }}</email>
+          {% endif %}
+          {% if post.author.uri %}
+            <uri>{{ post.author.uri | xml_escape }}</uri>
+          {% endif %}
+        </author>
+      {% elsif site.author %}
         <author>
           {% if site.author.name %}
             <name>{{ site.author.name | xml_escape }}</name>

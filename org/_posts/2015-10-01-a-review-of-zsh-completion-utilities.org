@@ -3,6 +3,10 @@
 ---
 layout: page
 title: A Review of ZSH Completion
+excerpt: Walking through ZSH completion, step by step.
+tags: 
+  - zsh
+  - completion
 category: note
 ---
 #+END_HTML
@@ -16,8 +20,7 @@ category: note
 In 2007, ZSH started to experience some real growth. Increasingly rabid
 IRC-based advocacy had finally stirred many into dissatisfaction with the
 comparatively inflexible tab-completion system of bash; one of the many new
-users was me. 
-
+users was me.
 
 Despite it's maverick status amongst shells at the time (if I may flatter
 myself) switching was largely painless and ZSH has grown into it's own as a
@@ -260,5 +263,6 @@ are
 + =$descr= - Argument description variables
 
 * External Resources 
-[[http://zsh.sourceforge.net/Guide/zshguide06.html#l144][- The ZSH User Guide - Completion]]
+
+- [[http://zsh.sourceforge.net/Guide/zshguide06.html#l144][The ZSH User Guide: Completion]]
 - [[https://twitter.com/dailyzshtip][Daily ZSH Tips]]
