@@ -10,16 +10,12 @@
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
-  <!--
-  <link href="/blog/atom.xml" rel="alternate" title="zv's blog" type="application/atom+xml">
-  -->
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="zv's blog" />
 
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
   <meta name="author" content="Zephyr Pellerin">
-
   <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
   <meta property="og:site_name" content="zv.github.io">
-
   <meta name="twitter:creator" content="@zefyear">
 </head>
