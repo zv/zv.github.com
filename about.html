@@ -18,89 +18,15 @@ layout: default
 
 <h1 id="work">Some things I've done</h1>
 <div class="work_container">
-  <div class="project">
-    <h1>z3-mode</h1>
-    <p>An emacs major mode for the z3 theorem prover from Microsoft Research.</p>
-    <p class="links">
-      <a href="https://github.com/zv/z3-mode">github</a>
-    </p>
-  </div>
-
-  <div class="project">
-    <h1>9Problems</h1>
-    <p>
-      A tiling Window Manager for Plan9. You now have absolutely no reason why you shouldn't make Plan9 your main operating system!</p>
-    <p class="links">
-      <a href="https://github.com/zv/9Problems">github</a>
-    </p>
-  </div>
-
-  <div class="project">
-    <h1>SHA3inRARVM</h1>
-    <p>
-      This is an implementation of the SHA3 hashing standing inside of a RAR
-      file.Believe it or not, RAR files can contain bytecode for a simple x86-like
-      virtual machine called the RarVM.
-    </p>
-    <p class="links">
-      <a href="https://github.com/zv/SHA3ImplementedInsideofaRARfile">github</a>
-    </p>
-  </div>
-
-  <div class="project">
-    <h1>ZiP</h1>
-    <p>
-      Zine In Progress strives to be the definitive src for the Mission District
-      Hack/Phreak scene. Published out of the Noisebridge hackerspace collective, the idea was first
-      concieved over late night hacking between myself and Tony LeTigre.
-    </p>
-    <p class="links">
-      <a href="http://zine.noisebridge.net/zip">issue 1</a>
-      <a href="http://zine.noisebridge.net/zip/chapter1">issue 2</a>
-      <a href="http://zine.noisebridge.net/zip/chapter1">issue 3</a>
-    </p>
-  </div>
-
-  <div class="project">
-    <h1>Artifact</h1>
-    <p>
-      Artifact is a distributed, eventually consistent database. Initially written in Erlang and rewritten in Elixir circa the v0.11 release.
-    </p>
-    <p class="links">
-      <a href="https://github.com/zv/Artifact">issue 1</a>
-    </p>
-  </div>
-
-  <div class="project">
-    <h1>Noisedraw</h1>
-    <p>
-      This is a complete x86 demo that I intended to present at Assembly 2011.
-    </p>
-  </div>
-
-  <div class="project">
-    <h1>NXVR</h1>
-    <p>
-      Eschewing the then contemporary stylistic traditions of the torrent site genre
-      such as degenerate ranting about the moral legitimacy of internet piracy,
-      pornographic ads and poorly disguised Trojan downloads. NXVR was made of a
-      softer, gentler kind of downloadable content. Housed with troves of probing and
-      ponderous philosophical texts, commercially fruitless cult classics and
-      acclaimed relics of the past.
-    </p>
-  </div>
-
-  <div class="project">
-    <h1>Swiftcrack</h1>
-    <p>
-      My first open source project, replete with embarrasing mistakes that remind
-      me how much I've grown since 14! This uses patched WUSB54GS drivers and
-      h1kar1s excellent `chop-chop` package to make one of the very first WEP
-      crackers for Windows. Surprisingly, it lives on despite the presence of
-      considerably more advanced tools like aircrack.
-    </p>
-    <p class="links">
-      <a href="http://sourceforge.net/projects/swiftcrack/">Sourceforge page</a>
-    </p>
-  </div>
+  {% for project in site.data.projects %}
+    <div class="project">
+      <h1>{{ project.name }}</h1>
+      <p>{{ project.description }}</p>
+      <p class="links">
+        {% for link in project.links %}
+        <a href="{{ link[1] }}">{{ link[0] }}</a>
+        {% endfor %}
+      </p>
+    </div>
+  {% endfor %}
 </div>

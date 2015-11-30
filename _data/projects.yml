@@ -1,0 +1,38 @@
+- name: z3-mode
+  description: An emacs major mode for the z3 theorem prover from Microsoft Research.
+  links:
+    github: https://github.com/zv/z3-mode
+
+- name: 9Problems
+  description: A tiling Window Manager for Plan9. You now have absolutely no reason why you shouldn't make Plan9 your main operating system!
+  links:
+    github: https://github.com/zv/9Problems
+  
+- name: SHA3inRARVM
+  description: This is an implementation of the SHA3 hashing standing inside of a RAR file.Believe it or not, RAR files can contain bytecode for a simple x86-like virtual machine called the RarVM.
+  links:
+    github: https://github.com/zv/SHA3ImplementedInsideofaRARfile
+  
+- name: ZiP
+  description: Zine In Progress strives to be the definitive src for the Mission District Hack/Phreak scene. Published out of the Noisebridge hackerspace collective, the idea was first concieved over late night hacking between myself and Tony LeTigre.
+  links:
+    issue_1: http://zine.noisebridge.net/zip
+    issue_2: http://zine.noisebridge.net/zip/chapter1
+    issue_3: http://zine.noisebridge.net/zip/chapter1
+
+- name: Artifact
+  description: Artifact is a distributed, eventually consistent database. Initially written in Erlang and rewritten in Elixir circa the v0.11 release.
+  links:
+    github: https://github.com/zv/Artifact
+  
+- name: Noisedraw
+  description: This is a complete x86 demo that I intended to present at Assembly 2011.
+  
+- name: NXVR
+  description: Eschewing the then contemporary stylistic traditions of the torrent site genre such as degenerate ranting about the moral legitimacy of internet piracy, pornographic ads and poorly disguised Trojan downloads. NXVR was made of a softer, gentler kind of downloadable content. Housed with troves of probing and ponderous philosophical texts, commercially fruitless cult classics and acclaimed relics of the past.
+  
+
+- name: Swiftcrack
+  description: My first open source project, replete with embarrasing mistakes that remind me how much I've grown since 14! This uses patched WUSB54GS drivers and h1kar1s excellent `chop-chop` package to make one of the very first WEP crackers for Windows. Surprisingly, it lives on despite the presence of considerably more advanced tools like aircrack.
+  links:
+    Sourceforge_Page: http://sourceforge.net/projects/swiftcrack/
