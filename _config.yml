@@ -7,30 +7,31 @@ permalink: /:categories/:title
 # site url
 url: zv.github.com 
 
+# Me
+full-name: Zephyr Pellerin
+title: A new kind of sentience
+email: zv@nxvr.org
+author:
+  name: Zephyr Pellerin 
+  email: zv@nxvr.org
+  uri: https://zv.github.io/about
+
 # Site name
 name: zv's blog
 description: zv's blog
 
 # Site settings
-full-name: Zephyr Pellerin
-title: A new kind of sentience
-email: zv@nxvr.org
-baseurl: "" # the subpath of your site, e.g. /blog/
+baseurl: "" 
 twitter_username: zefyear
-github_username:  zv
 
 # Build settings
 markdown: kramdown
 
-author:
-  name: zv
-  email: zv@nxvr.org
-
 sass:
     sass_dir: _sass
 
-include:
-  - commentary.html
+# include:
+#   - commentary.html
 
 # exclude files for generated site
 exclude: 
