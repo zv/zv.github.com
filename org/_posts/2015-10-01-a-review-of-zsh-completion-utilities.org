@@ -11,9 +11,6 @@ category: note
 ---
 #+END_HTML
 
-#+BEGIN_HTML
-<hr>
-#+END_HTML
 
 * 
 #+ATTR_HTML: :display none
