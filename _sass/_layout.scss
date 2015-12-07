@@ -172,3 +172,15 @@ pre.terminal-example {
 span.yellow {
     color: $yellow;
 }
+
+// SVG Figures
+figure > p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    object {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }   
+}
