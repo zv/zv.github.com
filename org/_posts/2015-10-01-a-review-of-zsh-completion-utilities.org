@@ -14,74 +14,115 @@ category: note
 
 * 
 #+ATTR_HTML: :display none
-In 2007, ZSH started to experience some real growth. Increasingly rabid
-IRC-based advocacy had finally stirred many into dissatisfaction with the
-comparatively inflexible tab-completion system of bash; one of the many new
-users was me.
+ZSH completion scripts rarely capture programmers interest for their elegance; I
+myself have called the system /"excruciatingly awful"/ therefore despite my
+brilliant jabs and clever anecdotes, I doubt they could capture your interest in
+this somewhat spiritless topic for long.
 
-Despite it's maverick status amongst shells at the time (if I may flatter
-myself) switching was largely painless and ZSH has grown into it's own as a
-powerful shell with a large community, and has risen to be a vogue shell of
-bearded necks everywhere.
+In consideration of this, I have organized these sections in order of greatest
+importance to the topic (excepting this first section), so the devoted reader
+can stop reading this article at whatever point you lose interest.
 
-One thing that many new users of zsh found initially appealing was ZSH's lengthy
-and exceptionally comprehensive documentation; famous for it's enumeration of
-details and digressions that involve extensive use of man page 'end notes' (some
-of which themselves have manpage 'footnotes') occassionally even describing
-features or modules of zsh that never existed.
+In 2007, ZSH started to experience some real growth. Increasingly rabid advocacy
+had finally stirred many into dissatisfaction with the inflexible completion
+system of other shells (c.f bash); one of these new users was me.
 
-ZSH's creator, Peter Stephenson is largely responsible for this largely great
-documentation, but, like most of us who set out to change the world of
-programming, he found it difficult to manage his own programs.
+Initially appealing was ZSH's lengthy, albeit comprehensive documentation;
+infamous for it's enumeration of digressions, anecdotes and man page '/end
+notes/' (occassionally having footnotes themselves), in a medium distinctly
+lacking both. This incidentally provides a unique distinction for a manual page
+of supporting a wide range of interpretations and the potential to generate
+critical theory literature for years, which I am sure is on it's way to becoming
+a robust scholarly enterprise.
 
-As ZSH and it's completion system became more sophisticated, the documentation
-itself began to become one of the largest source of question marks on zsh-user.
+ZSH's creator, Peter Stephenson is largely responsible for this possibly great
+documentation. Like most of us who set out to change the world of programming,
+he found it difficult to manage his own programs - ZSH and it's completion
+system became more sophisticated, the system and it's related documentation
+began to become one of the largest emitters of user question marks on the
+mailing list.
 
-ZSH completion documentation has the unique distinction of supporting a wide
-range of interpretations and has the potential to generate critical theory
-literature for years. Eschewing logical development or programming examples,
-reading the completion system or widget documentation begins for most readers as
-a science but quickly devolves into a mutated site-function guess-and-check.
+In ernest however, it is the single best compendium of information about ZSH
+completion. Although /structural/ questions are rarely answered, as a reference,
+ it is unmatched.
 
 I will not be addressing any of the following:
 - How to set up completion and associated zstyles
-- Naming convention (e.g ~_binary~)
 - Adding completion
 
-*  Standard UNIX argument completion with ~_arguments~
-The general structure of a UNIX style command completion scripts is as follows
+*  The structure of standard argument completion with ~_arguments~
+Our context, will start out very generic e.g "/The user is requesting completion
+of grep/", and becomes more specific as more is learned - "/the current word
+is in a position that is usually a command name/" or "/the current word might be a
+variable name/" and so on.
+
+Therefore, changing the currently understood value of the context becomes
+convienent, and will change during the completion script.
+
+An example of this in action is the git completion script.
+
+Git is run by a single command, /git/, followed by either flags or an argument giving the
+particular git command, again followed by options to /that/ command.
 
 
-1) An entry point that processes the command line string which is executed upon =<TAB>=, sometimes removing the command name to aid processing.
-2) A completion function for each subcommand that wraps ~_arguments~
+#+BEGIN_SRC dot :output-dir ../../images :file zsh-command-structure.svg :cmdline -Kdot -Tsvg
+digraph G {
+  bgcolor="#002b36";
+  node [color=white, fontcolor=white, shape=box];
+  edge [color=white];
+  git -> "..." -> options;
+  git -> " - (minus)" -> "option list";
+  git -> diff;
+  diff -> "commit [tag]";
+  diff -> "remote [tag]";
+  diff -> "- (minus)" -> "diff option list";
+}
+#+END_SRC
+#+RESULTS:
+[[file:../../images/zsh-command-structure.svg]]
+
+The tree-like structure of what-must-be-completed-when is what gives rise to
+this recursive pattern in completion scripts. 
+
+1) An entry point (/git/) will processes the command line string. 
+2) A function for each subcommand such as /diff/, typically wrapping /_arguments/
 3) One function for each type of object, referred to as a /tag/ in ZSH nomenclature.
-4) A function to handle special values, files, sockets, fifos
+4) In some cases, functions to handle special values, files, sockets, fifos. 
 
-Understanding /_arguments/ will get you through the majority of completion
-scripts that you will need to write in ZSH and should be fully understood. 
-
-=zshcompsys(1)= itself provides a lengthy but occassionally ambiguous treatment
-of the function, I'll try to clear up some practical details here.
+Not to belabour the points above, but removing the head of the command to is the
+easiest way to build /context/ - everything that the shell knows about the
+meaning of the command line and the significance of the cursor position, allowing
+/_git-diff/ to be completely unaware of /_git/.
 
 ** The structure of ~_arguments~ 
-
-The function _arguments has been described as having `the syntax from hell', but
+The function /_arguments/ has been described as having `the syntax from hell', but
 with the arguments already laid out in front of you it doesn't look so bad. The
 are three types of argument: options to _arguments itself, arguments saying how
 to handle options to the command (i.e. `p4 diff'), and arguments saying how to
 handle normal arguments to the command.
 
-The following is an excerpt from the /git-merge/ completion function and covers
-some important fundamentals of argument parsing.
+
+The following is an excerpt from the /p4 diff/ completion function (in turn
+excerpted from the manual) and covers some important fundamentals of argument parsing.
 #+BEGIN_SRC sh
-  _arguments -w -S -s \
-    $merge_options \
-    '-m[set the commit message to be used for the merge commit]:merge message' \
-    '(--no-rerere-autoupdate)--rerere-autoupdate[allow the update the index]' \
-    '(--rerere-autoupdate)--no-rerere-autoupdate[do not allow update the index]' \
-    '--abort[restore the original branch and abort the merge operation]' \
-    '*: : __git_commits -O expl:git_commit_opts'
+function  _perforce_cmd_diff() {
+      _arguments -s : \ 
+          '-f[diff every file]' \ 
+          '-t[include non-text files]' \ 
+          '(-sd -se -sr)-sa[opened files, different or missing]' \ 
+          '(-sa -se -sr)-sd[unopened files, missing]' \ 
+          '(-sa -sd -sr)-se[unopened files, different]' \ 
+          '(-sa -sd -se)-sr[opened files, same as depot]' \ 
+          '-d-[select diff option]:diff option:' \ 
+  '((b\:ignore\ blanks c\:context n\:RCS s\:summary' \ 
+    'u\:unified w\:ignore\ all\ whitespace))' \ 
+          "*::file:_perforce_files"
+  }
 #+END_SRC
+
+*** Flags
+The excerpt above only has one flag, and it's the most meaningful flag as well,
+but I won't waste an opportunity to briefly cover some other very handy flags:
 
 =-s= conveys that single-letter options are allowed, i.e. they can be combined
 as in `-ft', although this doesn't prevent you from acceping multiple word
@@ -92,11 +133,31 @@ For example, ~tar -cf $FILE~ could be processed in this way, as the option after
 ~-f~ indicates the file we'd be processing (further options AFTER ~-f~ would be
 valid as well)
 
-
 ~-S~ is completely unrelated, it indicates that the completion function
 shouldn't complete options after =--=, which is a common UNIX 'pattern' to
 indicate options have ended.
 
+*** The optspec
+The long strings of option specification that follows the flags to /_arguments/
+and a colon are known known as /optspec/s or option specification.
+
+**** Option Naming or /optnames/
+/_arguments/ broadly supports 7 different option specification varieties, all of
+which can be directly followed by a bracketed explanation string.
+
+***** -optname , +optname & +-optname
+The simplest form, indicating that +,- or +/-optname are valid options. the
+first would match ~foo -optname~, the next ~foo \+optname~. The last matches
+both.
+***** -optname-, -optname+ or -optname=, -optname=-
+Identical to the above, but accepting arguments.
+The former accepting command strings without spacing, e.g ~foo -optnamearg~
+the latter with spacing: ~foo -optname arg~. An equals sign is identical in
+functionality but being delimited by an equals sign, e.g: ~foo -optname=arg~
+
+All colons are escaped.
+
+*** Option Arguments (optarg)
 
 
 * Utility Functions
