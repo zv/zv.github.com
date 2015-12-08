@@ -8,50 +8,52 @@ tags:
 category: note
 ---
 
-<hr>
 
 <section id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1"></h2>
 <div class="outline-text-2" id="text-orgheadline1">
 <p display="none">
-In 2007, ZSH started to experience some real growth. Increasingly rabid
-IRC-based advocacy had finally stirred many into dissatisfaction with the
-comparatively inflexible tab-completion system of bash; one of the many new
-users was me.
+ZSH completion scripts rarely capture programmers interest for their elegance; I
+myself have called the system /"excruciatingly awful"/ therefore despite my
+brilliant jabs and clever anecdotes, I doubt they could capture your interest in
+this somewhat spiritless topic for long.
 </p>
 
 <p>
-Despite it's maverick status amongst shells at the time (if I may flatter
-myself) switching was largely painless and ZSH has grown into it's own as a
-powerful shell with a large community, and has risen to be a vogue shell of
-bearded necks everywhere.
+In consideration of this, I have organized these sections in order of greatest
+importance to the topic (excepting this first section), so the devoted reader
+can stop reading this article at whatever point you lose interest.
 </p>
 
 <p>
-One thing that many new users of zsh found initially appealing was ZSH's lengthy
-and exceptionally comprehensive documentation; famous for it's enumeration of
-details and digressions that involve extensive use of man page 'end notes' (some
-of which themselves have manpage 'footnotes') occassionally even describing
-features or modules of zsh that never existed.
+In 2007, ZSH started to experience some real growth. Increasingly rabid advocacy
+had finally stirred many into dissatisfaction with the inflexible completion
+system of other shells (c.f bash); one of these new users was me.
 </p>
 
 <p>
-ZSH's creator, Peter Stephenson is largely responsible for this largely great
-documentation, but, like most of us who set out to change the world of
-programming, he found it difficult to manage his own programs.
+Initially appealing was ZSH's lengthy, albeit comprehensive documentation;
+infamous for it's enumeration of digressions, anecdotes and man page '<i>end
+notes</i>' (occassionally having footnotes themselves), in a medium distinctly
+lacking both. This incidentally provides a unique distinction for a manual page
+of supporting a wide range of interpretations and the potential to generate
+critical theory literature for years, which I am sure is on it's way to becoming
+a robust scholarly enterprise.
 </p>
 
 <p>
-As ZSH and it's completion system became more sophisticated, the documentation
-itself began to become one of the largest source of question marks on zsh-user.
+ZSH's creator, Peter Stephenson is largely responsible for this possibly great
+documentation. Like most of us who set out to change the world of programming,
+he found it difficult to manage his own programs - ZSH and it's completion
+system became more sophisticated, the system and it's related documentation
+began to become one of the largest emitters of user question marks on the
+mailing list.
 </p>
 
 <p>
-ZSH completion documentation has the unique distinction of supporting a wide
-range of interpretations and has the potential to generate critical theory
-literature for years. Eschewing logical development or programming examples,
-reading the completion system or widget documentation begins for most readers as
-a science but quickly devolves into a mutated site-function guess-and-check.
+In ernest however, it is the single best compendium of information about ZSH
+completion. Although <i>structural</i> questions are rarely answered, as a reference,
+ it is unmatched.
 </p>
 
 <p>
@@ -59,29 +61,46 @@ I will not be addressing any of the following:
 </p>
 <ul class="org-ul">
 <li>How to set up completion and associated zstyles</li>
-<li>Naming convention (e.g <code>_binary</code>)</li>
 <li>Adding completion</li>
 </ul>
 </div>
 </section>
 
 <section id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Standard UNIX argument completion with <code>_arguments</code></h2>
+<h2 id="orgheadline2">The structure of standard argument completion with <code>_arguments</code></h2>
 <div class="outline-text-2" id="text-orgheadline2">
 <p>
-The general structure of a UNIX style command completion scripts is as follows
+At some point in the distant past, it was agreed that the way completion scripts
+should be done is as follows:
 </p>
 
-
 <ol class="org-ol">
-<li>An entry point that processes the command line string which is executed upon <span class="verbatim">&lt;TAB&gt;</span>, sometimes removing the command name to aid processing.</li>
-<li>A completion function for each subcommand that wraps <code>_arguments</code></li>
+<li>An entry point will processes the command line string which is executed upon <span class="verbatim">&lt;TAB&gt;</span>, <b>removing the head of the command</b> (to ease processing, more on this later).</li>
+<li>A function for each subcommand, typically wrapping <i>_arguments</i></li>
 <li>One function for each type of object, referred to as a <i>tag</i> in ZSH nomenclature.</li>
 <li>A function to handle special values, files, sockets, fifos</li>
 </ol>
 
 <p>
-Understanding <i>_arguments</i> will get you through the majority of completion
+Not to belabour the points above, but removing the head of the command to is the
+easiest way to build <i>context</i> - everything that the shell knows about the
+meaning of the command line and the significance of the cursor position.
+</p>
+
+<p>
+Our context, will start out very generic e.g "<i>The user is requesting completion
+of grep</i>, and becomes more specific as more is learned, e.g "the current word
+is in a position that is usually a command name" or "the current word might be a
+variable name" and so
+on.
+Therefore, changing the currently understood value of the context "
+Therefore the context will vary during the same call to the completion system.
+</p>
+
+<p>
+In general, this is how most completion functions are structured. So, while painful,
+understanding the next few paragraphs describing <i>_arguments</i> (with judicious
+application of copy-paste) will get you through the majority of completion
 scripts that you will need to write in ZSH and should be fully understood. 
 </p>
 
@@ -95,28 +114,51 @@ of the function, I'll try to clear up some practical details here.
 <h3 id="orgheadline3">The structure of <code>_arguments</code></h3>
 <div class="outline-text-3" id="text-orgheadline3">
 <p>
-The function _arguments has been described as having `the syntax from hell', but
+The function <i>_arguments</i> has been described as having `the syntax from hell', but
 with the arguments already laid out in front of you it doesn't look so bad. The
 are three types of argument: options to _arguments itself, arguments saying how
 to handle options to the command (i.e. `p4 diff'), and arguments saying how to
 handle normal arguments to the command.
 </p>
 
+
+
+<figure>
+<p><object type="image/svg+xml" data="../../images/zsh-command-structure.svg" >
+Sorry, your browser does not support SVG.</object>
+</p>
+</figure>
+
 <p>
-The following is an excerpt from the <i>git-merge</i> completion function and covers
-some important fundamentals of argument parsing.
+The following is an excerpt from the <i>p4 diff</i> completion function (in turn
+excerpted from the manual) and covers some important fundamentals of argument parsing.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">_arguments -w -S -s <span style="color: #b58900; font-weight: bold;">\</span>
-  $<span style="color: #268bd2;">merge_options</span> <span style="color: #b58900; font-weight: bold;">\</span>
-  <span style="color: #2aa198;">'-m[set the commit message to be used for the merge commit]:merge message'</span> <span style="color: #b58900; font-weight: bold;">\</span>
-  <span style="color: #2aa198;">'(--no-rerere-autoupdate)--rerere-autoupdate[allow the update the index]'</span> <span style="color: #b58900; font-weight: bold;">\</span>
-  <span style="color: #2aa198;">'(--rerere-autoupdate)--no-rerere-autoupdate[do not allow update the index]'</span> <span style="color: #b58900; font-weight: bold;">\</span>
-  <span style="color: #2aa198;">'--abort[restore the original branch and abort the merge operation]'</span> <span style="color: #b58900; font-weight: bold;">\</span>
-  <span style="color: #2aa198;">'*: : __git_commits -O expl:git_commit_opts'</span>
+<pre class="src src-sh"><span style="color: #859900; font-weight: bold;">function</span>  <span style="color: #268bd2;">_perforce_cmd_diff</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+      _arguments -s : <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'-f[diff every file]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'-t[include non-text files]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'(-sd -se -sr)-sa[opened files, different or missing]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'(-sa -se -sr)-sd[unopened files, missing]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'(-sa -sd -sr)-se[unopened files, different]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'(-sa -sd -se)-sr[opened files, same as depot]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'-d-[select diff option]:diff option:'</span> <span style="color: #2aa198;">\ </span>
+  <span style="color: #2aa198;">'((b\:ignore\ blanks c\:context n\:RCS s\:summary'</span> <span style="color: #2aa198;">\ </span>
+    <span style="color: #2aa198;">'u\:unified w\:ignore\ all\ whitespace))'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">"*::file:_perforce_files"</span>
+  <span style="color: #2aa198;">}</span>
 </pre>
 </div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">Flags</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<p>
+The excerpt above only has one flag, and it's the most meaningful flag as well,
+but I won't waste an opportunity to briefly cover some other very handy flags:
+</p>
 
 <p>
 <span class="verbatim">-s</span> conveys that single-letter options are allowed, i.e. they can be combined
@@ -131,7 +173,6 @@ For example, <code>tar -cf $FILE</code> could be processed in this way, as the o
 valid as well)
 </p>
 
-
 <p>
 <code>-S</code> is completely unrelated, it indicates that the completion function
 shouldn't complete options after <span class="verbatim">--</span>, which is a common UNIX 'pattern' to
@@ -139,16 +180,57 @@ indicate options have ended.
 </p>
 </div>
 </div>
+
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">The optspec</h4>
+<div class="outline-text-4" id="text-orgheadline5">
+<p>
+The long strings of option specification that follows the flags to <i>_arguments</i>
+and a colon are known known as /optspec/s or option specification.
+</p>
+</div>
+
+<ul class="org-ul"><li><a id="orgheadline6"></a>Option Naming or <i>optnames</i><br ><div class="outline-text-5" id="text-orgheadline6">
+<p>
+<i>_arguments</i> broadly supports 7 different option specification varieties, all of
+which can be directly followed by a bracketed explanation string.
+</p>
+</div>
+
+<ul class="org-ul"><li><a id="orgheadline7"></a>-optname , +optname &amp; +-optname<br ><div class="outline-text-6" id="text-orgheadline7">
+<p>
+The simplest form, indicating that +,- or +/-optname are valid options. the
+first would match <code>foo -optname</code>, the next <code>foo \+optname</code>. The last matches
+both.
+</p>
+</div></li>
+<li><a id="orgheadline8"></a>-optname-, -optname+ or -optname=, -optname=-<br ><div class="outline-text-6" id="text-orgheadline8">
+<p>
+Identical to the above, but accepting arguments.
+The former accepting command strings without spacing, e.g <code>foo -optnamearg</code>
+the latter with spacing: <code>foo -optname arg</code>. An equals sign is identical in
+functionality but being delimited by an equals sign, e.g: <code>foo -optname=arg</code>
+</p>
+
+<p>
+All colons are escaped.
+</p>
+</div></li></ul></li></ul>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9">Option Arguments (optarg)</h4>
+</div>
+</div>
 </section>
 
 
-
-<section id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8">Utility Functions</h2>
-<div class="outline-text-2" id="text-orgheadline8">
-</div><div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Creating a dummy first argument</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<section id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14">Utility Functions</h2>
+<div class="outline-text-2" id="text-orgheadline14">
+</div><div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">Creating a dummy first argument</h3>
+<div class="outline-text-3" id="text-orgheadline10">
 <p>
 The following is an extract of the iproute2 argument handling in <a href="https://github.com/zsh-users/zsh/blob/master/Completion/Unix/Command/_ip"><span class="verbatim">_ip</span></a>
 </p>
@@ -170,9 +252,9 @@ _regex_arguments _command
 </div>
 
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><code>_pick_variant</code> to add options depending upon the version of a program.</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><code>_pick_variant</code> to add options depending upon the version of a program.</h3>
+<div class="outline-text-3" id="text-orgheadline11">
 <div class="org-src-container">
 
 <pre class="src src-shell-script"><span style="color: #839496; font-weight: bold;">local</span> arguments
@@ -188,9 +270,9 @@ _regex_arguments _command
 </div>
 
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">Match an ambiguous clause with <code>_guard</code></h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12">Match an ambiguous clause with <code>_guard</code></h3>
+<div class="outline-text-3" id="text-orgheadline12">
 <p>
 The <code>_guard</code> can break between two tags, dependent upon the regex; if this
 doesn't seem extraordinarily useful to you, you're not alone &#x2013; In the body of
@@ -243,9 +325,9 @@ In the interest of <del>laziness</del> expedience, I will quote <code>_fc</code>
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">Example</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13">Example</h4>
+<div class="outline-text-4" id="text-orgheadline13">
 <p>
 <a href="file:///usr/share/zsh/5.1.1/functions/_fc">file:///usr/share/zsh/5.1.1/functions/_fc</a>
 </p>
@@ -255,17 +337,17 @@ In the interest of <del>laziness</del> expedience, I will quote <code>_fc</code>
 </section>
 
 
-<section id="outline-container-orgheadline9" class="outline-2">
-<h2 id="orgheadline9">Examples</h2>
-<div class="outline-text-2" id="text-orgheadline9">
+<section id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15">Examples</h2>
+<div class="outline-text-2" id="text-orgheadline15">
 <p>
 A statement about these examples should be made here
 </p>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">Delimited values with final option</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">Delimited values with final option</h3>
+<div class="outline-text-3" id="text-orgheadline16">
 <p>
 A common scenario that occurs in commands such as <i>libcap</i>'s capability
 manipulation toolchain, <i>bintools</i> and <i>coreutils</i> is the requirement to
@@ -315,9 +397,9 @@ completion lies in the following.
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">Scripts</h4>
-<div class="outline-text-4" id="text-orgheadline11">
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17">Scripts</h4>
+<div class="outline-text-4" id="text-orgheadline17">
 <p>
 <a href="https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap">- setcap</a>
 </p>
@@ -325,9 +407,9 @@ completion lies in the following.
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">Operating system specific flags with <code>$OSTYPE</code></h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18">Operating system specific flags with <code>$OSTYPE</code></h3>
+<div class="outline-text-3" id="text-orgheadline18">
 <div class="org-src-container">
 
 <pre class="src src-shell-script"><span style="color: #839496; font-weight: bold;">local</span> arguments
@@ -347,9 +429,9 @@ completion lies in the following.
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">Sharing implementation details between different completions with <span class="verbatim">$SERVICE</span></h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19">Sharing implementation details between different completions with <span class="verbatim">$SERVICE</span></h3>
+<div class="outline-text-3" id="text-orgheadline19">
 <p>
 adfadf
 </p>
@@ -358,9 +440,9 @@ adfadf
 </section>
 
 
-<section id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14">Style and Convention</h2>
-<div class="outline-text-2" id="text-orgheadline14">
+<section id="outline-container-orgheadline20" class="outline-2">
+<h2 id="orgheadline20">Style and Convention</h2>
+<div class="outline-text-2" id="text-orgheadline20">
 <p>
 ZSH completion scripts are (fortunately) never given the opportunity to evolve
 into the complex balls of mud that a 'real' programming environment affords;
@@ -374,18 +456,18 @@ are
 </p>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">Terminology</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21">Terminology</h3>
+<div class="outline-text-3" id="text-orgheadline21">
 <ul class="org-ul">
 <li><span class="verbatim">spec</span> : Argument Specification</li>
 <li><span class="verbatim">tag</span> : The 'varieties' of types of objects that are valid completions, e.x a command that takes a set of permissions OR a file as it's next argument.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">Variables</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22">Variables</h3>
+<div class="outline-text-3" id="text-orgheadline22">
 <ul class="org-ul">
 <li><span class="verbatim">$state</span> - The canonical variable for processing which tag you are in.</li>
 <li><span class="verbatim">$expl</span>  - An idiom for options normally given to compadd at some point, typically an array</li>
@@ -395,13 +477,11 @@ are
 </div>
 </section>
 
-<section id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17">External Resources</h2>
-<div class="outline-text-2" id="text-orgheadline17">
-<p>
-<a href="http://zsh.sourceforge.net/Guide/zshguide06.html#l144">- The ZSH User Guide - Completion</a>
-</p>
+<section id="outline-container-orgheadline23" class="outline-2">
+<h2 id="orgheadline23">External Resources</h2>
+<div class="outline-text-2" id="text-orgheadline23">
 <ul class="org-ul">
+<li><a href="http://zsh.sourceforge.net/Guide/zshguide06.html#l144">The ZSH User Guide: Completion</a></li>
 <li><a href="https://twitter.com/dailyzshtip">Daily ZSH Tips</a></li>
 </ul>
 </div>
