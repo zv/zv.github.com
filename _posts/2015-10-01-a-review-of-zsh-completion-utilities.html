@@ -8,7 +8,6 @@ tags:
 category: note
 ---
 
-
 <section id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1"></h2>
 <div class="outline-text-2" id="text-orgheadline1">
@@ -70,45 +69,53 @@ I will not be addressing any of the following:
 <h2 id="orgheadline2">The structure of standard argument completion with <code>_arguments</code></h2>
 <div class="outline-text-2" id="text-orgheadline2">
 <p>
-At some point in the distant past, it was agreed that the way completion scripts
-should be done is as follows:
+ZSH's completion system is <i>contextual</i>, that is, sensitive to the point as
+which the user invokes completion. The structure of completion scripts
+themselves are broken down to handle this context in a recursive fashion,
+starting out very generic e.g "<i>The user is requesting completion of git</i>",
+becoming more specific as more is learned - "<i>the current word is in a position
+that is usually a command name</i>" or "<i>the current word might be a variable
+name</i>" and so on.
+</p>
+
+<p>
+Because option parsing follows a general format (regardless of specifics),
+virtually all completion scripts contain with the following basic structure, and
+attempting to make a completion script that doesn't will be more pain than it is
+worth.
 </p>
 
 <ol class="org-ol">
-<li>An entry point will processes the command line string which is executed upon <span class="verbatim">&lt;TAB&gt;</span>, <b>removing the head of the command</b> (to ease processing, more on this later).</li>
-<li>A function for each subcommand, typically wrapping <i>_arguments</i></li>
+<li>An entry point (e.g <i>git</i>) will processes the command line string.</li>
+<li>A function for each subcommand such as <i>diff</i>, typically wrapping <i>_arguments</i></li>
 <li>One function for each type of object, referred to as a <i>tag</i> in ZSH nomenclature.</li>
-<li>A function to handle special values, files, sockets, fifos</li>
+<li>In some cases, functions to handle special values, files, sockets, fifos.</li>
 </ol>
 
 <p>
 Not to belabour the points above, but removing the head of the command to is the
 easiest way to build <i>context</i> - everything that the shell knows about the
-meaning of the command line and the significance of the cursor position.
+meaning of the command line and the significance of the cursor position, allowing
+<i>_git-diff</i> to be completely unaware of <i>_git</i>.
 </p>
 
 <p>
-Our context, will start out very generic e.g "<i>The user is requesting completion
-of grep</i>, and becomes more specific as more is learned, e.g "the current word
-is in a position that is usually a command name" or "the current word might be a
-variable name" and so
-on.
-Therefore, changing the currently understood value of the context "
-Therefore the context will vary during the same call to the completion system.
+Git is a good command to analyse, not just because it is comprehensive, but also
+because it reflects many common option handling patterns; Git is run by a single
+command, <i>git</i>, followed by either flags or an argument giving the particular
+git command, again followed by options to <i>that</i> command. A high level view of
+what-must-be-completed-when in git demonstrates it's recursive nature
+immediately.
 </p>
 
-<p>
-In general, this is how most completion functions are structured. So, while painful,
-understanding the next few paragraphs describing <i>_arguments</i> (with judicious
-application of copy-paste) will get you through the majority of completion
-scripts that you will need to write in ZSH and should be fully understood. 
-</p>
 
-<p>
-<span class="verbatim">zshcompsys(1)</span> itself provides a lengthy but occassionally ambiguous treatment
-of the function, I'll try to clear up some practical details here.
+<figure>
+<p><object type="image/svg+xml" data="../../images/zsh-command-structure.svg" >
+Sorry, your browser does not support SVG.</object>
 </p>
+</figure>
 </div>
+
 
 <div id="outline-container-orgheadline3" class="outline-3">
 <h3 id="orgheadline3">The structure of <code>_arguments</code></h3>
@@ -122,20 +129,16 @@ handle normal arguments to the command.
 </p>
 
 
-
-<figure>
-<p><object type="image/svg+xml" data="../../images/zsh-command-structure.svg" >
-Sorry, your browser does not support SVG.</object>
-</p>
-</figure>
-
 <p>
 The following is an excerpt from the <i>p4 diff</i> completion function (in turn
 excerpted from the manual) and covers some important fundamentals of argument parsing.
 </p>
+
+
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #859900; font-weight: bold;">function</span>  <span style="color: #268bd2;">_perforce_cmd_diff</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+<pre class="src src-sh"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span> $+functions<span style="color: #268bd2;">[</span>_git-diff<span style="color: #268bd2;">]</span> <span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span> ||
+<span style="color: #268bd2;">_git-diff</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
       _arguments -s : <span style="color: #2aa198;">\ </span>
           <span style="color: #2aa198;">'-f[diff every file]'</span> <span style="color: #2aa198;">\ </span>
           <span style="color: #2aa198;">'-t[include non-text files]'</span> <span style="color: #2aa198;">\ </span>
