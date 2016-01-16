@@ -11,7 +11,6 @@ category: note
 ---
 #+END_HTML
 
-
 * 
 #+ATTR_HTML: :display none
 ZSH completion scripts rarely capture programmers interest for their elegance; I
@@ -51,19 +50,35 @@ I will not be addressing any of the following:
 - Adding completion
 
 *  The structure of standard argument completion with ~_arguments~
-Our context, will start out very generic e.g "/The user is requesting completion
-of grep/", and becomes more specific as more is learned - "/the current word
-is in a position that is usually a command name/" or "/the current word might be a
-variable name/" and so on.
+ZSH's completion system is /contextual/, that is, sensitive to the point as
+which the user invokes completion. The structure of completion scripts
+themselves are broken down to handle this context in a recursive fashion,
+starting out very generic e.g "/The user is requesting completion of git/",
+becoming more specific as more is learned - "/the current word is in a position
+that is usually a command name/" or "/the current word might be a variable
+name/" and so on.
 
-Therefore, changing the currently understood value of the context becomes
-convienent, and will change during the completion script.
+Because option parsing follows a general format (regardless of specifics),
+virtually all completion scripts contain with the following basic structure, and
+attempting to make a completion script that doesn't will be more pain than it is
+worth.
 
-An example of this in action is the git completion script.
+1) An entry point (e.g /git/) will processes the command line string. 
+2) A function for each subcommand such as /diff/, typically wrapping /_arguments/
+3) One function for each type of object, referred to as a /tag/ in ZSH nomenclature.
+4) In some cases, functions to handle special values, files, sockets, fifos. 
 
-Git is run by a single command, /git/, followed by either flags or an argument giving the
-particular git command, again followed by options to /that/ command.
+Not to belabour the points above, but removing the head of the command to is the
+easiest way to build /context/ - everything that the shell knows about the
+meaning of the command line and the significance of the cursor position, allowing
+/_git-diff/ to be completely unaware of /_git/.
 
+Git is a good command to analyse, not just because it is comprehensive, but also
+because it reflects many common option handling patterns; Git is run by a single
+command, /git/, followed by either flags or an argument giving the particular
+git command, again followed by options to /that/ command. A high level view of
+what-must-be-completed-when in git demonstrates it's recursive nature
+immediately.
 
 #+BEGIN_SRC dot :output-dir ../../images :file zsh-command-structure.svg :cmdline -Kdot -Tsvg
 digraph G {
@@ -81,18 +96,6 @@ digraph G {
 #+RESULTS:
 [[file:../../images/zsh-command-structure.svg]]
 
-The tree-like structure of what-must-be-completed-when is what gives rise to
-this recursive pattern in completion scripts. 
-
-1) An entry point (/git/) will processes the command line string. 
-2) A function for each subcommand such as /diff/, typically wrapping /_arguments/
-3) One function for each type of object, referred to as a /tag/ in ZSH nomenclature.
-4) In some cases, functions to handle special values, files, sockets, fifos. 
-
-Not to belabour the points above, but removing the head of the command to is the
-easiest way to build /context/ - everything that the shell knows about the
-meaning of the command line and the significance of the cursor position, allowing
-/_git-diff/ to be completely unaware of /_git/.
 
 ** The structure of ~_arguments~ 
 The function /_arguments/ has been described as having `the syntax from hell', but
@@ -105,7 +108,8 @@ handle normal arguments to the command.
 The following is an excerpt from the /p4 diff/ completion function (in turn
 excerpted from the manual) and covers some important fundamentals of argument parsing.
 #+BEGIN_SRC sh
-function  _perforce_cmd_diff() {
+(( $+functions[_git-diff] )) ||
+_git-diff() {
       _arguments -s : \ 
           '-f[diff every file]' \ 
           '-t[include non-text files]' \ 
