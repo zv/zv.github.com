@@ -48,7 +48,7 @@ pre, code, span.verbatim {
 
 code {
     color: $base3;
-    background: $base01;
+    // background: $base01;
     padding: 4px;
 }
 
@@ -56,7 +56,7 @@ code {
  Site Layout
  **/
 .post-list h2 {
-    font-size: 20px;
+    font-size: 2em;
     text-decoration: none;
     margin: 0 0 1em 0;
 }
@@ -94,7 +94,7 @@ h1.post-title {
 // Level 1 headings
 .outline-2 h2 {
     color: $yellow;
-    font: 400 1.4em "firasans";
+    font: 400 1.2em "firasans";
     margin: 1.5em 0 1.5em 0;
     letter-spacing: 0.05em;
 }
