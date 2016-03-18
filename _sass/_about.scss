@@ -194,16 +194,21 @@ h1#work {
 div.work_container {
     width: 90%;
     margin: auto;
+    .links {
+        text-align: right;
+    }
 }
 
 .project {
     margin: 1rem 0 1rem 0;
     font-size: 14px;
     vertical-align: top;
+    border: #fafafa solid 1px;
+    padding: 1em;
 }
 
-.project > h1 { font-size: 20px; margin: 0 0 1em 0; text-align: center; }
-.project > p { margin: 10px 0 0 0; line-height: 22px; }
+.project > h1 { font-size: 20px; margin: 0 0 1em 0; }
+.project > p { line-height: 22px; }
 .project a { border-width: 1px; }
 .q { margin-left: -0.5em; }
 .at { color: hsl(215, 50%, 70%); }
