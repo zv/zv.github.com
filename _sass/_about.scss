@@ -1,5 +1,55 @@
 $photo-size: 5rem;
 
+.business-card {
+    #given_name {
+        display: inline; 
+    }
+
+    #handle {
+        display: inline;
+    }
+
+    .permalink, .version {
+        position: absolute;
+        bottom: -22px;
+        font-size: 10px;
+        color: hsl(215,50%,75%);
+    }
+
+    .version {
+        right: 0;
+    }
+
+    .permalink {
+        left: 0;
+        display: none;
+    }
+
+    a {
+        border-width: 1px;
+    }
+
+    .buttons {
+        position: absolute;
+        left: 550px;
+        font-size: 12px;
+        // width: 100px;
+    }
+
+    .buttons a {
+        color: hsl(215,50%,70%);
+        border-bottom-style: dotted;
+    }
+
+    .buttons a:hover {
+        color: white;
+    }
+
+    #info-container {
+        display: inline;
+    }
+}
+
 @media (min-width: 599px) {
     .business-card {
         font-size: 14px;
@@ -13,7 +63,7 @@ $photo-size: 5rem;
         position: relative;
 
         .text {
-            margin: -10px 0 0 100px;
+            margin: -5px 0 0 100px;
         }
 
         h1 {
@@ -34,56 +84,9 @@ $photo-size: 5rem;
         }
 
         #photo {
-            display: inline;
             width: $photo-size;
-            height: $photo-size;
             float: left;
             border: 1px solid white;
-            background-size: $photo-size;
-        }
-
-        #given_name {
-            display: inline; 
-        }
-
-        #handle {
-            display: inline;
-        }
-
-        .permalink, .version {
-            position: absolute;
-            bottom: -22px;
-            font-size: 10px;
-            color: hsl(215,50%,75%);
-        }
-
-        .version {
-            right: 0;
-        }
-
-        .permalink {
-            left: 0;
-            display: none;
-        }
-
-        a {
-            border-width: 1px;
-        }
-
-        .buttons {
-            position: absolute;
-            left: 550px;
-            font-size: 12px;
-            width: 100px;
-        }
-
-        .buttons a {
-            color: hsl(215,50%,70%);
-            border-bottom-style: dotted;
-        }
-
-        .buttons a:hover {
-            color: white;
         }
     }
 }
@@ -126,57 +129,13 @@ $photo-size: 5rem;
         #photo {
             display: inline;
             width: $photo-size;
-            height: $photo-size;
             float: left;
             border: 1px solid white;
             background-size: $photo-size;
-            margin-top: 1%;
+            margin-top: 0.25em;
             margin-right: 2%;
         }
 
-        #given_name {
-            display: inline; 
-        }
-
-        #handle {
-            display: inline;
-        }
-
-        .permalink, .version {
-            position: absolute;
-            bottom: -22px;
-            font-size: 10px;
-            color: hsl(215,50%,75%);
-        }
-
-        .version {
-            right: 0;
-        }
-
-        .permalink {
-            left: 0;
-            display: none;
-        }
-
-        a {
-            border-width: 1px;
-        }
-
-        .buttons {
-            position: absolute;
-            left: 550px;
-            font-size: 12px;
-            // width: 100px;
-        }
-
-        .buttons a {
-            color: hsl(215,50%,70%);
-            border-bottom-style: dotted;
-        }
-
-        .buttons a:hover {
-            color: white;
-        }
     }
 }
 
