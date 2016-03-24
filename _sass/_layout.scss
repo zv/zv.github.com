@@ -38,7 +38,7 @@ header#nav-container {
 
 
 
-@media (max-width: 800px) {
+@media all and  (max-width: 800px) {
     main {
         padding: 0;
         width: $mobile-width;
@@ -163,14 +163,14 @@ aside {
     display: block;
 }
 
-@media (min-width: 1024px) and (max-width: 1260px) {
+@media all and (min-width: 1024px) and (max-width: 1260px) {
     aside {
         width: 7em;
         padding-left: 1em;
     }    
 }
 
-@media (max-width: 1023px) {
+@media all and (max-width: 1023px) {
     // on too small of a screen the asides are useless anyway;
     aside {
         position: static;
