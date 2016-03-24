@@ -4,8 +4,8 @@ title: Single Stepping with PTrace
 category: note
 excerpt: A look into the abyss 
 ---
-<div class=txt>
-
+<section>
+<div>
 
 <p>PTrace is integral to the operation of all processes that examine another's execution in POSIX compatible operating systems -- it's the building block of every modern debugger implementation. It's versatile and well tested, and although the elements are quite simple, it's the perennial process examination library. Many books have been written about ptrace internals, so do not confuse this this document with a more comprehensive treatment of the subject.</p>
 
@@ -110,3 +110,4 @@ PTrace can also attach to existing processes, the PTRACE_ATTACH request handles 
 </p>
 
 </div>
+</section>

@@ -3,7 +3,7 @@
  */
 body {
     // width: 70em;
-    background: $background-color;
+    // background: $background-color;
     color: $text-color;
     font: $font;
     -webkit-font-smoothing: antialiased;
@@ -41,7 +41,7 @@ header#nav-container {
 @media (max-width: 800px) {
     main {
         padding: 0;
-        width: 95%;
+        width: $mobile-width;
         margin-right: auto;
         margin-left: auto;
     }
@@ -51,21 +51,20 @@ header#nav-container {
      * Site header
      */
     header#nav-container {
+        width: $mobile-width;
         margin: 0 auto;
-        width: 100%;
     }
 
 }
 
 nav#site-nav {
     margin: 0 auto;
-    padding: 2rem 0 3rem;
-    vertical-align: top;
+    padding: 2rem 0 2.5rem;
 
     li {
+        margin-right: 1em;
         list-style: none;
         display: inline-block;
-        margin: 0 1em 0 1em;
         vertical-align: top;
 
         a.nav-item {
@@ -88,6 +87,7 @@ div.post-entry {
 } 
 
 header.post-header {
+
     a.post-title {
         font: 200 2em "firasans";
     }
@@ -109,8 +109,8 @@ header.post-header {
  **/
 
 ul.post-list {
-    width: 80%;
     padding: 0;
+    width: 80%;
     list-style-type: none;
 }
 
@@ -123,11 +123,12 @@ li.post-section {
  **/
 
 article {
-    font-size: 1.1em;
 }
 
-article > section > div >  p {
-    margin: 0.9em 0;
+
+article > section > div > p {
+    $paragraph-margin: 1em;
+    margin: $paragraph-margin 0 $paragraph-margin 0;
     line-height: 30px;
 }
 
@@ -140,8 +141,8 @@ ol.org-ol {
     // background-color: #073642;
     overflow-x: auto;
     padding: 1px;
-    border: 3px solid $base02;
-    border-left: 11px solid $base02;
+    border: 3px solid $base2;
+    border-left: 11px solid $base2;
     font-size: 0.95em;
     padding: 7px 10px 7px 10px; 
     margin: 1em 0 1em 0;
@@ -212,8 +213,8 @@ pre.example {
 // Terminal example
 section.terminal-example {
     line-height: 20px;
-    background-color: rgba(0,0,0,0.4);
-    border-left: 11px solid $base01;
+    background-color: $base03;
+    border-left: 11px solid $base1;
     padding: 0 0 0 1.5em;
     margin: 1em 0 1em 0;
 }

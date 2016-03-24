@@ -149,11 +149,11 @@ and a colon are known known as /optspec/s or option specification.
 /_arguments/ broadly supports 7 different option specification varieties, all of
 which can be directly followed by a bracketed explanation string.
 
-***** -optname , +optname & +-optname
+***** ~-optname~ , ~+optname~ & ~+-optname~
 The simplest form, indicating that +,- or +/-optname are valid options. the
 first would match ~foo -optname~, the next ~foo \+optname~. The last matches
 both.
-***** -optname-, -optname+ or -optname=, -optname=-
+***** ~-optname-~, ~-optname+~ or ~-optname=~, ~-optname=-~
 Identical to the above, but accepting arguments.
 The former accepting command strings without spacing, e.g ~foo -optnamearg~
 the latter with spacing: ~foo -optname arg~. An equals sign is identical in

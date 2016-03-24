@@ -9,7 +9,6 @@
 
 $spacing-unit:     30px;
 
-$background-color: #002b36;
 $font: 17px/30px 'firasans', sans-serif;
 $base-line-height: 1.5;
 
@@ -18,10 +17,7 @@ $main-width: 750px;
 $main-wide-width: 810px;
 $menu-width: 80%;
 
-// Nav Items
-$nav-color: hsl(215, 50%, 77%);
-$nav-selected-color: white;
-$nav-selected-border: 2px solid hsl(45,98%,77%);
+$mobile-width: 90%;
 
 $base03:    #002b36;
 $base02:    #073642;
@@ -43,6 +39,37 @@ $green:     #859900;
 
 $text-color: white;
 
+@mixin rebase($rebase03,$rebase02,$rebase01,$rebase00,$rebase0,$rebase1,$rebase2,$rebase3) 
+{
+    background-color:$rebase03;
+    color:$rebase0;
+    * { color:$rebase0; }
+    h1,h2,h3,h4,h5,h6 { color:$rebase1; border-color: $rebase0; }
+    a, a:active, a:visited { color: $rebase1; }
+}
+@mixin accentize($accent) {
+    a, a:active, a:visited, code.url { color: $accent; }
+    h1,h2,h3,h4,h5,h6 {color:$accent}
+}
+
+/* light is default mode, so pair with general html definition */
+html, .light { @include rebase($base3,$base2,$base1,$base0,$base00,$base01,$base02,$base03)}
+// .dark        { @include rebase($base03,$base02,$base01,$base00,$base0,$base1,$base2,$base3)}
+html * {
+    color-profile: sRGB;
+    rendering-intent: auto;
+}
+
+
+
+// Nav Items
+$nav-color: $base1;
+$nav-selected-color: $base01;
+$nav-selected-border: 2px solid $base01;
+
+
+//$background-color: $base03;
+
 // Width of the content area
 $content-width:    800px;
 
@@ -51,8 +78,8 @@ $on-laptop:        800px;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
-"fonts",
 "base",
+"fonts",
 "layout",
 "cursor",
 "about"

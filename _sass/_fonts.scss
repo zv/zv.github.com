@@ -47,9 +47,9 @@ pre, code, span.verbatim {
 }
 
 code {
-    color: $base3;
+    color: $base03;
     // background: $base01;
-    padding: 4px;
+    // padding: 0.2em;
 }
 
 /**
@@ -78,7 +78,7 @@ span.postlist-date {
 h1 {
     font: 200 1em "firasans";
     font-size: 1.7em;
-    margin: 2.5em 0 0.5em;
+    // margin: 2.5em 0 0.5em;
 }
 
 h1.post-title {
@@ -88,7 +88,7 @@ h1.post-title {
     font-weight: bold;
     letter-spacing: 0.05em;
     font-size: 1.7em;
-    margin-bottom: 1.7em;    
+    margin-bottom: 1.25em;    
 }
 
 // Level 1 headings
@@ -100,15 +100,16 @@ h1.post-title {
 }
 
 .outline-3 h3 {
-    color: $green;
+    // color: $green;
+    color: $yellow;
     font: 400 1.15em "firasans";
     margin: 1.2em 0 1.2em 0;
 }
 
 .outline-4 h4 {
-    color: $base1;
-    font: 400 1em "firasans";
-    font-weight: bold;
+    color: $base01;
+    font: 300 1.1em "firasans";
+    // font-weight: bold;
     margin: 1.2em 0 0.5em 0;
     letter-spacing: 0.05em;
 }

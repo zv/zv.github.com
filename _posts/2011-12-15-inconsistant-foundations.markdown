@@ -4,8 +4,8 @@ title: What if the foundations of mathematics are inconsistant?
 category: note
 excerpt: The end of the Axiom of Choice
 ---
-<div class=txt>
-
+<section>
+<div>
 <center>
 <iframe src="http://video.ias.edu/webfm_send/1518" frameborder="0" allowfullscreen></iframe>
 </center>
@@ -19,5 +19,5 @@ excerpt: The end of the Axiom of Choice
 <p>Of course this opinion has been expressed before, but perhaps not so forcefully or in such a high-level forum. One person who has been expressing such ideas in recent years is <a href="http://en.wikipedia.org/wiki/Edward_Nelson">Ed Nelson</a>, who was also in the audience. (You can see his ideas in a recent paper: http://www.math.princeton.edu/~nelson/papers/warn.pdf). </p>
 
 <p>It seems the general consensus amongst mathematicians is that it is perfectly acceptable to question the limits of mathematics, even outside of ZFC.</p>
-
-</div>
+<div>
+</section>

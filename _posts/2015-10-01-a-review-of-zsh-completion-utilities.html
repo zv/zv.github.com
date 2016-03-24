@@ -133,8 +133,6 @@ handle normal arguments to the command.
 The following is an excerpt from the <i>p4 diff</i> completion function (in turn
 excerpted from the manual) and covers some important fundamentals of argument parsing.
 </p>
-
-
 <div class="org-src-container">
 
 <pre class="src src-sh"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span> $+functions<span style="color: #268bd2;">[</span>_git-diff<span style="color: #268bd2;">]</span> <span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span> ||
@@ -200,14 +198,14 @@ which can be directly followed by a bracketed explanation string.
 </p>
 </div>
 
-<ul class="org-ul"><li><a id="orgheadline7"></a>-optname , +optname &amp; +-optname<br ><div class="outline-text-6" id="text-orgheadline7">
+<ul class="org-ul"><li><a id="orgheadline7"></a><code>-optname</code> , <code>+optname</code> &amp; <code>+-optname</code><br ><div class="outline-text-6" id="text-orgheadline7">
 <p>
 The simplest form, indicating that +,- or +/-optname are valid options. the
 first would match <code>foo -optname</code>, the next <code>foo \+optname</code>. The last matches
 both.
 </p>
 </div></li>
-<li><a id="orgheadline8"></a>-optname-, -optname+ or -optname=, -optname=-<br ><div class="outline-text-6" id="text-orgheadline8">
+<li><a id="orgheadline8"></a><code>-optname-</code>, <code>-optname+</code> or <code>-optname=</code>, <code>-optname=-</code><br ><div class="outline-text-6" id="text-orgheadline8">
 <p>
 Identical to the above, but accepting arguments.
 The former accepting command strings without spacing, e.g <code>foo -optnamearg</code>
@@ -240,9 +238,9 @@ The following is an extract of the iproute2 argument handling in <a href="https:
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #839496; font-weight: bold;">local</span> args
+<pre class="src src-sh"><span style="color: #657b83; font-weight: bold;">local</span> args
 <span style="color: #268bd2;">args</span>=<span style="color: #2aa198;">(</span>
-  <span style="color: #586e75;"># </span><span style="color: #586e75;">Command word</span>
+  <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Command word</span>
   /$<span style="color: #2aa198;">'[^\0]#\0'</span>/
   <span style="color: #2aa198;">'l*ink:configure network device:$link_cmds'</span> <span style="color: #b58900; font-weight: bold;">\</span>
   <span style="color: #2aa198;">'addrlabel:manage addrlabel:$addrlabel_cmds'</span> <span style="color: #b58900; font-weight: bold;">\</span>
@@ -260,8 +258,8 @@ _regex_arguments _command
 <div class="outline-text-3" id="text-orgheadline11">
 <div class="org-src-container">
 
-<pre class="src src-shell-script"><span style="color: #839496; font-weight: bold;">local</span> arguments
-<span style="color: #586e75;"># </span><span style="color: #586e75;">We supply a regex to _pick_variant, in this case checking gor the string `gnu`</span>
+<pre class="src src-shell-script"><span style="color: #657b83; font-weight: bold;">local</span> arguments
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">We supply a regex to _pick_variant, in this case checking gor the string `gnu`</span>
 <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900; font-weight: bold;">!</span> _pick_variant <span style="color: #268bd2;">gnu</span>=gnu unix --help; <span style="color: #859900; font-weight: bold;">then</span>
   <span style="color: #268bd2;">arguments</span>=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">'-g[This flag only works on gnu distributions of this binary]'</span><span style="color: #2aa198;">)</span>
 <span style="color: #859900; font-weight: bold;">else</span>
@@ -308,8 +306,8 @@ In the interest of <del>laziness</del> expedience, I will quote <code>_fc</code>
   zstyle -s <span style="color: #2aa198;">":completion:${curcontext}:"</span> list-separator sep || <span style="color: #268bd2;">sep</span>=--
   <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> -z $<span style="color: #268bd2;">{</span><span style="color: #268bd2;">line</span>:#*=*<span style="color: #268bd2;">}</span> <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span> &amp;&amp; compset -P <span style="color: #2aa198;">'*='</span>; <span style="color: #859900; font-weight: bold;">then</span>
     _message -e replacements <span style="color: #2aa198;">'replacement'</span>
-  <span style="color: #859900; font-weight: bold;">elif</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> -prefix <span style="color: #268bd2;">[</span><span style="color: #268bd2; font-weight: bold;">0-9</span><span style="color: #268bd2;">]</span> <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
-    <span style="color: #268bd2;">events</span>=<span style="color: #2aa198;">(</span> $<span style="color: #b58900;">{</span><span style="color: #268bd2;">(</span><span style="color: #268bd2; font-weight: bold;">0</span><span style="color: #268bd2;">)</span><span style="color: #2aa198;">"$(printf "%-${#HISTNO}.${#HISTNO}s $sep %s\0" "${(kv)history[@]}")"</span><span style="color: #b58900;">}</span> <span style="color: #2aa198;">)</span>
+  <span style="color: #859900; font-weight: bold;">elif</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> -prefix <span style="color: #268bd2;">[</span><span style="color: #6c71c4;">0-9</span><span style="color: #268bd2;">]</span> <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
+    <span style="color: #268bd2;">events</span>=<span style="color: #2aa198;">(</span> $<span style="color: #b58900;">{</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">0</span><span style="color: #268bd2;">)</span><span style="color: #2aa198;">"$(printf "%-${#HISTNO}.${#HISTNO}s $sep %s\0" "${(kv)history[@]}")"</span><span style="color: #b58900;">}</span> <span style="color: #2aa198;">)</span>
     _wanted -2V events expl <span style="color: #2aa198;">"$state_descr"</span> compadd -M <span style="color: #2aa198;">"B:0="</span> -ld events - <span style="color: #b58900; font-weight: bold;">\</span>
         <span style="color: #2aa198;">"${events[@]%% *}"</span>
   <span style="color: #859900; font-weight: bold;">elif</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> -prefix - <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
@@ -321,9 +319,9 @@ In the interest of <del>laziness</del> expedience, I will quote <code>_fc</code>
         <span style="color: #2aa198;">"${events[@]%% *}"</span>
   <span style="color: #859900; font-weight: bold;">else</span>
     _wanted events expl <span style="color: #2aa198;">"$state_descr"</span> compadd -S <span style="color: #2aa198;">''</span> - <span style="color: #b58900; font-weight: bold;">\</span>
-        $<span style="color: #2aa198;">{</span><span style="color: #268bd2;">$</span><span style="color: #b58900;">{</span><span style="color: #839496; font-weight: bold;">history</span>%%<span style="color: #268bd2;">[</span>=<span style="color: #6c71c4;">[</span>:IFS:<span style="color: #6c71c4;">]</span><span style="color: #268bd2;">]</span>*<span style="color: #b58900;">}</span>:#<span style="color: #b58900;">[</span><span style="color: #268bd2; font-weight: bold;">0-9-</span><span style="color: #b58900;">]</span>*<span style="color: #2aa198;">}</span> || _guard <span style="color: #2aa198;">"[0-9]#"</span> event
+        $<span style="color: #2aa198;">{</span><span style="color: #268bd2;">$</span><span style="color: #b58900;">{</span><span style="color: #657b83; font-weight: bold;">history</span>%%<span style="color: #268bd2;">[</span>=<span style="color: #6c71c4;">[</span>:IFS:<span style="color: #6c71c4;">]</span><span style="color: #268bd2;">]</span>*<span style="color: #b58900;">}</span>:#<span style="color: #b58900;">[</span><span style="color: #6c71c4;">0-9-</span><span style="color: #b58900;">]</span>*<span style="color: #2aa198;">}</span> || _guard <span style="color: #2aa198;">"[0-9]#"</span> event
   <span style="color: #859900; font-weight: bold;">fi</span>
-<span style="color: #859900; font-weight: bold;">fi</span> &amp;&amp; <span style="color: #268bd2;">ret</span>=<span style="color: #268bd2; font-weight: bold;">0</span>
+<span style="color: #859900; font-weight: bold;">fi</span> &amp;&amp; <span style="color: #268bd2;">ret</span>=<span style="color: #6c71c4;">0</span>
 </pre>
 </div>
 </div>
@@ -382,14 +380,14 @@ completion lies in the following.
 
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #268bd2;">list_terminator</span>=<span style="color: #2aa198;">'*[=]'</span> <span style="color: #586e75;"># </span><span style="color: #586e75;">Corresponds to `=` </span>
-<span style="color: #268bd2;">delimiter</span>=<span style="color: #2aa198;">','</span> <span style="color: #586e75;"># </span><span style="color: #586e75;">The character that delimits the list</span>
-<span style="color: #268bd2;">options</span>=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">"e:effective"</span>, <span style="color: #2aa198;">"i:inheritable"</span>, <span style="color: #2aa198;">"p:permitted"</span><span style="color: #2aa198;">)</span> <span style="color: #586e75;"># </span><span style="color: #586e75;">Valid options</span>
+<pre class="src src-sh"><span style="color: #268bd2;">list_terminator</span>=<span style="color: #2aa198;">'*[=]'</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Corresponds to `=` </span>
+<span style="color: #268bd2;">delimiter</span>=<span style="color: #2aa198;">','</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">The character that delimits the list</span>
+<span style="color: #268bd2;">options</span>=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">"e:effective"</span>, <span style="color: #2aa198;">"i:inheritable"</span>, <span style="color: #2aa198;">"p:permitted"</span><span style="color: #2aa198;">)</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Valid options</span>
 <span style="color: #859900; font-weight: bold;">case</span> $<span style="color: #268bd2;">state</span><span style="color: #859900; font-weight: bold;"> in</span>
-  <span style="color: #586e75;"># </span><span style="color: #586e75;">compset -P checks if we've reached a user entering a $list_terminator</span>
+  <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">compset -P checks if we've reached a user entering a $list_terminator</span>
   <span style="color: #859900; font-weight: bold;">if</span> compset -P $<span style="color: #268bd2;">list_terminator</span>; <span style="color: #859900; font-weight: bold;">then</span>
     _describe -t options <span style="color: #2aa198;">"options"</span> options
-  <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #586e75;"># </span><span style="color: #586e75;">Otherwise complete from these list of items.</span>
+  <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Otherwise complete from these list of items.</span>
     _values -s $<span style="color: #268bd2;">delimiter</span> items 
       <span style="color: #2aa198;">'foo[Description of foo]'</span> <span style="color: #b58900; font-weight: bold;">\</span>
       <span style="color: #2aa198;">'bar[Description of bar]'</span>
@@ -415,9 +413,9 @@ completion lies in the following.
 <div class="outline-text-3" id="text-orgheadline18">
 <div class="org-src-container">
 
-<pre class="src src-shell-script"><span style="color: #839496; font-weight: bold;">local</span> arguments
+<pre class="src src-shell-script"><span style="color: #657b83; font-weight: bold;">local</span> arguments
 <span style="color: #268bd2;">arguments</span>=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">'-b[Base argument]'</span><span style="color: #2aa198;">)</span>
-<span style="color: #586e75;"># </span><span style="color: #586e75;">We might add additional arguments based on the operating system</span>
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">We might add additional arguments based on the operating system</span>
 <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> <span style="color: #2aa198;">"$OSTYPE"</span> = <span style="color: #268bd2;">(</span>freebsd*|darwin*<span style="color: #268bd2;">)</span> <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
   <span style="color: #268bd2;">arguments</span>+=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">'-m[OSX or FreeBSD Specific Flag]'</span><span style="color: #2aa198;">)</span>
 <span style="color: #859900; font-weight: bold;">fi</span>
