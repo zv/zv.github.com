@@ -4,7 +4,8 @@ title: The Transcendence of π
 category: note
 excerpt: Knowing the roots requires deep digging.
 ---
-<div class=txt>
+
+<section><div>
 
 <p>We all intuitively know that π is <a href="http://en.wikipedia.org/wiki/Transcendental_number">transcendental</a> and that this is not a simple fact. Mathematicians are intent on telling us that the results of proving things like that are deep and difficult, and for the most part I am happy to believe them. Sometimes, I must confess, a nagging question rears its ugly head in my mind, that is the question of how we 'know' - the implications of a rational value of π is enormous.</p>
 
@@ -22,5 +23,5 @@ The French mathematician Liouville proved the first transcendentals by showing i
 
 <p>So it becomes imperative to pin down the difference between f(α) being zero and approximating zero. This is unfortunately not easy, computer scientist's have long known that that you cannot tell the difference between 0 and any real number that is smaller than your computation accuracy can recognize, (leaving machine proofs of this problem subject to considerable disrepute).
 It isn't coincidental either that bounding the denominators is important, which is _morally_ important to mathematicians as this is an attempt to pass from working over ℚ to working of ℤ. Why? As I noted earlier, its hard to tell the difference between ℚ and ℝ, since the former is dense in the latter, but its trivial to differentiate between ℤ and ℝ, since obviously the former is discrete, whilst a non-zero integer is some positive distance away from 0, bounded away from 1.</p>
-</div>
 
+</div></section>

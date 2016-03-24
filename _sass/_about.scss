@@ -55,12 +55,14 @@ $photo-size: 5rem;
 
     .links {
         margin-top: 2em;
+        a {
+            text-decoration: none;
+            margin: 0 0.3em 0 0;
+            &:hover, &#selected {
+                opacity: 0.5;
+            }
+        }
     }
-
-    .links > a {
-        margin: 0 0.3em 0 0;
-    }
-
 
 }
 
@@ -98,13 +100,13 @@ $photo-size: 5rem;
     .business-card {
         font-size: 14px;
         line-height: 20px;
-        width: 85%;
+        width: 90%;
         height: 12em;
-        border: 1px solid white;
+        border: 1px solid $base1;
         padding: 2px 0 0 0;
         margin: 0 auto;
         margin-bottom: 5rem;
-        padding: 1rem 0.5rem 1rem 1rem;
+        padding: 1rem;
         position: relative;
 
         h1 {
@@ -119,7 +121,7 @@ $photo-size: 5rem;
 
         #photo {
             display: inline;
-            width: $photo-size;
+            width: 20%;
             float: left;
             border: 1px solid white;
             background-size: $photo-size;
