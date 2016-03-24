@@ -66,7 +66,7 @@ $photo-size: 5rem;
 
 }
 
-@media (min-width: 599px) {
+@media all and (min-width: 599px) {
     .business-card {
         font-size: 14px;
         line-height: 20px;
@@ -96,7 +96,7 @@ $photo-size: 5rem;
     }
 }
 
-@media (max-width: 598px) {
+@media all and (min-width: 120px) and (max-width: 598px) {
     .business-card {
         font-size: 14px;
         line-height: 20px;
