@@ -74,7 +74,6 @@ $photo-size: 5rem;
         height: 9rem;
         border: 1px solid $base1;
         margin: 0 auto;
-        margin-bottom: 5rem;
         padding: 3rem 1rem 3rem 3rem;
         position: relative;
 
@@ -157,6 +156,9 @@ div.work_container {
     vertical-align: top;
     border: $base1 solid 1px;
     padding: 1em;
+    &:nth-child(1) {
+        margin-top: -3.5em;
+    }
 }
 
 .project > h1 { font-size: 20px; margin: 0 0 1em 0; }
@@ -166,3 +168,10 @@ div.work_container {
 .at { color: hsl(215, 50%, 70%); }
 .where { font-size: 11px; color: hsl(215, 50%, 70%); }
 .lang  { font-size: 11px; color: hsl(215, 50%, 90%); }
+
+.work-view-container {
+    width: 750px;
+}
+
+canvas#tree {
+}
