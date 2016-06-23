@@ -18,6 +18,13 @@ layout: default
   </div>
 </div>
 
+<!-- Tree Container -->
+<!-- If you like this tree, you can view the source code here: -->
+<p align="center">
+  <canvas id="tree" width="400" height="400"></canvas>
+</p>
+
+<!-- Projects Container -->
 <div class="work_container">
   {% for project in site.data.projects %}
   <div class="project">
@@ -31,3 +38,12 @@ layout: default
   </div>
   {% endfor %}
 </div>
+
+
+<script type="text/javascript" src="/js/zv-tree.js"></script>
+<script>
+ window.onload = function() {
+   ZVTree.draw();
+ }
+ console.log('%c Like the tree? -- read the source here: https://github.com/zv/tree', 'background: #111; color: #fff');
+</script>
