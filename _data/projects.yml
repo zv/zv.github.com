@@ -1,10 +1,10 @@
 - name: zv-tree
-  description: This is the tree you (should be) seeing now! This tree is algorithmically generated <i>without</i> any sort of base texture -- it's entirely procedural.
+  description: This is the tree you (should be) seeing now! This tree is algorithmically generated <i>without</i> any sort of base texture and modeled off of Inconvergent Trees, the outline is generated from a modified L-System and the shading from a stochastic Thue system, you can find both it's source and formal description in the repo. 
   links:
     github: https://github.com/zv/tree
 
 - name: otp
-  description: I've written features, fixed bugs and plenty inbetween with Erlang OTP. I've worked on a <a href="https://klee.github.io/">KLEE</a> script that found <a href="https://github.com/erlang/otp/pull/1108">several</a> <a href="https://github.com/erlang/otp/pull/1111">exploitable</a> <a href="http://erlang.org/pipermail/erlang-questions/2016-February/0875733.html">bugs</a> as well as a custom inprocess fuzzer using <a href="http://llvm.org/docs/LibFuzzer.html">clang's fuzzing framework</a> to fuzz EPMD and the term decoding libraries. It's not all just vulnerability hunting however, I wrote a patch that permits a user to use ecdsa keys to authenticate an Erlang node rather than a single shared cookie or password.
+  description: I've written features, fixed bugs and plenty inbetween for Erlang/OTP. I've worked on a <a href="https://klee.github.io/">KLEE</a> script that found <a href="https://github.com/erlang/otp/pull/1108">several</a> <a href="https://github.com/erlang/otp/pull/1111">exploitable</a> <a href="http://erlang.org/pipermail/erlang-questions/2016-February/0875733.html">bugs</a> as well as a custom inprocess fuzzer using <a href="http://llvm.org/docs/LibFuzzer.html">clang's fuzzing framework</a> to fuzz EPMD and the term decoding libraries. It's not all just vulnerability hunting however, I wrote a patch that permits a user to use ecdsa keys to authenticate an Erlang node rather than a single shared cookie or password.
   links:
     github: https://github.com/zv/otp
 
@@ -14,12 +14,12 @@
     github: https://github.com/zv/z3-mode
 
 - name: 9Problems
-  description: A tiling Window Manager for Plan9. You now have absolutely no reason why you shouldn't make Plan9 your main operating system!
+  description: The best and only tiling window manager for Plan9. You now have absolutely no reason why you shouldn't make Plan9 your main operating system!
   links:
     github: https://github.com/zv/9Problems
   
 - name: SHA3inRARVM
-  description: This is an implementation of the SHA3 hashing standing inside of a RAR file.Believe it or not, RAR files can contain bytecode for a simple x86-like virtual machine called the RarVM.
+  description: RAR archiver files contain a prescriptive compression language intended for compressing long instruction sequences. This is an implementation of SHA3 inside of the RAR archiver's virtual machine.
   links:
     github: https://github.com/zv/SHA3ImplementedInsideofaRARfile
 
@@ -44,9 +44,9 @@
   description: This is a complete x86 demo that I intended to present at Assembly 2011.
   
 - name: NXVR
-  description: Eschewing the then contemporary stylistic traditions of the torrent site genre such as degenerate ranting about the moral legitimacy of internet piracy, pornographic ads and poorly disguised Trojan downloads. NXVR was made of a softer, gentler kind of downloadable content. Housed with troves of probing and ponderous philosophical texts, commercially fruitless cult classics and acclaimed relics of the past.
+  description: Eschewing the stylistic traditions of the torrent site genre; degenerate ranting about the moral legitimacy of internet piracy, pornographic ads and poorly disguised Trojan downloads. NXVR was made of a softer, gentler kind of downloadable content. Housed with troves of probing and ponderous philosophical texts, commercially fruitless cult classics and acclaimed relics of the past. The man later shut me down.
   
 - name: Swiftcrack
-  description: My first open source project, replete with embarrasing mistakes that remind me how much I've grown since 14! This uses patched WUSB54GS drivers and h1kar1s excellent `chop-chop` package to make one of the very first WEP crackers for Windows. Surprisingly, it lives on despite the presence of considerably more advanced tools like aircrack.
+  description: My first open source project complete with embarrasing mistakes and terrifically bad code! This uses patched WUSB54GS drivers and h1kar1s excellent `chop-chop` package to make one of the very first WEP crackers for Windows. Surprisingly, it lives on despite the presence of considerably more advanced tools like aircrack.
   links:
     Sourceforge_Page: http://sourceforge.net/projects/swiftcrack/
