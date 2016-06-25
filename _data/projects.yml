@@ -1,5 +1,5 @@
 - name: zv-tree
-  description: This is the tree you (should be) seeing now! This tree is algorithmically generated <i>without</i> any sort of base texture and modeled off of Inconvergent Trees, the outline is generated from a modified L-System and the shading from a stochastic Thue system, you can find both it's source and formal description in the repo. 
+  description: This is the tree you (should be) seeing now! This tree is algorithmically generated <i>without</i> any sort of base texture and modeled off of Inconvergent Trees, the outline is generated from a modified L-System and the shading is a stochastic process. You can find both it's source and formal description in the repo. 
   links:
     github: https://github.com/zv/tree
 
