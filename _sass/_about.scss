@@ -157,7 +157,17 @@ div.work_container {
     border: $base1 solid 1px;
     padding: 1em;
     &:nth-child(1) {
-        margin-top: -3.5em;
+        margin-top: -61px;
+    }
+}
+
+
+@media all and (min-width: 120px) and (max-width: 598px) {
+    .project {
+        &:nth-child(1) {
+            margin-top: -33px;
+        }
+
     }
 }
 
@@ -173,5 +183,11 @@ div.work_container {
     width: 750px;
 }
 
+@media all and (max-width: 599px) {
+    canvas#tree {
+        width: 330px;
+        display: block;
+    }
+}
 canvas#tree {
 }
