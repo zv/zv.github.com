@@ -28,6 +28,11 @@
   links:
     github: https://github.com/zv/Artifact
 
+- name: btcfs
+  description: btcfs is a filesystem in userspace for Plan9 that allows you (for a miniscule fee) to treat the blockchain as a just-another-fs.
+  links:
+    github: https://github.com/zv/btcfs
+
 - name: Gravity
   description: To learn Elm I wrote an orbital simulation game, my friend stephen balaban later picked it up. 
   links:
