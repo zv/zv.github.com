@@ -1,12 +1,16 @@
 $photo-size: 5rem;
 
 .business-card {
-    #given_name {
-        display: inline; 
-    }
+    border: 1px solid $base1;
+    .personal-labels {
+        text-align: center;
+        #given_name {
+            display: inline;
+        }
 
-    #handle {
-        display: inline;
+        #handle {
+            display: inline;
+        }
     }
 
     .permalink, .version {
@@ -49,12 +53,14 @@ $photo-size: 5rem;
         display: inline;
     }
 
-    p {
-        margin: 0.5em 0;
+    .text {
+        margin-left: $photo-size;
+        padding-left: 1rem;
     }
 
     .links {
-        margin-top: 2em;
+        padding-top: 1rem;
+        text-align: center;
         a {
             text-decoration: none;
             margin: 0 0.3em 0 0;
@@ -74,12 +80,8 @@ $photo-size: 5rem;
         height: 9rem;
         border: 1px solid $base1;
         margin: 0 auto;
-        padding: 3rem 1rem 3rem 3rem;
+        padding: 2rem 2rem 1rem 2rem;
         position: relative;
-
-        .text {
-            margin: -5px 0 0 100px;
-        }
 
         h1 {
             font-size: 26px;
@@ -87,6 +89,7 @@ $photo-size: 5rem;
         }
 
         #photo {
+            margin-top: 0.4rem;
             width: $photo-size;
             float: left;
             border: 1px solid $base1;
@@ -100,11 +103,6 @@ $photo-size: 5rem;
         font-size: 14px;
         line-height: 20px;
         width: 90%;
-        height: 12em;
-        border: 1px solid $base1;
-        padding: 2px 0 0 0;
-        margin: 0 auto;
-        margin-bottom: 5rem;
         padding: 1rem;
         position: relative;
 
@@ -115,12 +113,11 @@ $photo-size: 5rem;
 
         .links {
             text-align: center;
-            margin-top: 5%;
         }
 
         #photo {
             display: inline;
-            width: 20%;
+            width: $photo-size;
             float: left;
             border: 1px solid white;
             background-size: $photo-size;
@@ -129,17 +126,6 @@ $photo-size: 5rem;
         }
 
     }
-}
-
-.card > .text {
-    margin: -10px 0 0 100px;
-}
-
-
-
-// code
-h1#work {
-    // margin: 2rem 1rem 2rem 1rem;
 }
 
 div.work_container {
@@ -188,6 +174,4 @@ div.work_container {
         width: 330px;
         display: block;
     }
-}
-canvas#tree {
 }
