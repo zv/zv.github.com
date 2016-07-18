@@ -126,15 +126,19 @@ article {
 }
 
 
-article > section > div > p {
+article > section > div p {
     $paragraph-margin: 1em;
     margin: $paragraph-margin 0 $paragraph-margin 0;
     line-height: 30px;
 }
 
+
 // Org Lists
 ol.org-ol {
     list-style-position: inside;
+    li {
+        margin: 0.5em 0;
+    }
 }
 // Source code container
 .org-src-container {
@@ -237,4 +241,33 @@ figure > p {
         margin-right: auto;
         display: block;
     }   
+}
+
+
+// Tables
+article > section > div table {
+    width: 100%;
+    border-spacing: 0;
+
+    td, th {
+        border: 1px solid transparent; /* No more visible border */
+        height: 30px;
+        transition: all 0.3s;  /* Simple transition for hover effect */
+        padding: 0.5em;
+    }
+
+    th {
+        background: $base2;  /* Darken header a bit */
+        font-weight: bold;
+    }
+
+    td {
+        background: $base1;
+        text-align: center;
+    }
+
+    tr {
+        &:nth-child(odd) td { background: $base3; }
+        &:nth-child(even) td { background: $base2; }
+    }
 }
