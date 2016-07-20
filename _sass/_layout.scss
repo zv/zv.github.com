@@ -182,10 +182,19 @@ aside {
     }
 }
 
+// Footnotes/Asides
+.footnote-definition {
+    font: normal 400 0.8rem "firasans";
+    position: absolute;
+    margin-left: $main-width;
+    padding-left: 1rem;
+    width: 7rem;
+}
+
 
 // Quotes
 .post-content blockquote {
-    font: 200 1em "firasans"; 
+    font: 200 1em "firasans";
     width: 80%;
     padding-top: 1em;
     padding-bottom: 1em;
