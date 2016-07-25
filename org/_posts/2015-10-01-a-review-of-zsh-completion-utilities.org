@@ -10,13 +10,11 @@ tags:
 category: note
 ---
 #+END_HTML
-
-* 
-#+ATTR_HTML: :display none
-ZSH completion scripts rarely capture programmers interest for their elegance; I
-myself have called the system /"excruciatingly awful"/ therefore despite my
-brilliant jabs and clever anecdotes, I doubt they could capture your interest in
-this somewhat spiritless topic for long.
+* Prologue 
+ZSH completion scripts rarely concern programmers, moreoften than not, because
+of fear. I myself have called the system "/excruciatingly awful/", despite my I
+doubt they could capture your interest in this somewhat spiritless topic for
+long.
 
 In consideration of this, I have organized these sections in order of greatest
 importance to the topic (excepting this first section), so the devoted reader
@@ -34,44 +32,42 @@ of supporting a wide range of interpretations and the potential to generate
 critical theory literature for years, which I am sure is on it's way to becoming
 a robust scholarly enterprise.
 
-ZSH's creator, Peter Stephenson is largely responsible for this possibly great
-documentation. Like most of us who set out to change the world of programming,
-he found it difficult to manage his own programs - ZSH and it's completion
-system became more sophisticated, the system and it's related documentation
-began to become one of the largest emitters of user question marks on the
-mailing list.
+ZSH's creator, Peter Stephenson is largely responsible for the documentation.
+Like most of us who set out to change the world of programming, he found it
+difficult to manage his own programs - ZSH and it's completion system became
+more sophisticated, the system and it's related documentation began to become
+one of the largest emitters of user question marks on the mailing list.
 
-In ernest however, it is the single best compendium of information about ZSH
-completion. Although /structural/ questions are rarely answered, as a reference,
- it is unmatched.
+In ernest, it is the single best compendium of information about ZSH completion.
+Although /structural/ questions are rarely answered, as a reference, it is
+unmatched.
 
-I will not be addressing any of the following:
-- How to set up completion and associated zstyles
-- Adding completion
+*  The structure of standard argument completion.
+ZSH's completion system is /contextual/, sensitive to the point at which it is
+invoked, consequently a common pattern is to progressively backtrack to current
+point, determining what options and what subcommands have been set thus far,
+pruning the selection of completion options. 
 
-*  The structure of standard argument completion with ~_arguments~
-ZSH's completion system is /contextual/, that is, sensitive to the point as
-which the user invokes completion. The structure of completion scripts
-themselves are broken down to handle this context in a recursive fashion,
-starting out very generic e.g "/The user is requesting completion of git/",
-becoming more specific as more is learned - "/the current word is in a position
-that is usually a command name/" or "/the current word might be a variable
-name/" and so on.
+If you've never written completion scripts before, you might not yet have been
+exposed to the ultimate structure of option parsing that completion scripts
+(generally) successfully distill. It will be a profitable use of your time to
+get a high-level view of completion script's structure unintentionally defy it
+and spend time working against, rather than with the grain of the system.
 
-Because option parsing follows a general format (regardless of specifics),
-virtually all completion scripts contain with the following basic structure, and
-attempting to make a completion script that doesn't will be more pain than it is
-worth.
+1. An entry point (e.g =git=) will processes the command line string. 
+2. A function for each subcommand such as =diff=, typically wrapping ~_arguments~
+3. One function for each type of object, referred to as a /tag/ in ZSH nomenclature.
+4. In some cases, functions to handle special values, files, sockets, fifos.
 
-1) An entry point (e.g /git/) will processes the command line string. 
-2) A function for each subcommand such as /diff/, typically wrapping /_arguments/
-3) One function for each type of object, referred to as a /tag/ in ZSH nomenclature.
-4) In some cases, functions to handle special values, files, sockets, fifos. 
+The actual mechanics of achieving this typically mean popping off the head/first
+word of the line, feeding that word into a case statement, calling the
+appropriately specialized function for whatever completion option has been
+passed in.
 
-Not to belabour the points above, but removing the head of the command to is the
-easiest way to build /context/ - everything that the shell knows about the
-meaning of the command line and the significance of the cursor position, allowing
-/_git-diff/ to be completely unaware of /_git/.
+Another important feature of ZSH's completion system is that there are many
+special utility functions, variables and options that make many common tasks
+easier, a great deal of writing completion scripts is to use these appropriately.
+
 
 Git is a good command to analyse, not just because it is comprehensive, but also
 because it reflects many common option handling patterns; Git is run by a single
@@ -82,9 +78,9 @@ immediately.
 
 #+BEGIN_SRC dot :output-dir ../../images :file zsh-command-structure.svg :cmdline -Kdot -Tsvg
 digraph G {
-  bgcolor="#002b36";
-  node [color=white, fontcolor=white, shape=box];
-  edge [color=white];
+  bgcolor="#fdf6e3";
+  edge [arrowhead=none, color=gray, penwidth=2];
+  node [color="#93a1a1", fontcolor="#93a1a1", shape=box, penwidth=2];
   git -> "..." -> options;
   git -> " - (minus)" -> "option list";
   git -> diff;
@@ -128,8 +124,8 @@ _git-diff() {
 The excerpt above only has one flag, and it's the most meaningful flag as well,
 but I won't waste an opportunity to briefly cover some other very handy flags:
 
-=-s= conveys that single-letter options are allowed, i.e. they can be combined
-as in `-ft', although this doesn't prevent you from acceping multiple word
+~-s~ conveys that single-letter options are allowed, i.e. they can be combined
+as in ~-ft~, although this doesn't prevent you from acceping multiple word
 options either. ~-w~ is related; in combination with ~-s~ it means that the
 options can stack even if one of them itself takes an argument.
 
@@ -142,30 +138,20 @@ shouldn't complete options after =--=, which is a common UNIX 'pattern' to
 indicate options have ended.
 
 *** The optspec
-The long strings of option specification that follows the flags to /_arguments/
-and a colon are known known as /optspec/s or option specification.
+The long strings of option specification that follows the flags to ~_arguments~
+and a colon are known known as ~optspec~s or option specification.
 
-**** Option Naming or /optnames/
-/_arguments/ broadly supports 7 different option specification varieties, all of
+*** Option Naming
+~_arguments~ broadly supports 7 different option specification varieties, all of
 which can be directly followed by a bracketed explanation string.
-
-***** ~-optname~ , ~+optname~ & ~+-optname~
-The simplest form, indicating that +,- or +/-optname are valid options. the
-first would match ~foo -optname~, the next ~foo \+optname~. The last matches
-both.
-***** ~-optname-~, ~-optname+~ or ~-optname=~, ~-optname=-~
-Identical to the above, but accepting arguments.
-The former accepting command strings without spacing, e.g ~foo -optnamearg~
-the latter with spacing: ~foo -optname arg~. An equals sign is identical in
-functionality but being delimited by an equals sign, e.g: ~foo -optname=arg~
-
-All colons are escaped.
-
-*** Option Arguments (optarg)
-
+| specification | description                                       |
+|---------------+---------------------------------------------------|
+| *optspec      | Here, optspec is one of the remaining forms below |
+| -/+optname    | Plus or Minus the option                          |
+| -optname-     | The first argument must be supplied here          |
+| -optname+     | The first argument must be supplied with a +      |
 
 * Utility Functions
-
 ** Creating a dummy first argument
 The following is an extract of the iproute2 argument handling in [[https://github.com/zsh-users/zsh/blob/master/Completion/Unix/Command/_ip][=_ip=]]
 
@@ -181,7 +167,6 @@ args=(
 _regex_arguments _command 
 #+END_SRC
 
-
 ** ~_pick_variant~ to add options depending upon the version of a program.
 #+BEGIN_SRC shell-script
 local arguments
@@ -193,8 +178,8 @@ else
 fi
 #+END_SRC
 
-
 ** Match an ambiguous clause with ~_guard~ 
+
 The ~_guard~ can break between two tags, dependent upon the regex; if this
 doesn't seem extraordinarily useful to you, you're not alone -- In the body of
 existing ZSH completion scripts, ~_guard~ is typically used an the /action/ for
@@ -210,7 +195,7 @@ behavior of ~fc(1)~
 zshcompsys(4)
 #+END_QUOTE
 
-In the interest of +laziness+ expedience, I will quote ~_fc~ here.
+[[https://github.com/zsh-users/zsh/blob/5deb57714fc799918552b22f077cc4b1daf1f68f/Completion/Zsh/Command/_fc][The ~_fc~ completion demonstrates this here:]]
 #+BEGIN_SRC sh
 if [[ -n $state ]]; then
   zstyle -s ":completion:${curcontext}:" list-separator sep || sep=--
@@ -234,20 +219,16 @@ if [[ -n $state ]]; then
 fi && ret=0
 #+END_SRC
 
-*** Example
-file:/usr/share/zsh/5.1.1/functions/_fc
- 
- 
 * Examples
 A statement about these examples should be made here
 
 ** Delimited values with final option
-A common scenario that occurs in commands such as /libcap/'s capability
-manipulation toolchain, /bintools/ and /coreutils/ is the requirement to
+A common scenario that occurs in commands such as =libcap='s capability
+manipulation toolchain, =bintools= and =coreutils= is the requirement to
 complete a list of arbitrary keywords, each with a unix-style (equal sign)
 option after each one.
 
-An example of such a command is exemplified by ~setcap~
+An example of such a command is exemplified by [[https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap][=setcap=]]
 
 #+BEGIN_HTML
 <section class="terminal-example">
@@ -263,7 +244,7 @@ p  -- permitted
 </section>
 #+END_HTML
 
-You might initially look at the ~chmod~ completion, and this would get you far,
+You might initially look at the =chmod= completion, and this would get you far,
 however the completion script itself is quite long. The core of the unix options
 completion lies in the following.
 
@@ -284,10 +265,7 @@ case $state in
 esac
 #+END_SRC
 
-*** Scripts
-[[https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap][- setcap]]
-
-** Operating system specific flags with ~$OSTYPE~
+** Operating system specific flags with =$OSTYPE=
 #+BEGIN_SRC shell-script
 local arguments
 arguments=('-b[Base argument]')
@@ -303,8 +281,68 @@ if [[ $OSTYPE = linux* ]]; then
 fi
 #+END_SRC
 
-** Sharing implementation details between different completions with =$SERVICE=
-adfadf
+** Completion from a dynamic list
+There are two ways to go about this. Both require that you create a function
+that calls =compadd= with the list of words you want completed.
+
+#+BEGIN_SRC sh
+    typedef -a _tmux_words
+    _tmux_list() {
+       compadd -a _tmux_words
+    }
+#+END_SRC
+
+Up to you to figure out how to populate the ~_tmux_words~ array. The function
+that eventually calls ~compadd~ can do as much other work as you like to decide
+whether to call ~compadd~ at all; see for example the ~_expand_alias~ [[https://github.com/zsh-users/zsh/blob/5deb57714fc799918552b22f077cc4b1daf1f68f/Completion/Base/Completer/_expand_alias][function
+in the zsh distribution.]] [fn::I picked ~_expand_alias~ because it's explicitly
+designed to be usable as either a key binding or a completer entry. Note
+#compdef at the top of the source file.]
+
+With that in place, you can do either:
+1) Create a key binding that invokes it, leaving normal completion alone. 
+
+    ~compdef -k _tmux_list complete-word ^XT~
+3) Add a function to your "completer" style. 
+
+    ~zstyle ':completion:*' completer _complete _tmux_list _correct~ 
+
+Don't use the above zstyle literally; find the one you are presently
+using and insert ~_tmux_list~ at the point where you want those words
+tried as possible completions.
+
+** Caching variables during completion
+Depending on whether you mean all completions for the current command
+line or just all repetitions of completion for the same word (e.g.,
+cycling through a menu) there may be different approaches to this.
+Within completion on a single word, you can look at the ~_oldlist~
+[[https://github.com/zsh-users/zsh/blob/5deb57714fc799918552b22f077cc4b1daf1f68f/Completion/compinstall#L485][completer for an example]].
+
+Based on your additional explanation, though, I suspect that's not what
+you're after, but the basic idea is still the same:  Create a function
+which you reference at the beginning of the completer zstyle.  That
+function tests (somehow) whether the cached state needs to be refreshed.
+
+Bart Schaefer describes a crude procedure to cache the value value of =$HISTNO=
+and then reload the cache if it has changed.
+
+
+#+BEGIN_SRC sh
+_xrcache() {
+  if (( $_xr_HISTNO != $HISTNO ))
+  then
+    _xr_HISTNO=$HISTNO
+    _xr_output=$(xrandr -q)
+  fi
+  return 1 # always "fail" so other completers are tried
+}
+zstyle ':completion:*' completer _xrcache _oldlist _expand _complete # etc.
+#+END_SRC
+
+** Manual ordering of completion alternatives
+You can prevent alphabetical sorting by passing ~-V~ and the matchname: ~compadd -V unsorted - $revarray~
+
+[[http://www.zsh.org/mla/users//2012/msg00177.html][Bart Schaefer also discusses]] ~compadd -V unsorted -a revarray~ for large arrays:
 
 
 * Style and Convention
@@ -320,9 +358,9 @@ are
 + =spec= : Argument Specification
 + =tag= : The 'varieties' of types of objects that are valid completions, e.x a command that takes a set of permissions OR a file as it's next argument. 
 ** Variables
-+ =$state= - The canonical variable for processing which tag you are in.
-+ =$expl=  - An idiom for options normally given to compadd at some point, typically an array
-+ =$descr= - Argument description variables
++ =$state=: The canonical variable for processing which tag you are in.
++ =$expl=: An idiom for options normally given to compadd at some point, typically an array
++ =$descr=: Argument description variables
 
 * External Resources 
 
