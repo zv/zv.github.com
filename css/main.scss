@@ -9,9 +9,6 @@
 
 $spacing-unit:     30px;
 
-$font: 17px/30px 'firasans', sans-serif;
-$base-line-height: 1.5;
-
 // Body
 $main-width: 750px;
 $main-wide-width: 810px;
@@ -39,7 +36,7 @@ $green:     #859900;
 
 $text-color: white;
 
-@mixin rebase($rebase03,$rebase02,$rebase01,$rebase00,$rebase0,$rebase1,$rebase2,$rebase3) 
+@mixin rebase($rebase03,$rebase02,$rebase01,$rebase00,$rebase0,$rebase1,$rebase2,$rebase3)
 {
     background-color:$rebase03;
     color:$rebase0;
@@ -60,7 +57,39 @@ html * {
     rendering-intent: auto;
 }
 
+@mixin antialiased
+{
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-smoothing: antialiased !important;
+}
 
+@mixin ligatures
+{
+    -moz-font-feature-settings: 'liga', 'dlig';
+    -ms-font-feature-settings: 'liga', 'dlig';
+    -o-font-feature-settings: 'liga', 'dlig';
+    -webkit-font-feature-settings: 'liga', 'dlig';
+    font-feature-settings: 'liga', 'dlig';
+}
+
+@mixin kerning
+{
+    -moz-font-feature-settings: 'kern';
+    -ms-font-feature-settings: 'kern';
+    -o-font-feature-settings: 'kern';
+    -webkit-font-feature-settings: 'kern';
+    font-feature-settings: 'kern';
+    font-kerning: normal; 
+}
+
+@mixin border-box
+{
+    -moz-box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
 
 // Nav Items
 $nav-color: $base1;
@@ -75,6 +104,20 @@ $content-width:    800px;
 
 $on-palm:          600px;
 $on-laptop:        800px;
+
+
+$font: 17px/30px 'firasans', sans-serif;
+$base-line-height: 1.5;
+
+html {
+    font: $font;
+}
+
+* {
+    @include antialiased;
+    @include kerning;
+    @include border-box;
+}
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
