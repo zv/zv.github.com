@@ -45,6 +45,7 @@ function repositionFootnotes() {
         lastBottom = eltAbsoluteTop + def.scrollHeight
     }
 
+
     removeFootnoteHeader()
 }
 
@@ -52,6 +53,6 @@ function removeFootnoteHeader() {
     document.querySelector("h2.footnotes").remove()
 }
 
-if (window.innerWidth > 1024) {
+if (window.innerWidth >= 1024) {
     window.addEventListener("load", repositionFootnotes)
 }

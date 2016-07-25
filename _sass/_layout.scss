@@ -1,22 +1,11 @@
 /**
  * Basic styling
  */
-body {
-    // width: 70em;
-    // background: $background-color;
-    color: $text-color;
-    font: $font;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    // margin: 5rem auto;
-}
+body { }
 
 main {
-    padding: 0 0 0 2px;
     width: $main-width;
-    margin-right: auto;
-    margin-left: auto;
+    margin: 0 auto;
 
     &.wide {
         width: $main-wide-width;
@@ -37,13 +26,11 @@ header#nav-container {
 }
 
 
-
 @media all and  (max-width: 800px) {
     main {
         padding: 0;
         width: $mobile-width;
-        margin-right: auto;
-        margin-left: auto;
+        margin: 0 auto;
     }
 
 
@@ -58,20 +45,19 @@ header#nav-container {
 }
 
 nav#site-nav {
-    margin: 0 auto;
-    padding: 2rem 0 2.5rem;
+    padding: 1.5rem 0;
 
     li {
-        margin-right: 1em;
-        list-style: none;
         display: inline-block;
+        margin-right: 1em;
+        list-style-type: none;
         vertical-align: top;
 
         a.nav-item {
             color: $nav-color;
             border-color: transparent;
             display: inline-block;
-            
+
             &:hover, &#selected {
                 color: $nav-selected-color;
                 border-bottom: $nav-selected-border;
@@ -80,34 +66,9 @@ nav#site-nav {
     }
 }
 
-div.post-entry {
-    font-size: 14px;
-    width: 380px;
-    vertical-align: top;
-} 
-
-header.post-header {
-
-    a.post-title {
-        font: 200 2em "firasans";
-    }
-
-    p {
-        margin: 10px 0px 0px;
-        line-height: 22px; 
-    }
-
-    p.post-date {
-        font-size: 11px;
-        color: #8CACD8; 
-    }
-}
-
-
 /**
  Posts Layout
  **/
-
 ul.post-list {
     padding: 0;
     width: 80%;
@@ -115,47 +76,48 @@ ul.post-list {
 }
 
 li.post-section {
-    margin-bottom: 15px;
+    margin: 1rem 0;
 }
 
 /**
  Post Style
  **/
-
-article {
-}
-
-
 article > section > div p {
-    $paragraph-margin: 1em;
-    margin: $paragraph-margin 0 $paragraph-margin 0;
-    line-height: 30px;
+    $paragraph-margin: 1rem;
+    margin: $paragraph-margin 0;
 }
-
 
 // Org Lists
 ol.org-ol {
+    margin-left: 1rem;
     list-style-position: inside;
     li {
-        margin: 0.5em 0;
+        p {
+            margin: 0.5rem 0;
+            margin-left: 1em;
+        }
+        p:first-of-type {
+            margin-left: 0;
+            margin: 0.5rem 0;
+        }
     }
 }
+
 // Source code container
 .org-src-container {
     // background-color: #073642;
     overflow-x: auto;
-    padding: 1px;
     border: 3px solid $base2;
     border-left: 11px solid $base2;
-    font-size: 0.95em;
-    padding: 7px 10px 7px 10px; 
-    margin: 1em 0 1em 0;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
 }
 
 // Footnotes/Asides
 aside {
     p {
-      font: normal 1em "firasans";
+      font: normal 0.9em "firasans";
     }
     margin: auto;
     position: absolute;
@@ -171,7 +133,7 @@ aside {
     aside {
         width: 7em;
         padding-left: 1em;
-    }    
+    }
 }
 
 @media all and (max-width: 1023px) {
@@ -184,49 +146,49 @@ aside {
 
 // Footnotes/Asides
 .footnote-definition {
-    font: normal 400 0.8rem "firasans";
+    font: normal 400 0.7rem "firasans";
     position: absolute;
     margin-left: $main-width;
-    padding-left: 1rem;
-    width: 7rem;
+    padding-left: 2rem;
+    width: 10rem;
 }
-
 
 // Quotes
 .post-content blockquote {
-    font: 200 1em "firasans";
+    font: 200 1.1em "firasans";
     width: 80%;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    margin-bottom: 1em;
+    padding: 1rem 0;
     margin-left: 10%;
 
     p:not(:last-of-type) {
-        border-left: 2px solid $red;
+        border-left: 2px solid $magenta;
         padding-left: 2%;
-        line-height: 1.5em;
-        margin-right: 3em;
-        margin-top: 1em; 
+        line-height: 1.5rem;
+        margin-right: 3rem;
+        margin-top: 0.5rem;
     }
 
     p:last-of-type {
-        font-size: 0.92em;
-        padding-top: 1%;
+        font-size: 0.9rem;
         text-align: right;
         font-style: italic;
+        margin: 0; // Zero out the normally 1pt margin
     }
 }
 
 // Examples
 pre.example {
-    padding: 7px 0 7px 0;    
-    color: $base1;
+    white-space: pre-wrap;
+    font: normal normal 200 0.9rem/1.1 "firamono";
+    color: $base00;
+    border-left: 2px solid $base01;
+    padding-left: 2%;
 }
 
 // Terminal example
 section.terminal-example {
     line-height: 20px;
-    background-color: $base03;
+    // background-color: $base03;
     border-left: 11px solid $base1;
     padding: 0 0 0 1.5em;
     margin: 1em 0 1em 0;
@@ -249,7 +211,7 @@ figure > p {
         margin-left: auto;
         margin-right: auto;
         display: block;
-    }   
+    }
 }
 
 

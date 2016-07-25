@@ -1,7 +1,7 @@
 @font-face{
     font-family: 'firasans';
     src: url('//code.cdn.mozilla.net/fonts/eot/FiraSans-Regular.eot');
-    src: url('//code.cdn.mozilla.net/fonts/eot/FiraSans-Regular.eot') format('embedded-opentype'),
+    src: url('//code.cdn.mozilla.net/fonts/eot/FiraSans-Regular.eot') format('rembedded-opentype'),
          url('//code.cdn.mozilla.net/fonts/woff/FiraSans-Regular.woff') format('woff'),
          url('//code.cdn.mozilla.net/fonts/ttf/FiraSans-Regular.ttf') format('truetype');
     font-weight: 400;
@@ -11,7 +11,7 @@
 @font-face{
     font-family: 'firasans';
     src: url('//code.cdn.mozilla.net/fonts/eot/FiraSans-Italic.eot');
-    src: url('//code.cdn.mozilla.net/fonts/eot/FiraSans-Italic.eot') format('embedded-opentype'),
+    src: url('//code.cdn.mozilla.net/fonts/eot/FiraSans-Italic.eot') format('rembedded-opentype'),
          url('//code.cdn.mozilla.net/fonts/woff/FiraSans-Italic.woff') format('woff'),
          url('//code.cdn.mozilla.net/fonts/ttf/FiraSans-Italic.ttf') format('truetype');
     font-weight: 400;
@@ -21,7 +21,7 @@
 @font-face{
     font-family: 'firasans';
     src: url('//code.cdn.mozilla.net/fonts/eot/FiraSans-Light.eot');
-    src: url('//code.cdn.mozilla.net/fonts/eot/FiraSans-Light.eot') format('embedded-opentype'),
+    src: url('//code.cdn.mozilla.net/fonts/eot/FiraSans-Light.eot') format('rembedded-opentype'),
          url('//code.cdn.mozilla.net/fonts/woff/FiraSans-Light.woff') format('woff'),
          url('//code.cdn.mozilla.net/fonts/ttf/FiraSans-Light.ttf') format('truetype');
     font-weight: 200;
@@ -31,38 +31,46 @@
 @font-face{
     font-family: 'firamono';
     src: url('//code.cdn.mozilla.net/fonts/eot/FiraMono-Regular.eot');
-    src: url('//code.cdn.mozilla.net/fonts/eot/FiraMono-Regular.eot') format('embedded-opentype'),
+    src: url('//code.cdn.mozilla.net/fonts/eot/FiraMono-Regular.eot') format('rembedded-opentype'),
          url('//code.cdn.mozilla.net/fonts/woff/FiraMono-Regular.woff') format('woff'),
          url('//code.cdn.mozilla.net/fonts/ttf/FiraMono-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
-pre, code, span.verbatim {
-    border: none;
+
+
+@font-face{
+    font-family: 'firamono';
+    src: url('//code.cdn.mozilla.net/fonts/eot/FiraMono-Regular.eot');
+    src: url('//code.cdn.mozilla.net/fonts/eot/FiraMono-Regular.eot') format('rembedded-opentype'),
+    url('//code.cdn.mozilla.net/fonts/woff/FiraMono-Regular.woff') format('woff'),
+    url('//code.cdn.mozilla.net/fonts/ttf/FiraMono-Regular.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
 }
 
 pre, code, span.verbatim {
-    font: 0.95em/1.5em 'firamono', monospace;
+    border: none;
+    font: 0.9em 'firamono', monospace;
 }
 
 code {
-    color: $base03;
-    // background: $base01;
-    // padding: 0.2em;
+    background: $base2;
+    padding: 0.2em;
 }
 
 /**
  Site Layout
  **/
 .post-list h2 {
-    font-size: 2em;
+    font-size: 2rem;
     text-decoration: none;
-    margin: 0 0 1em 0;
+    margin: 0 0 1rem 0;
 }
 
 span.postlist-date {
-    font-size: 0.8em;
+    font-size: 0.8rem;
     color: hsl(215, 50%, 75%);
 }
 
@@ -70,45 +78,54 @@ span.postlist-date {
  Post
  **/
 /* .post-content > section h2 { */
-/*     margin-top: 2.5em; */
-/*     font-size: 1.4em;     */
+/*     margin-top: 2.5rem; */
+/*     font-size: 1.4rem;     */
 /*     font-weight: 200; */
 /* } */
 
 h1 {
-    font: 200 1em "firasans";
-    font-size: 1.7em;
-    // margin: 2.5em 0 0.5em;
+    font: 200 1.7rem "firasans";
+    // margin: 2.5rem 0 0.5em;
 }
 
 h1.post-title {
     color: $yellow;
-    font: 400 1em "firasans";
+    font: 200 1.7rem "firasans";
     text-align: center;
-    font-weight: bold;
-    letter-spacing: 0.05em;
-    font-size: 1.7em;
-    margin-bottom: 1.25em;    
+    letter-spacing: 0.05rem;
 }
 
 // Level 1 headings
 .outline-2 h2 {
     color: $yellow;
-    font: 400 1.2em "firasans";
-    margin: 1.5em 0 1.5em 0;
-    letter-spacing: 0.05em;
+    font: 400 1.4rem "firasans";
+    margin: 1.5rem 0;
+    letter-spacing: 0.05rem;
 }
 
 .outline-3 h3 {
     // color: $green;
-    color: $yellow;
-    font: 400 1.15em "firasans";
-    margin: 1.2em 0 1.2em 0;
+    color: $green;
+    font: 400 1.2rem "firasans";
+    margin: 1.2rem 0;
 }
 
 .outline-4 h4 {
     color: $base01;
-    font: 400 1.1em "firasans";
-    margin: 1.2em 0 0.5em 0;
-    letter-spacing: 0.05em;
+    font: 400 1.15rem "firasans";
+    margin: 1.2rem 0;
+    letter-spacing: 0.05rem;
+}
+
+li > .outline-text-5 {
+    a {
+        font-weight: bold;
+    }
+}
+a ~ .outline-text-5 {
+    display: none;
+    font-weight: bold;
+}
+
+a.orgheadline6 {
 }
