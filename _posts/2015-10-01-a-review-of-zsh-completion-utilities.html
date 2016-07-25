@@ -11,16 +11,11 @@ category: note
 <h2 id="orgheadline1">Prologue</h2>
 <div class="outline-text-2" id="text-orgheadline1">
 <p>
-ZSH completion scripts rarely concern programmers, moreoften than not, because
-of fear. I myself have called the system "<i>excruciatingly awful</i>", despite my I
-doubt they could capture your interest in this somewhat spiritless topic for
-long.
-</p>
-
-<p>
-In consideration of this, I have organized these sections in order of greatest
-importance to the topic (excepting this first section), so the devoted reader
-can stop reading this article at whatever point you lose interest.
+ZSH completion scripts rarely concern programmers and I doubt I could capture
+your interest in this somewhat spiritless topic for long. In consideration of
+this, I have organized these sections in order of greatest importance to the
+topic (excepting this first section), so the devoted reader can stop reading
+this article at whatever point you lose interest.
 </p>
 
 <p>
@@ -30,27 +25,25 @@ system of other shells (c.f bash); one of these new users was me.
 </p>
 
 <p>
-Initially appealing was ZSH's lengthy, albeit comprehensive documentation;
-infamous for it's enumeration of digressions, anecdotes and man page '<i>end
-notes</i>' (occassionally having footnotes themselves), in a medium distinctly
-lacking both. This incidentally provides a unique distinction for a manual page
-of supporting a wide range of interpretations and the potential to generate
-critical theory literature for years, which I am sure is on it's way to becoming
-a robust scholarly enterprise.
+At that time, ZSH's comprehensive documentation was the best source of
+information on the topic. ZSH's man pages are written in encyclopedic reference
+style while also containing many digressions, anecdotes and '<i>end notes</i>' (some
+of which have footnotes themselves) in a medium generally lacking both. This
+provides the manpages a unique distinction for a technical document - that of
+supporting range of interpretations and the creation of a robust semi-scholarly
+enterprise of interpreting the "true" meaning of the documentation.
 </p>
 
 <p>
-ZSH's creator, Peter Stephenson is largely responsible for the documentation.
-Like most of us who set out to change the world of programming, he found it
-difficult to manage his own programs - ZSH and it's completion system became
-more sophisticated, the system and it's related documentation began to become
-one of the largest emitters of user question marks on the mailing list.
+Since then, <a href="http://zsh.sourceforge.net/Guide/">the ZSH guide</a> (a separate document) has been updated with
+details of the new completion system. Although it contains some of the
+structural details required for quickly writing correct completion scripts,
+completion details common to many utilities aren't included.
 </p>
 
 <p>
-In ernest, it is the single best compendium of information about ZSH completion.
-Although <i>structural</i> questions are rarely answered, as a reference, it is
-unmatched.
+In response, I've tried to compile some principles, mailing-list wisdom and
+other disambiguation for this hairy topic.
 </p>
 </div>
 </section>
@@ -92,7 +85,6 @@ Another important feature of ZSH's completion system is that there are many
 special utility functions, variables and options that make many common tasks
 easier, a great deal of writing completion scripts is to use these appropriately.
 </p>
-
 
 <p>
 Git is a good command to analyse, not just because it is comprehensive, but also
