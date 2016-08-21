@@ -6,8 +6,14 @@ layout: default
   <ul class="post-list">
     {% for post in site.posts %}
       <li class="post-section">
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        <span class="postlist-date" itemprop="datePublished" datetime='{{page.date | date: "%Y-%d-%b"}}'>2/23</span>
+        <a class="post-link" itemprop="url" href="{{ post.url | prepend: site.baseurl }}">
+          <span itemprop="name">
+            {{ post.title }}
+          </span>
+        </a>
+        <!--
+        <span class="postlist-date" itemprop="datePublished" datetime='{{post.date | date: "%Y-%d-%b"}}'>{{ post.date | date: "%Y" }}</span>
+        -->
       </li>
     {% endfor %}
   </ul>

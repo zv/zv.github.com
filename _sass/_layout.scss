@@ -1,8 +1,6 @@
 /**
  * Basic styling
  */
-body { }
-
 main {
     width: $main-width;
     margin: 0 auto;
@@ -82,15 +80,22 @@ li.post-section {
 /**
  Post Style
  **/
+article {
+    line-height: 1.6;
+}
+
 article > section > div p {
-    $paragraph-margin: 1rem;
-    margin: $paragraph-margin 0;
+    margin: 1rem 0;
 }
 
 // Org Lists
-ol.org-ol {
-    margin-left: 1rem;
+article ul.org-ul {
+    margin: 2ex;
+}
+
+article ol.org-ol {
     list-style-position: inside;
+    margin: 2ex;
     li {
         p {
             margin: 0.5rem 0;
@@ -117,7 +122,7 @@ ol.org-ol {
 // Footnotes/Asides
 aside {
     p {
-      font: normal 0.9em "firasans";
+      font: normal 0.9em "Fira Sans";
     }
     margin: auto;
     position: absolute;
@@ -146,7 +151,7 @@ aside {
 
 // Footnotes/Asides
 .footnote-definition {
-    font: normal 400 0.7rem "firasans";
+    font: normal 400 0.7rem "Fira Sans";
     position: absolute;
     margin-left: $main-width;
     padding-left: 2rem;
@@ -155,7 +160,7 @@ aside {
 
 // Quotes
 .post-content blockquote {
-    font: 200 1.1em "firasans";
+    font: 300 1em "Fira Sans";
     width: 80%;
     padding: 1rem 0;
     margin-left: 10%;
@@ -171,18 +176,16 @@ aside {
     p:last-of-type {
         font-size: 0.9rem;
         text-align: right;
-        font-style: italic;
         margin: 0; // Zero out the normally 1pt margin
     }
 }
 
 // Examples
 pre.example {
-    white-space: pre-wrap;
-    font: normal normal 200 0.9rem/1.1 "firamono";
-    color: $base00;
-    border-left: 2px solid $base01;
-    padding-left: 2%;
+    font-style: italic;
+    background-color: $base2;
+    border-left: 0.5ex solid $base01;
+    padding: 2ex;
 }
 
 // Terminal example
