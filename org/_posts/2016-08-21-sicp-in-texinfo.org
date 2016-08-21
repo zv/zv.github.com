@@ -1,0 +1,23 @@
+#+HTML_DOCTYPE: html5
+#+BEGIN_HTML
+---
+layout: page
+title: Using a Texinfo edition of SICP
+category: note
+---
+#+END_HTML
+
+* 
+SICP's availability has allowed for reworking it's text for contemporary
+audiences. A notable piece of kit that's come light years since the 80s is Emacs
+which today regarded as the best environment for doing SICP and programming
+Scheme.
+
+Emacs offers an extremely in-depth (if esoteric) help system using the document
+format Texinfo. Installing texinfo documents is simple but the provided
+documentation inexplicably leaves out critical steps. Here's what I did to get
+it working
+
+1. [[http://www.neilvandyke.org/sicp-texi/sicp.info.gz][Download a /.texi/ copy of SICP]] 
+3. =$ mv =(unzip sicp.info.gz) /usr/local/share/info=
+2. =$ install-info ~/Downloads/sicp.info.gz=
