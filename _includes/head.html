@@ -4,7 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
+  <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css" async>
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+
 
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
@@ -19,5 +21,4 @@
   <meta property="og:site_name" content="{{ site.github.url }}">
   <meta name="twitter:creator" content="@zefyear">
 
-  {% include analytics.html %}
 </head>

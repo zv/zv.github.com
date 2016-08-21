@@ -22,3 +22,37 @@ ul {
 ul > li {
     margin: 0.5em 0;
 }
+
+* {
+    -moz-box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+
+html {
+    font: $font;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    min-width: 300px;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+}
+
+// Calculate the correct color + an alpha
+@mixin bg_alpha_calc($desired_colour, $desired_alpha, $background_colour) {
+    $r3: red($desired_colour);
+    $g3: green($desired_colour);
+    $b3: blue($desired_colour);
+    $r2: red($background_colour);
+    $g2: green($background_colour);
+    $b2: blue($background_colour);
+    //$r1 = (r3 - r2 + r2 * a1) / a1
+    $r1: ( $r3 - $r2 + ($r2 * $desired_alpha) ) / $desired_alpha;
+    $g1: ( $g3 - $g2 + ($g2 * $desired_alpha) ) / $desired_alpha;
+    $b1: ( $b3 - $b2 + ($b2 * $desired_alpha) ) / $desired_alpha;
+    //background-color: $desired_colour;
+    background-color: rgba($r1, $g1, $b1, $desired_alpha);
+}
+

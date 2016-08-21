@@ -1,133 +1,74 @@
 $photo-size: 5rem;
 
 .business-card {
+    font-size: 0.8rem;
+    line-height: 20px;
     border: 1px solid $base1;
-    .personal-labels {
-        text-align: center;
-        #given_name {
-            display: inline;
-        }
+    margin: 0 auto;
+    padding: 1rem;
+    position: relative;
+    text-align: center;
 
-        #handle {
-            display: inline;
-        }
+    #photo {
+        width: $photo-size;
+        float: left;
+        border: 1px solid $base1;
+        background-size: $photo-size;
+        margin-right: 1rem;
     }
 
-    .permalink, .version {
-        position: absolute;
-        bottom: -22px;
-        font-size: 10px;
-        color: hsl(215,50%,75%);
-    }
-
-    .version {
-        right: 0;
-    }
-
-    .permalink {
-        left: 0;
-        display: none;
-    }
-
-    a {
-        border-width: 1px;
-    }
-
-    .buttons {
-        position: absolute;
-        left: 550px;
-        font-size: 12px;
-        // width: 100px;
-    }
-
-    .buttons a {
-        color: hsl(215,50%,70%);
-        border-bottom-style: dotted;
-    }
-
-    .buttons a:hover {
-        color: white;
-    }
-
-    #info-container {
-        display: inline;
+    h1 {
+        font: 400 1.2rem "Fira Sans";
     }
 
     .text {
-        margin-left: $photo-size;
-        padding-left: 1rem;
-    }
+        .personal-labels {
+            #given_name {
+                display: inline;
+            }
 
-    .links {
-        padding-top: 1rem;
-        text-align: center;
-        a {
-            text-decoration: none;
-            margin: 0 0.3em 0 0;
-            &:hover, &#selected {
-                opacity: 0.5;
+            #handle {
+                display: inline;
+            }
+        }
+
+        .description {
+        }
+
+        .links {
+            margin-top: 1rem;
+            text-align: center;
+            a {
+                text-decoration: none;
+                margin: 0 0.1rem;
+                &:hover, &#selected {
+                    opacity: 0.5;
+                }
             }
         }
     }
-
 }
 
 @media all and (min-width: 599px) {
     .business-card {
-        padding: 2rem;
-        font-size: 14px;
-        line-height: 20px;
         width: 30rem;
-        border: 1px solid $base1;
-        margin: 0 auto;
-        position: relative;
-
-        h1 {
-            font-size: 26px;
-            margin: 10px 0;
-        }
-
-        #photo {
-            margin-top: 0.4rem;
-            width: $photo-size;
-            float: left;
-            border: 1px solid $base1;
-        }
-
     }
 }
 
 @media all and (min-width: 120px) and (max-width: 598px) {
     .business-card {
-        font-size: 14px;
-        line-height: 20px;
         width: 90%;
-        padding: 1rem;
-        position: relative;
-
         h1#handle {
             display: none !important;
         }
 
         h1 {
-            font-size: 1.4em;
-        }
-
-
-        .links {
-            text-align: center;
+            font-size: 1rem;
         }
 
         #photo {
-            display: inline;
-            width: $photo-size;
-            float: left;
-            border: 1px solid white;
-            background-size: $photo-size;
-            margin-top: 0.25em;
             margin-right: 2%;
         }
-
     }
 }
 
@@ -145,11 +86,15 @@ div.work_container {
     vertical-align: top;
     border: $base1 solid 1px;
     padding: 1em;
+
+    h1 {
+        font: 300 1.2rem "Fira Sans";
+    }
+
     &:nth-child(1) {
         margin-top: -61px;
     }
 }
-
 
 @media all and (min-width: 120px) and (max-width: 598px) {
     .project {
@@ -160,13 +105,9 @@ div.work_container {
     }
 }
 
-.project > h1 { font-size: 20px; margin: 0 0 1em 0; }
+.project > h1 { margin: 0 0 1em 0; }
 .project > p { line-height: 22px; }
 .project a { border-width: 1px; }
-.q { margin-left: -0.5em; }
-.at { color: hsl(215, 50%, 70%); }
-.where { font-size: 11px; color: hsl(215, 50%, 70%); }
-.lang  { font-size: 11px; color: hsl(215, 50%, 90%); }
 
 .work-view-container {
     width: 750px;

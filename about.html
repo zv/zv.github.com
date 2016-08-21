@@ -5,23 +5,22 @@ layout: default
   <div id="info-container">
 
     <img id="photo" src="//avatars0.githubusercontent.com/u/987494?v=3&s=73" alt="Photo of Zephyr Pellerin"/>
+
     <div class="text">
       <div class="personal-labels">
         <h1 class="personal-name" id="given_name" itemprop="givenName">Zephyr Pellerin</h1>
         <h1 class="personal-name" id="handle" "itemprop="alternateName">〈zv〉</h1>
       </div>
       <p class="description">
-        is a hacker interested in distributed software, reverse
-        engineering and formal verification.
+        plan9, distributed computing, reverse engineering, OTP & formal verification
+      </p>
+      <p class="links">
+        <a href="mailto:zv@nxvr.org" itemprop="email"">zv@nxvr.org</a>·
+        <a href="//github.com/zv" itemprop="url">github</a>·
+        <a href="//twitter.com/zefyear" itemprop="url"">twitter</a>·
+        <a href="https://raw.githubusercontent.com/zv/dotfilez/master/zv.gpg.pub">gpg</a>
       </p>
     </div>
-
-    <p class="links">
-      <a href="mailto:zv@nxvr.org" itemprop="email"">zv@nxvr.org</a>·
-      <a href="//github.com/zv" itemprop="url">github</a>·
-      <a href="//twitter.com/zefyear" itemprop="url"">twitter</a>·
-      <a href="https://raw.githubusercontent.com/zv/dotfilez/master/zv.gpg.pub">gpg</a>
-    </p>
   </div>
 </div>
 
@@ -35,7 +34,7 @@ layout: default
 <div class="work_container">
   {% for project in site.data.projects %}
   <div class="project">
-    <h1>{{ project.name }}</h1>
+    <h1 class="project-name">{{ project.name }}</h1>
     <p>{{ project.description }}</p>
     <p class="links">
       {% for link in project.links %}
