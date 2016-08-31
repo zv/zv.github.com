@@ -3,6 +3,11 @@
   links:
     github: https://github.com/zv/tree
 
+- name: weechat-gateway-replacer
+  description: A weechat plugin to integrate Slack or Telegram gateways with the real usernames they transmit
+  links:
+    github: https://github.com/zv/weechat-gateway-replacer
+
 - name: otp
   description: I've written features, fixed bugs and plenty inbetween for Erlang/OTP. I've worked on a <a href="https://klee.github.io/">KLEE</a> script that found <a href="https://github.com/erlang/otp/pull/1108">several</a> <a href="https://github.com/erlang/otp/pull/1111">exploitable</a> <a href="http://erlang.org/pipermail/erlang-questions/2016-February/0875733.html">bugs</a> as well as a custom inprocess fuzzer using <a href="http://llvm.org/docs/LibFuzzer.html">clang's fuzzing framework</a> to fuzz EPMD and the term decoding libraries. It's not all just vulnerability hunting however, I wrote a patch that permits a user to use ecdsa keys to authenticate an Erlang node rather than a single shared cookie or password.
   links:
