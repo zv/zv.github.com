@@ -18,10 +18,19 @@
   links:
     github: https://github.com/zv/z3-mode
 
+- name: ex_translator
+  description: A quick-n-dirty tool to translate Erlang to Elixir code
+  links:
+    github: https://github.com/zv/ex_translator
+
+
 - name: 9Problems
   description: The best and only tiling window manager for Plan9. You now have absolutely no reason why you shouldn't make Plan9 your main operating system!
   links:
     github: https://github.com/zv/9Problems
+
+- name: psdebug
+  description: A classic ptrace debugger with a curses GUI.
   
 - name: SHA3inRARVM
   description: RAR archiver files contain a prescriptive compression language intended for compressing long instruction sequences. This is an implementation of SHA3 inside of the RAR archiver's virtual machine.
