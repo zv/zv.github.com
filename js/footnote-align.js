@@ -25,9 +25,6 @@ function repositionFootnotes() {
     var refs  = document.getElementsByClassName("footref")
     var definitions = document.getElementsByClassName("footdef")
 
-    console.log(refs)
-    console.log(definitions)
-
     if (refs.length !== definitions.length) {
         console.error("Could not uniformly assign refs -> defs, aborting")
         return
@@ -50,7 +47,10 @@ function repositionFootnotes() {
 }
 
 function removeFootnoteHeader() {
-    document.querySelector("h2.footnotes").remove()
+    var bottomNotes = document.querySelector("h2.footnotes");
+    if (bottomNotes) {
+        bottomNotes.remove();
+    }
 }
 
 if (window.innerWidth >= 1024) {
