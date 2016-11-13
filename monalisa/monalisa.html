@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Mona Lisa</title>
+
+<style type="text/css">
+aaa { outline:dotted 1px red }
+body { font-family:arial, sans-serif; padding:1em }
+h2 { margin-top:1.75em }
+canvas { border:solid 1px #000 }
+.image { float:left; margin:0 0.5em 0 0; font-size:2em }
+.clr { clear:both }
+ul { list-style-type:square }
+a:hover { background:#1e4881; color:white; text-decoration:none }
+
+#algo, #dnaformat { background:#eee; padding:1em; margin-top:1em; border-left:solid 10px #999 }
+
+.snapshot ul, .snapshot img { float:left }
+.snapshot ul { margin:0 1em 1.5em 0; color:#333; width:13em }
+.wide ul { width:30em }
+
+#fitwrap { font-weight:bold; font-size:1em; color:#999; margin:2em 1em 0 0; float:left; width:15em }
+#fitness, #step_benefit, #step_total { font-size:2em;}
+#fitness { color:#000; }
+#step_benefit { color:#0a0; }
+#step_total { color:#aa0; }
+
+#stats { font-size:0.8em; color:#aaa; float:left; position:relative; top:3em; margin-top:-2em }
+#time { color:#a00 }
+#mutsec { color:#a80 }
+
+#start, #stop { width:4em; margin-top:0.5em; padding:0.5em; background:black; text-align:center; float:left; cursor:pointer; font-size:2em }
+#start { color:lightgreen; }
+#stop { color:red; display:none }
+
+#imgform { float:left; border:solid 0px #000; padding:0em; margin:0.5em 1em 0 0; width:40em }
+#imgurl { width:35em }
+
+.button { background:#000; color:#fff; cursor:pointer; width:3em; padding:0.2em 0.5em 0.2em 0.5em; text-align:center; display:inline }
+.button:hover { background:#a00; color:white }
+.warning { color:red }
+.highlighted { color:yellow }
+.del { background: #a00 }
+.add { background: #0a0 }
+.del:hover { background:#e00; color:white }
+.add:hover { background:#0e0; color:white }
+
+#dnaformwrap { padding:0; float:left; margin:1em 1em 0 0; }
+#clipboard { width:50em; height:13em; margin:1em 0 0 0 }
+
+#mutationtype, #resetdna { margin:0 0 0.4em 0 }
+#parameters { float:left; margin:2em 0 0 0 }
+.parname { margin:0 0 0.2em 0 }
+
+#geometry { margin:1em 0 0.4em 0 }
+#polygons, #vertices { font-size:2em }
+.pargeo { margin:0 0.5em 0 0.5em; position:relative; top:0.4em }
+#geometry .button { font-weight:bold; width:1em;  }
+
+dt { font-weight:bold; margin-bottom:0.5em }
+dd { margin:0 0 2em 0 }
+
+.speed { font-size:0.9em; color:#60BF5F }
+</style>
+
+<script type="text/javascript">
+function hide(t){var _=document.getElementById(t);_&&(_.style.display="none")}function show(t){var _=document.getElementById(t);_&&(_.style.display="block")}function setElement(t,_){var e=document.getElementById(t);e&&(e.innerHTML=_)}function setButtonHighlight(t,_){for(var e in _){var n=document.getElementById(_[e]);n&&(n.style.color="white",n.style.background="black")}var E=document.getElementById(t);E&&(E.style.color="white",E.style.background="orange")}function rand_int(t){return Math.round(t*Math.random())}function rand_float(t){return t*Math.random()}function clamp(t,_,e){return _>t?_:t>e?e:t}function stop(){clearTimeout(EV_ID),ELAPSED_TIME+=get_timestamp()-LAST_START,hide("stop"),show("start")}function start(){EV_ID=setInterval(evolve,EV_TIMEOUT),LAST_START=get_timestamp(),LAST_COUNTER=COUNTER_TOTAL,hide("start"),show("stop")}function get_timestamp(){return.001*(new Date).getTime()}function addPolygon(t){for(var _=0;t>_;_++)ACTUAL_SHAPES=clamp(ACTUAL_SHAPES+1,1,1e3),ACTUAL_SHAPES>MAX_SHAPES&&(extend_dna_polygons(DNA_TEST),extend_dna_polygons(DNA_BEST),MAX_SHAPES++,pass_gene_mutation(DNA_BEST,DNA_TEST,DNA_BEST.length-1));setElement("polygons",ACTUAL_SHAPES),redrawDNA(),refreshStats()}function removePolygon(t){for(var _=0;t>_;_++)ACTUAL_SHAPES=clamp(ACTUAL_SHAPES-1,1,1e3),setElement("polygons",ACTUAL_SHAPES);redrawDNA(),refreshStats()}function addVertex(t){for(var _=0;t>_;_++)ACTUAL_POINTS=clamp(ACTUAL_POINTS+1,3,1e3),ACTUAL_POINTS>MAX_POINTS&&(extend_dna_vertices(DNA_TEST),extend_dna_vertices(DNA_BEST),MAX_POINTS++,copyDNA(DNA_BEST,DNA_TEST));setElement("vertices",ACTUAL_POINTS),redrawDNA(),refreshStats()}function removeVertex(t){for(var _=0;t>_;_++)ACTUAL_POINTS=clamp(ACTUAL_POINTS-1,3,1e3);setElement("vertices",ACTUAL_POINTS),redrawDNA(),refreshStats()}function setMutation(t){var _={gauss:[mutate_gauss,"b_mut_gauss"],soft:[mutate_soft,"b_mut_soft"],medium:[mutate_medium,"b_mut_med"],hard:[mutate_hard,"b_mut_hard"]};mutateDNA=_[t][0],setButtonHighlight(_[t][1],["b_mut_gauss","b_mut_soft","b_mut_med","b_mut_hard"])}function setDnaRandom(){confirm("WARNING! This will reset all your progress so far. Do you really want to reset DNA?")&&(INIT_TYPE="random",resetDna(),refreshStats(),setButtonHighlight("b_dna_random",["b_dna_random","b_dna_white","b_dna_black"]))}function setDnaColor(t,_,e){confirm("WARNING! This will reset all your progress so far. Do you really want to reset DNA?")&&(INIT_TYPE="color",INIT_R=t,INIT_G=_,INIT_B=e,resetDna(),refreshStats(),0==t&&0==_&&0==e?setButtonHighlight("b_dna_black",["b_dna_random","b_dna_white","b_dna_black"]):setButtonHighlight("b_dna_white",["b_dna_random","b_dna_white","b_dna_black"]))}function resetDna(){init_dna(DNA_TEST),init_dna(DNA_BEST),copyDNA(DNA_BEST,DNA_TEST),FITNESS_TEST=FITNESS_MAX,FITNESS_BEST=FITNESS_MAX,COUNTER_BENEFIT=0,COUNTER_TOTAL=0,redrawDNA()}function refreshStats(){FITNESS_TEST=compute_fitness(DNA_TEST),FITNESS_BEST=FITNESS_TEST,FITNESS_BEST_NORMALIZED=100*(1-FITNESS_BEST/NORM_COEF),EL_FITNESS.innerHTML=FITNESS_BEST_NORMALIZED.toFixed(2)+"%",EL_STEP_BENEFIT.innerHTML=COUNTER_BENEFIT,EL_STEP_TOTAL.innerHTML=COUNTER_TOTAL}function redrawDNA(){drawDNA(CONTEXT_TEST,DNA_TEST),drawDNA(CONTEXT_BEST,DNA_BEST)}function render_nice_time(t){if(60>t)return Math.floor(t).toFixed(0)+"s";if(3600>t){var _=Math.floor(t/60);return _+"m "+render_nice_time(t-60*_)}if(86400>t){var e=Math.floor(t/3600);return e+"h "+render_nice_time(t-3600*e)}var n=Math.floor(t/86400);return n+"d "+render_nice_time(t-86400*n)}function drawShape(t,_,e){t.fillStyle="rgba("+e.r+","+e.g+","+e.b+","+e.a+")",t.beginPath(),t.moveTo(_[0].x,_[0].y);for(var n=1;ACTUAL_POINTS>n;n++)t.lineTo(_[n].x,_[n].y);t.closePath(),t.fill()}function drawDNA(t,_){t.fillStyle="rgb(255,255,255)",t.fillRect(0,0,IWIDTH,IHEIGHT);for(var e=0;ACTUAL_SHAPES>e;e++)drawShape(t,_[e].shape,_[e].color)}function rand_bell(t,_){var e=bell_distributions[t];e||(e=bell_precompute(t,t/6,40));var n=bell_offsets[t];return _+e[n[-_]+Math.floor((n[t-_+1]-n[-_])*Math.random())]}function bell_precompute(t,_,e){for(var n=0,E=1/e,T=[],r=[],a=0,A=-t-1;t+1>=A;A++)for(r[A]=a,n=E+Math.exp(-A*A/2/_/_);n>=E;)0!=A&&(T[a++]=A),n-=E;return bell_offsets[t]=r,bell_distributions[t]=T}function test_bell(t,_,e){for(var n=Array(0),E=0;t>E;E++){var T=rand_bell(_,e);n[T]=n[T]?n[T]+1:1}draw_dist(CONTEXT_TEST,n)}function draw_dist(t,_){var e=_[0];t.fillStyle="rgb(255,255,255)",t.fillRect(0,0,IWIDTH,IHEIGHT),t.fillStyle="rgb(0,0,255)";var n=0;for(var E in _)_[E]>n&&(n=_[E]);for(var E in _)e=Math.round(_[E]/n*IHEIGHT),E=parseInt(E),t.beginPath(),t.moveTo(E,IHEIGHT+1),t.lineTo(E,IHEIGHT-e),t.lineTo(E+1,IHEIGHT-e),t.lineTo(E+1,IHEIGHT+1),t.closePath(),t.fill()}function mutate_gauss(t){CHANGED_SHAPE_INDEX=rand_int(ACTUAL_SHAPES-1);var _=rand_float(2);if(1>_).25>_?t[CHANGED_SHAPE_INDEX].color.r=rand_bell(255,t[CHANGED_SHAPE_INDEX].color.r):.5>_?t[CHANGED_SHAPE_INDEX].color.g=rand_bell(255,t[CHANGED_SHAPE_INDEX].color.g):.75>_?t[CHANGED_SHAPE_INDEX].color.b=rand_bell(255,t[CHANGED_SHAPE_INDEX].color.b):1>_&&(t[CHANGED_SHAPE_INDEX].color.a=.00390625*rand_bell(255,Math.floor(255*t[CHANGED_SHAPE_INDEX].color.a)));else{var e=rand_int(ACTUAL_POINTS-1);1.5>_?t[CHANGED_SHAPE_INDEX].shape[e].x=rand_bell(IWIDTH,t[CHANGED_SHAPE_INDEX].shape[e].x):t[CHANGED_SHAPE_INDEX].shape[e].y=rand_bell(IHEIGHT,t[CHANGED_SHAPE_INDEX].shape[e].y)}}function mutate_medium(t){CHANGED_SHAPE_INDEX=rand_int(ACTUAL_SHAPES-1);var _=rand_float(2);if(1>_).25>_?t[CHANGED_SHAPE_INDEX].color.r=rand_int(255):.5>_?t[CHANGED_SHAPE_INDEX].color.g=rand_int(255):.75>_?t[CHANGED_SHAPE_INDEX].color.b=rand_int(255):1>_&&(t[CHANGED_SHAPE_INDEX].color.a=rand_float(1));else{var e=rand_int(ACTUAL_POINTS-1);1.5>_?t[CHANGED_SHAPE_INDEX].shape[e].x=rand_int(IWIDTH):t[CHANGED_SHAPE_INDEX].shape[e].y=rand_int(IHEIGHT)}}function mutate_hard(t){CHANGED_SHAPE_INDEX=rand_int(ACTUAL_SHAPES-1),t[CHANGED_SHAPE_INDEX].color.r=rand_int(255),t[CHANGED_SHAPE_INDEX].color.g=rand_int(255),t[CHANGED_SHAPE_INDEX].color.b=rand_int(255),t[CHANGED_SHAPE_INDEX].color.a=rand_float(1);var _=rand_int(ACTUAL_POINTS-1);t[CHANGED_SHAPE_INDEX].shape[_].x=rand_int(IWIDTH),t[CHANGED_SHAPE_INDEX].shape[_].y=rand_int(IHEIGHT)}function mutate_soft(t){CHANGED_SHAPE_INDEX=rand_int(ACTUAL_SHAPES-1);var _=rand_float(2),e=-1+rand_int(3);if(1>_).25>_?t[CHANGED_SHAPE_INDEX].color.r=clamp(t[CHANGED_SHAPE_INDEX].color.r+e,0,255):.5>_?t[CHANGED_SHAPE_INDEX].color.g=clamp(t[CHANGED_SHAPE_INDEX].color.g+e,0,255):.75>_?t[CHANGED_SHAPE_INDEX].color.b=clamp(t[CHANGED_SHAPE_INDEX].color.b+e,0,255):1>_&&(t[CHANGED_SHAPE_INDEX].color.a=clamp(t[CHANGED_SHAPE_INDEX].color.a+.1*e,0,1));else{var n=rand_int(ACTUAL_POINTS-1);1.5>_?t[CHANGED_SHAPE_INDEX].shape[n].x=clamp(t[CHANGED_SHAPE_INDEX].shape[n].x+e,0,IWIDTH):t[CHANGED_SHAPE_INDEX].shape[n].y=clamp(t[CHANGED_SHAPE_INDEX].shape[n].y+e,0,IHEIGHT)}}function compute_fitness(){var t=0;DATA_TEST=CONTEXT_TEST.getImageData(0,0,IWIDTH,IHEIGHT).data;for(var _=0;SUBPIXELS>_;++_)_%DEPTH!=3&&(t+=Math.abs(DATA_INPUT[_]-DATA_TEST[_]));return t}function pass_gene_mutation(t,_,e){_[e].color.r=t[e].color.r,_[e].color.g=t[e].color.g,_[e].color.b=t[e].color.b,_[e].color.a=t[e].color.a;for(var n=0;MAX_POINTS>n;n++)_[e].shape[n].x=t[e].shape[n].x,_[e].shape[n].y=t[e].shape[n].y}function copyDNA(t,_){for(var e=0;MAX_SHAPES>e;e++)pass_gene_mutation(t,_,e)}function evolve(){if(mutateDNA(DNA_TEST),drawDNA(CONTEXT_TEST,DNA_TEST),FITNESS_TEST=compute_fitness(DNA_TEST),FITNESS_BEST>FITNESS_TEST?(pass_gene_mutation(DNA_TEST,DNA_BEST,CHANGED_SHAPE_INDEX),FITNESS_BEST=FITNESS_TEST,FITNESS_BEST_NORMALIZED=100*(1-FITNESS_BEST/NORM_COEF),EL_FITNESS.innerHTML=FITNESS_BEST_NORMALIZED.toFixed(2)+"%",COUNTER_BENEFIT++,EL_STEP_BENEFIT.innerHTML=COUNTER_BENEFIT,drawDNA(CONTEXT_BEST,DNA_BEST)):pass_gene_mutation(DNA_BEST,DNA_TEST,CHANGED_SHAPE_INDEX),COUNTER_TOTAL++,EL_STEP_TOTAL.innerHTML=COUNTER_TOTAL,COUNTER_TOTAL%10==0){var t=get_timestamp()-LAST_START;EL_ELAPSED_TIME.innerHTML=render_nice_time(ELAPSED_TIME+t)}if(COUNTER_TOTAL%50==0){var _=(COUNTER_TOTAL-LAST_COUNTER)/(get_timestamp()-LAST_START);EL_MUTSEC.innerHTML=_.toFixed(1)}}function init_dna(t){for(var _=0;MAX_SHAPES>_;_++){for(var e=Array(MAX_POINTS),n=0;MAX_POINTS>n;n++)e[n]={x:rand_int(IWIDTH),y:rand_int(IHEIGHT)};var E={};E="random"==INIT_TYPE?{r:rand_int(255),g:rand_int(255),b:rand_int(255),a:.001}:{r:INIT_R,g:INIT_G,b:INIT_B,a:INIT_A};var T={color:E,shape:e};t[_]=T}}function extend_dna_polygons(t){for(var _=Array(MAX_POINTS),e=0;MAX_POINTS>e;e++)_[e]={x:rand_int(IWIDTH),y:rand_int(IHEIGHT)};var n={};n="random"==INIT_TYPE?{r:rand_int(255),g:rand_int(255),b:rand_int(255),a:.001}:{r:INIT_R,g:INIT_G,b:INIT_B,a:INIT_A};var E={color:n,shape:_};t.push(E)}function extend_dna_vertices(t){for(var _=0;MAX_SHAPES>_;_++){var e={x:rand_int(IWIDTH),y:rand_int(IHEIGHT)};t[_].shape.push(e)}}function init_canvas(){CANVAS_INPUT=document.getElementById("canvas_input"),CONTEXT_INPUT=CANVAS_INPUT.getContext("2d"),CANVAS_TEST=document.getElementById("canvas_test"),CONTEXT_TEST=CANVAS_TEST.getContext("2d"),CANVAS_BEST=document.getElementById("canvas_best"),CONTEXT_BEST=CANVAS_BEST.getContext("2d"),IWIDTH=IMAGE.width,IHEIGHT=IMAGE.height,SUBPIXELS=IWIDTH*IHEIGHT*DEPTH,NORM_COEF=IWIDTH*IHEIGHT*3*255,CANVAS_INPUT.setAttribute("width",IWIDTH),CANVAS_INPUT.setAttribute("height",IHEIGHT),CANVAS_TEST.setAttribute("width",IWIDTH),CANVAS_TEST.setAttribute("height",IHEIGHT),CANVAS_BEST.setAttribute("width",IWIDTH),CANVAS_BEST.setAttribute("height",IHEIGHT),CONTEXT_INPUT.drawImage(IMAGE,0,0,IWIDTH,IHEIGHT),DATA_INPUT=CONTEXT_INPUT.getImageData(0,0,IWIDTH,IHEIGHT).data,EL_STEP_TOTAL=document.getElementById("step_total"),EL_STEP_BENEFIT=document.getElementById("step_benefit"),EL_FITNESS=document.getElementById("fitness"),EL_ELAPSED_TIME=document.getElementById("time"),EL_MUTSEC=document.getElementById("mutsec"),init_dna(DNA_TEST),init_dna(DNA_BEST),copyDNA(DNA_BEST,DNA_TEST),redrawDNA()}function serializeDNA(t){var _="";_+=ACTUAL_POINTS+" ",_+=ACTUAL_SHAPES+" ";for(var e=0;ACTUAL_SHAPES>e;e++){_+=t[e].color.r+" ",_+=t[e].color.g+" ",_+=t[e].color.b+" ",_+=t[e].color.a+" ";for(var n=0;ACTUAL_POINTS>n;n++)_+=t[e].shape[n].x+" ",_+=t[e].shape[n].y+" "}return _}function serializeDNAasSVG(t){var _="";_+='<?xml version="1.0" encoding="utf-8"?>\n',_+='<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n',_+='<svg xmlns="http://www.w3.org/2000/svg"\n',_+='xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"\n',_+='version="1.1" baseProfile="full"\n',_+='width="800mm" height="600mm">\n';for(var e=0;ACTUAL_SHAPES>e;e++){_+='<polygon points="';for(var n=0;ACTUAL_POINTS>n;n++)_+=t[e].shape[n].x+" ",_+=t[e].shape[n].y+" ";_+='" fill="rgb(',_+=t[e].color.r+",",_+=t[e].color.g+",",_+=t[e].color.b+')" opacity="',_+=t[e].color.a+'" />\n'}return _+="</svg>\n"}function deserializeDNA(t,_){var e=_.split(" ");MAX_POINTS=parseInt(e[0]),MAX_SHAPES=parseInt(e[1]),ACTUAL_SHAPES=MAX_SHAPES,ACTUAL_POINTS=MAX_POINTS,alert("Importing "+MAX_SHAPES+" polygons ["+MAX_POINTS+"-vertex] ["+e.length+" numbers]..."),init_dna(t);for(var n=4+2*MAX_POINTS,E=0;MAX_SHAPES>E;E++){t[E].color.r=parseInt(e[2+E*n+0]),t[E].color.g=parseInt(e[2+E*n+1]),t[E].color.b=parseInt(e[2+E*n+2]),t[E].color.a=parseFloat(e[2+E*n+3]);for(var T=0;MAX_POINTS>T;T++)t[E].shape[T].x=parseInt(e[2+E*n+4+2*T]),t[E].shape[T].y=parseInt(e[2+E*n+4+2*T+1])}}function export_dna(){var t=document.getElementById("clipboard");t?t.value=serializeDNA(DNA_BEST):alert("Cannot find clipboard")}function export_dna_as_svg(){var t=document.getElementById("clipboard");t?t.value=serializeDNAasSVG(DNA_BEST):alert("Cannot find clipboard")}function import_dna(){var t=document.getElementById("clipboard");t&&(deserializeDNA(DNA_BEST,t.value),init_dna(DNA_TEST),copyDNA(DNA_BEST,DNA_TEST),redrawDNA(),refreshStats(),setElement("polygons",ACTUAL_SHAPES),setElement("vertices",ACTUAL_POINTS))}function set_image(){var t=document.getElementById("imgurl");t&&(IMAGE.onload=function(){IMAGE.complete?init_canvas():setTimeout(init_canvas,100)},IMAGE.src="http://alteredqualia.com/visualization/evolve/proxy.php?i="+t.value)}function set_image_kbd(t){if(13===t.keyCode){t.preventDefault();{document.getElementById("imgurl")}set_image()}}function set_example_image(t){if(t){var _=document.getElementById("imgurl");_.value=t.href,IMAGE.src=t.href,IMAGE.onload=function(){IMAGE.complete?init_canvas():setTimeout(init_canvas,100)}}}function select_all(){var t=document.dnaform.clipboard;t.focus(),t.select()}function init(){IMAGE.onload=function(){IMAGE.complete?init_canvas():setTimeout(init_canvas,100)},IMAGE.src=IMG_INIT,setButtonHighlight("b_dna_black",["b_dna_random","b_dna_white","b_dna_black"]),setButtonHighlight("b_mut_med",["b_mut_gauss","b_mut_soft","b_mut_med","b_mut_hard"])}var IMG_INIT="mlc.jpg",DEPTH=4,INIT_TYPE="color",INIT_R=0,INIT_G=0,INIT_B=0,INIT_A=.001,mutateDNA=mutate_medium,CANVAS_INPUT=0,CANVAS_OUTPUT=0,CANVAS_BEST=0,CONTEXT_INPUT=0,CONTEXT_TEST=0,CONTEXT_BEST=0,IMAGE=new Image;IMAGE.crossOrigin="*";var IWIDTH=0,IHEIGHT=0,SUBPIXELS=0,EV_TIMEOUT=0,EV_ID=0,COUNTER_TOTAL=0,COUNTER_BENEFIT=0,LAST_COUNTER=0,LAST_START=0,ELAPSED_TIME=0,EL_STEP_TOTAL=0,EL_STEP_BENEFIT=0,EL_FITNESS=0,EL_ELAPSED_TIME=0,EL_MUTSEC=0,MAX_SHAPES=50,MAX_POINTS=6,ACTUAL_SHAPES=MAX_SHAPES,ACTUAL_POINTS=MAX_POINTS,DNA_BEST=Array(MAX_SHAPES),DNA_TEST=Array(MAX_SHAPES),CHANGED_SHAPE_INDEX=0,FITNESS_MAX=999923400656,FITNESS_TEST=FITNESS_MAX,FITNESS_BEST=FITNESS_MAX,FITNESS_BEST_NORMALIZED=0,NORM_COEF=IWIDTH*IHEIGHT*3*255,DATA_INPUT=0,DATA_TEST=0,bell_distributions=Array(0),bell_offsets=Array(0);
+</script>
+
+</head><body onload="init()">
+    <div class="image">
+        Original<br>
+        <canvas id="canvas_input" width="200" height="200"></canvas>
+    </div>
+
+    <div class="image">
+        Best<br>
+        <canvas id="canvas_best" width="200" height="200"></canvas>
+    </div>
+
+    <div class="image">
+        Evolving<br>
+        <canvas id="canvas_test" width="200" height="200"></canvas>
+    </div>
+
+    <div id="fitwrap">
+        <span id="fitness">?</span> Fitness<br>
+        <span id="step_benefit">0</span> Improvements<br>
+        <span id="step_total">0</span> Mutations<br>
+
+        <div id="start" onclick="start()">Start</div>
+        <div id="stop" onclick="stop()">Stop</div>
+
+        <div id="stats">
+            <span id="time">0</span> Elapsed time<br>
+            <span id="mutsec">?</span> Mutations per second<br>
+        </div>
+    </div>
+
+</p></body></html>
