@@ -52,6 +52,10 @@ $photo-size: 5rem;
 @media all and (min-width: 599px) {
     .business-card {
         width: 30rem;
+        // We want a margin on large size browsers;
+        .text {
+            margin-left: 25%;
+        }
     }
 }
 
@@ -76,6 +80,9 @@ div.work_container {
     width: 90%;
     margin: auto;
     .links {
+        a {
+            margin-left: 0.5rem;
+        }
         text-align: right;
     }
 }
