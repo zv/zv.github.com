@@ -521,9 +521,48 @@ You can prevent alphabetical sorting by passing <code>-V</code> and the matchnam
 </section>
 
 
-<section id="outline-container-orgheadline17" class="outline-2">
-<h2 id="orgheadline17">Style and Convention</h2>
-<div class="outline-text-2" id="text-orgheadline17">
+<section id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18">Notable <span class="verbatim">zstyle</span> options</h2>
+<div class="outline-text-2" id="text-orgheadline18">
+</div><div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17">Hidden completion list</h3>
+<div class="outline-text-3" id="text-orgheadline17">
+<p>
+This sort of question occassionally appears on newsgroups from time to time:
+</p>
+
+<pre class="example">
+I want to have the alternatives offered by consecutive presses of alt-e, and I
+don't want the alternatives to be listed below the command line. To achieve
+this, I have had to set the option BASH_AUTO_LIST. If this option is not set,
+a list of alternatives is displayed as soon as I hit alt-e (and at the same
+time the first alternative is put on the command line, which is good). But I
+don't want this option to be set globally. I have not been able to figure out
+how to make this menu NOT appear for this particular completion, but without
+setting the global option. Is there a way to achieve this?
+</pre>
+
+<p>
+The answer is to set the <span class="verbatim">hidden</span> <code>zstyle</code>, which can be done like this:
+</p>
+
+<p>
+<span class="verbatim">zstyle ':completion:*list-comp:*' hidden all</span>
+</p>
+
+<p>
+But hidden is looked up from <span class="verbatim">_description</span> which you don't call.
+You could add <span class="verbatim">_wanted</span> around the compadd but all the hidden style
+actually does is cause the <code>-n</code> option to be passed to compadd which you
+could do directly.
+</p>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19">Style and Convention</h2>
+<div class="outline-text-2" id="text-orgheadline19">
 <p>
 ZSH completion scripts are (fortunately) never given the opportunity to evolve
 into the complex balls of mud that a 'real' programming environment affords;
@@ -537,18 +576,108 @@ are
 </p>
 </div>
 
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">Terminology</h3>
-<div class="outline-text-3" id="text-orgheadline18">
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20">Descriptions</h3>
+<div class="outline-text-3" id="text-orgheadline20">
+<p>
+Always use description. This is important. Really. <b>Always</b> use descriptions. If
+you have just written down a <span class="verbatim">compadd</span> without a <code>$expl[@]</code> (or equivalent), you
+have just made an error. Even in helper functions where you use a <span class="verbatim">$@</span>: if you
+can't be sure that there is a description in the arguments, add one. You can
+(and, in most cases, should) then give the description you generated after the
+<span class="verbatim">$@</span>. This makes sure that the, probably more specific, description given by the
+calling function takes precedence over the generic one you have just generated.
+</p>
+
+<p>
+And it really isn't that complicated, is it? Think about a string people might
+want to see above the matches (in singular &#x2013; that's used throughout the
+completion system) and do:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #657b83; font-weight: bold;">local</span> expl
+
+_description tag expl &lt;descr&gt;
+compadd <span style="color: #2aa198;">"$expl@]"</span> - &lt;matches ...&gt;
+</pre>
+</div>
+
+<p>
+Note that this function also accepts <span class="verbatim">-V</span> and <span class="verbatim">-J</span>, optionally (in the same
+word) preceded by <span class="verbatim">1</span> or <span class="verbatim">2</span> to describe the type of group you want to use. For
+example:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">_description tag expl <span style="color: #2aa198;">'...'</span>
+compadd <span style="color: #2aa198;">"$expl[@]"</span> -1V foo - ...    <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">THIS IS WRONG!!!</span>
+</pre>
+</div>
+
+<p>
+is <b>not</b> the right way to use a unsorted group. Instead do:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">_description -1V tag expl <span style="color: #2aa198;">'...'</span>
+compadd <span style="color: #2aa198;">"$expl[@]"</span> - ...
+</pre>
+</div>
+
+<p>
+and everything will work fine.
+</p>
+
+<p>
+Also, if you are about to add multiple different types of matches, use multiple
+calls to <span class="verbatim">_description</span> and add them with multiple calls to <span class="verbatim">compadd</span>. But in
+almost all cases you should then add them using different tags anyway, so, see
+above.
+</p>
+
+<p>
+And since a tag directly corresponds to a group of matches, you'll often be
+using the tags function that allows you to give the explanation to the same
+function that is used to test if the tags are requested (again: see above). Just
+as a reminder:
+</p>
+
+<p>
+<code>_wanted [ -[1,2]V | -[1,2]J ] &lt;tag&gt; expl &lt;descr&gt; &lt;cmd&gt; ...</code>
+</p>
+
+<p>
+and
+</p>
+
+<p>
+<code>_requested [ -[1,2]V | -[1,2]J ] &lt;tag&gt; expl &lt;descr&gt; [ &lt;cmd&gt; ... ]</code>
+</p>
+
+<p>
+is all you need to make your function work correctly with both tags and
+description at the same time.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21">Terminology</h3>
+<div class="outline-text-3" id="text-orgheadline21">
 <ul class="org-ul">
 <li><span class="verbatim">spec</span> : Argument Specification</li>
 <li><span class="verbatim">tag</span> : The 'varieties' of types of objects that are valid completions, e.x a command that takes a set of permissions OR a file as it's next argument.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19">Variables</h3>
-<div class="outline-text-3" id="text-orgheadline19">
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22">Variables</h3>
+<div class="outline-text-3" id="text-orgheadline22">
 <ul class="org-ul">
 <li><span class="verbatim">$state</span>: The canonical variable for processing which tag you are in.</li>
 <li><span class="verbatim">$expl</span>: An idiom for options normally given to compadd at some point, typically an array</li>
@@ -558,9 +687,10 @@ are
 </div>
 </section>
 
-<section id="outline-container-orgheadline20" class="outline-2">
-<h2 id="orgheadline20">External Resources</h2>
-<div class="outline-text-2" id="text-orgheadline20">
+
+<section id="outline-container-orgheadline23" class="outline-2">
+<h2 id="orgheadline23">External Resources</h2>
+<div class="outline-text-2" id="text-orgheadline23">
 <ul class="org-ul">
 <li><a href="http://zsh.sourceforge.net/Guide/zshguide06.html#l144">The ZSH User Guide: Completion</a></li>
 <li><a href="https://twitter.com/dailyzshtip">Daily ZSH Tips</a></li>
