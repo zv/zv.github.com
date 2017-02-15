@@ -160,31 +160,37 @@ aside {
 
 // Quotes
 .post-content blockquote {
-    font: 300 1em "Fira Sans";
-    width: 80%;
-    padding: 1rem 0;
-    margin-left: 10%;
+    font: 400 0.8em "Fira Sans";
+    font-style: italic;
+    border-left: 2px solid $base1;
 
-    p:not(:last-of-type) {
-        border-left: 2px solid $magenta;
+
+    p {
         padding-left: 2%;
         line-height: 1.5rem;
         margin-right: 3rem;
         margin-top: 0.5rem;
     }
 
-    p:last-of-type {
-        font-size: 0.9rem;
-        text-align: right;
-        margin: 0; // Zero out the normally 1pt margin
-    }
+
+    // p:not(:last-of-type) {
+    //     padding-left: 2%;
+    //     line-height: 1.5rem;
+    //     margin-right: 3rem;
+    //     margin-top: 0.5rem;
+    // }
+    // p:last-of-type {
+    //     font-size: 0.9rem;
+    //     text-align: right;
+    //     margin: 0; // Zero out the normally 1pt margin
+    // }
 }
 
 // Examples
 pre.example {
-    font-style: italic;
+    overflow-x: auto;
     background-color: $base2;
-    border-left: 0.5ex solid $base01;
+    border-left: 3px solid $base01;
     padding: 2ex;
 }
 

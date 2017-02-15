@@ -51,6 +51,10 @@ h1.post-title {
     font: 400 1.4rem "Fira Sans";
     margin: 1.5rem 0;
     letter-spacing: 0.05rem;
+
+    b,i,code,pre {
+        color: inherit;
+    }
 }
 
 .outline-3 h3 {
@@ -58,6 +62,10 @@ h1.post-title {
     color: $green;
     font: 400 1.2rem "Fira Sans";
     margin: 1.2rem 0;
+
+    b,i,code,pre {
+        color: inherit;
+    }
 }
 
 .outline-4 h4 {
@@ -65,7 +73,19 @@ h1.post-title {
     font: 400 1.15rem "Fira Sans";
     margin: 1.2rem 0;
     letter-spacing: 0.05rem;
+
+    b,i,code,pre {
+        color: inherit;
+    }
 }
+
+.outline-5 h5 {
+    color: $base00;
+    font: 400 1.05em "Fira Sans";
+    margin: 1.2rem 0;
+    letter-spacing: 0.05rem;
+}
+
 
 li > .outline-text-5 {
     a {
