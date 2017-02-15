@@ -1,5 +1,5 @@
 #+HTML_DOCTYPE: html5
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: page
 title: A Review of ZSH Completion
@@ -9,17 +9,20 @@ tags:
   - completion
 category: note
 ---
-#+END_HTML
-* Prologue 
-ZSH completion scripts rarely concern programmers and I doubt I could capture
-your interest in this somewhat spiritless topic for long. In consideration of
-this, I have organized these sections in order of greatest importance to the
-topic (excepting this first section), so the devoted reader can stop reading
-this article at whatever point you lose interest.
+#+END_EXPORT
 
-In 2007, ZSH started to experience some real growth. Increasingly rabid advocacy
-had finally stirred many into dissatisfaction with the inflexible completion
-system of other shells (c.f bash); one of these new users was me.
+* Prologue 
+After many years of research, I've finally come to an important conclusion:
+
+Writing completion scripts sucks. 
+
+In consideration of this, I have organized these sections in order of greatest
+importance to the topic (excepting this first section), so the devoted reader
+can stop reading this article at whatever point you lose interest.
+
+Like me, you probably began using ZSH as a result of increasingly rabid advocacy
+stirring your soul into dissatisfaction with the inflexible completion system of
+other shells (c.f bash).
 
 At that time, ZSH's comprehensive documentation was the best source of
 information on the topic. ZSH's man pages are written in encyclopedic reference
@@ -36,6 +39,7 @@ completion details common to many utilities aren't included.
 
 In response, I've tried to compile some principles, mailing-list wisdom and
 other disambiguation for this hairy topic.
+
 
 *  The structure of standard argument completion.
 ZSH's completion system is /contextual/, sensitive to the point at which it is
@@ -145,6 +149,7 @@ which can be directly followed by a bracketed explanation string.
 | -optname-     | The first argument must be supplied here          |
 | -optname+     | The first argument must be supplied with a +      |
 
+
 * Utility Functions
 ** Creating a dummy first argument
 The following is an extract of the iproute2 argument handling in [[https://github.com/zsh-users/zsh/blob/master/Completion/Unix/Command/_ip][=_ip=]]
@@ -190,7 +195,7 @@ zshcompsys(4)
 #+END_QUOTE
 
 [[https://github.com/zsh-users/zsh/blob/5deb57714fc799918552b22f077cc4b1daf1f68f/Completion/Zsh/Command/_fc][The ~_fc~ completion demonstrates this here:]]
-#+BEGIN_SRC sh
+#+BEGIN_SRC shell-script
 if [[ -n $state ]]; then
   zstyle -s ":completion:${curcontext}:" list-separator sep || sep=--
   if [[ -z ${line:#*=*} ]] && compset -P '*='; then
@@ -213,36 +218,37 @@ if [[ -n $state ]]; then
 fi && ret=0
 #+END_SRC
 
+
 * Examples
-A statement about these examples should be made here
+  A statement about these examples should be made here
 
 ** Delimited values with final option
-A common scenario that occurs in commands such as =libcap='s capability
-manipulation toolchain, =bintools= and =coreutils= is the requirement to
-complete a list of arbitrary keywords, each with a unix-style (equal sign)
-option after each one.
+   A common scenario that occurs in commands such as =libcap='s capability
+   manipulation toolchain, =bintools= and =coreutils= is the requirement to
+   complete a list of arbitrary keywords, each with a unix-style (equal sign)
+   option after each one.
 
-An example of such a command is exemplified by [[https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap][=setcap=]]
+   An example of such a command is exemplified by [[https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap][=setcap=]]
 
-#+BEGIN_HTML
-<section class="terminal-example">
-<pre class="terminal-example">
-<samp class="terminal-example">
-% setcap cap_sys_rawio,cap_sys_pacct=<div class="blinking-cursor">█</div>
-<span class="yellow"> -- operator -- </span>
-e  -- effective
-i  -- inheritable
-p  -- permitted
-</samp>
-</pre>
-</section>
-#+END_HTML
+   #+BEGIN_EXPORT html
+   <section class="terminal-example">
+   <pre class="terminal-example">
+   <samp class="terminal-example">
+   % setcap cap_sys_rawio,cap_sys_pacct=<div class="blinking-cursor">█</div>
+   <span class="yellow"> -- operator -- </span>
+   e  -- effective
+   i  -- inheritable
+   p  -- permitted
+   </samp>
+   </pre>
+   </section>
+   #+END_EXPORT
 
-You might initially look at the =chmod= completion, and this would get you far,
-however the completion script itself is quite long. The core of the unix options
-completion lies in the following.
+   You might initially look at the =chmod= completion, and this would get you far,
+   however the completion script itself is quite long. The core of the unix options
+   completion lies in the following.
 
-#+BEGIN_SRC sh
+   #+BEGIN_SRC shell-script
 list_terminator='*[=]' # Corresponds to `=` 
 delimiter=',' # The character that delimits the list
 options=("e:effective", "i:inheritable", "p:permitted") # Valid options
@@ -257,10 +263,10 @@ case $state in
   fi
   ;;
 esac
-#+END_SRC
+   #+END_SRC
 
 ** Operating system specific flags with =$OSTYPE=
-#+BEGIN_SRC shell-script
+   #+BEGIN_SRC shell-script
 local arguments
 arguments=('-b[Base argument]')
 # We might add additional arguments based on the operating system
@@ -273,55 +279,55 @@ fi
 if [[ $OSTYPE = linux* ]]; then
   arguments+=('-l[Linux specific flag]')
 fi
-#+END_SRC
+   #+END_SRC
 
 ** Completion from a dynamic list
-There are two ways to go about this. Both require that you create a function
-that calls =compadd= with the list of words you want completed.
+   There are two ways to go about this. Both require that you create a function
+   that calls =compadd= with the list of words you want completed.
 
-#+BEGIN_SRC sh
+   #+BEGIN_SRC shell-script
     typedef -a _tmux_words
     _tmux_list() {
        compadd -a _tmux_words
     }
-#+END_SRC
+   #+END_SRC
 
-Up to you to figure out how to populate the ~_tmux_words~ array. The function
-that eventually calls ~compadd~ can do as much other work as you like to decide
-whether to call ~compadd~ at all; see for example the ~_expand_alias~ [[https://github.com/zsh-users/zsh/blob/5deb57714fc799918552b22f077cc4b1daf1f68f/Completion/Base/Completer/_expand_alias][function
-in the zsh distribution.]] [fn::I picked ~_expand_alias~ because it's explicitly
-designed to be usable as either a key binding or a completer entry. Note
-#compdef at the top of the source file.]
+   Up to you to figure out how to populate the ~_tmux_words~ array. The function
+   that eventually calls ~compadd~ can do as much other work as you like to decide
+   whether to call ~compadd~ at all; see for example the ~_expand_alias~ [[https://github.com/zsh-users/zsh/blob/5deb57714fc799918552b22f077cc4b1daf1f68f/Completion/Base/Completer/_expand_alias][function
+   in the zsh distribution.]] [fn::I picked ~_expand_alias~ because it's explicitly
+   designed to be usable as either a key binding or a completer entry. Note
+   #compdef at the top of the source file.]
 
-With that in place, you can do either:
-1) Create a key binding that invokes it, leaving normal completion alone. 
+   With that in place, you can do either:
+   1) Create a key binding that invokes it, leaving normal completion alone. 
 
-    ~compdef -k _tmux_list complete-word ^XT~
-3) Add a function to your "completer" style. 
+      ~compdef -k _tmux_list complete-word ^XT~
+   3) Add a function to your "completer" style. 
 
-    ~zstyle ':completion:*' completer _complete _tmux_list _correct~ 
+      ~zstyle ':completion:*' completer _complete _tmux_list _correct~ 
 
-Don't use the above zstyle literally; find the one you are presently
-using and insert ~_tmux_list~ at the point where you want those words
-tried as possible completions.
+   Don't use the above zstyle literally; find the one you are presently
+   using and insert ~_tmux_list~ at the point where you want those words
+   tried as possible completions.
 
 ** Caching variables during completion
-Depending on whether you mean all completions for the current command
-line or just all repetitions of completion for the same word (e.g.,
-cycling through a menu) there may be different approaches to this.
-Within completion on a single word, you can look at the ~_oldlist~
-[[https://github.com/zsh-users/zsh/blob/5deb57714fc799918552b22f077cc4b1daf1f68f/Completion/compinstall#L485][completer for an example]].
+   Depending on whether you mean all completions for the current command
+   line or just all repetitions of completion for the same word (e.g.,
+   cycling through a menu) there may be different approaches to this.
+   Within completion on a single word, you can look at the ~_oldlist~
+   [[https://github.com/zsh-users/zsh/blob/5deb57714fc799918552b22f077cc4b1daf1f68f/Completion/compinstall#L485][completer for an example]].
 
-Based on your additional explanation, though, I suspect that's not what
-you're after, but the basic idea is still the same:  Create a function
-which you reference at the beginning of the completer zstyle.  That
-function tests (somehow) whether the cached state needs to be refreshed.
+   Based on your additional explanation, though, I suspect that's not what
+   you're after, but the basic idea is still the same:  Create a function
+   which you reference at the beginning of the completer zstyle.  That
+   function tests (somehow) whether the cached state needs to be refreshed.
 
-Bart Schaefer describes a crude procedure to cache the value value of =$HISTNO=
-and then reload the cache if it has changed.
+   Bart Schaefer describes a crude procedure to cache the value value of =$HISTNO=
+   and then reload the cache if it has changed.
 
 
-#+BEGIN_SRC sh
+   #+BEGIN_SRC shell-script
 _xrcache() {
   if (( $_xr_HISTNO != $HISTNO ))
   then
@@ -331,32 +337,117 @@ _xrcache() {
   return 1 # always "fail" so other completers are tried
 }
 zstyle ':completion:*' completer _xrcache _oldlist _expand _complete # etc.
-#+END_SRC
+   #+END_SRC
 
 ** Manual ordering of completion alternatives
-You can prevent alphabetical sorting by passing ~-V~ and the matchname: ~compadd -V unsorted - $revarray~
+   You can prevent alphabetical sorting by passing ~-V~ and the matchname: ~compadd -V unsorted - $revarray~
 
-[[http://www.zsh.org/mla/users//2012/msg00177.html][Bart Schaefer also discusses]] ~compadd -V unsorted -a revarray~ for large arrays:
+   [[http://www.zsh.org/mla/users//2012/msg00177.html][Bart Schaefer also discusses]] ~compadd -V unsorted -a revarray~ for large arrays:
+
+
+* Notable =zstyle= options
+
+** Hidden completion list
+   This sort of question occassionally appears on newsgroups from time to time:
+
+   #+BEGIN_EXAMPLE
+  I want to have the alternatives offered by consecutive presses of alt-e, and I
+  don't want the alternatives to be listed below the command line. To achieve
+  this, I have had to set the option BASH_AUTO_LIST. If this option is not set,
+  a list of alternatives is displayed as soon as I hit alt-e (and at the same
+  time the first alternative is put on the command line, which is good). But I
+  don't want this option to be set globally. I have not been able to figure out
+  how to make this menu NOT appear for this particular completion, but without
+  setting the global option. Is there a way to achieve this?
+   #+END_EXAMPLE
+
+   The answer is to set the =hidden= ~zstyle~, which can be done like this:
+
+   =zstyle ':completion:*list-comp:*' hidden all=
+
+   But hidden is looked up from =_description= which you don't call.
+   You could add =_wanted= around the compadd but all the hidden style
+   actually does is cause the ~-n~ option to be passed to compadd which you
+   could do directly.
 
 
 * Style and Convention
-ZSH completion scripts are (fortunately) never given the opportunity to evolve
-into the complex balls of mud that a 'real' programming environment affords;
-consequently there is much less attention given to the stylistic debates that
-are tied to other languages.
+  ZSH completion scripts are (fortunately) never given the opportunity to evolve
+  into the complex balls of mud that a 'real' programming environment affords;
+  consequently there is much less attention given to the stylistic debates that
+  are tied to other languages.
 
-This said, there are a few, largely unwritten, rules and conventions that
-are 
+  This said, there are a few, largely unwritten, rules and conventions that
+  are 
+
+** Descriptions
+   Always use description. This is important. Really. *Always* use descriptions. If
+   you have just written down a =compadd= without a ~$expl[@]~ (or equivalent), you
+   have just made an error. Even in helper functions where you use a =$@=: if you
+   can't be sure that there is a description in the arguments, add one. You can
+   (and, in most cases, should) then give the description you generated after the
+   =$@=. This makes sure that the, probably more specific, description given by the
+   calling function takes precedence over the generic one you have just generated.
+
+   And it really isn't that complicated, is it? Think about a string people might
+   want to see above the matches (in singular -- that's used throughout the
+   completion system) and do:
+
+   #+BEGIN_SRC shell-script
+local expl
+
+_description tag expl <descr>
+compadd "$expl@]" - <matches ...>
+   #+END_SRC
+
+   Note that this function also accepts =-V= and =-J=, optionally (in the same
+   word) preceded by =1= or =2= to describe the type of group you want to use. For
+   example:
+
+   #+BEGIN_SRC shell-script
+_description tag expl '...'
+compadd "$expl[@]" -1V foo - ...    # THIS IS WRONG!!!
+   #+END_SRC
+
+   is *not* the right way to use a unsorted group. Instead do:
+
+   #+BEGIN_SRC shell-script
+_description -1V tag expl '...'
+compadd "$expl[@]" - ...
+   #+END_SRC
+
+   and everything will work fine.
+
+   Also, if you are about to add multiple different types of matches, use multiple
+   calls to =_description= and add them with multiple calls to =compadd=. But in
+   almost all cases you should then add them using different tags anyway, so, see
+   above.
+
+   And since a tag directly corresponds to a group of matches, you'll often be
+   using the tags function that allows you to give the explanation to the same
+   function that is used to test if the tags are requested (again: see above). Just
+   as a reminder:
+
+   ~_wanted [ -[1,2]V | -[1,2]J ] <tag> expl <descr> <cmd> ...~
+
+   and
+
+   ~_requested [ -[1,2]V | -[1,2]J ] <tag> expl <descr> [ <cmd> ... ]~
+
+   is all you need to make your function work correctly with both tags and
+   description at the same time.
+
 
 ** Terminology
-+ =spec= : Argument Specification
-+ =tag= : The 'varieties' of types of objects that are valid completions, e.x a command that takes a set of permissions OR a file as it's next argument. 
+   + =spec= : Argument Specification
+   + =tag= : The 'varieties' of types of objects that are valid completions, e.x a command that takes a set of permissions OR a file as it's next argument. 
 ** Variables
-+ =$state=: The canonical variable for processing which tag you are in.
-+ =$expl=: An idiom for options normally given to compadd at some point, typically an array
-+ =$descr=: Argument description variables
+   + =$state=: The canonical variable for processing which tag you are in.
+   + =$expl=: An idiom for options normally given to compadd at some point, typically an array
+   + =$descr=: Argument description variables
+
 
 * External Resources 
 
-- [[http://zsh.sourceforge.net/Guide/zshguide06.html#l144][The ZSH User Guide: Completion]]
-- [[https://twitter.com/dailyzshtip][Daily ZSH Tips]]
+  - [[http://zsh.sourceforge.net/Guide/zshguide06.html#l144][The ZSH User Guide: Completion]]
+  - [[https://twitter.com/dailyzshtip][Daily ZSH Tips]]

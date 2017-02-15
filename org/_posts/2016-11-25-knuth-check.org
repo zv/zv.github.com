@@ -1,5 +1,5 @@
 #+HTML_DOCTYPE: html5
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: page
 title: You gotta be handy with the machine, if you know what I mean
@@ -8,7 +8,7 @@ tags:
   - knuth
 category: note
 ---
-#+END_HTML
+#+END_EXPORT
 
 * 
 

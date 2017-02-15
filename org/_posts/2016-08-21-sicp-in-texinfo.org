@@ -1,11 +1,11 @@
 #+HTML_DOCTYPE: html5
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: page
 title: Using a Texinfo edition of SICP
 category: note
 ---
-#+END_HTML
+#+END_EXPORT
 
 * 
 SICP's availability has allowed for reworking it's text for contemporary
