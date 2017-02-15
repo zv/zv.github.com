@@ -3,6 +3,16 @@
   links:
     github: https://github.com/zv/tree
 
+- name: sexpr
+  description: An encoding, decoding & utility library for S-expressions in Rust
+  links:
+    github: https://github.com/zv/sexpr
+
+- name: SICP Study Guide
+  description: A SICP Study Guide With Exercise Solutions in Guile & Emacs Lisp
+  links:
+    github: https://github.com/zv/SICP-guile
+
 - name: Conflict Free Computing 2016 Laptop Buyers Guide
   description: A compilation of excellent laptops for developers made by firms with a strong commitment to ethically sourcing minerals used in the manufacture of electronics.
   links:
@@ -11,7 +21,7 @@
 - name: weechat-gateway-replacer
   description: A weechat plugin to integrate Slack or Telegram gateways with the real usernames they transmit
   links:
-    weechat: https://weechat.org/scripts/source/gateway_rename.scm.html
+    weechat: https://weechat.org/scripts/source/gateway_rename.scm.html/
     github: https://github.com/zv/weechat-gateway-replacer
 
 - name: otp
