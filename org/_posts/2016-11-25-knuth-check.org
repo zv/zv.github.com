@@ -2,7 +2,7 @@
 #+BEGIN_EXPORT html
 ---
 layout: page
-title: You gotta be handy with the machine, if you know what I mean
+title: My Knuth Check or How I learned to love symbolic computing
 excerpt: can't be any geek off the street
 tags: 
   - knuth
@@ -17,13 +17,13 @@ category: note
 #+NAME:   fig:knuth
 [[../images/knuth.jpg]]
 
-I recieved this [[https://en.wikipedia.org/wiki/Knuth_reward_check][Knuth reward check]] as part of a letter I wrote to Knuth about a
-correction to a particular SAT-solving heuristic concerned with the selection of
-decision literals, which has advanced the state of the art for the fairly
-obscure problem of [[https://en.wikipedia.org/wiki/Aurifeuillean_factorization][Aurifeuillean factorization]], but with other implications
-for problems such as 'show that some adjacency-configuration of Knights on a
-Chess board always results in a draw' or 'Find possible starting board states
-for a Game of Life, which evolves to some configuration after 2^16 rounds'.
+I recieved this [[https://en.wikipedia.org/wiki/Knuth_reward_check][Knuth reward check]] for a remark I sent to Knuth about a to a
+particular SAT-solving heuristic concerned with the selection of decision
+literals, which has advanced the state of the art for the fairly obscure problem
+of [[https://en.wikipedia.org/wiki/Aurifeuillean_factorization][Aurifeuillean factorization]], but with other implications for problems such as
+'show that some adjacency-configuration of Knights on a Chess board always
+results in a draw' or 'Find possible starting board states for a Game of Life,
+which evolves to some configuration after 2^16 rounds'.
 
 I don't have any formal background in the the topic of SMT and SAT solvers, but
 I've taken a pretty earnest interest in them, steadily filling in background in
