@@ -3,30 +3,42 @@
  * done without javascript I would be ecstatic!!!
  */
 
+// builtin org-mode footnote reference classes
 var refClass = "footref"
 var defClass = "footdef"
 
+/*
+ * Calculates the total offset from the top of the page.
+ */
 var cumulativeOffset = function(element) {
     // stolen from prototype.js
-    var top = 0, left = 0;
+    var top = 0, left = 0
     do {
-        top += element.offsetTop  || 0;
-        left += element.offsetLeft || 0;
-        element = element.offsetParent;
-    } while(element);
+        top += element.offsetTop  || 0
+        left += element.offsetLeft || 0
+        element = element.offsetParent
+    } while(element)
 
     return {
         top: top,
         left: left
-    };
-};
+    }
+}
 
+/*
+  Moves each footnote to it's 'correct' layout position by doing the following:
+    For each footnote definition:
+      - calculate a footnote definition's position from the top
+      - lookup corresponding footnote reference, add an appropriate style & 'position: top'
+      - remove footnote reference from footer
+     Hide footnote container
+ */
 function repositionFootnotes() {
     var refs  = document.getElementsByClassName("footref")
     var definitions = document.getElementsByClassName("footdef")
 
     if (refs.length !== definitions.length) {
-        console.error("Could not uniformly assign refs -> defs, aborting")
+        console.error("Could not uniformly assign footref -> footdef, aborting")
         return
     }
 
@@ -46,10 +58,14 @@ function repositionFootnotes() {
     removeFootnoteHeader()
 }
 
+/*
+ * Find and remove a footnote from the footer of the page (where footnotes live
+ * prior to repositioning)
+ */
 function removeFootnoteHeader() {
-    var bottomNotes = document.querySelector("h2.footnotes");
+    var bottomNotes = document.querySelector("h2.footnotes")
     if (bottomNotes) {
-        bottomNotes.remove();
+        bottomNotes.remove()
     }
 }
 
