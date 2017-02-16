@@ -1,0 +1,201 @@
+#+HTML_DOCTYPE: html5
+#+OPTIONS: H:4
+#+BEGIN_EXPORT html
+---
+layout: page
+title: A test thing
+category: note
+excerpt: asdfasdf
+---
+#+END_EXPORT
+
+
+* Heading 1
+Word
+** Heading 2
+Word
+*** Heading 3
+Word
+**** Heading 4
+Word
+***** Heading 5
+Word
+****** Heading 6
+Word
+
+* A More Humble Beginning
+ Lorem ipsum adsfa sit amet, consectetur adipiscing elit. Pellentesque pretium
+ornare dolor, vel tempus leo fringilla non. Praesent ut orci condimentum,
+egestas nisi non, aliquam eros. +strikethrough+ euismod fringilla diam, in vulputate
+dolor consectetur eu. Pellentesque euismod, libero eu _underline_ iaculis, velit
+velit ~code~ orci, eu /italic/ ipsum metus nec mi. Cum sociis natoque
+penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+Praesent *bold* sagittis nunc. Maecenas ultrices, est a =verbose= iaculis, quam
+enim vehicula libero, in dignissim lacus massa nec nunc. \sup1
+Integer finibus rhoncus malesuada. Aenean ultricies lorem sed enim
+consectetur, kjin convallis odio lacinia. [fn:1]
+
+
+#+BEGIN_QUOTE
+Using a term like nonlinear science is like referring to the bulk of zoology as the study of non-elephant animals.
+
+— Stanislaw Ulam
+#+END_QUOTE
+
+Proin eget luctus leo, id tincidunt dui. [fn::Test integer fortalis bufadf adf
+kux ak aiq nvo aiiiadf iaculus quis] Integer iaculis quis sapien sit amet
+consequat. Phasellus lacinia lorem urna, et elementum risus tempus vitae.
+Suspendisse non felis ut lorem congue feugiat. Etiam eu venenatis sapien. Ut
+rhoncus ex non tellus sodales blandit. Donec eleifend nulla odio, ut varius
+lectus efficitur nec. Quisque vel mauris eget sapien consectetur euismod eu in
+velit. Aenean a est eros.
+
+#+BEGIN_QUOTE
+Short quote by no-one
+#+END_QUOTE
+
+Suspendisse non felis ut lorem congue feugiat. Etiam eu venenatis sapien. Ut
+rhoncus ex non tellus sodales blandit. Donec eleifend nulla odio, ut varius
+lectus efficitur nec. Quisque vel mauris eget sapien consectetur euismod eu in
+velit. Aenean a est eros.
+
+#+BEGIN_QUOTE
+They have the largest ratio of wing area to body weight of any bird. This lets them fly very long distances while only rarely flapping their wings. They often stay in the air for weeks at time. And one being tracked by satellite in the Indian Ocean stayed aloft for two months.
+
+Surprisingly for sea birds, they don’t go into the water. Their feathers aren’t waterproof. They are true creatures of the air. They snatch fish from the ocean surface using their long, hooked bills—and they often eat flying fish! They clean themselves in flight by flying low and wetting themselves at the water’s surface before preening themselves.
+
+They live a long time: often over 35 years.
+
+But here’s the cool new discovery:
+#+END_QUOTE
+
+* A Humble Beginning :tag:bag:smag:
+egestas nisi non, aliquam eros. +strikethrough+ euismod fringilla diam, in
+vulputate dolor consectetur eu. Pellentesque euismod, libero eu _underline_
+iaculis, velit and :tag the adfa adf k Pellente :bag.
+
+This is an example:
+#+BEGIN_EXAMPLE
+This is an extentensive example that begins consequat. Phasellus lacinia lorem
+urna, et elementum risus tempus vitae. Suspendisse non felis ut lorem congue
+feugiat. Etiam eu venenatis sapien. Ut rhoncus ex non tellus sodales blandit.
+Donec eleifend nulla odio, ut varius lectus efficitur nec. Quisque vel mauris
+eget sapien consectetur euismod eu in
+#+END_EXAMPLE
+
+
+egestas nisi non, aliquam eros. +strikethrough+ euismod fringilla diam, in
+vulputate dolor consectetur eu. Pellentesque euismod, libero eu _underline_
+iaculis, velit
+
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to 
+and this a quote
+
+#+BEGIN_QUOTE
+A Quote
+
+-- By Me
+#+END_QUOTE
+
+
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to 
+This is a new verse
+
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to 
+This is centered
+
+     #+BEGIN_CENTER
+     Everything should be made as simple as possible, \\
+     but not any simpler
+     #+END_CENTER
+
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to 
+This is verbatim 
+
+     #+BEGIN_VERBATIM
+     Everything should be made as simple as possible, \\
+     but not any simpler
+     #+END_VERBATIM
+
+
+** Header 2
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to 
+
+
+
+*** Header 3
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to 
+- List Item 1
+- 2
+- 3
+- 
+
+**** Another Bold Header 4
+adfadf a
+dsf
+asdf
+adsfads
+**** A Bold Header 4
+
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to 
+
+1. [ ] ONE (contains checkmark)
+2. [X] TWO (checked checkmark)
+3. THREE
+
+***** Header 5
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to 
++ Test
++ Another Test
++ Third Test
+
+****** Even deeper
+adfadfasdfasdf
+
+* Tables
+
+
+** A table! [fn::adfasdfasdfadfasdf]
+| A | B | C | D | E |
+|---+---+---+---+---|
+| F | G | H | I | J |
+| K | L | M | N | O |
+|   |   |   |   |   |
+** Another table with fancy formattings
+#+BEGIN RECEIVE ORGTBL exdoc
+| Name    | Description     |
+|---------+-----------------|
+| =normx= | norm(x, \infty) |
+| =normb= | norm(b, \infty) |
+| =normA= | norm(A, \infty) |
+#+END RECEIVE ORGTBL exdoc
+
+** A SpreadSheet
+|  date | expense          |  sum | currency |   rate |  euros |
+|-------+------------------+------+----------+--------+--------|
+|  1.3. | flights          |  324 | eur      |      1 |    324 |
+|  4.6. | books and maps   |  243 | usd      |   0.77 | 187.11 |
+| 30.7. | rental car       | 8300 | sek      |   0.12 |   996. |
+|  2.7. | hotel            | 1150 | sek      |   0.12 |   138. |
+|  2.7. | lunch            |  190 | sek      |   0.12 |   22.8 |
+|  3.7. | fishing licenses | 1400 | nok      |   0.14 |   196. |
+|  3.7. | gasoline         |  340 |          | #ERROR | #ERROR |
+ #+TBLFM: $5='(org-lookup-first $4 '(remote(rates,@2$2..@>$2)) '(remote(rates,@2$3..@>$3)))::$6=$5*$3
+
+** A Web Performance Tables
+Here is a bit of words describing this table. It's a table and like many other
+tables describes useful things.
+|                     | Non-Optimized | Lazy-Loading | AMP   | Otherwise |   |
+|---------------------+---------------+--------------+-------+-----------+---|
+| Requests            | 25            | 100%         | 19    | 30        |   |
+| Size                | 100kb         | 200kb        | 300kb | 400kb     |   |
+|---------------------+---------------+--------------+-------+-----------+---|
+| Another             |               |              |       |           |   |
+| Document Completion | 10s           | 19s          | 19s   | 182s      |   |
+| Speed Index         |               | 19           |       | 1882s     |   |
+
+
+* Footnotes
+
+[fn:1] Footnote definition made here. This is the first, long footnote test. footnote teset Quisque vel mauris eget sapien consectetur euismod eu in velit. Aenean a est eros.
+
