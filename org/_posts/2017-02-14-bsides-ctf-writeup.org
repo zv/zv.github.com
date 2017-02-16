@@ -11,36 +11,33 @@ category: note
 #+END_EXPORT
 
 * Conference
-In my short life, I've seen security conferences move from /"hide the speed
-pipe"/ to /"Information security professionals discuss changes in information
-assurance policy and cybersecurity"/.
+In my short life, I've seen security conferences move from /"hide the speed,
+quick!"/ to /"Security professionals discuss shifting circumstances in information
+assurance policy"/.
 
-At no other hacker conference is it clearer than at BSides that the the racous
-parties and threats of e-violence have been replaced with the hushed tones and
-somber realities of securing actual computer networks. Bsides is still closer to
-hacking's eager and optimistic roots than to it's sober future, but the impact
-of shifting status and fabulous wealth of new infosec startups has perceptibly
-influenced it's culture already.
+At no other hacker conference is it clearer than at BSides that the racous
+parties and threats of e-violence have been replaced with hushed tones and
+artifical lighting.
 
-Because of the conference's stature in the Bay Area, many of the intelligensia
-of the San Francisco haqr scene managed to make an appearance. Lots of drinks
-were handed out, door security was lax and the hallway track was alive.
+Still, because of the conference's stature in the Bay Area, many of the
+intelligensia of the San Francisco haqr scene undoubtedly will make an appearance.
+Lots of drinks were handed out, door security was lax and the hallway track was
+as alive as any other similarly sized conference.
+
+I lost interest in the talks fairly quickly, but a friend invited me to play the
+CTF and I was immediately impressed. The Bsides crew managed to avoid many of
+the lame consecutive challenge formats and structural deficits that have made
+other CTFs tiresome. A large number of challenges tackling very diverse
+subjects. No one group (even 'professional' CTF teams) managed to secure an
+answer to every challenge.
+
 * Writeups
 
-I lost interest in the talks fairly quickly, but after a friend invited me to
-play the CTF and I was immediately impressed. The Bsides crew managed to avoid
-many of the lame challenge formats and structural deficits that have made other
-CTFs tiresome rather than competitive. The challenges were extremely diverse in
-their subjects and no one group (even 'professional' CTF teams) managed to
-secure an answer to every challenge.
-
-Me and my friend managed to do pretty well, we ended up finishing in the top 5% of
-participants with substantially smaller team than others. 
-
 Because so many of these challenges don't have their answers published by their
-XXXXXXXs after the event is settled, it's up to the community to put together
-'writeups' of the techniques employed in solving these. Here is a smattering of
-some challenges I've written for.
+organizers after the event is settled, it's up to the community to put together
+'writeups' of the techniques employed in solving these. 
+
+Here's a few of those.
 
 
 ** NOP
