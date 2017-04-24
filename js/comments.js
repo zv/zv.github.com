@@ -66,11 +66,15 @@ function load_comments(github_id, repo_issues_url, issue_id) {
             }
         })
         container.style.display = 'block';
-        howto.href = issues_url;
+        if (issues_url) {
+            howto.href = issues_url;
+        } else {
+            console.error("insert_comments: issues_url blank")
+        }
     }
 
     find_comments_url()
-        .then(issue => fetch_comments(issue[0].html_url, issue[0].comments_url))
-        .then(([comments, issues_url]) => insert_comments(comments))
+        .then(issue =>                    fetch_comments(issue[0].html_url, issue[0].comments_url))
+        .then(([comments, issues_url]) => insert_comments(comments, issues_url))
         .catch(err => console.error("An error occurred while loading comments: ", err));
 }
