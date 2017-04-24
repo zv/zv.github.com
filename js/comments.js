@@ -24,7 +24,7 @@ function load_comments(github_id, repo_issues_url, issue_id) {
         </div>
         <div class="comment-right">
             <div class="comment-header">
-
+                <strong>${issue.user.login}</strong>
             </div>
             <hr />
             <div class="body"> ${issue.body_html} </div>
@@ -54,6 +54,7 @@ function load_comments(github_id, repo_issues_url, issue_id) {
             .then(comments => [comments, html_issues_url]);
     }
 
+    // Insert posts comments into current page
     function insert_comments(comments, issues_url) {
         var howto = document.querySelector(COMMENT_HOWTO);
         var container = document.querySelector(COMMENT_CONTAINER);
