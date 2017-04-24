@@ -106,7 +106,8 @@ article ul.org-ul {
 }
 
 article ol.org-ol {
-    list-style-position: inside;
+    // not sure why I put this in
+    // list-style-position: inside;
     margin: 2ex;
     li {
         p {
