@@ -1,8 +1,8 @@
 <script src="/js/comments.js"></script>
 
 <script>
- var github_id       = "{{ site.github.owner_name }}" || "zv";
- var repo_issues_url = "{{ site.github.issues_url }}" || "https://api.github.com/repos/zv/zv.github.com/issues";
+ var github_id       = "zv" // "{{ site.github.owner_name }}"
+ var repo_issues_url = "https://api.github.com/repos/zv/zv.github.com/issues"; // "{{ site.github.issues_url }}"
  var issue_id        = "{{ page.title }}";
  // makeFetch(gh_id, repo_issues_url)(issue_id);
  load_comments(github_id, repo_issues_url, issue_id)
