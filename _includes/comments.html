@@ -1,0 +1,15 @@
+<script src="/js/comments.js"></script>
+
+<script>
+ var github_id       = "{{ site.github.owner_name }}" || "zv";
+ var repo_issues_url = "{{ site.github.issues_url }}" || "https://api.github.com/repos/zv/zv.github.com/issues";
+ var issue_id        = "{{ page.title }}";
+ // makeFetch(gh_id, repo_issues_url)(issue_id);
+ load_comments(github_id, repo_issues_url, issue_id)
+</script>
+
+<div class="comments-container">
+    <h2>Comments</h2>
+    <p class="comment-howto">Have something to say? Add a comment to this page's <a id="comment-howto-link" href="#">Github Issue</a></p>
+</div>
+

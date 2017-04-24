@@ -263,3 +263,56 @@ article > section > div table {
         &:nth-child(even) td { background: $base2; }
     }
 }
+
+
+/*******************
+ *    Comments     *
+ ******************/
+
+.comments-container {
+    display: none;
+    padding-top: 5rem;
+
+    h2 {
+        color: $base01;
+        font: 500 1.7rem "Fira Sans";
+        text-align: center;
+        letter-spacing: 0.05rem;
+    }
+
+    p.comment-howto {
+        text-align: center;
+        padding-bottom: 3rem;
+    }
+
+}
+
+.comment {
+    padding: 0 0 2em 0;
+    width: 100%;
+    min-height: 5rem;
+
+    // by default, these look a little nasty.
+    p {
+        margin: 0.5rem 0;
+    }
+
+    // make sure our list elements stay within the bounds of their enclosing
+    // div.
+    li {
+        margin: 2ex;
+    }
+
+    .comment-photo {
+        float: left;
+        width: 8%;
+        img {
+            margin-top: 15%;
+            width: 100%;
+        }
+    }
+
+    .comment-right {
+        margin-left: 10%;
+    }
+}
