@@ -1,14 +1,9 @@
-<script src="/js/comments.js"></script>
-
-<script>
- var github_id       = "zv" // "{{ site.github.owner_name }}"
- var repo_issues_url = "https://api.github.com/repos/zv/zv.github.com/issues"; // "{{ site.github.issues_url }}"
- var issue_id        = "{{ page.title }}";
- load_comments(github_id, repo_issues_url, issue_id)
-</script>
-
-<div class="comments-container">
+<div class="comments-container"
+     data-github-user="zv"
+     data-issues-url="https://api.github.com/repos/zv/zv.github.com/issues"
+     data-issue-id="{{ page.title }}">
     <h2>Comments</h2>
     <p class="comment-howto">Have something to say? Add a comment to this page's <a id="comment-howto-link" href="#">Github Issue</a></p>
 </div>
 
+<script src="/js/comments.js" async></script>

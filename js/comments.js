@@ -13,12 +13,14 @@
  * @property {string} issue_id
  *  The "id" (github issue title) you'd like to fetch the comments of
  */
-function load_comments(github_id, repo_issues_url, issue_id) {
-    var COMMENT_CONTAINER = "div.comments-container";
-    var COMMENT_HOWTO = "a#comment-howto-link";
+(function() {
+    const COMMENT_CONTAINER = "div.comments-container";
+    const COMMENT_HOWTO = "a#comment-howto-link";
+    const CONTAINER_ELT = document.querySelector(COMMENT_CONTAINER);
 
-    function build_comment_html(issue) {
-        return `<div class="comment">
+    function load_comments(github_id, repo_issues_url, issue_id) {
+        function build_comment_html(issue) {
+            return `<div class="comment">
         <div class="comment-photo">
             <img src="${issue.user.avatar_url}" />
         </div>
@@ -30,51 +32,60 @@ function load_comments(github_id, repo_issues_url, issue_id) {
             <div class="body"> ${issue.body_html} </div>
         </div>
     </div>`;
-    }
-
-    // Issues must be referenced by their numeric Github ID, `find_comments_url`
-    // resolves a local blogpost/page name to that numeric ID.
-    function find_comments_url() {
-        // we append 'created' to ensure only we can create comment threads
-        return window.fetch(`${repo_issues_url}?created=${github_id}`, {
-            headers: { "Accept": "application/vnd.github.v3.html+json" }})
-            .then(response => response.json())
-            .then(json => {
-                var issues = json.filter(issue => issue.title === issue_id);
-                if (issues.length === 1) return issues;
-                else throw new Error(`Incorrect number of issues: ${issues.length}`);
-            });
-    }
-
-    // Fetch (and insert) our comments
-    function fetch_comments(html_issues_url, api_issues_url) {
-        return window.fetch(api_issues_url, {
-            headers: { "Accept": "application/vnd.github.v3.html+json" }})
-            .then(response => response.json())
-            .then(comments => [comments, html_issues_url]);
-    }
-
-    // Insert posts comments into current page
-    function insert_comments(comments, issues_url) {
-        var howto = document.querySelector(COMMENT_HOWTO);
-        var container = document.querySelector(COMMENT_CONTAINER);
-        comments.forEach(comment => {
-            var elt = document.createElement('div');
-            elt.innerHTML = build_comment_html(comment);
-            if (!container.appendChild(elt)) {
-                console.error("ERROR: could not append element: ", elt);
-            }
-        })
-        container.style.display = 'block';
-        if (issues_url) {
-            howto.href = issues_url;
-        } else {
-            console.error("insert_comments: issues_url blank")
         }
+
+        // Issues must be referenced by their numeric Github ID, `find_comments_url`
+        // resolves a local blogpost/page name to that numeric ID.
+        function find_comments_url() {
+            // we append 'created' to ensure only we can create comment threads
+            return fetch(`${repo_issues_url}?created=${github_id}`, {
+                headers: { "Accept": "application/vnd.github.v3.html+json" }})
+                .then(response => response.json())
+                .then(json => {
+                    var issues = json.filter(issue => issue.title === issue_id);
+                    if (issues.length === 1) return issues;
+                    else throw new Error(`Incorrect number of issues: ${issues.length}`);
+                });
+        }
+
+        // Fetch (and insert) our comments
+        function fetch_comments(html_issues_url, api_issues_url) {
+            return fetch(api_issues_url, {
+                headers: { "Accept": "application/vnd.github.v3.html+json" }})
+                .then(response => response.json())
+                .then(comments => [comments, html_issues_url]);
+        }
+
+        // Insert posts comments into current page
+        function insert_comments(comments, issues_url) {
+            var howto = document.querySelector(COMMENT_HOWTO);
+            var container = CONTAINER_ELT;
+            comments.forEach(comment => {
+                var elt = document.createElement('div');
+                elt.innerHTML = build_comment_html(comment);
+                if (!container.appendChild(elt)) {
+                    console.error(elt);
+                    throw new Error("could not append element: ");
+                }
+            })
+            // un-hide the container
+            container.style.display = 'block';
+
+            if (issues_url) {
+                howto.href = issues_url;
+            } else {
+                throw new Error("insert_comments: issues_url blank");
+            }
+        }
+
+        find_comments_url()
+            .then(issue =>                    fetch_comments(issue[0].html_url, issue[0].comments_url))
+            .then(([comments, issues_url]) => insert_comments(comments, issues_url))
+            .catch(err => console.error("An error occurred while loading comments: ", err));
     }
 
-    find_comments_url()
-        .then(issue =>                    fetch_comments(issue[0].html_url, issue[0].comments_url))
-        .then(([comments, issues_url]) => insert_comments(comments, issues_url))
-        .catch(err => console.error("An error occurred while loading comments: ", err));
-}
+    let github_id       = CONTAINER_ELT.getAttribute("data-github-user")
+    let repo_issues_url = CONTAINER_ELT.getAttribute("data-issues-url")
+    let issue_id        = CONTAINER_ELT.getAttribute("data-issue-id")
+    load_comments(github_id, repo_issues_url, issue_id)
+})();
