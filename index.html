@@ -1,25 +1,5 @@
 ---
 layout: default
+title: index
 ---
-
-<div class="home">
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li class="post-section">
-        <a class="post-link" itemprop="url" href="{{ post.url | prepend: site.baseurl }}">
-          <span itemprop="name">
-            {{ post.title }}
-          </span>
-        </a>
-        <!--
-        <span class="postlist-date" itemprop="datePublished" datetime='{{post.date | date: "%Y-%d-%b"}}'>{{ post.date | date: "%Y" }}</span>
-        -->
-      </li>
-    {% endfor %}
-  </ul>
-
-  <!--
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-  -->
-
-</div>
+{% include post_list.html %}

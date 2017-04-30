@@ -1,0 +1,17 @@
+<div class="home">
+  <ul class="post-list">
+    {% for post in site.posts %}
+    <li class="post-section">
+      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}" itemprop="headline">{{ post.title }}</a>
+      <!-- <span class="postlist-date">
+           <time itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}">
+           {{ post.date | date: "%-m/%-d/%y" }}
+           </time>
+           <span class="postlist-date" itemprop="datePublished" datetime='{{post.date | date: "%Y-%d-%b"}}'>{{ post.date | date: "%Y" }}</span>
+           </span> -->
+    </li>
+    {% endfor %}
+  </ul>
+
+  <!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> -->
+</div>
