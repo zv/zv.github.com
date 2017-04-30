@@ -2,26 +2,19 @@ Gemfile.lock
 
 # Jekyll specified
 _site
+_drafts
 .sass-cache
 *.min.js
 Rakefile
 
-# Mac OS X files
-.DS_Store
-
-# Image, font original files
-*.psd
-*.ai
-
 # Logs, Leftovers
 *.log
-!errors.log
-*.bak
-*.tmproj
-*.esproj
 
 # I use this to test various org mode blocks, no need to see this.
 _posts/2015-10-02-test-org-mode.html
+
+notes.org
+
 
 org/_drafts
 node_modules/

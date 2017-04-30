@@ -26,11 +26,8 @@ baseurl: ""
 twitter_username: zefyear
 github_username: zv
 
-# Build settings
-markdown: kramdown
-
 sass:
-    sass_dir: _sass
+  sass_dir: _sass
 
 # exclude files for generated site
 exclude: 
