@@ -23,3 +23,5 @@ Rakefile
 # I use this to test various org mode blocks, no need to see this.
 _posts/2015-10-02-test-org-mode.html
 
+org/_drafts
+node_modules/
