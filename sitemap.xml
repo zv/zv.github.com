@@ -1,20 +1,41 @@
 ---
 ---
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	<url>
-		<loc>http://{{ site.url }}/</loc>
-		<lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-		<changefreq>weekly</changefreq>
-		<priority>1.0</priority>
-	</url>
+  <url>
+    <loc>http://{{ site.url }}/</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-{% for post in site.posts %}
-	<url>
-		<loc>http://{{ site.url }}{{ post.url }}/</loc>
-		<lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-{% endfor %}
+  <url>
+    <loc>http://{{ site.url }}/about.html</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://{{ site.url }}/buyers-guide.html</loc>
+    <lastmod>2017-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.25</priority>
+  </url>
+  
+  <url>
+    <loc>http://{{ site.url }}/algorithmic-tree.html</loc>
+    <lastmod>2017-01-01</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.20</priority>
+  </url>
+
+  {% for post in site.posts %}
+  <url>
+    <loc>http://{{ site.url }}{{ post.url }}/</loc>
+    <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  {% endfor %}
 </urlset>
