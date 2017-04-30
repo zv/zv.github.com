@@ -3,9 +3,10 @@ source: .
 destination: ./_site
 
 # site settings
-permalink: /:categories/:title
+permalink: /:title
+
 # site url
-url: zv.github.com 
+url: http://zv.github.io
 
 # Me
 full-name: Zephyr Pellerin
@@ -23,6 +24,7 @@ description: zv's blog
 # Site settings
 baseurl: "" 
 twitter_username: zefyear
+github_username: zv
 
 # Build settings
 markdown: kramdown
@@ -30,14 +32,9 @@ markdown: kramdown
 sass:
     sass_dir: _sass
 
-# include:
-#   - commentary.html
-
 # exclude files for generated site
 exclude: 
-- org/
-- README.md
-- LICENSE
-- Rakefile
-- nite.tmproj
-
+  - org/
+  - LICENSE
+  - node_modules
+  - package.json
