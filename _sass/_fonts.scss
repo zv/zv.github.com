@@ -169,8 +169,7 @@
 // end of font loading
 
 pre, code, span.verbatim {
-    border: none;
-    font: 0.9em 'Fira Mono', monospace;
+    font: 300 0.9em 'Fira Mono', monospace;
 }
 
 
@@ -197,11 +196,11 @@ span.postlist-date {
 /**
  Post
  **/
-/* .post-content > section h2 { */
-/*     margin-top: 2.5rem; */
-/*     font-size: 1.4rem;     */
-/*     font-weight: 200; */
-/* } */
+$header1: 500 1.7rem  "Fira Sans";
+$header2: 400 1.4rem  "Fira Sans";
+$header3: 400 1.2rem  "Fira Sans";
+$header4: 400 1.15rem "Fira Sans";
+$header5: 400 1.05em  "Fira Sans";
 
 h1 {
     // font: 300 1.7rem "Fira Sans";
@@ -210,15 +209,15 @@ h1 {
 
 h1.post-title {
     color: $yellow;
-    font: 500 1.7rem "Fira Sans";
+    font: $header1;
     text-align: center;
     letter-spacing: 0.05rem;
 }
 
 // Level 1 headings
-.outline-2 h2 {
+.outline-2 > h2 {
     color: $yellow;
-    font: 400 1.4rem "Fira Sans";
+    font: $header2;
     margin: 1.5rem 0;
     letter-spacing: 0.05rem;
 
@@ -227,10 +226,11 @@ h1.post-title {
     }
 }
 
-.outline-3 h3 {
+.outline-3 > h3 {
     // color: $green;
     color: $green;
-    font: 400 1.2rem "Fira Sans";
+    font: $header3;
+    letter-spacing: 0.05rem;
     margin: 1.2rem 0;
 
     b,i,code,pre {
@@ -238,9 +238,9 @@ h1.post-title {
     }
 }
 
-.outline-4 h4 {
+.outline-4 > h4 {
     color: $base01;
-    font: 400 1.15rem "Fira Sans";
+    font: $header4;
     margin: 1.2rem 0;
     letter-spacing: 0.05rem;
 
@@ -249,23 +249,20 @@ h1.post-title {
     }
 }
 
-.outline-5 h5 {
+.outline-5 > h5 {
     color: $base00;
-    font: 400 1.05em "Fira Sans";
+    font: $header5;
     margin: 1.2rem 0;
     letter-spacing: 0.05rem;
 }
-
 
 li > .outline-text-5 {
     a {
         font-weight: bold;
     }
 }
+
 a ~ .outline-text-5 {
     display: none;
     font-weight: bold;
-}
-
-a.orgheadline6 {
 }

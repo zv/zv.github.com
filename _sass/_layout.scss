@@ -24,13 +24,12 @@ header#nav-container {
 }
 
 
-@media all and  (max-width: 800px) {
+@media all and (max-width: 800px) {
     main {
         padding: 0;
         width: $mobile-width;
         margin: 0 auto;
     }
-
 
     /**
      * Site header
@@ -75,7 +74,6 @@ div#text-table-of-contents {
     font-size: 0.9em;
 }
 
-
 /**
  Posts Layout
 **/
@@ -93,7 +91,7 @@ li.post-section {
  Post Style
 **/
 article {
-    line-height: 1.6;
+    line-height: 1.6em;
 }
 
 article > section > div p {
@@ -173,10 +171,8 @@ aside {
 
 // Quotes
 .post-content blockquote {
-    font: 400 0.8em "Fira Sans";
-    font-style: italic;
+    font: italic 400 0.8em "Fira Sans";
     border-left: 2px solid $base1;
-
 
     p {
         padding-left: 2%;
@@ -184,19 +180,6 @@ aside {
         margin-right: 3rem;
         margin-top: 0.5rem;
     }
-
-
-    // p:not(:last-of-type) {
-    //     padding-left: 2%;
-    //     line-height: 1.5rem;
-    //     margin-right: 3rem;
-    //     margin-top: 0.5rem;
-    // }
-    // p:last-of-type {
-    //     font-size: 0.9rem;
-    //     text-align: right;
-    //     margin: 0; // Zero out the normally 1pt margin
-    // }
 }
 
 // Examples
@@ -235,7 +218,6 @@ figure > p {
         display: block;
     }
 }
-
 
 // Tables
 article > section > div table {
@@ -277,7 +259,7 @@ $comment-padding: 5rem;
 
     h2 {
         color: $base01;
-        font: 500 1.7rem "Fira Sans";
+        font: $header2;
         text-align: center;
         letter-spacing: 0.05rem;
     }
