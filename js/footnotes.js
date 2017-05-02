@@ -14,9 +14,9 @@
       - remove footnote reference from footer
      Hide footnote container
  */
-export default function reposition_footnotes(refSelector = "footref", defSelector = "footdef") {
-    var refs  = document.getElementsByClassName(refSelector)
-    var definitions = document.getElementsByClassName(defSelector)
+export default function reposition_footnotes(refNode, defNode) {
+    let refs = refNode;
+    let definitions = defNode;
 
     if (refs.length !== definitions.length) {
         console.error("Could not uniformly assign footref -> footdef, aborting")
