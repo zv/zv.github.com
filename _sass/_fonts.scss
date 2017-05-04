@@ -1,15 +1,11 @@
-/***************
- * Local Fonts *
- **************/
+/********************************************************
+ * Core Fonts                                           *
+ * After a lot of deliberation, I've decided not        *
+ * to 'subset' these fonts, i.e to remove some glyphs   *
+ * in order to reduce their size                        *
+ ********************************************************/
 
-@font-face{
-    font-family: 'Fira Sans';
-    src: local('Fira Sans Light'),
-    url('/fonts/woff/FiraSans-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-}
-
+// Our primary font is 'Fira Sans'
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans Regular'),
@@ -18,12 +14,36 @@
     font-style: normal;
 }
 
+// .. and Fira Mono, a monospaced variant
+@font-face{
+    font-family: 'Fira Mono';
+    src: local('Fira Mono'),
+    url('/fonts/woff/FiraMono-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/****************************************************************
+ * Local Fonts                                                  *
+ * These fonts only include the most basic Latin-1 glyph range  *
+ ***************************************************************/
+
+@font-face{
+    font-family: 'Fira Sans';
+    src: local('Fira Sans Light'),
+    url('/fonts/woff/FiraSans-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    unicode-range: U+0020-007F;
+}
+
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans Medium'),
     url('/fonts/woff/FiraSans-Medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
+    unicode-range: U+0020-007F;
 }
 
 @font-face{
@@ -32,6 +52,7 @@
     url('/fonts/woff/FiraSans-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
+    unicode-range: U+0020-007F;
 }
 
 @font-face{
@@ -40,6 +61,7 @@
     url('/fonts/woff/FiraSans-BoldItalic.woff') format('woff');
     font-weight: 700;
     font-style: italic;
+    unicode-range: U+0020-007F;
 }
 
 @font-face{
@@ -48,32 +70,85 @@
     url('/fonts/woff/FiraSans-Italic.woff') format('woff');
     font-weight: 400;
     font-style: italic;
-}
-
-@font-face{
-    font-family: 'Fira Mono';
-    src: local('Fira Mono'),
-         url('/fonts/woff/FiraMono-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+    unicode-range: U+0020-007F;
 }
 
 @font-face{
     font-family: 'Fira Mono';
     src: local('Fira Mono Bold'),
-         url('/fonts/woff/FiraMono-Bold.woff') format('woff');
+    url('/fonts/woff/FiraMono-Bold.woff') format('woff');
     font-weight: 600;
     font-style: normal;
+    unicode-range: U+0020-007F;
 }
 
-/****************
- * Remote Fonts *
- ***************/
+/**********************************************************************
+ * Remote Fonts                                                       *
+ * All other fonts & ranges are fetched remotely from the Mozilla CDN *
+ **********************************************************************/
+
+@font-face{
+    font-family: 'Fira Sans';
+    src: local('Fira Sans Light'),
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    unicode-range: U+008F-FFFF;
+}
+
+@font-face{
+    font-family: 'Fira Sans';
+    src: local('Fira Sans Medium'),
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    unicode-range: U+008F-FFFF;
+}
+
+@font-face{
+    font-family: 'Fira Sans';
+    src: local('Fira Sans Bold'),
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    unicode-range: U+008F-FFFF;
+}
+
+@font-face{
+    font-family: 'Fira Sans';
+    src: local('Fira Sans Bold Italic'),
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-BoldItalic.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+    unicode-range: U+008F-FFFF;
+}
+
+@font-face{
+    font-family: 'Fira Sans';
+    src: local('Fira Sans Regular Italic'),
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    unicode-range: U+008F-FFFF;
+}
+
+@font-face{
+    font-family: 'Fira Mono';
+    src: local('Fira Mono Bold'),
+    url('//code.cdn.mozilla.net/fonts/woff/FiraMono-Bold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    unicode-range: U+008F-FFFF;
+}
+
+/*************************
+ * Unusual Font Weights  *
+ *************************/
 
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans Hair'),
-         url('//code.cdn.mozilla.net/fonts/woff/FiraSans-Hair.woff') format('woff');
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-Hair.woff') format('woff');
     font-weight: 100;
     font-style: normal;
 }
@@ -81,7 +156,7 @@
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans Hair Italic'),
-         url('//code.cdn.mozilla.net/fonts/woff/FiraSans-HairItalic.woff') format('woff');
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-HairItalic.woff') format('woff');
     font-weight: 100;
     font-style: italic;
 }
@@ -89,7 +164,7 @@
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans UltraLight'),
-         url('//code.cdn.mozilla.net/fonts/woff/FiraSans-UltraLight.woff') format('woff');
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-UltraLight.woff') format('woff');
     font-weight: 200;
     font-style: normal;
 }
@@ -97,7 +172,7 @@
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans UltraLight Italic'),
-         url('//code.cdn.mozilla.net/fonts/woff/FiraSans-UltraLightItalic.woff') format('woff');
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-UltraLightItalic.woff') format('woff');
     font-weight: 200;
     font-style: italic;
 }
@@ -105,7 +180,7 @@
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans Medium Italic'),
-         url('//code.cdn.mozilla.net/fonts/woff/FiraSans-MediumItalic.woff') format('woff');
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-MediumItalic.woff') format('woff');
     font-weight: 500;
     font-style: italic;
 }
@@ -113,7 +188,7 @@
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans SemiBold'),
-         url('//code.cdn.mozilla.net/fonts/woff/FiraSans-SemiBold.woff') format('woff');
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-SemiBold.woff') format('woff');
     font-weight: 600;
     font-style: normal;
 }
@@ -121,7 +196,7 @@
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans SemiBold Italic'),
-         url('//code.cdn.mozilla.net/fonts/woff/FiraSans-SemiBoldItalic.woff') format('woff');
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-SemiBoldItalic.woff') format('woff');
     font-weight: 600;
     font-style: italic;
 }
@@ -129,7 +204,7 @@
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans ExtraBold'),
-         url('//code.cdn.mozilla.net/fonts/woff/FiraSans-ExtraBold.woff') format('woff');
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-ExtraBold.woff') format('woff');
     font-weight: 800;
     font-style: normal;
 }
@@ -137,7 +212,7 @@
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans ExtraBold Italic'),
-         url('//code.cdn.mozilla.net/fonts/woff/FiraSans-ExtraBoldItalic.woff') format('woff');
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-ExtraBoldItalic.woff') format('woff');
     font-weight: 800;
     font-style: italic;
 }
@@ -145,7 +220,7 @@
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans Heavy'),
-         url('//code.cdn.mozilla.net/fonts/woff/FiraSans-Heavy.woff') format('woff');
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-Heavy.woff') format('woff');
     font-weight: 900;
     font-style: normal;
 }
@@ -153,7 +228,7 @@
 @font-face{
     font-family: 'Fira Sans';
     src: local('Fira Sans Heavy Italic'),
-         url('//code.cdn.mozilla.net/fonts/woff/FiraSans-HeavyItalic.woff') format('woff');
+    url('//code.cdn.mozilla.net/fonts/woff/FiraSans-HeavyItalic.woff') format('woff');
     font-weight: 900;
     font-style: italic;
 }
@@ -172,16 +247,13 @@ pre, code, span.verbatim {
     font: 300 0.9em 'Fira Mono', monospace;
 }
 
-
 code {
     // This color is *essentially* $base02
     @include bg_alpha_calc($base2, 0.25, $base3);
     padding: 0.2em;
 }
 
-/**
- Site Layout
- **/
+/* Site Layout */
 .post-list h2 {
     font-size: 2rem;
     text-decoration: none;
