@@ -28,6 +28,7 @@ github_username: zv
 
 sass:
   sass_dir: _sass
+  style: compressed
 
 # exclude files for generated site
 exclude: 
