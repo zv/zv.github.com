@@ -271,6 +271,9 @@ $comment-padding: 5rem;
 }
 
 .comment {
+    $photo-width: 3.5em;
+    $photo-margin: 0.5em;
+
     padding: 0 0 2em 0;
     width: 100%;
     min-height: 5rem;
@@ -284,13 +287,14 @@ $comment-padding: 5rem;
 
     .comment-photo {
         float: left;
-        width: 3.5em;
+        width: $photo-width;
+        margin-right: $photo-margin;
         img {
             border: 1px solid black;
             margin-top: 15%;
-            width: 100%;
+            width: 90%;
         }
     }
 
-    .comment-right { margin-left: 10%; }
+    .comment-right { margin-left: $photo-width + $photo-margin; }
 }
