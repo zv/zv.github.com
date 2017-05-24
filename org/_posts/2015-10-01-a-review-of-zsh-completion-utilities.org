@@ -214,7 +214,6 @@ fi && ret=0
 
 
    An example of such a command is exemplified by [[https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap][=setcap=]]
-     #+CAPTION: An example of setcap completion in ZSH
      #+NAME:   zsh-setcap-example
      [[../../images/zsh-setcap-example.png]]
 
