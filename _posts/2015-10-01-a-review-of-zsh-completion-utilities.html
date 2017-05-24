@@ -382,21 +382,16 @@ complete a list of arbitrary keywords, each with a unix-style (equal sign)
 option after each one.
 </p>
 
+
 <p>
 An example of such a command is exemplified by <a href="https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap"><span class="verbatim">setcap</span></a>
 </p>
 
-<section class="terminal-example">
-<pre class="terminal-example">
-<samp class="terminal-example">
-% setcap cap_sys_rawio,cap_sys_pacct=<div class="blinking-cursor">█</div>
-<span class="yellow"> -- operator -- </span>
-e  -- effective
-i  -- inheritable
-p  -- permitted
-</samp>
-</pre>
-</section>
+<figure id="org9ba90ed">
+<img src="../../images/zsh-setcap-example.png" alt="zsh-setcap-example.png">
+
+<figcaption><span class="figure-number">Figure 1: </span>An example of setcap completion in ZSH</figcaption>
+</figure>
 
 <p>
 You might initially look at the <span class="verbatim">chmod</span> completion, and this would get you far,

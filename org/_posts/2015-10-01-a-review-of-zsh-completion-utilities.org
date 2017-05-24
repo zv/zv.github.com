@@ -212,21 +212,11 @@ fi && ret=0
    complete a list of arbitrary keywords, each with a unix-style (equal sign)
    option after each one.
 
-   An example of such a command is exemplified by [[https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap][=setcap=]]
 
-   #+BEGIN_EXPORT html
-   <section class="terminal-example">
-   <pre class="terminal-example">
-   <samp class="terminal-example">
-   % setcap cap_sys_rawio,cap_sys_pacct=<div class="blinking-cursor">█</div>
-   <span class="yellow"> -- operator -- </span>
-   e  -- effective
-   i  -- inheritable
-   p  -- permitted
-   </samp>
-   </pre>
-   </section>
-   #+END_EXPORT
+   An example of such a command is exemplified by [[https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap][=setcap=]]
+     #+CAPTION: An example of setcap completion in ZSH
+     #+NAME:   zsh-setcap-example
+     [[../../images/zsh-setcap-example.png]]
 
    You might initially look at the =chmod= completion, and this would get you far,
    however the completion script itself is quite long. The core of the unix options
