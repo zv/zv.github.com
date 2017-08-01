@@ -133,7 +133,7 @@ article ol.org-ol {
 // Footnotes/Asides
 aside {
     p {
-        font: normal 0.9em "Fira Sans";
+        font: normal 0.9em $fontname;
     }
     margin: auto;
     position: absolute;
@@ -162,7 +162,7 @@ aside {
 
 // Footnotes/Asides
 .footnote-definition {
-    font: normal 400 0.7rem "Fira Sans";
+    font: normal 400 0.7rem $fontname;
     position: absolute;
     margin-left: $main-width;
     padding-left: 2rem;
@@ -171,7 +171,7 @@ aside {
 
 // Quotes
 .post-content blockquote {
-    font: italic 400 0.8em "Fira Sans";
+    font: italic 400 0.8em $fontname;
     border-left: 2px solid $base1;
 
     p {
