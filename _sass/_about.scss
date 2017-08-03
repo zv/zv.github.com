@@ -18,7 +18,7 @@ $photo-size: 5rem;
     }
 
     h1 {
-        font: 400 1.2rem "Fira Sans";
+        font: 400 1.2rem $fontname;
     }
 
     .text {
@@ -95,7 +95,7 @@ div.work_container {
     padding: 1em;
 
     h1 {
-        font: 300 1.2rem "Fira Sans";
+        font: 300 1.2rem $fontname;
     }
 
     &:nth-child(1) {

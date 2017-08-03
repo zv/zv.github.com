@@ -63,7 +63,10 @@ $nav-selected-border: 2px solid $base01;
 // Width of the content area
 $content-width:    800px;
 
-$font: 400 17px/30px 'Fira Sans', sans-serif;
+$fontname: unquote('Calibri, sans-serif');
+$monofontname: unquote('monospace');
+$headerfontname: unquote('Calibri, sans-serif');
+$font: 400 17px/30px $fontname;
 $base-line-height: 1.5;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
