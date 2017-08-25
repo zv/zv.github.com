@@ -1,0 +1,474 @@
+---
+layout: page
+title: Using Openbox as a Tiling Window Manager
+tags: 
+  - setup
+category: note
+---
+
+<section id="outline-container-orge3294b2" class="outline-2">
+<h2 id="orge3294b2">Advantages</h2>
+<div class="outline-text-2" id="text-orge3294b2">
+<p>
+I've been satisfied with pure tiling window managers for the past decade, but
+I recently used Openbox on a friends machine and I've instantly realized that
+it was a better way.
+</p>
+
+<p>
+I'm not ready to give up on the benefits of tiling entirely however and I've
+tried to setup my workstation as a hybrid tiling/stacking setup which I've
+described below.
+</p>
+</div>
+
+<div id="outline-container-org6deea2d" class="outline-3">
+<h3 id="org6deea2d">What is Openbox?</h3>
+<div class="outline-text-3" id="text-org6deea2d">
+<p>
+Openbox is a stacking window manager that comes as part of the <a href="http://lxde.org/">LXDE desktop</a>.
+</p>
+
+<p>
+In contrast to widely-used lightweight tiling window managers, LXDE comes
+'opinionated' with a traditional menu and generally adheres to the desktop
+metaphor found on OSX and Windows.
+</p>
+
+<p>
+Openbox is primarily configured with an XML file that dictates both keyboard
+and mouse bindings, while also allowing you to control window decoration,
+defaults, etc.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf6d2203" class="outline-3">
+<h3 id="orgf6d2203">Menu</h3>
+<div class="outline-text-3" id="text-orgf6d2203">
+<p>
+Many larger Linux applications introduce a way to start their programs into a
+"start menu", categorized by application 'type'. Menus eliminate the problem
+of <i>unknown unknowns</i> - programs you've once installed but forgotten or came
+included with another program you installed.
+</p>
+
+<p>
+If you use a distribution which frequently integrates the newest changes in
+Linux, sometimes you can miss new tooling if you don't have a menu which lists
+all the installed graphical applications on your system. As a matter of using
+Openbox, I found out that the firewall I've been configuring through a CLI for years
+has an extremely sophisticated GUI - found through a menu entry.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd589478" class="outline-3">
+<h3 id="orgd589478">Applets</h3>
+<div class="outline-text-3" id="text-orgd589478">
+<p>
+It's possible to get a bar in any tiling window manager, but I'm partial to
+<span class="verbatim">lxpanel</span>.
+</p>
+
+
+<figure>
+<img src="../../images/openbox/bar.png" alt="bar.png" width="100%">
+
+</figure>
+
+<p>
+LXDE has gone to considerable lengths to preserve some degree of
+compatibility with the interface guidelines and standards set forth by
+organizations like the GNOME Project, which means you no longer need to get
+inside of your <span class="verbatim">xinitrc</span> to start up the appropriate services.
+</p>
+
+<p>
+Which brings me to the final point.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org32814d7" class="outline-3">
+<h3 id="org32814d7">It's Complicated</h3>
+<div class="outline-text-3" id="text-org32814d7">
+<p>
+From <span class="verbatim">abrt</span> to <span class="verbatim">libnotify</span>, there's a lot of stuff under the hood of a modern
+desktop.
+</p>
+
+<p>
+If you want to go the <i>"lightweight"</i> route, you've got to prepare yourself
+for quite a bit. You'll need to install and configure a notification daemon,
+you'll need to make sure to start NetworkManager, <span class="verbatim">abrt</span>. You'll need to test
+to make sure that <span class="verbatim">secon</span> notifications are getting triggered in the event
+that SELinux wants to let you know something is amiss. You'll need to have
+keybindings for handling <code>🔊</code> and <code>🔇</code>, not to mention the host of other
+specialized keys on a modern keyboard. Using existing tooling from a
+configuration panel like <span class="verbatim">gnome-control-center</span> will occassionally fail for
+important pieces of your system like monitors and bluetooth.
+</p>
+
+<p>
+Yes, you can write the dunst configuration, you can use <span class="verbatim">xrandr</span>, configure
+your keys, write the unit file to accommodate <span class="verbatim">gnome-keyring-daemon</span>, along with
+the shell protocol. You can dive through poorly documented code that doesn't really
+contain any special insights into computers.
+</p>
+
+<p>
+There's something vaguely neat about learning the details of all this. I did
+it and I have a large <a href="https://github.com/zv/dotfilez">dotfiles repo</a> that bears witness to this vast network
+of rc files, <span class="verbatim">$XDG_CONFIG</span> and shell scripts I've assembled over the past
+decade.
+</p>
+
+<p>
+I'm ready for another way however.
+</p>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orga2128e2" class="outline-2">
+<h2 id="orga2128e2">The Setup</h2>
+<div class="outline-text-2" id="text-orga2128e2">
+<p>
+If you want to directly use my configuration, you can find my openbox
+configuration <a href="https://github.com/zv/dotfilez/blob/master/rc/lxde-rc.xml">here</a>
+</p>
+
+<p>
+I use the symbol "<span class="verbatim">🗔</span>" below to mean <i>Super</i> (also known as the 'Windows' key).
+</p>
+</div>
+
+<div id="outline-container-org6a68a53" class="outline-3">
+<h3 id="org6a68a53">Desktops</h3>
+<div class="outline-text-3" id="text-org6a68a53">
+<p>
+LXDE includes the concept of a <i>desktop</i>, a workspace that isolates the
+windows from each other.
+</p>
+
+<p>
+I maintain 8 desktops, each bound to one of the keys above the home row, with
+the final <span class="verbatim">p</span> key used to invoke <a href="http://tools.suckless.org/dmenu/">dmenu</a>.
+</p>
+
+<p>
+Typically, I keep a particular application associated with each desktop like
+the following. This allows switching between unrelated applications like
+emacs and slack very quickly.
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Desktop</th>
+<th scope="col" class="org-left">Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">q</td>
+<td class="org-left">browser</td>
+</tr>
+
+<tr>
+<td class="org-left">w</td>
+<td class="org-left">terminal</td>
+</tr>
+
+<tr>
+<td class="org-left">e</td>
+<td class="org-left">emacs</td>
+</tr>
+
+<tr>
+<td class="org-left">t</td>
+<td class="org-left">mail</td>
+</tr>
+
+<tr>
+<td class="org-left">u</td>
+<td class="org-left">book / pdf</td>
+</tr>
+
+<tr>
+<td class="org-left">i</td>
+<td class="org-left">slack</td>
+</tr>
+
+<tr>
+<td class="org-left">o</td>
+<td class="org-left">irc</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-org6fbc984" class="outline-4">
+<h4 id="org6fbc984">Keys</h4>
+<div class="outline-text-4" id="text-org6fbc984">
+<p>
+Pressing shift with any of these keys causes your current window to be
+<i>moved</i> to that desktop. 
+</p>
+
+<p>
+For example, <code>🗔-Shift-o</code> moves the currently focused window to the <span class="verbatim">o</span>
+desktop.
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>🗔-q</code></td>
+<td class="org-left">Move to desktop #1</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-w</code></td>
+<td class="org-left">Move to desktop #2</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-e</code></td>
+<td class="org-left">Move to desktop #3</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-r</code></td>
+<td class="org-left">Move to desktop #4</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-t</code></td>
+<td class="org-left">Move to desktop #5</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-y</code></td>
+<td class="org-left">Move to desktop #6</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-u</code></td>
+<td class="org-left">Move to desktop #7</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-i</code></td>
+<td class="org-left">Move to desktop #8</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-o</code></td>
+<td class="org-left">Move to desktop #9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org6799fd0" class="outline-3">
+<h3 id="org6799fd0">Windows</h3>
+<div class="outline-text-3" id="text-org6799fd0">
+<p>
+A desktop typically has one application ("window"), but more can be split
+into a number of adjacent windows, toggled between horizontal &amp; vertical
+splits (as well as returned to full-screen configuration).
+</p>
+
+<p>
+Windows each have 'focus', which refers to which application recieved input
+when keys are pressed on the keyboard. Both position &amp; window focus can be
+switched with the classic <a href="https://en.wikipedia.org/wiki/Vi">Vi</a> HJKL keybindings described below.
+</p>
+</div>
+
+<div id="outline-container-org0382bc5" class="outline-4">
+<h4 id="org0382bc5">Keys</h4>
+<div class="outline-text-4" id="text-org0382bc5">
+<p>
+Pressing shift with any of these keys causes your currently focused window
+to be swapped with the window in the direction you specified.
+</p>
+
+<p>
+For example, <code>🗔-Shift-o</code> moves the currently focused window to the <span class="verbatim">o</span>
+desktop.
+</p>
+
+<p>
+For example, this is a desktop that begins with a window 'documentation' and
+a focused window 'terminal' (indicated by <span class="verbatim">[</span> and <span class="verbatim">]</span>)
+</p>
+
+<center>
+
+<figure>
+<img src="../../images/openbox/twopiece.png" alt="twopiece.png">
+
+</figure>
+
+</center>
+
+<p>
+Pressing <code>🗔-Shift-h</code> swaps their position.
+</p>
+
+<center>
+
+<figure>
+<img src="../../images/openbox/twopieceinvert.png" alt="twopieceinvert.png">
+
+</figure>
+
+</center>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>🗔-l</code></td>
+<td class="org-left">Switch focus to left window</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-h</code></td>
+<td class="org-left">Switch focus to right window</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-j</code></td>
+<td class="org-left">Switch focus to upper window</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-k</code></td>
+<td class="org-left">Switch focus to lower window</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>🗔-m</code></td>
+<td class="org-left">Toggle horiz/vert split</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-n</code></td>
+<td class="org-left">Maximize window</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-c</code></td>
+<td class="org-left">Close window</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3aecb11" class="outline-3">
+<h3 id="org3aecb11">Other</h3>
+<div class="outline-text-3" id="text-org3aecb11">
+<p>
+The most important final key is <code>🗔-p</code> which runs dmenu.
+</p>
+
+<p>
+dmenu (<i>"dynamic menu"</i>) autocompletes system binaries and invokes them when
+⏎ is hit.
+</p>
+
+<p>
+If I wanted to spawn <span class="verbatim">google-chrome</span>, I might type in <span class="verbatim">goo</span> and dmenu would
+show something like the following.
+</p>
+
+
+<figure>
+<img src="../../images/openbox/dmenu.png" alt="dmenu.png" style="margin-left: auto; margin-right: auto;">
+
+</figure>
+
+<p>
+I could hit ⏎ (return) and Chrome would start, I could also select other
+binaries with left/right keys as well.
+</p>
+</div>
+
+<div id="outline-container-org0dd2a3d" class="outline-4">
+<h4 id="org0dd2a3d">Keys</h4>
+<div class="outline-text-4" id="text-org0dd2a3d">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Key</td>
+<td class="org-left">Action</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-p</code></td>
+<td class="org-left">Run dmenu</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-z</code></td>
+<td class="org-left">Reload configuration</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>🗔-⏎</code></td>
+<td class="org-left">Open terminal</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
