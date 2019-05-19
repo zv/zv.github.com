@@ -10,27 +10,6 @@ category: note
 ---
 #+END_EXPORT
 
-* Conference
-  In my short life, I've seen security conferences move from /"hide the speed,
-  quick!"/ to /"Security professionals discuss shifting circumstances in information
-  assurance policy"/.
-
-  At no other hacker conference is it clearer than at BSides that the racous
-  parties and threats of e-violence have been replaced with hushed tones and
-  artifical lighting.
-
-  Still, because of the conference's stature in the Bay Area, many of the
-  intelligensia of the San Francisco haqr scene undoubtedly will make an appearance.
-  Lots of drinks were handed out, door security was lax and the hallway track was
-  as alive as any other similarly sized conference.
-
-  I lost interest in the talks fairly quickly, but a friend invited me to play the
-  CTF and I was immediately impressed. The Bsides crew managed to avoid many of
-  the lame consecutive challenge formats and structural deficits that have made
-  other CTFs tiresome. A large number of challenges tackling very diverse
-  subjects. No one group (even 'professional' CTF teams) managed to secure an
-  answer to every challenge.
-
 * Writeups
 
   Because so many of these challenges don't have their answers published by their
