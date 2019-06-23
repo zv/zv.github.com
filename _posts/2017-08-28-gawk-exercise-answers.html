@@ -1,0 +1,680 @@
+---
+layout: page
+title: GNU Awk's Manual Exercises
+category: note
+---
+
+<section id="outline-container-org5948d6f" class="outline-2">
+<h2 id="org5948d6f"></h2>
+<div class="outline-text-2" id="text-org5948d6f">
+<p>
+<a href="https://www.gnu.org/software/gawk/manual/gawk.html#Print">The GNU Awk manual</a> contains a handful of exercises to assist in learning
+<span class="verbatim">awk</span>.
+</p>
+
+<p>
+The manual doesn't contain answers to these exercises and having not found
+them elsewhere, I've published my own solutions here.
+</p>
+
+<p>
+All of the exercises use features <i>exclusively</i> presented prior to the section
+where the exercise appears. If you think you've got a neat solution, <a href="https://github.com/zv/gawk-exercise/issues">please
+submit a pull request!</a>
+</p>
+</div>
+</section>
+
+<section id="outline-container-org7874e2f" class="outline-2">
+<h2 id="org7874e2f">Exercises</h2>
+<div class="outline-text-2" id="text-org7874e2f">
+</div>
+<div id="outline-container-orge63a750" class="outline-3">
+<h3 id="orge63a750">Input</h3>
+<div class="outline-text-3" id="text-orge63a750">
+</div>
+<div id="outline-container-orga650288" class="outline-4">
+<h4 id="orga650288">#1</h4>
+<div class="outline-text-4" id="text-orga650288">
+<blockquote>
+<p>
+Using the <span class="verbatim">FIELDWIDTHS</span> variable (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Constant-Size">Constant Size</a>), write a program to read
+election data, where each record represents one voter’s votes. Come up with a
+way to define which columns are associated with each ballot item, and print the
+total votes, including abstentions, for each item.
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org87fb760" class="outline-5">
+<h5 id="org87fb760">Answer</h5>
+<div class="outline-text-5" id="text-org87fb760">
+<div class="org-src-container">
+<pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span>  <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">FIELDWIDTHS</span> = <span style="color: #2aa198;">"18 9 15"</span> <span style="color: #2aa198;">}</span>
+
+<span style="color: #268bd2;">NR</span> &gt; <span style="color: #6c71c4;">2</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>$2 ~ <span style="color: #2aa198;">"x"</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        gore++
+    <span style="color: #b58900;">}</span> <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>$3 ~ <span style="color: #2aa198;">"x"</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        bush++
+    <span style="color: #b58900;">}</span> <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #b58900;">{</span>
+        abstained++
+    <span style="color: #b58900;">}</span>
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #859900; font-weight: bold;">END</span> <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"Bush:"</span>, bush, <span style="color: #2aa198;">"Gore:"</span>, gore, <span style="color: #2aa198;">"Abstained:"</span>, abstained <span style="color: #2aa198;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgab05907" class="outline-4">
+<h4 id="orgab05907">#2</h4>
+<div class="outline-text-4" id="text-orgab05907">
+<blockquote>
+<p>
+Plain Getline, presented a program to remove C-style comments (‘/* … */’) from
+the input. That program does not work if one comment ends on one line and
+another one starts later on the same line. That can be fixed by making one
+simple change. What is it?
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-orga695b68" class="outline-5">
+<h5 id="orga695b68">Answer</h5>
+<div class="outline-text-5" id="text-orga695b68">
+<div class="org-src-container">
+<pre class="src src-awk"><span style="color: #2aa198;">{</span>
+    <span style="color: #859900; font-weight: bold;">while</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>i = <span style="color: #268bd2;">index</span><span style="color: #6c71c4;">(</span>$0, <span style="color: #2aa198;">"/*"</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span> != <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        out = <span style="color: #268bd2;">substr</span><span style="color: #268bd2;">(</span>$0, <span style="color: #6c71c4;">1</span>, i - <span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span>  <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">leading part of the string</span>
+        rest = <span style="color: #268bd2;">substr</span><span style="color: #268bd2;">(</span>$0, i + <span style="color: #6c71c4;">2</span><span style="color: #268bd2;">)</span>    <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">... */ ...</span>
+        j = <span style="color: #268bd2;">index</span><span style="color: #268bd2;">(</span>rest, <span style="color: #2aa198;">"*/"</span><span style="color: #268bd2;">)</span>       <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">is */ in trailing part?</span>
+        <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>j &gt; <span style="color: #6c71c4;">0</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
+            rest = <span style="color: #268bd2;">substr</span><span style="color: #6c71c4;">(</span>rest, j + <span style="color: #6c71c4;">2</span><span style="color: #6c71c4;">)</span>  <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">remove comment</span>
+        <span style="color: #268bd2;">}</span> <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #268bd2;">{</span>
+            <span style="color: #859900; font-weight: bold;">while</span> <span style="color: #6c71c4;">(</span>j == <span style="color: #6c71c4;">0</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">{</span>
+                <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">get more text</span>
+                <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">getline</span> &lt;= <span style="color: #6c71c4;">0</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
+                    <span style="color: #268bd2;">print</span><span style="color: #b58900;">(</span><span style="color: #2aa198;">"unexpected EOF or error:"</span>, <span style="color: #268bd2;">ERRNO</span><span style="color: #b58900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+                    <span style="color: #859900; font-weight: bold;">exit</span>
+                <span style="color: #859900;">}</span>
+                <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">build up the line using string concatenation</span>
+                rest = rest $0
+                j = <span style="color: #268bd2;">index</span><span style="color: #859900;">(</span>rest, <span style="color: #2aa198;">"*/"</span><span style="color: #859900;">)</span>   <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">is */ in trailing part?</span>
+                <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #859900;">(</span>j != <span style="color: #6c71c4;">0</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
+                    rest = <span style="color: #268bd2;">substr</span><span style="color: #b58900;">(</span>rest, j + <span style="color: #6c71c4;">2</span><span style="color: #b58900;">)</span>
+                    <span style="color: #859900; font-weight: bold;">break</span>
+                <span style="color: #859900;">}</span>
+            <span style="color: #6c71c4;">}</span>
+        <span style="color: #268bd2;">}</span>
+        <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">build up the output line using string concatenation</span>
+        $0 = out rest
+    <span style="color: #b58900;">}</span>
+    <span style="color: #268bd2;">print</span> $0
+<span style="color: #2aa198;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0ce0e5b" class="outline-3">
+<h3 id="org0ce0e5b">Output</h3>
+<div class="outline-text-3" id="text-org0ce0e5b">
+</div>
+<div id="outline-container-org8e30e59" class="outline-4">
+<h4 id="org8e30e59">#1</h4>
+<div class="outline-text-4" id="text-org8e30e59">
+<blockquote>
+<p>
+Rewrite the program:
+</p>
+<div class="org-src-container">
+<pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span> <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"Month Crates"</span>; <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"----- ------"</span> <span style="color: #2aa198;">}</span>
+<span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> $1, <span style="color: #2aa198;">"     "</span>, $2 <span style="color: #2aa198;">}</span>
+</pre>
+</div>
+
+<p>
+from Output Separators, by using a new value of OFS.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-org0b06155" class="outline-5">
+<h5 id="org0b06155">Answer</h5>
+<div class="outline-text-5" id="text-org0b06155">
+<div class="org-src-container">
+<pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span> <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"Month Crates"</span>; <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"----- ------"</span>; <span style="color: #268bd2;">OFS</span>=<span style="color: #2aa198;">"     "</span> <span style="color: #2aa198;">}</span>
+<span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> $1, $2 <span style="color: #2aa198;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org010ceb5" class="outline-3">
+<h3 id="org010ceb5">Library</h3>
+<div class="outline-text-3" id="text-org010ceb5">
+</div>
+<div id="outline-container-orge84b621" class="outline-4">
+<h4 id="orge84b621">#1</h4>
+<div class="outline-text-4" id="text-orge84b621">
+<blockquote>
+<p>
+In Empty Files, we presented the <code>zerofile.awk</code> program, which made use of gawk’s
+<span class="verbatim">ARGIND</span> variable. Can this problem be solved without relying on <span class="verbatim">ARGIND</span>? If so,
+how?
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-orge4a569f" class="outline-5">
+<h5 id="orge4a569f">Answer</h5>
+<div class="outline-text-5" id="text-orge4a569f">
+<p>
+Use <code>ENDFILE</code> to run a function at the end of each file. You could match
+<code>argc~/~argv</code> as well if you wanted to determine the index of the filename
+argument.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-awk">ENDFILE <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span><span style="color: #b58900;">(</span><span style="color: #268bd2;">FILENAME</span>, ++argi<span style="color: #b58900;">)</span> <span style="color: #2aa198;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb3f39c2" class="outline-4">
+<h4 id="orgb3f39c2">#2</h4>
+<div class="outline-text-4" id="text-orgb3f39c2">
+<blockquote>
+<p>
+As a related challenge, revise that code to handle the case where an
+intervening value in <code>ARGV</code> is a variable assignment.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-awk">ENDFILE <span style="color: #2aa198;">{</span>
+  <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>argv<span style="color: #268bd2;">[</span>argi++<span style="color: #268bd2;">]</span> !~ <span style="color: #2aa198;">/^[a-zA-Z_][a-zA-Z0-9_]*=.*/</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+      <span style="color: #268bd2;">print</span><span style="color: #268bd2;">(</span><span style="color: #268bd2;">FILENAME</span>, argi<span style="color: #268bd2;">)</span>
+  <span style="color: #b58900;">}</span>
+<span style="color: #2aa198;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org6342af4" class="outline-3">
+<h3 id="org6342af4">Programs</h3>
+<div class="outline-text-3" id="text-org6342af4">
+</div>
+<div id="outline-container-org4c118cc" class="outline-4">
+<h4 id="org4c118cc">#1</h4>
+<div class="outline-text-4" id="text-org4c118cc">
+<blockquote>
+<p>
+Rewrite cut.awk (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Cut-Program">Cut Program</a>) using <code>split()</code> with "" as the separator.
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org0f78261" class="outline-5">
+<h5 id="org0f78261">Answer</h5>
+<div class="outline-text-5" id="text-org0f78261">
+<div class="org-src-container">
+<pre class="src src-awk"><span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">cut.awk --- implement cut in awk</span>
+
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Options:</span>
+<span style="color: #93a1a1;">#    </span><span style="color: #93a1a1;">-f list     Cut fields</span>
+<span style="color: #93a1a1;">#    </span><span style="color: #93a1a1;">-d c        Field delimiter character</span>
+<span style="color: #93a1a1;">#    </span><span style="color: #93a1a1;">-c list     Cut characters</span>
+<span style="color: #93a1a1;">#</span>
+<span style="color: #93a1a1;">#    </span><span style="color: #93a1a1;">-s          Suppress lines without the delimiter</span>
+<span style="color: #93a1a1;">#</span>
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Requires getopt() and join() library functions</span>
+
+<span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">usage</span><span style="color: #2aa198;">()</span>
+<span style="color: #2aa198;">{</span>
+    <span style="color: #268bd2;">print</span><span style="color: #b58900;">(</span><span style="color: #2aa198;">"usage: cut [-f list] [-d c] [-s] [files...]"</span><span style="color: #b58900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+    <span style="color: #268bd2;">print</span><span style="color: #b58900;">(</span><span style="color: #2aa198;">"usage: cut [-c list] [files...]"</span><span style="color: #b58900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+    <span style="color: #859900; font-weight: bold;">exit</span> <span style="color: #6c71c4;">1</span>
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #859900; font-weight: bold;">BEGIN</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #268bd2;">FS</span> = <span style="color: #2aa198;">"\t"</span>    <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">default</span>
+    <span style="color: #268bd2;">OFS</span> = <span style="color: #268bd2;">FS</span>
+    <span style="color: #859900; font-weight: bold;">while</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>c = getopt<span style="color: #6c71c4;">(</span><span style="color: #268bd2;">ARGC</span>, <span style="color: #268bd2;">ARGV</span>, <span style="color: #2aa198;">"sf:c:d:"</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span> != -<span style="color: #6c71c4;">1</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>c == <span style="color: #2aa198;">"f"</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
+            by_fields = <span style="color: #6c71c4;">1</span>
+            fieldlist = Optarg
+        <span style="color: #268bd2;">}</span> <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>c == <span style="color: #2aa198;">"c"</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
+            by_chars = <span style="color: #6c71c4;">1</span>
+            fieldlist = Optarg
+            <span style="color: #268bd2;">OFS</span> = <span style="color: #2aa198;">""</span>
+        <span style="color: #268bd2;">}</span> <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>c == <span style="color: #2aa198;">"d"</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">length</span><span style="color: #859900;">(</span>Optarg<span style="color: #859900;">)</span> &gt; <span style="color: #6c71c4;">1</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">{</span>
+                <span style="color: #268bd2;">printf</span><span style="color: #859900;">(</span><span style="color: #2aa198;">"cut: using first character of %s"</span> \
+                       <span style="color: #2aa198;">" for delimiter\n"</span>, Optarg<span style="color: #859900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+                Optarg = <span style="color: #268bd2;">substr</span><span style="color: #859900;">(</span>Optarg, <span style="color: #6c71c4;">1</span>, <span style="color: #6c71c4;">1</span><span style="color: #859900;">)</span>
+            <span style="color: #6c71c4;">}</span>
+            fs = <span style="color: #268bd2;">FS</span> = Optarg
+            <span style="color: #268bd2;">OFS</span> = <span style="color: #268bd2;">FS</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">FS</span> == <span style="color: #2aa198;">" "</span><span style="color: #6c71c4;">)</span>    <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">defeat awk semantics</span>
+                <span style="color: #268bd2;">FS</span> = <span style="color: #2aa198;">"[ ]"</span>
+        <span style="color: #268bd2;">}</span> <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>c == <span style="color: #2aa198;">"s"</span><span style="color: #268bd2;">)</span>
+            suppress = <span style="color: #6c71c4;">1</span>
+        <span style="color: #859900; font-weight: bold;">else</span>
+            usage<span style="color: #268bd2;">()</span>
+    <span style="color: #b58900;">}</span>
+
+    <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Clear out options</span>
+    <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #b58900;">(</span>i = <span style="color: #6c71c4;">1</span>; i &lt; Optind; i++<span style="color: #b58900;">)</span>
+        <span style="color: #268bd2;">ARGV</span><span style="color: #b58900;">[</span>i<span style="color: #b58900;">]</span> = <span style="color: #2aa198;">""</span>
+
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>by_fields &amp;&amp; by_chars<span style="color: #b58900;">)</span>
+        usage<span style="color: #b58900;">()</span>
+
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>by_fields == <span style="color: #6c71c4;">0</span> &amp;&amp; by_chars == <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span>
+        by_fields = <span style="color: #6c71c4;">1</span>    <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">default</span>
+
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>fieldlist == <span style="color: #2aa198;">""</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"cut: needs list for -c or -f"</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+        <span style="color: #859900; font-weight: bold;">exit</span> <span style="color: #6c71c4;">1</span>
+    <span style="color: #b58900;">}</span>
+
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>by_fields<span style="color: #b58900;">)</span>
+        set_fieldlist<span style="color: #b58900;">()</span>
+    <span style="color: #859900; font-weight: bold;">else</span>
+        set_charlist<span style="color: #b58900;">()</span>
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">set_fieldlist</span><span style="color: #2aa198;">(</span>n, m, i, j, k, f, g<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">{</span>
+    n = <span style="color: #268bd2;">split</span><span style="color: #b58900;">(</span>fieldlist, f, <span style="color: #2aa198;">","</span><span style="color: #b58900;">)</span>
+    j = <span style="color: #6c71c4;">1</span>    <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">index in flist</span>
+    <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #b58900;">(</span>i = <span style="color: #6c71c4;">1</span>; i &lt;= n; i++<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">index</span><span style="color: #6c71c4;">(</span>f<span style="color: #859900;">[</span>i<span style="color: #859900;">]</span>, <span style="color: #2aa198;">"-"</span><span style="color: #6c71c4;">)</span> != <span style="color: #6c71c4;">0</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">a range</span>
+            m = <span style="color: #268bd2;">split</span><span style="color: #6c71c4;">(</span>f<span style="color: #859900;">[</span>i<span style="color: #859900;">]</span>, g, <span style="color: #2aa198;">"-"</span><span style="color: #6c71c4;">)</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>m != <span style="color: #6c71c4;">2</span> || g<span style="color: #859900;">[</span><span style="color: #6c71c4;">1</span><span style="color: #859900;">]</span> &gt;= g<span style="color: #859900;">[</span><span style="color: #6c71c4;">2</span><span style="color: #859900;">]</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">{</span>
+                <span style="color: #268bd2;">printf</span><span style="color: #859900;">(</span><span style="color: #2aa198;">"cut: bad field list: %s\n"</span>,
+                                  f<span style="color: #b58900;">[</span>i<span style="color: #b58900;">]</span><span style="color: #859900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+                <span style="color: #859900; font-weight: bold;">exit</span> <span style="color: #6c71c4;">1</span>
+            <span style="color: #6c71c4;">}</span>
+            <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #6c71c4;">(</span>k = g<span style="color: #859900;">[</span><span style="color: #6c71c4;">1</span><span style="color: #859900;">]</span>; k &lt;= g<span style="color: #859900;">[</span><span style="color: #6c71c4;">2</span><span style="color: #859900;">]</span>; k++<span style="color: #6c71c4;">)</span>
+                flist<span style="color: #6c71c4;">[</span>j++<span style="color: #6c71c4;">]</span> = k
+        <span style="color: #268bd2;">}</span> <span style="color: #859900; font-weight: bold;">else</span>
+            flist<span style="color: #268bd2;">[</span>j++<span style="color: #268bd2;">]</span> = f<span style="color: #268bd2;">[</span>i<span style="color: #268bd2;">]</span>
+    <span style="color: #b58900;">}</span>
+    nfields = j - <span style="color: #6c71c4;">1</span>
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">set_charlist</span><span style="color: #2aa198;">(</span>    field, i, j, f, g, n, m, t,
+                          filler, last, len<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">{</span>
+    field = <span style="color: #6c71c4;">1</span>   <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">count total fields</span>
+    n = <span style="color: #268bd2;">split</span><span style="color: #b58900;">(</span>fieldlist, f, <span style="color: #2aa198;">","</span><span style="color: #b58900;">)</span>
+    j = <span style="color: #6c71c4;">1</span>       <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">index in flist</span>
+    <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #b58900;">(</span>i = <span style="color: #6c71c4;">1</span>; i &lt;= n; i++<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">index</span><span style="color: #6c71c4;">(</span>f<span style="color: #859900;">[</span>i<span style="color: #859900;">]</span>, <span style="color: #2aa198;">"-"</span><span style="color: #6c71c4;">)</span> != <span style="color: #6c71c4;">0</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">range</span>
+            m = <span style="color: #268bd2;">split</span><span style="color: #6c71c4;">(</span>f<span style="color: #859900;">[</span>i<span style="color: #859900;">]</span>, g, <span style="color: #2aa198;">"-"</span><span style="color: #6c71c4;">)</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>m != <span style="color: #6c71c4;">2</span> || g<span style="color: #859900;">[</span><span style="color: #6c71c4;">1</span><span style="color: #859900;">]</span> &gt;= g<span style="color: #859900;">[</span><span style="color: #6c71c4;">2</span><span style="color: #859900;">]</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">{</span>
+                <span style="color: #268bd2;">printf</span><span style="color: #859900;">(</span><span style="color: #2aa198;">"cut: bad character list: %s\n"</span>,
+                               f<span style="color: #b58900;">[</span>i<span style="color: #b58900;">]</span><span style="color: #859900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+                <span style="color: #859900; font-weight: bold;">exit</span> <span style="color: #6c71c4;">1</span>
+            <span style="color: #6c71c4;">}</span>
+            len = g<span style="color: #6c71c4;">[</span><span style="color: #6c71c4;">2</span><span style="color: #6c71c4;">]</span> - g<span style="color: #6c71c4;">[</span><span style="color: #6c71c4;">1</span><span style="color: #6c71c4;">]</span> + <span style="color: #6c71c4;">1</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>g<span style="color: #859900;">[</span><span style="color: #6c71c4;">1</span><span style="color: #859900;">]</span> &gt; <span style="color: #6c71c4;">1</span><span style="color: #6c71c4;">)</span>  <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">compute length of filler</span>
+                filler = g<span style="color: #6c71c4;">[</span><span style="color: #6c71c4;">1</span><span style="color: #6c71c4;">]</span> - last - <span style="color: #6c71c4;">1</span>
+            <span style="color: #859900; font-weight: bold;">else</span>
+                filler = <span style="color: #6c71c4;">0</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>filler<span style="color: #6c71c4;">)</span>
+                t<span style="color: #6c71c4;">[</span>field++<span style="color: #6c71c4;">]</span> = filler
+            t<span style="color: #6c71c4;">[</span>field++<span style="color: #6c71c4;">]</span> = len  <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">length of field</span>
+            last = g<span style="color: #6c71c4;">[</span><span style="color: #6c71c4;">2</span><span style="color: #6c71c4;">]</span>
+            flist<span style="color: #6c71c4;">[</span>j++<span style="color: #6c71c4;">]</span> = field - <span style="color: #6c71c4;">1</span>
+        <span style="color: #268bd2;">}</span> <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #268bd2;">{</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>f<span style="color: #859900;">[</span>i<span style="color: #859900;">]</span> &gt; <span style="color: #6c71c4;">1</span><span style="color: #6c71c4;">)</span>
+                filler = f<span style="color: #6c71c4;">[</span>i<span style="color: #6c71c4;">]</span> - last - <span style="color: #6c71c4;">1</span>
+            <span style="color: #859900; font-weight: bold;">else</span>
+                filler = <span style="color: #6c71c4;">0</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>filler<span style="color: #6c71c4;">)</span>
+                t<span style="color: #6c71c4;">[</span>field++<span style="color: #6c71c4;">]</span> = filler
+            t<span style="color: #6c71c4;">[</span>field++<span style="color: #6c71c4;">]</span> = <span style="color: #6c71c4;">1</span>
+            last = f<span style="color: #6c71c4;">[</span>i<span style="color: #6c71c4;">]</span>
+            flist<span style="color: #6c71c4;">[</span>j++<span style="color: #6c71c4;">]</span> = field - <span style="color: #6c71c4;">1</span>
+        <span style="color: #268bd2;">}</span>
+    <span style="color: #b58900;">}</span>
+    <span style="color: #268bd2;">FIELDWIDTHS</span> = join<span style="color: #b58900;">(</span>t, <span style="color: #6c71c4;">1</span>, field - <span style="color: #6c71c4;">1</span><span style="color: #b58900;">)</span>
+    nfields = j - <span style="color: #6c71c4;">1</span>
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #2aa198;">{</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>by_fields &amp;&amp; suppress &amp;&amp; <span style="color: #268bd2;">index</span><span style="color: #268bd2;">(</span>$0, fs<span style="color: #268bd2;">)</span> == <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span>
+        <span style="color: #859900; font-weight: bold;">next</span>
+
+    <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #b58900;">(</span>i = <span style="color: #6c71c4;">1</span>; i &lt;= nfields; i++<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>$flist<span style="color: #6c71c4;">[</span>i<span style="color: #6c71c4;">]</span> != <span style="color: #2aa198;">""</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
+            <span style="color: #268bd2;">printf</span> <span style="color: #2aa198;">"%s"</span>, $flist<span style="color: #6c71c4;">[</span>i<span style="color: #6c71c4;">]</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>i &lt; nfields &amp;&amp; $flist<span style="color: #859900;">[</span>i+<span style="color: #6c71c4;">1</span><span style="color: #859900;">]</span> != <span style="color: #2aa198;">""</span><span style="color: #6c71c4;">)</span>
+                <span style="color: #268bd2;">printf</span> <span style="color: #2aa198;">"%s"</span>, <span style="color: #268bd2;">OFS</span>
+        <span style="color: #268bd2;">}</span>
+    <span style="color: #b58900;">}</span>
+    <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">""</span>
+<span style="color: #2aa198;">}</span>
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4584051" class="outline-4">
+<h4 id="org4584051">#2</h4>
+<div class="outline-text-4" id="text-org4584051">
+<blockquote>
+<p>
+In <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Egrep-Program">Egrep Program</a>, we mentioned that <code>‘egrep -i’</code> could be simulated in
+versions of <span class="verbatim">awk</span> without <span class="verbatim">IGNORECASE</span> by using <span class="verbatim">tolower()</span> on the line and the
+pattern. In a footnote there, we also mentioned that this solution has a
+bug: the translated line is output, and not the original one. Fix this
+problem.
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org384e31f" class="outline-5">
+<h5 id="org384e31f">Answer</h5>
+<div class="outline-text-5" id="text-org384e31f">
+<p>
+Simply check the results of <span class="verbatim">tolower()</span> without assigning output.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6839790" class="outline-4">
+<h4 id="org6839790">#3</h4>
+<div class="outline-text-4" id="text-org6839790">
+<blockquote>
+<p>
+The POSIX version of <span class="verbatim">id</span> takes options that control which information is
+printed. Modify the <span class="verbatim">awk</span> version (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Id-Program">Id Program</a>) to accept the same
+arguments and perform in the same way.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-org67885b6" class="outline-5">
+<h5 id="org67885b6">Answer</h5>
+<div class="outline-text-5" id="text-org67885b6">
+<div class="org-src-container">
+<pre class="src src-awk"><span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">id.awk --- implement id in awk</span>
+<span style="color: #93a1a1;">#</span>
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Requires user and group library functions</span>
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">output is:</span>
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">uid=12(foo) euid=34(bar) gid=3(baz) \</span>
+<span style="color: #93a1a1;">#             </span><span style="color: #93a1a1;">egid=5(blat) groups=9(nine),2(two),1(one)</span>
+@include <span style="color: #2aa198;">"vendor/group.awk"</span>
+@include <span style="color: #2aa198;">"vendor/passwd.awk"</span>
+@include <span style="color: #2aa198;">"vendor/getopt.awk"</span>
+
+<span style="color: #859900; font-weight: bold;">BEGIN</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">ARGC</span> &lt; <span style="color: #6c71c4;">2</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        print_uid++
+        print_egid++
+        print_groups++
+    <span style="color: #b58900;">}</span> <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #b58900;">{</span>
+        <span style="color: #859900; font-weight: bold;">while</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>c = getopt<span style="color: #859900;">(</span><span style="color: #268bd2;">ARGC</span>, <span style="color: #268bd2;">ARGV</span>, <span style="color: #2aa198;">"gGnru"</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span> != -<span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>c == <span style="color: #2aa198;">"g"</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">{</span> print_gid++ <span style="color: #6c71c4;">}</span>
+            <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>c == <span style="color: #2aa198;">"G"</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">{</span> print_groups++ <span style="color: #6c71c4;">}</span>
+            <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>c == <span style="color: #2aa198;">"u"</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">{</span> print_uid++ <span style="color: #6c71c4;">}</span>
+        <span style="color: #268bd2;">}</span>
+    <span style="color: #b58900;">}</span>
+
+    uid = <span style="color: #268bd2;">PROCINFO</span><span style="color: #b58900;">[</span><span style="color: #2aa198;">"uid"</span><span style="color: #b58900;">]</span>
+    euid = <span style="color: #268bd2;">PROCINFO</span><span style="color: #b58900;">[</span><span style="color: #2aa198;">"euid"</span><span style="color: #b58900;">]</span>
+    gid = <span style="color: #268bd2;">PROCINFO</span><span style="color: #b58900;">[</span><span style="color: #2aa198;">"gid"</span><span style="color: #b58900;">]</span>
+    egid = <span style="color: #268bd2;">PROCINFO</span><span style="color: #b58900;">[</span><span style="color: #2aa198;">"egid"</span><span style="color: #b58900;">]</span>
+
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>print_uid<span style="color: #b58900;">)</span>
+        <span style="color: #268bd2;">printf</span><span style="color: #b58900;">(</span><span style="color: #2aa198;">"uid=%d"</span>, uid<span style="color: #b58900;">)</span>
+    pw = getpwuid<span style="color: #b58900;">(</span>uid<span style="color: #b58900;">)</span>
+    pr_first_field<span style="color: #b58900;">(</span>pw<span style="color: #b58900;">)</span>
+
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>print_uid &amp;&amp; euid != uid<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #268bd2;">printf</span><span style="color: #268bd2;">(</span><span style="color: #2aa198;">" euid=%d"</span>, euid<span style="color: #268bd2;">)</span>
+        pw = getpwuid<span style="color: #268bd2;">(</span>euid<span style="color: #268bd2;">)</span>
+        pr_first_field<span style="color: #268bd2;">(</span>pw<span style="color: #268bd2;">)</span>
+    <span style="color: #b58900;">}</span>
+
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>print_gid<span style="color: #b58900;">)</span>
+        <span style="color: #268bd2;">printf</span><span style="color: #b58900;">(</span><span style="color: #2aa198;">" gid=%d"</span>, gid<span style="color: #b58900;">)</span>
+    pw = getgrgid<span style="color: #b58900;">(</span>gid<span style="color: #b58900;">)</span>
+    pr_first_field<span style="color: #b58900;">(</span>pw<span style="color: #b58900;">)</span>
+
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>print_gid &amp;&amp; egid != gid<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #268bd2;">printf</span><span style="color: #268bd2;">(</span><span style="color: #2aa198;">" egid=%d"</span>, egid<span style="color: #268bd2;">)</span>
+        pw = getgrgid<span style="color: #268bd2;">(</span>egid<span style="color: #268bd2;">)</span>
+        pr_first_field<span style="color: #268bd2;">(</span>pw<span style="color: #268bd2;">)</span>
+    <span style="color: #b58900;">}</span>
+
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>print_groups<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #268bd2;">(</span>i = <span style="color: #6c71c4;">1</span>; <span style="color: #6c71c4;">(</span><span style="color: #2aa198;">"group"</span> i<span style="color: #6c71c4;">)</span> <span style="color: #859900; font-weight: bold;">in</span> <span style="color: #268bd2;">PROCINFO</span>; i++<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>i == <span style="color: #6c71c4;">1</span><span style="color: #6c71c4;">)</span>
+                <span style="color: #268bd2;">printf</span><span style="color: #6c71c4;">(</span><span style="color: #2aa198;">" groups="</span><span style="color: #6c71c4;">)</span>
+            group = <span style="color: #268bd2;">PROCINFO</span><span style="color: #6c71c4;">[</span><span style="color: #2aa198;">"group"</span> i<span style="color: #6c71c4;">]</span>
+            <span style="color: #268bd2;">printf</span><span style="color: #6c71c4;">(</span><span style="color: #2aa198;">"%d"</span>, group<span style="color: #6c71c4;">)</span>
+            pw = getgrgid<span style="color: #6c71c4;">(</span>group<span style="color: #6c71c4;">)</span>
+            pr_first_field<span style="color: #6c71c4;">(</span>pw<span style="color: #6c71c4;">)</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span><span style="color: #2aa198;">"group"</span> <span style="color: #b58900;">(</span>i+<span style="color: #6c71c4;">1</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span> <span style="color: #859900; font-weight: bold;">in</span> <span style="color: #268bd2;">PROCINFO</span><span style="color: #6c71c4;">)</span>
+                <span style="color: #268bd2;">printf</span><span style="color: #6c71c4;">(</span><span style="color: #2aa198;">","</span><span style="color: #6c71c4;">)</span>
+        <span style="color: #268bd2;">}</span>
+    <span style="color: #b58900;">}</span>
+
+    <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">""</span>
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">pr_first_field</span><span style="color: #2aa198;">(</span>str,  a<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">{</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>str != <span style="color: #2aa198;">""</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #268bd2;">split</span><span style="color: #268bd2;">(</span>str, a, <span style="color: #2aa198;">":"</span><span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">printf</span><span style="color: #268bd2;">(</span><span style="color: #2aa198;">"(%s)"</span>, a<span style="color: #6c71c4;">[</span><span style="color: #6c71c4;">1</span><span style="color: #6c71c4;">]</span><span style="color: #268bd2;">)</span>
+    <span style="color: #b58900;">}</span>
+<span style="color: #2aa198;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgd4b09f7" class="outline-4">
+<h4 id="orgd4b09f7">#6</h4>
+<div class="outline-text-4" id="text-orgd4b09f7">
+<blockquote>
+<p>
+Why can’t the <span class="verbatim">wc.awk</span> program (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Wc-Program">Wc Program</a>) just use the value of <span class="verbatim">FNR</span> in
+<span class="verbatim">endfile()</span>? Hint: Examine the code in <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Filetrans-Function">Filetrans Function</a>.
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org9d1b574" class="outline-5">
+<h5 id="org9d1b574">Answer</h5>
+<div class="outline-text-5" id="text-org9d1b574">
+<p>
+This is a confusing question because <span class="verbatim">ENDFILE</span> <b>can</b> use <span class="verbatim">FNR</span>, but this
+question concerns an arbitrary user-defined function coincidentally named
+<span class="verbatim">endfile()</span> which cannot. <span class="verbatim">endfile()</span> is run within the body of
+<span class="verbatim">END</span>, which as the manual indicates, only occurs as the termination of
+the entire program.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6392086" class="outline-4">
+<h4 id="org6392086">#7</h4>
+<div class="outline-text-4" id="text-org6392086">
+<blockquote>
+<p>
+Manipulation of individual characters in the <span class="verbatim">translate</span> program (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Translate-Program">Translate Program</a>) 
+is painful using standard awk functions. Given that <span class="verbatim">gawk</span> can split strings
+into individual characters using "" as the separator, how might you use this
+feature to simplify the program?
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-org476dda1" class="outline-5">
+<h5 id="org476dda1">Answer</h5>
+<div class="outline-text-5" id="text-org476dda1">
+<div class="org-src-container">
+<pre class="src src-awk"><span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">stranslate</span><span style="color: #2aa198;">(</span>from, to, target, lf, lt, ltarget, t_ar, i, c, result<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">{</span>
+    <span style="color: #268bd2;">split</span><span style="color: #b58900;">(</span>from, f_a, <span style="color: #2aa198;">""</span><span style="color: #b58900;">)</span>;
+    <span style="color: #268bd2;">split</span><span style="color: #b58900;">(</span>to, t_a, <span style="color: #2aa198;">""</span><span style="color: #b58900;">)</span>;
+    <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #b58900;">(</span>i <span style="color: #859900; font-weight: bold;">in</span> f_a<span style="color: #b58900;">)</span> t_ar<span style="color: #b58900;">[</span>f_a<span style="color: #268bd2;">[</span>i<span style="color: #268bd2;">]</span><span style="color: #b58900;">]</span> = t_a<span style="color: #b58900;">[</span>i<span style="color: #b58900;">]</span>;
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>lt &lt; lf<span style="color: #b58900;">)</span>
+        <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #b58900;">(</span>; i &lt;= lf; i++<span style="color: #b58900;">)</span> t_ar<span style="color: #b58900;">[</span>f_a<span style="color: #268bd2;">[</span>i<span style="color: #268bd2;">]</span><span style="color: #b58900;">]</span> = t_a<span style="color: #b58900;">[</span><span style="color: #268bd2;">length</span><span style="color: #268bd2;">(</span>t_a<span style="color: #268bd2;">)</span><span style="color: #b58900;">]</span>
+
+    <span style="color: #268bd2;">split</span><span style="color: #b58900;">(</span>target, target_chs, <span style="color: #2aa198;">""</span><span style="color: #b58900;">)</span>
+    <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #b58900;">(</span>idx <span style="color: #859900; font-weight: bold;">in</span> target_chs<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        c = target<span style="color: #268bd2;">[</span>chs<span style="color: #268bd2;">]</span>
+        <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>c <span style="color: #859900; font-weight: bold;">in</span> t_ar<span style="color: #268bd2;">)</span> target_chs<span style="color: #268bd2;">[</span>c<span style="color: #268bd2;">]</span> = t_ar<span style="color: #268bd2;">[</span>c<span style="color: #268bd2;">]</span>
+        result = result c
+    <span style="color: #b58900;">}</span>
+
+    <span style="color: #859900; font-weight: bold;">return</span> result
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">translate</span><span style="color: #2aa198;">(</span>from, to<span style="color: #2aa198;">)</span> <span style="color: #2aa198;">{</span> <span style="color: #859900; font-weight: bold;">return</span> $0 = stranslate<span style="color: #b58900;">(</span>from, to, $0<span style="color: #b58900;">)</span> <span style="color: #2aa198;">}</span>
+
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">main program</span>
+<span style="color: #859900; font-weight: bold;">BEGIN</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">ARGC</span> &lt; <span style="color: #6c71c4;">3</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"usage: translate from to"</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+        <span style="color: #859900; font-weight: bold;">exit</span>
+    <span style="color: #b58900;">}</span>
+    FROM = <span style="color: #268bd2;">ARGV</span><span style="color: #b58900;">[</span><span style="color: #6c71c4;">1</span><span style="color: #b58900;">]</span>
+    TO = <span style="color: #268bd2;">ARGV</span><span style="color: #b58900;">[</span><span style="color: #6c71c4;">2</span><span style="color: #b58900;">]</span>
+    <span style="color: #268bd2;">ARGC</span> = <span style="color: #6c71c4;">2</span>
+    <span style="color: #268bd2;">ARGV</span><span style="color: #b58900;">[</span><span style="color: #6c71c4;">1</span><span style="color: #b58900;">]</span> = <span style="color: #2aa198;">"-"</span>
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #2aa198;">{</span>
+    translate<span style="color: #b58900;">(</span>FROM, TO<span style="color: #b58900;">)</span>
+    <span style="color: #268bd2;">print</span>
+<span style="color: #2aa198;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org95cffd9" class="outline-4">
+<h4 id="org95cffd9">#8</h4>
+<div class="outline-text-4" id="text-org95cffd9">
+<blockquote>
+<p>
+The <code>extract.awk</code> program (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Extract-Program">Extract Program</a>) was written before <span class="verbatim">gawk</span> had
+the <code>gensub()</code> function. Use it to simplify the code.
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org5ea9af2" class="outline-5">
+<h5 id="org5ea9af2">Answer</h5>
+<div class="outline-text-5" id="text-org5ea9af2">
+<div class="org-src-container">
+<pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span>    <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">IGNORECASE</span> = <span style="color: #6c71c4;">1</span> <span style="color: #2aa198;">}</span>
+
+<span style="color: #2aa198;">/^@c(omment)?[ \t]+system/</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">NF</span> &lt; <span style="color: #6c71c4;">3</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        e = <span style="color: #268bd2;">(</span><span style="color: #2aa198;">"extract: "</span> <span style="color: #268bd2;">FILENAME</span> <span style="color: #2aa198;">":"</span> <span style="color: #268bd2;">FNR</span><span style="color: #268bd2;">)</span>
+        e = <span style="color: #268bd2;">(</span>e  <span style="color: #2aa198;">": badly formed `system' line"</span><span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">print</span> e &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+        <span style="color: #859900; font-weight: bold;">next</span>
+    <span style="color: #b58900;">}</span>
+    $1 = <span style="color: #2aa198;">""</span>
+    $2 = <span style="color: #2aa198;">""</span>
+    stat = <span style="color: #268bd2;">system</span><span style="color: #b58900;">(</span>$0<span style="color: #b58900;">)</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>stat != <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        e = <span style="color: #268bd2;">(</span><span style="color: #2aa198;">"extract: "</span> <span style="color: #268bd2;">FILENAME</span> <span style="color: #2aa198;">":"</span> <span style="color: #268bd2;">FNR</span><span style="color: #268bd2;">)</span>
+        e = <span style="color: #268bd2;">(</span>e <span style="color: #2aa198;">": warning: system returned "</span> stat<span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">print</span> e &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+    <span style="color: #b58900;">}</span>
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #2aa198;">/^@c(omment)?[ \t]+file/</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">NF</span> != <span style="color: #6c71c4;">3</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        e = <span style="color: #268bd2;">(</span><span style="color: #2aa198;">"extract: "</span> <span style="color: #268bd2;">FILENAME</span> <span style="color: #2aa198;">":"</span> <span style="color: #268bd2;">FNR</span> <span style="color: #2aa198;">": badly formed `file' line"</span><span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">print</span> e &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+        <span style="color: #859900; font-weight: bold;">next</span>
+    <span style="color: #b58900;">}</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>$3 != curfile<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>curfile != <span style="color: #2aa198;">""</span><span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">close</span><span style="color: #268bd2;">(</span>curfile<span style="color: #268bd2;">)</span>
+        curfile = $3
+    <span style="color: #b58900;">}</span>
+
+    <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #b58900;">(</span>;;<span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">getline</span> line<span style="color: #6c71c4;">)</span> &lt;= <span style="color: #6c71c4;">0</span><span style="color: #268bd2;">)</span>
+            unexpected_eof<span style="color: #268bd2;">()</span>
+        <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>line ~ <span style="color: #2aa198;">/^@c(omment)?[ \t]+endfile/</span><span style="color: #268bd2;">)</span>
+            <span style="color: #859900; font-weight: bold;">break</span>
+        <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>line ~ <span style="color: #2aa198;">/^@(end[ \t]+)?group/</span><span style="color: #268bd2;">)</span>
+            <span style="color: #859900; font-weight: bold;">continue</span>
+        <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>line ~ <span style="color: #2aa198;">/^@c(omment+)?[ \t]+/</span><span style="color: #268bd2;">)</span>
+            <span style="color: #859900; font-weight: bold;">continue</span>
+        <span style="color: #268bd2;">gensub</span><span style="color: #268bd2;">(</span><span style="color: #2aa198;">/@[^@]o/</span>, <span style="color: #2aa198;">"\\1"</span>, <span style="color: #2aa198;">"g"</span>, line<span style="color: #268bd2;">)</span>
+        <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">index</span><span style="color: #6c71c4;">(</span>line, <span style="color: #2aa198;">"@"</span><span style="color: #6c71c4;">)</span> == <span style="color: #6c71c4;">0</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
+            <span style="color: #268bd2;">print</span> line &gt; curfile
+            <span style="color: #859900; font-weight: bold;">continue</span>
+        <span style="color: #268bd2;">}</span>
+        n = <span style="color: #268bd2;">split</span><span style="color: #268bd2;">(</span>line, a, <span style="color: #2aa198;">"@"</span><span style="color: #268bd2;">)</span>
+        <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">if a[1] == "", means leading @,</span>
+        <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">don't add one back in.</span>
+        <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #268bd2;">(</span>i = <span style="color: #6c71c4;">2</span>; i &lt;= n; i++<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
+            <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>a<span style="color: #859900;">[</span>i<span style="color: #859900;">]</span> == <span style="color: #2aa198;">""</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">{</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">was an @@</span>
+                a<span style="color: #859900;">[</span>i<span style="color: #859900;">]</span> = <span style="color: #2aa198;">"@"</span>
+                <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #859900;">(</span>a<span style="color: #b58900;">[</span>i+<span style="color: #6c71c4;">1</span><span style="color: #b58900;">]</span> == <span style="color: #2aa198;">""</span><span style="color: #859900;">)</span>
+                    i++
+            <span style="color: #6c71c4;">}</span>
+        <span style="color: #268bd2;">}</span>
+        <span style="color: #268bd2;">print</span> join<span style="color: #268bd2;">(</span>a, <span style="color: #6c71c4;">1</span>, n, <span style="color: #268bd2;">SUBSEP</span><span style="color: #268bd2;">)</span> &gt; curfile
+    <span style="color: #b58900;">}</span>
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">join</span><span style="color: #2aa198;">(</span>array, start, end, sep, result, i<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">{</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>sep == <span style="color: #2aa198;">""</span><span style="color: #b58900;">)</span>
+       sep = <span style="color: #2aa198;">" "</span>
+    <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>sep == <span style="color: #268bd2;">SUBSEP</span><span style="color: #b58900;">)</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">magic value</span>
+       sep = <span style="color: #2aa198;">""</span>
+    result = array<span style="color: #b58900;">[</span>start<span style="color: #b58900;">]</span>
+    <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #b58900;">(</span>i = start + <span style="color: #6c71c4;">1</span>; i &lt;= end; i++<span style="color: #b58900;">)</span>
+        result = result sep array<span style="color: #b58900;">[</span>i<span style="color: #b58900;">]</span>
+    <span style="color: #859900; font-weight: bold;">return</span> result
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">unexpected_eof</span><span style="color: #2aa198;">()</span>
+<span style="color: #2aa198;">{</span>
+    <span style="color: #268bd2;">printf</span><span style="color: #b58900;">(</span><span style="color: #2aa198;">"extract: %s:%d: unexpected EOF or error\n"</span>,
+                     <span style="color: #268bd2;">FILENAME</span>, <span style="color: #268bd2;">FNR</span><span style="color: #b58900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+    <span style="color: #859900; font-weight: bold;">exit</span> <span style="color: #6c71c4;">1</span>
+<span style="color: #2aa198;">}</span>
+
+<span style="color: #859900; font-weight: bold;">END</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>curfile<span style="color: #b58900;">)</span> <span style="color: #268bd2;">close</span><span style="color: #b58900;">(</span>curfile<span style="color: #b58900;">)</span>
+    <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">to accommodate literate programming, print out our file</span>
+    <span style="color: #859900; font-weight: bold;">while</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">getline</span> tmp &lt; curfile<span style="color: #b58900;">)</span> <span style="color: #268bd2;">print</span> tmp
+<span style="color: #2aa198;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
