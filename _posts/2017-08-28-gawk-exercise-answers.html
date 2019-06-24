@@ -2,6 +2,10 @@
 layout: page
 title: GNU Awk's Manual Exercises
 category: note
+tags:
+  - awk
+  - exercises
+  - solutions
 ---
 
 <section id="outline-container-org5948d6f" class="outline-2">
@@ -33,9 +37,9 @@ submit a pull request!</a>
 <h3 id="orge63a750">Input</h3>
 <div class="outline-text-3" id="text-orge63a750">
 </div>
-<div id="outline-container-orga650288" class="outline-4">
-<h4 id="orga650288">#1</h4>
-<div class="outline-text-4" id="text-orga650288">
+<div id="outline-container-orgcbf8a71" class="outline-4">
+<h4 id="orgcbf8a71">#1</h4>
+<div class="outline-text-4" id="text-orgcbf8a71">
 <blockquote>
 <p>
 Using the <span class="verbatim">FIELDWIDTHS</span> variable (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Constant-Size">Constant Size</a>), write a program to read
@@ -45,9 +49,9 @@ total votes, including abstentions, for each item.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org87fb760" class="outline-5">
-<h5 id="org87fb760">Answer</h5>
-<div class="outline-text-5" id="text-org87fb760">
+<div id="outline-container-org8b149b8" class="outline-5">
+<h5 id="org8b149b8">Answer</h5>
+<div class="outline-text-5" id="text-org8b149b8">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span>  <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">FIELDWIDTHS</span> = <span style="color: #2aa198;">"18 9 15"</span> <span style="color: #2aa198;">}</span>
 
@@ -68,9 +72,9 @@ total votes, including abstentions, for each item.
 </div>
 </div>
 
-<div id="outline-container-orgab05907" class="outline-4">
-<h4 id="orgab05907">#2</h4>
-<div class="outline-text-4" id="text-orgab05907">
+<div id="outline-container-orgef9fa92" class="outline-4">
+<h4 id="orgef9fa92">#2</h4>
+<div class="outline-text-4" id="text-orgef9fa92">
 <blockquote>
 <p>
 Plain Getline, presented a program to remove C-style comments (‘/* … */’) from
@@ -81,9 +85,9 @@ simple change. What is it?
 </blockquote>
 </div>
 
-<div id="outline-container-orga695b68" class="outline-5">
-<h5 id="orga695b68">Answer</h5>
-<div class="outline-text-5" id="text-orga695b68">
+<div id="outline-container-org9e27a95" class="outline-5">
+<h5 id="org9e27a95">Answer</h5>
+<div class="outline-text-5" id="text-org9e27a95">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #2aa198;">{</span>
     <span style="color: #859900; font-weight: bold;">while</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>i = <span style="color: #268bd2;">index</span><span style="color: #6c71c4;">(</span>$0, <span style="color: #2aa198;">"/*"</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span> != <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
@@ -124,9 +128,9 @@ simple change. What is it?
 <h3 id="org0ce0e5b">Output</h3>
 <div class="outline-text-3" id="text-org0ce0e5b">
 </div>
-<div id="outline-container-org8e30e59" class="outline-4">
-<h4 id="org8e30e59">#1</h4>
-<div class="outline-text-4" id="text-org8e30e59">
+<div id="outline-container-org51a1067" class="outline-4">
+<h4 id="org51a1067">#1</h4>
+<div class="outline-text-4" id="text-org51a1067">
 <blockquote>
 <p>
 Rewrite the program:
@@ -143,9 +147,9 @@ from Output Separators, by using a new value of OFS.
 </blockquote>
 </div>
 
-<div id="outline-container-org0b06155" class="outline-5">
-<h5 id="org0b06155">Answer</h5>
-<div class="outline-text-5" id="text-org0b06155">
+<div id="outline-container-org3c1871f" class="outline-5">
+<h5 id="org3c1871f">Answer</h5>
+<div class="outline-text-5" id="text-org3c1871f">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span> <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"Month Crates"</span>; <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"----- ------"</span>; <span style="color: #268bd2;">OFS</span>=<span style="color: #2aa198;">"     "</span> <span style="color: #2aa198;">}</span>
 <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> $1, $2 <span style="color: #2aa198;">}</span>
@@ -159,9 +163,9 @@ from Output Separators, by using a new value of OFS.
 <h3 id="org010ceb5">Library</h3>
 <div class="outline-text-3" id="text-org010ceb5">
 </div>
-<div id="outline-container-orge84b621" class="outline-4">
-<h4 id="orge84b621">#1</h4>
-<div class="outline-text-4" id="text-orge84b621">
+<div id="outline-container-org953279e" class="outline-4">
+<h4 id="org953279e">#1</h4>
+<div class="outline-text-4" id="text-org953279e">
 <blockquote>
 <p>
 In Empty Files, we presented the <code>zerofile.awk</code> program, which made use of gawk’s
@@ -171,9 +175,9 @@ how?
 </blockquote>
 </div>
 
-<div id="outline-container-orge4a569f" class="outline-5">
-<h5 id="orge4a569f">Answer</h5>
-<div class="outline-text-5" id="text-orge4a569f">
+<div id="outline-container-orgfffcfb3" class="outline-5">
+<h5 id="orgfffcfb3">Answer</h5>
+<div class="outline-text-5" id="text-orgfffcfb3">
 <p>
 Use <code>ENDFILE</code> to run a function at the end of each file. You could match
 <code>argc~/~argv</code> as well if you wanted to determine the index of the filename
@@ -187,9 +191,9 @@ argument.
 </div>
 </div>
 </div>
-<div id="outline-container-orgb3f39c2" class="outline-4">
-<h4 id="orgb3f39c2">#2</h4>
-<div class="outline-text-4" id="text-orgb3f39c2">
+<div id="outline-container-org62b2a55" class="outline-4">
+<h4 id="org62b2a55">#2</h4>
+<div class="outline-text-4" id="text-org62b2a55">
 <blockquote>
 <p>
 As a related challenge, revise that code to handle the case where an
@@ -212,18 +216,18 @@ intervening value in <code>ARGV</code> is a variable assignment.
 <h3 id="org6342af4">Programs</h3>
 <div class="outline-text-3" id="text-org6342af4">
 </div>
-<div id="outline-container-org4c118cc" class="outline-4">
-<h4 id="org4c118cc">#1</h4>
-<div class="outline-text-4" id="text-org4c118cc">
+<div id="outline-container-orga91a9f6" class="outline-4">
+<h4 id="orga91a9f6">#1</h4>
+<div class="outline-text-4" id="text-orga91a9f6">
 <blockquote>
 <p>
 Rewrite cut.awk (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Cut-Program">Cut Program</a>) using <code>split()</code> with "" as the separator.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org0f78261" class="outline-5">
-<h5 id="org0f78261">Answer</h5>
-<div class="outline-text-5" id="text-org0f78261">
+<div id="outline-container-orgb4e20db" class="outline-5">
+<h5 id="orgb4e20db">Answer</h5>
+<div class="outline-text-5" id="text-orgb4e20db">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">cut.awk --- implement cut in awk</span>
 
@@ -371,9 +375,9 @@ Rewrite cut.awk (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html
 </div>
 </div>
 
-<div id="outline-container-org4584051" class="outline-4">
-<h4 id="org4584051">#2</h4>
-<div class="outline-text-4" id="text-org4584051">
+<div id="outline-container-orgbba4ce9" class="outline-4">
+<h4 id="orgbba4ce9">#2</h4>
+<div class="outline-text-4" id="text-orgbba4ce9">
 <blockquote>
 <p>
 In <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Egrep-Program">Egrep Program</a>, we mentioned that <code>‘egrep -i’</code> could be simulated in
@@ -384,9 +388,9 @@ problem.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org384e31f" class="outline-5">
-<h5 id="org384e31f">Answer</h5>
-<div class="outline-text-5" id="text-org384e31f">
+<div id="outline-container-orgb588e2d" class="outline-5">
+<h5 id="orgb588e2d">Answer</h5>
+<div class="outline-text-5" id="text-orgb588e2d">
 <p>
 Simply check the results of <span class="verbatim">tolower()</span> without assigning output.
 </p>
@@ -406,9 +410,9 @@ arguments and perform in the same way.
 </blockquote>
 </div>
 
-<div id="outline-container-org67885b6" class="outline-5">
-<h5 id="org67885b6">Answer</h5>
-<div class="outline-text-5" id="text-org67885b6">
+<div id="outline-container-org586baff" class="outline-5">
+<h5 id="org586baff">Answer</h5>
+<div class="outline-text-5" id="text-org586baff">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">id.awk --- implement id in awk</span>
 <span style="color: #93a1a1;">#</span>
@@ -501,9 +505,9 @@ Why can’t the <span class="verbatim">wc.awk</span> program (see <a href="https
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org9d1b574" class="outline-5">
-<h5 id="org9d1b574">Answer</h5>
-<div class="outline-text-5" id="text-org9d1b574">
+<div id="outline-container-org36bf2fe" class="outline-5">
+<h5 id="org36bf2fe">Answer</h5>
+<div class="outline-text-5" id="text-org36bf2fe">
 <p>
 This is a confusing question because <span class="verbatim">ENDFILE</span> <b>can</b> use <span class="verbatim">FNR</span>, but this
 question concerns an arbitrary user-defined function coincidentally named
@@ -528,9 +532,9 @@ feature to simplify the program?
 </blockquote>
 </div>
 
-<div id="outline-container-org476dda1" class="outline-5">
-<h5 id="org476dda1">Answer</h5>
-<div class="outline-text-5" id="text-org476dda1">
+<div id="outline-container-org962333d" class="outline-5">
+<h5 id="org962333d">Answer</h5>
+<div class="outline-text-5" id="text-org962333d">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">stranslate</span><span style="color: #2aa198;">(</span>from, to, target, lf, lt, ltarget, t_ar, i, c, result<span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">{</span>
@@ -584,9 +588,9 @@ the <code>gensub()</code> function. Use it to simplify the code.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org5ea9af2" class="outline-5">
-<h5 id="org5ea9af2">Answer</h5>
-<div class="outline-text-5" id="text-org5ea9af2">
+<div id="outline-container-org4b7a1cd" class="outline-5">
+<h5 id="org4b7a1cd">Answer</h5>
+<div class="outline-text-5" id="text-org4b7a1cd">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span>    <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">IGNORECASE</span> = <span style="color: #6c71c4;">1</span> <span style="color: #2aa198;">}</span>
 
