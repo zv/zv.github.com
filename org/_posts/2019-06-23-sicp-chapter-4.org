@@ -1445,18 +1445,17 @@ tags:
    girl should make one true statement and one untrue one.  The
    following are the relevant passages from their letters:
 
-* Betty: "Kitty was second in the examination.  I was only
-  third."
+   - Betty: "Kitty was second in the examination.  I was only
+     third."
 
-* Ethel: "You'll be glad to hear that I was on top.  Joan was
-  second."
+   - Ethel: "You'll be glad to hear that I was on top.  Joan was
+     second."
 
-* Joan: "I was third, and poor old Ethel was bottom."
+   - Joan: "I was third, and poor old Ethel was bottom."
 
-* Kitty: "I came out second.  Mary was only fourth."
+   - Kitty: "I came out second.  Mary was only fourth."
 
-* Mary: "I was fourth.  Top place was taken by Betty."
-
+   - Mary: "I was fourth.  Top place was taken by Betty."
 
   What in fact was the order in which the five girls were placed? 
   #+end_quote
@@ -1536,9 +1535,8 @@ tags:
    #+end_quote
 *** Answer
     #+begin_src scheme
-
-
-      #| ╔═════════════╦════════════╗
+      #| 
+      ╔═════════════╦════════════╗
       ║ Individual  ║ Yacht      ║
       ╠═════════════╬════════════╣
       ║ Downing     ║ Melissa    ║
@@ -1559,7 +1557,6 @@ tags:
       ╚═════════════╩═══════════════════════════╝
       |#
 
-      ;; i have ripped this answer (with great shame).
       (append! primitive-procedures `((eq? ,eq?)))
       (append! primitive-procedures `((cadr ,cadr)))
       (append! primitive-procedures `((caddr ,caddr)))
@@ -1993,7 +1990,7 @@ Complete the following definition of analyze-require.
 (succeed 'ok fail2)))
 fail)))) 
    #+end_quote
-   *** Answer
+*** Answer
    #+begin_src scheme
      (define (require-predicate exp)
        (cadr exp))
@@ -2007,70 +2004,6 @@ fail))))
                   (fail)
                   (succeed 'ok fail2))))
            fail)))
-   #+end_src
-   #| 4.4 Logic Programming |#
-
-   ;; Install our logical evaluator
-   (include "/home/zv/z/practice/sicp/evaluator/query-evaluator.scm")
-   (define (query/initialize-with rules-and-assertions)
-   (define (deal-out r-and-a rules assertions)
-   (cond [(null? r-and-a)
-   (set! THE-ASSERTIONS (list->stream assertions))
-   (set! THE-RULES (list->stream rules))
-   'done]
-   [else
-   (let ((s (query-syntax-process (car r-and-a))))
-   (cond ((rule? s)
-   (store-rule-in-index s)
-   (deal-out (cdr r-and-a)
-   (cons s rules)
-   assertions))
-   (else
-   (store-assertion-in-index s)
-   (deal-out (cdr r-and-a)
-   rules
-   (cons s assertions)))))]))
-   (deal-out rules-and-assertions '() '()))
-
-   (define (query/infuse expr)
-   (let ((s (query-syntax-process expr)))
-   (cond [(rule? s)
-   (store-rule-in-index s)
-   (set! THE-RULES (stream-cons s THE-RULES))]
-   [else
-   (store-assertion-in-index s)
-   (set! THE-ASSERTIONS
-   (stream-cons s THE-ASSERTIONS))])))
-
-   (define (query/eval expr)
-   "A wrapper around the details of the 'real' evaluator so we can directly
-   grab results"
-   (let ((q (query-syntax-process expr)))
-   (stream->list
-   (stream-map
-   (lambda (frame)
-   (instantiate
-   q
-   frame
-   (λ (v f) (contract-question-mark v))))
-   (qeval q (singleton-stream '()))))))
-
-   ;; Include & initialize our query database with microshaft employees
-   (include "/home/zv/z/practice/sicp/vendor/microshaft.scm")
-   (query/initialize-with microshaft-data-base)
-
-   ;; Fulfill an infinite loop (married Mickey ?who)
-   (query/infuse '(married Minnie Mickey))
-   (query/infuse '(rule (married ?x ?y) (married ?y ?x)))
-
-   (map query/infuse
-   '((rule (append-to-form () ?y ?y))
-   (rule (append-to-form (?u . ?v) ?y (?u . ?z))
-   (append-to-form ?v ?y ?z))))
-
-   ;; And install our driver for the query loop
-
-   (install-driver-loop 'qeval query-driver-loop)
    #+end_src
 ** Exercise 4.55
    #+begin_quote

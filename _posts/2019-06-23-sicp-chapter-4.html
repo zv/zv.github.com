@@ -48,9 +48,9 @@ version of list-of-values that evaluates operands from right to left.
 </blockquote>
 </div>
 
-<div id="outline-container-org8d6be2e" class="outline-4">
-<h4 id="org8d6be2e">Answer</h4>
-<div class="outline-text-4" id="text-org8d6be2e">
+<div id="outline-container-orgaaec07b" class="outline-4">
+<h4 id="orgaaec07b">Answer</h4>
+<div class="outline-text-4" id="text-orgaaec07b">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">rtl-list-of-values</span> exps env<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>no-operands? exps<span style="color: #268bd2;">)</span> '<span style="color: #268bd2;">()</span>
@@ -84,9 +84,9 @@ type of an expression.
 </blockquote>
 </div>
 
-<div id="outline-container-orgf6ff503" class="outline-4">
-<h4 id="orgf6ff503">Answer</h4>
-<div class="outline-text-4" id="text-orgf6ff503">
+<div id="outline-container-orgf1b1618" class="outline-4">
+<h4 id="orgf1b1618">Answer</h4>
+<div class="outline-text-4" id="text-orgf1b1618">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Answer:</span>
@@ -119,9 +119,9 @@ is appropriate for the syntax implemented in this section.)
 </blockquote>
 </div>
 
-<div id="outline-container-orga7f9d4f" class="outline-4">
-<h4 id="orga7f9d4f">Answer</h4>
-<div class="outline-text-4" id="text-orga7f9d4f">
+<div id="outline-container-org1fd6c69" class="outline-4">
+<h4 id="org1fd6c69">Answer</h4>
+<div class="outline-text-4" id="text-org1fd6c69">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define-class</span> <span style="color: #b58900;">&lt;dispatch-table&gt;</span> <span style="color: #b58900;">()</span>
   <span style="color: #b58900;">(</span>method-table <span style="color: #657b83; font-weight: bold;">#:init-value</span> <span style="color: #268bd2;">(</span>make-hash-table<span style="color: #268bd2;">)</span>
@@ -210,9 +210,9 @@ Alternatively, show how to implement and and or as derived expressions.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org589f9b1" class="outline-4">
-<h4 id="org589f9b1">Answer</h4>
-<div class="outline-text-4" id="text-org589f9b1">
+<div id="outline-container-orgacb8e3e" class="outline-4">
+<h4 id="orgacb8e3e">Answer</h4>
+<div class="outline-text-4" id="text-orgacb8e3e">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">disjunct</span> exp<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>null? <span style="color: #6c71c4;">(</span>cdr exp<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span> 'false
@@ -271,9 +271,9 @@ Modify the handling of cond so that it supports this extended syntax.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org4320375" class="outline-4">
-<h4 id="org4320375">Answer</h4>
-<div class="outline-text-4" id="text-org4320375">
+<div id="outline-container-orgf7475b9" class="outline-4">
+<h4 id="orgf7475b9">Answer</h4>
+<div class="outline-text-4" id="text-orgf7475b9">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">cond-is-pipe?</span> exp<span style="color: #b58900;">)</span>
@@ -337,9 +337,9 @@ appropriate clause to eval to handle let expressions.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org3a6557b" class="outline-4">
-<h4 id="org3a6557b">Answer</h4>
-<div class="outline-text-4" id="text-org3a6557b">
+<div id="outline-container-org7ec0985" class="outline-4">
+<h4 id="org7ec0985">Answer</h4>
+<div class="outline-text-4" id="text-org7ec0985">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span>generate-accessors
@@ -413,9 +413,9 @@ or must we explicitly expand `let*' in terms of non-derived expressions?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgeaf8c36" class="outline-4">
-<h4 id="orgeaf8c36">Answer</h4>
-<div class="outline-text-4" id="text-orgeaf8c36">
+<div id="outline-container-org3bef997" class="outline-4">
+<h4 id="org3bef997">Answer</h4>
+<div class="outline-text-4" id="text-org3bef997">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;;; </span><span style="color: #93a1a1;">There is nothing preventing `let*' from being defined in terms of existing</span>
@@ -488,9 +488,9 @@ Modify let-&gt;combination of Exercise 4.6 to also support named let.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org85eb8c9" class="outline-4">
-<h4 id="org85eb8c9">Answer</h4>
-<div class="outline-text-4" id="text-org85eb8c9">
+<div id="outline-container-org7bc464d" class="outline-4">
+<h4 id="org7bc464d">Answer</h4>
+<div class="outline-text-4" id="text-org7bc464d">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">named-let?</span> exp<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>symbol? <span style="color: #268bd2;">(</span>cadr exp<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span>generate-accessors
@@ -538,9 +538,9 @@ show how to implement them as derived expressions.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org8732fa1" class="outline-4">
-<h4 id="org8732fa1">Answer</h4>
-<div class="outline-text-4" id="text-org8732fa1">
+<div id="outline-container-org459886b" class="outline-4">
+<h4 id="org459886b">Answer</h4>
+<div class="outline-text-4" id="text-org459886b">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span>generate-accessors
  <span style="color: #b58900;">(</span><span style="color: #268bd2;">[</span>while-cond cadr<span style="color: #268bd2;">]</span>
@@ -627,9 +627,9 @@ choices you make.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgf01f120" class="outline-4">
-<h4 id="orgf01f120">Answer</h4>
-<div class="outline-text-4" id="text-orgf01f120">
+<div id="outline-container-orgd6ddcc6" class="outline-4">
+<h4 id="orgd6ddcc6">Answer</h4>
+<div class="outline-text-4" id="text-orgd6ddcc6">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Spec:</span>
@@ -662,9 +662,9 @@ terribly wrong. Explain why Louis’s map fails even though Eva’s works.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org88dc4ab" class="outline-4">
-<h4 id="org88dc4ab">Answer</h4>
-<div class="outline-text-4" id="text-org88dc4ab">
+<div id="outline-container-orgd396a1d" class="outline-4">
+<h4 id="orgd396a1d">Answer</h4>
+<div class="outline-text-4" id="text-orgd396a1d">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solution:</span>
@@ -708,9 +708,9 @@ halts?.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgf98291a" class="outline-4">
-<h4 id="orgf98291a">Answer</h4>
-<div class="outline-text-4" id="text-orgf98291a">
+<div id="outline-container-orgf880cd8" class="outline-4">
+<h4 id="orgf880cd8">Answer</h4>
+<div class="outline-text-4" id="text-orgf880cd8">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| - - - - - Solution:</span>
@@ -758,9 +758,9 @@ procedure-body (see 4.1.3). Which place is better? Why?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org9794fc6" class="outline-4">
-<h4 id="org9794fc6">Answer</h4>
-<div class="outline-text-4" id="text-org9794fc6">
+<div id="outline-container-org04ffe11" class="outline-4">
+<h4 id="org04ffe11">Answer</h4>
+<div class="outline-text-4" id="text-org04ffe11">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">1. Solution</span>
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">simultaneous/lookup-variable-value</span> var env<span style="color: #b58900;">)</span>
@@ -860,9 +860,9 @@ this exercise? What if they are scanned out as shown in the text? Explain.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org3f372c0" class="outline-4">
-<h4 id="org3f372c0">Answer</h4>
-<div class="outline-text-4" id="text-org3f372c0">
+<div id="outline-container-orgd149d1b" class="outline-4">
+<h4 id="orgd149d1b">Answer</h4>
+<div class="outline-text-4" id="text-orgd149d1b">
 <div class="org-src-container">
 <pre class="src src-scheme">
                                         <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">- - - - - - Solution:</span>
@@ -913,9 +913,9 @@ behave as Eva prefers?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgc79ec85" class="outline-4">
-<h4 id="orgc79ec85">Answer</h4>
-<div class="outline-text-4" id="text-orgc79ec85">
+<div id="outline-container-orgaeb9399" class="outline-4">
+<h4 id="orgaeb9399">Answer</h4>
+<div class="outline-text-4" id="text-orgaeb9399">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solution</span>
@@ -1008,9 +1008,9 @@ letrec in the definition of f.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org8492ca3" class="outline-4">
-<h4 id="org8492ca3">Answer</h4>
-<div class="outline-text-4" id="text-org8492ca3">
+<div id="outline-container-org1e8a13f" class="outline-4">
+<h4 id="org1e8a13f">Answer</h4>
+<div class="outline-text-4" id="text-org1e8a13f">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">1.</span>
@@ -1174,9 +1174,9 @@ Extend the evaluator in this section to support the special form let. (See Exerc
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org7f71278" class="outline-4">
-<h4 id="org7f71278">Answer</h4>
-<div class="outline-text-4" id="text-org7f71278">
+<div id="outline-container-org28e85c0" class="outline-4">
+<h4 id="org28e85c0">Answer</h4>
+<div class="outline-text-4" id="text-org28e85c0">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span>install-analyze-procedure `<span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> ,<span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>exp<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>analyze <span style="color: #859900;">(</span>let-&gt;combination exp<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
@@ -1205,9 +1205,9 @@ in a normal-order language?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org457bf92" class="outline-4">
-<h4 id="org457bf92">Answer</h4>
-<div class="outline-text-4" id="text-org457bf92">
+<div id="outline-container-org5df3d10" class="outline-4">
+<h4 id="org5df3d10">Answer</h4>
+<div class="outline-text-4" id="text-org5df3d10">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Solution:</span>
@@ -1238,9 +1238,9 @@ form.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org25e75b2" class="outline-4">
-<h4 id="org25e75b2">Answer</h4>
-<div class="outline-text-4" id="text-org25e75b2">
+<div id="outline-container-orgc7c249e" class="outline-4">
+<h4 id="orgc7c249e">Answer</h4>
+<div class="outline-text-4" id="text-orgc7c249e">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">zv-unless</span> condition consequent alternative<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> condition alternative
@@ -1351,9 +1351,9 @@ count
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org4f35fd6" class="outline-4">
-<h4 id="org4f35fd6">Answer</h4>
-<div class="outline-text-4" id="text-org4f35fd6">
+<div id="outline-container-org1afa179" class="outline-4">
+<h4 id="org1afa179">Answer</h4>
+<div class="outline-text-4" id="text-org1afa179">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
@@ -1372,9 +1372,9 @@ demonstrates the need for this forcing.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgd2c83ef" class="outline-4">
-<h4 id="orgd2c83ef">Answer</h4>
-<div class="outline-text-4" id="text-orgd2c83ef">
+<div id="outline-container-orgc7d2d05" class="outline-4">
+<h4 id="orgc7d2d05">Answer</h4>
+<div class="outline-text-4" id="text-orgc7d2d05">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Solution</span>
@@ -1425,9 +1425,9 @@ Give the responses both when the evaluator memoizes and when it does not.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org9e21ec0" class="outline-4">
-<h4 id="org9e21ec0">Answer</h4>
-<div class="outline-text-4" id="text-org9e21ec0">
+<div id="outline-container-orgedde14d" class="outline-4">
+<h4 id="orgedde14d">Answer</h4>
+<div class="outline-text-4" id="text-orgedde14d">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Solutions</span>
@@ -1578,9 +1578,9 @@ like Cy’s approach, the approach in the text, or some other approach?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org6d732f8" class="outline-4">
-<h4 id="org6d732f8">Answer</h4>
-<div class="outline-text-4" id="text-org6d732f8">
+<div id="outline-container-org7f23daf" class="outline-4">
+<h4 id="org7f23daf">Answer</h4>
+<div class="outline-text-4" id="text-org7f23daf">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solutions</span>
@@ -1636,9 +1636,9 @@ for forcing to memoize or not, as appropriate.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org0a71ea4" class="outline-4">
-<h4 id="org0a71ea4">Answer</h4>
-<div class="outline-text-4" id="text-org0a71ea4">
+<div id="outline-container-org7338db6" class="outline-4">
+<h4 id="org7338db6">Answer</h4>
+<div class="outline-text-4" id="text-org7338db6">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">perpetual-thunk?</span> obj<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>tagged-list? obj 'always-thunk<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
@@ -1730,9 +1730,9 @@ that i ≤ j and i 2 + j 2 = k 2 , as follows:
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgbec2c63" class="outline-4">
-<h4 id="orgbec2c63">Answer</h4>
-<div class="outline-text-4" id="text-orgbec2c63">
+<div id="outline-container-org2066674" class="outline-4">
+<h4 id="org2066674">Answer</h4>
+<div class="outline-text-4" id="text-org2066674">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span>amb/infuse
@@ -1761,9 +1761,9 @@ generate all Pythagorean triples.)
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgb4c022d" class="outline-4">
-<h4 id="orgb4c022d">Answer</h4>
-<div class="outline-text-4" id="text-orgb4c022d">
+<div id="outline-container-org6d894f5" class="outline-4">
+<h4 id="org6d894f5">Answer</h4>
+<div class="outline-text-4" id="text-org6d894f5">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span>append! primitive-procedures `<span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>sqrt ,sqrt<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
@@ -1808,9 +1808,9 @@ Consider the number of possibilities that must be explored.)
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org15f6f28" class="outline-4">
-<h4 id="org15f6f28">Answer</h4>
-<div class="outline-text-4" id="text-org15f6f28">
+<div id="outline-container-org4eac911" class="outline-4">
+<h4 id="org4eac911">Answer</h4>
+<div class="outline-text-4" id="text-org4eac911">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">It seems to be -- Ben's method only uses N^2 space, while the .35 method uses</span>
@@ -1832,9 +1832,9 @@ modified puzzle?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgfad6c1f" class="outline-4">
-<h4 id="orgfad6c1f">Answer</h4>
-<div class="outline-text-4" id="text-orgfad6c1f">
+<div id="outline-container-orga09ba6a" class="outline-4">
+<h4 id="orga09ba6a">Answer</h4>
+<div class="outline-text-4" id="text-orga09ba6a">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solution</span>
@@ -1882,9 +1882,9 @@ restrictions. If you think it does not matter, argue your case.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org3d41c2e" class="outline-4">
-<h4 id="org3d41c2e">Answer</h4>
-<div class="outline-text-4" id="text-org3d41c2e">
+<div id="outline-container-orgb9a3b8b" class="outline-4">
+<h4 id="orgb9a3b8b">Answer</h4>
+<div class="outline-text-4" id="text-orgb9a3b8b">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solution:</span>
@@ -1915,9 +1915,9 @@ of `let' expressions.)
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org3e8a83f" class="outline-4">
-<h4 id="org3e8a83f">Answer</h4>
-<div class="outline-text-4" id="text-org3e8a83f">
+<div id="outline-container-orgfcdc5d6" class="outline-4">
+<h4 id="orgfcdc5d6">Answer</h4>
+<div class="outline-text-4" id="text-orgfcdc5d6">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
@@ -1934,9 +1934,9 @@ Write an ordinary Scheme program to solve the multiple dwelling puzzle.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org8613542" class="outline-4">
-<h4 id="org8613542">Answer</h4>
-<div class="outline-text-4" id="text-org8613542">
+<div id="outline-container-orgb483fc7" class="outline-4">
+<h4 id="orgb483fc7">Answer</h4>
+<div class="outline-text-4" id="text-orgb483fc7">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">possible-floors</span> '<span style="color: #b58900;">(</span><span style="color: #268bd2;">[</span>baker <span style="color: #6c71c4;">(</span><span style="color: #6c71c4;">1</span> <span style="color: #6c71c4;">2</span> <span style="color: #6c71c4;">3</span> <span style="color: #6c71c4;">4</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">]</span>
@@ -1985,8 +1985,8 @@ Write an ordinary Scheme program to solve the multiple dwelling puzzle.
 <div id="outline-container-org946cf6d" class="outline-3">
 <h3 id="org946cf6d">Exercise 4.42</h3>
 <div class="outline-text-3" id="text-org946cf6d">
+<blockquote>
 <p>
-#+begin<sub>quote</sub>
 Solve the following "Liars" puzzle (from Phillips 1934):
 </p>
 
@@ -1997,47 +1997,29 @@ therefore agreed that, in writing home about the examination, each
 girl should make one true statement and one untrue one.  The
 following are the relevant passages from their letters:
 </p>
-</div>
-</div>
-</section>
 
-<section id="outline-container-org94c3165" class="outline-2">
-<h2 id="org94c3165">Betty: "Kitty was second in the examination.  I was only</h2>
-<div class="outline-text-2" id="text-org94c3165">
-<p>
-third."
-</p>
-</div>
-</section>
+<ul class="org-ul">
+<li>Betty: "Kitty was second in the examination.  I was only
+third."</li>
 
-<section id="outline-container-orga8cd665" class="outline-2">
-<h2 id="orga8cd665">Ethel: "You'll be glad to hear that I was on top.  Joan was</h2>
-<div class="outline-text-2" id="text-orga8cd665">
-<p>
-second."
-</p>
-</div>
-</section>
+<li>Ethel: "You'll be glad to hear that I was on top.  Joan was
+second."</li>
 
-<section id="outline-container-org54a7ebf" class="outline-2">
-<h2 id="org54a7ebf">Joan: "I was third, and poor old Ethel was bottom."</h2>
-</section>
+<li>Joan: "I was third, and poor old Ethel was bottom."</li>
 
-<section id="outline-container-orga5a54ec" class="outline-2">
-<h2 id="orga5a54ec">Kitty: "I came out second.  Mary was only fourth."</h2>
-</section>
+<li>Kitty: "I came out second.  Mary was only fourth."</li>
 
-<section id="outline-container-orgd17dace" class="outline-2">
-<h2 id="orgd17dace">Mary: "I was fourth.  Top place was taken by Betty."</h2>
-<div class="outline-text-2" id="text-orgd17dace">
+<li>Mary: "I was fourth.  Top place was taken by Betty."</li>
+</ul>
+
 <p>
 What in fact was the order in which the five girls were placed? 
-#+end<sub>quote</sub>
 </p>
+</blockquote>
 </div>
-<div id="outline-container-org6cb0a23" class="outline-4">
-<h4 id="org6cb0a23">Answer</h4>
-<div class="outline-text-4" id="text-org6cb0a23">
+<div id="outline-container-orge71758d" class="outline-4">
+<h4 id="orge71758d">Answer</h4>
+<div class="outline-text-4" id="text-orge71758d">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span>append! primitive-procedures `<span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">and</span> ,<span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #859900;">(</span>a b<span style="color: #859900;">)</span> <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">and</span> a b<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
@@ -2099,6 +2081,7 @@ What in fact was the order in which the five girls were placed?
 </div>
 </div>
 </div>
+</div>
 <div id="outline-container-orgfefc54e" class="outline-3">
 <h3 id="orgfefc54e">Exercise 4.43</h3>
 <div class="outline-text-3" id="text-orgfefc54e">
@@ -2123,13 +2106,12 @@ solutions there are if we are not told that Mary Ann's last name is Moore.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org88c244c" class="outline-4">
-<h4 id="org88c244c">Answer</h4>
-<div class="outline-text-4" id="text-org88c244c">
+<div id="outline-container-org33b9882" class="outline-4">
+<h4 id="org33b9882">Answer</h4>
+<div class="outline-text-4" id="text-org33b9882">
 <div class="org-src-container">
-<pre class="src src-scheme">
-
-<span style="color: #93a1a1;">#| &#9556;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9574;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9559;</span>
+<pre class="src src-scheme"><span style="color: #93a1a1;">#| </span>
+<span style="color: #93a1a1;">&#9556;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9574;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9559;</span>
 <span style="color: #93a1a1;">&#9553; Individual  &#9553; Yacht      &#9553;</span>
 <span style="color: #93a1a1;">&#9568;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9580;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9571;</span>
 <span style="color: #93a1a1;">&#9553; Downing     &#9553; Melissa    &#9553;</span>
@@ -2150,7 +2132,6 @@ solutions there are if we are not told that Mary Ann's last name is Moore.
 <span style="color: #93a1a1;">&#9562;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9577;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9565;</span>
 <span style="color: #93a1a1;">|#</span>
 
-<span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">i have ripped this answer (with great shame).</span>
 <span style="color: #2aa198;">(</span>append! primitive-procedures `<span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>eq? ,eq?<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span>append! primitive-procedures `<span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>cadr ,cadr<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span>append! primitive-procedures `<span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>caddr ,caddr<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
@@ -2204,9 +2185,9 @@ solve this puzzle.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org816272e" class="outline-4">
-<h4 id="org816272e">Answer</h4>
-<div class="outline-text-4" id="text-org816272e">
+<div id="outline-container-org947d21d" class="outline-4">
+<h4 id="org947d21d">Answer</h4>
+<div class="outline-text-4" id="text-org947d21d">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
@@ -2288,9 +2269,9 @@ among them.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org1aa216f" class="outline-4">
-<h4 id="org1aa216f">Answer</h4>
-<div class="outline-text-4" id="text-org1aa216f">
+<div id="outline-container-orge7e79a9" class="outline-4">
+<h4 id="orge7e79a9">Answer</h4>
+<div class="outline-text-4" id="text-orge7e79a9">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#|</span>
@@ -2384,9 +2365,9 @@ evaluated in some other order.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org3760273" class="outline-4">
-<h4 id="org3760273">Answer</h4>
-<div class="outline-text-4" id="text-org3760273">
+<div id="outline-container-orgc2add00" class="outline-4">
+<h4 id="orgc2add00">Answer</h4>
+<div class="outline-text-4" id="text-orgc2add00">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| parse-word advances the *unparsed* list from left to right, because it knows</span>
@@ -2412,9 +2393,9 @@ sentences generated.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org456bd50" class="outline-4">
-<h4 id="org456bd50">Answer</h4>
-<div class="outline-text-4" id="text-org456bd50">
+<div id="outline-container-orga24955a" class="outline-4">
+<h4 id="orga24955a">Answer</h4>
+<div class="outline-text-4" id="text-orga24955a">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">map</span> amb/infuse
      '<span style="color: #b58900;">(</span>
@@ -2465,9 +2446,9 @@ problem in Exercise 4.49.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org8bfa299" class="outline-4">
-<h4 id="org8bfa299">Answer</h4>
-<div class="outline-text-4" id="text-org8bfa299">
+<div id="outline-container-orgc43da65" class="outline-4">
+<h4 id="orgc43da65">Answer</h4>
+<div class="outline-text-4" id="text-orgc43da65">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">shuffle</span> lst<span style="color: #b58900;">)</span>
   <span style="color: #2aa198;">"Returns a randomly re-ordered copy of `lst'"</span>
@@ -2527,9 +2508,9 @@ here rather than permanent-set!?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgff8fdea" class="outline-4">
-<h4 id="orgff8fdea">Answer</h4>
-<div class="outline-text-4" id="text-orgff8fdea">
+<div id="outline-container-orga2769e7" class="outline-4">
+<h4 id="orga2769e7">Answer</h4>
+<div class="outline-text-4" id="text-orga2769e7">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span>append! primitive-procedures `<span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>shuffle ,shuffle<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
@@ -2647,9 +2628,9 @@ pairs))
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org0b162e1" class="outline-4">
-<h4 id="org0b162e1">Answer</h4>
-<div class="outline-text-4" id="text-org0b162e1">
+<div id="outline-container-orgc677388" class="outline-4">
+<h4 id="orgc677388">Answer</h4>
+<div class="outline-text-4" id="text-orgc677388">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solution:</span>
@@ -2718,9 +2699,10 @@ Complete the following definition of analyze-require.
 fail)))) 
 </p>
 </blockquote>
-<p>
-<b>*</b> Answer
-</p>
+</div>
+<div id="outline-container-orgf48180c" class="outline-4">
+<h4 id="orgf48180c">Answer</h4>
+<div class="outline-text-4" id="text-orgf48180c">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">require-predicate</span> exp<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>cadr exp<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
@@ -2736,88 +2718,7 @@ fail))))
       fail<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
-<p>
-#| 4.4 Logic Programming |#
-</p>
-
-<p>
-;; Install our logical evaluator
-(include "/home/zv/z/practice/sicp/evaluator/query-evaluator.scm")
-(define (query/initialize-with rules-and-assertions)
-(define (deal-out r-and-a rules assertions)
-(cond [(null? r-and-a)
-(set! THE-ASSERTIONS (list-&gt;stream assertions))
-(set! THE-RULES (list-&gt;stream rules))
-'done]
-[else
-(let ((s (query-syntax-process (car r-and-a))))
-(cond ((rule? s)
-(store-rule-in-index s)
-(deal-out (cdr r-and-a)
-(cons s rules)
-assertions))
-(else
-(store-assertion-in-index s)
-(deal-out (cdr r-and-a)
-rules
-(cons s assertions)))))]))
-(deal-out rules-and-assertions '() '()))
-</p>
-
-<p>
-(define (query/infuse expr)
-(let ((s (query-syntax-process expr)))
-(cond [(rule? s)
-(store-rule-in-index s)
-(set! THE-RULES (stream-cons s THE-RULES))]
-[else
-(store-assertion-in-index s)
-(set! THE-ASSERTIONS
-(stream-cons s THE-ASSERTIONS))])))
-</p>
-
-<p>
-(define (query/eval expr)
-"A wrapper around the details of the 'real' evaluator so we can directly
-grab results"
-(let ((q (query-syntax-process expr)))
-(stream-&gt;list
-(stream-map
-(lambda (frame)
-(instantiate
-q
-frame
-(λ (v f) (contract-question-mark v))))
-(qeval q (singleton-stream '()))))))
-</p>
-
-<p>
-;; Include &amp; initialize our query database with microshaft employees
-(include "/home/zv/z/practice/sicp/vendor/microshaft.scm")
-(query/initialize-with microshaft-data-base)
-</p>
-
-<p>
-;; Fulfill an infinite loop (married Mickey ?who)
-(query/infuse '(married Minnie Mickey))
-(query/infuse '(rule (married ?x ?y) (married ?y ?x)))
-</p>
-
-<p>
-(map query/infuse
-'((rule (append-to-form () ?y ?y))
-(rule (append-to-form (?u . ?v) ?y (?u . ?z))
-(append-to-form ?v ?y ?z))))
-</p>
-
-<p>
-;; And install our driver for the query loop
-</p>
-
-<p>
-(install-driver-loop 'qeval query-driver-loop)
-#+end<sub>src</sub>
-</p>
+</div>
 </div>
 </div>
 <div id="outline-container-orgdbec92e" class="outline-3">
@@ -2836,9 +2737,9 @@ base:
 </ul>
 </blockquote>
 </div>
-<div id="outline-container-org06e46c7" class="outline-4">
-<h4 id="org06e46c7">Answer</h4>
-<div class="outline-text-4" id="text-org06e46c7">
+<div id="outline-container-org179f850" class="outline-4">
+<h4 id="org179f850">Answer</h4>
+<div class="outline-text-4" id="text-org179f850">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solution:</span>
@@ -2879,9 +2780,9 @@ job.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgf44d84d" class="outline-4">
-<h4 id="orgf44d84d">Answer</h4>
-<div class="outline-text-4" id="text-orgf44d84d">
+<div id="outline-container-org3c6a5aa" class="outline-4">
+<h4 id="org3c6a5aa">Answer</h4>
+<div class="outline-text-4" id="text-org3c6a5aa">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solutions:</span>
@@ -2957,9 +2858,9 @@ the division.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org3b14f83" class="outline-4">
-<h4 id="org3b14f83">Answer</h4>
-<div class="outline-text-4" id="text-org3b14f83">
+<div id="outline-container-orgb48ac72" class="outline-4">
+<h4 id="orgb48ac72">Answer</h4>
+<div class="outline-text-4" id="text-orgb48ac72">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span>query/infuse
  '<span style="color: #b58900;">(</span>rule <span style="color: #268bd2;">(</span>big-shot ?p1<span style="color: #268bd2;">)</span>
@@ -2987,9 +2888,9 @@ data base by asserting the following:
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgdb14751" class="outline-4">
-<h4 id="orgdb14751">Answer</h4>
-<div class="outline-text-4" id="text-orgdb14751">
+<div id="outline-container-org23529f1" class="outline-4">
+<h4 id="org23529f1">Answer</h4>
+<div class="outline-text-4" id="text-org23529f1">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">map</span> query/infuse
      '<span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>meeting accounting <span style="color: #6c71c4;">(</span>Monday 9am<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
@@ -3081,9 +2982,9 @@ Explain.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org3817302" class="outline-4">
-<h4 id="org3817302">Answer</h4>
-<div class="outline-text-4" id="text-org3817302">
+<div id="outline-container-orgee9a530" class="outline-4">
+<h4 id="orgee9a530">Answer</h4>
+<div class="outline-text-4" id="text-orgee9a530">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solution:</span>
@@ -3138,9 +3039,9 @@ What will the response be to the following queries?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org560a7c9" class="outline-4">
-<h4 id="org560a7c9">Answer</h4>
-<div class="outline-text-4" id="text-org560a7c9">
+<div id="outline-container-org03846df" class="outline-4">
+<h4 id="org03846df">Answer</h4>
+<div class="outline-text-4" id="text-org03846df">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Solution:</span>
@@ -3171,9 +3072,9 @@ such as `(last-pair ?x (3))' ?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org24b6f8b" class="outline-4">
-<h4 id="org24b6f8b">Answer</h4>
-<div class="outline-text-4" id="text-org24b6f8b">
+<div id="outline-container-org633283d" class="outline-4">
+<h4 id="org633283d">Answer</h4>
+<div class="outline-text-4" id="text-org633283d">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Solution, it does not work correctly on results that yield an infinite</span>
@@ -3198,9 +3099,9 @@ descendants of Ada back to Adam, by way of Cain:
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org8b2c656" class="outline-4">
-<h4 id="org8b2c656">Answer</h4>
-<div class="outline-text-4" id="text-org8b2c656">
+<div id="outline-container-org411690f" class="outline-4">
+<h4 id="org411690f">Answer</h4>
+<div class="outline-text-4" id="text-org411690f">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">map</span> query/infuse
@@ -3252,9 +3153,9 @@ in the rule, and types it in as
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org2df0102" class="outline-4">
-<h4 id="org2df0102">Answer</h4>
-<div class="outline-text-4" id="text-org2df0102">
+<div id="outline-container-orga33ed47" class="outline-4">
+<h4 id="orga33ed47">Answer</h4>
+<div class="outline-text-4" id="text-orga33ed47">
 <p>
 #+begin<sub>src</sub> scheme
 (query/infuse '(rule (loop-outranked-by ?staff-person ?boss)
@@ -3350,9 +3251,9 @@ Why is Oliver Warbucks listed four times?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org1256e82" class="outline-4">
-<h4 id="org1256e82">Answer</h4>
-<div class="outline-text-4" id="text-org1256e82">
+<div id="outline-container-org53435fb" class="outline-4">
+<h4 id="org53435fb">Answer</h4>
+<div class="outline-text-4" id="text-org53435fb">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solution:</span>
@@ -3412,9 +3313,9 @@ situation.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgc45d66f" class="outline-4">
-<h4 id="orgc45d66f">Answer</h4>
-<div class="outline-text-4" id="text-orgc45d66f">
+<div id="outline-container-orgc41a356" class="outline-4">
+<h4 id="orgc41a356">Answer</h4>
+<div class="outline-text-4" id="text-orgc41a356">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solution</span>
@@ -3446,9 +3347,9 @@ modify the system to include your loop detector.)
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org791455d" class="outline-4">
-<h4 id="org791455d">Answer</h4>
-<div class="outline-text-4" id="text-org791455d">
+<div id="outline-container-orgc0fd490" class="outline-4">
+<h4 id="orgc0fd490">Answer</h4>
+<div class="outline-text-4" id="text-orgc0fd490">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Because the rule variable contains the execution information, we can</span>
@@ -3506,9 +3407,9 @@ reverse order. (Hint: Use `append-to-form'.) Can your rules answer both
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgdab7464" class="outline-4">
-<h4 id="orgdab7464">Answer</h4>
-<div class="outline-text-4" id="text-orgdab7464">
+<div id="outline-container-org417ac9f" class="outline-4">
+<h4 id="org417ac9f">Answer</h4>
+<div class="outline-text-4" id="text-org417ac9f">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">This is one solution that doesn't use append-to-form, but doesn't</span>
@@ -3548,9 +3449,9 @@ and (?relationship Adam Irad).
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org22463b2" class="outline-4">
-<h4 id="org22463b2">Answer</h4>
-<div class="outline-text-4" id="text-org22463b2">
+<div id="outline-container-orgf32ba0f" class="outline-4">
+<h4 id="orgf32ba0f">Answer</h4>
+<div class="outline-text-4" id="text-orgf32ba0f">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#|</span>
@@ -3630,9 +3531,9 @@ to undesirable behavior?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgeb9066a" class="outline-4">
-<h4 id="orgeb9066a">Answer</h4>
-<div class="outline-text-4" id="text-orgeb9066a">
+<div id="outline-container-org6f5413f" class="outline-4">
+<h4 id="org6f5413f">Answer</h4>
+<div class="outline-text-4" id="text-org6f5413f">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
@@ -3651,9 +3552,9 @@ append them? Give examples that illustrate why interleaving works better.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org9ada3db" class="outline-4">
-<h4 id="org9ada3db">Answer</h4>
-<div class="outline-text-4" id="text-org9ada3db">
+<div id="outline-container-orgfef9acf" class="outline-4">
+<h4 id="orgfef9acf">Answer</h4>
+<div class="outline-text-4" id="text-orgfef9acf">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solution:</span>
@@ -3685,9 +3586,9 @@ the-empty-stream
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org809a248" class="outline-4">
-<h4 id="org809a248">Answer</h4>
-<div class="outline-text-4" id="text-org809a248">
+<div id="outline-container-org63ce71c" class="outline-4">
+<h4 id="org63ce71c">Answer</h4>
+<div class="outline-text-4" id="text-org63ce71c">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Solution:</span>
@@ -3712,9 +3613,9 @@ that is mapped over the frame stream in these cases always produces either
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgac2a616" class="outline-4">
-<h4 id="orgac2a616">Answer</h4>
-<div class="outline-text-4" id="text-orgac2a616">
+<div id="outline-container-orgbdb0a9f" class="outline-4">
+<h4 id="orgbdb0a9f">Answer</h4>
+<div class="outline-text-4" id="text-orgbdb0a9f">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
@@ -3802,9 +3703,9 @@ who supervise precisely one person.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgc881768" class="outline-4">
-<h4 id="orgc881768">Answer</h4>
-<div class="outline-text-4" id="text-orgc881768">
+<div id="outline-container-orgbbd4c84" class="outline-4">
+<h4 id="orgbbd4c84">Answer</h4>
+<div class="outline-text-4" id="text-orgbbd4c84">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
@@ -3842,9 +3743,9 @@ operation is similar to unification.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org97310f8" class="outline-4">
-<h4 id="org97310f8">Answer</h4>
-<div class="outline-text-4" id="text-org97310f8">
+<div id="outline-container-orgc882b9d" class="outline-4">
+<h4 id="orgc882b9d">Answer</h4>
+<div class="outline-text-4" id="text-orgc882b9d">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
@@ -3871,9 +3772,9 @@ down on the number of intermediate frames generated.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgacdf4d7" class="outline-4">
-<h4 id="orgacdf4d7">Answer</h4>
-<div class="outline-text-4" id="text-orgacdf4d7">
+<div id="outline-container-org4ced723" class="outline-4">
+<h4 id="org4ced723">Answer</h4>
+<div class="outline-text-4" id="text-org4ced723">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
@@ -3899,9 +3800,9 @@ Can you find examples that illustrate this difference?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgaaec07b" class="outline-4">
-<h4 id="orgaaec07b">Answer</h4>
-<div class="outline-text-4" id="text-orgaaec07b">
+<div id="outline-container-org5dfab7a" class="outline-4">
+<h4 id="org5dfab7a">Answer</h4>
+<div class="outline-text-4" id="text-org5dfab7a">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
