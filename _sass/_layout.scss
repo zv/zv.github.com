@@ -173,11 +173,11 @@ aside {
 
 // Quotes
 .post-content blockquote {
-    font: italic 400 0.8em $fontname;
+    font: italic 400 1em $fontname;
     border-left: 2px solid $base1;
 
-    p {
-        padding-left: 2%;
+    * {
+        padding-left: 1em;
         line-height: 1.5rem;
         margin-right: 3rem;
         margin-top: 0.5rem;
