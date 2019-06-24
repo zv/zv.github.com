@@ -24,17 +24,17 @@ tags:
 
 * Exercises Chapter 1
 ** 1.1
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Below is a sequence of expressions. What is the result printed by the
 interpreter in response to each expression? Assume that the sequence is to be
 evaluated in the order in which it is presented.
 
 (Expressions Contained in Answer Section)
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 
 Respectively:
 
@@ -79,27 +79,27 @@ scheme@(guile-user)> 6
          (else -1))
    (+ a 1))
 scheme@(guile-user)> 16
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.2
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Translate the following expression into prefix form.
 
             5 + 4 + (2 - (3 - (6 + 4/5)))
             -----------------------------
                   3(6 - 2)(2 - 7)
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 (/ (+ (+ 5 4) (- 2 (- 3 (+ 6 (/ 4 5))))) (* 3 (- 6 2) (- 2 7)))
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.3
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Define a procedure that takes three numbers as arguments and returns the sum of
 the squares of the two larger numbers.
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -110,7 +110,7 @@ the squares of the two larger numbers.
 
 #+END_SRC
 ** 1.4
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Observe that our model of evaluation allows for combinations whose operators are
 compound expressions. Use this observation to describe the behavior of the
 following procedure:
@@ -118,15 +118,15 @@ following procedure:
         (define (a-plus-abs-b a b)
           ((if (> b 0) + -) a b))
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 If b is greater than 0, add a to b.
 Otherwise, subtract b from a
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.5
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Ben Bitdiddle has invented a test to determine whether the interpreter he is
 faced with is using applicative-order evaluation or normal-order evaluation. He
 defines the following two procedures:
@@ -149,18 +149,18 @@ for the special form `if' is the same whether the interpreter is using normal or
 applicative order: The predicate expression is evaluated first, and the result
 determines whether to evaluate the consequent or the alternative expression.)
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 An applicative order evaluator would never terminate. The value of `p' is
 expanded prior to the logic of `test' being applied.
 
 Conversely, a normal-order evaluator would return 0, it never had the chance to
 expand `p'
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.6
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Alyssa P. Hacker doesn't see why `if' needs to be provided as a special form.
 "Why can't I just define it as an ordinary procedure in terms of `cond'?" she
 asks. Alyssa's friend Eva Lu Ator claims this can indeed be done, and she
@@ -190,20 +190,20 @@ What happens when Alyssa attempts to use this to compute square
 roots?  Explain.
 
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Any function supplied to `new-if' will be applied, `sqrt-iter' will thus
 infinitely loop.
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.7
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 The `good-enough?' test used in computing square roots will not be very
 effective for finding the square roots of very small numbers. Also, in real
 computers, arithmetic operations are almost always performed with limited
 precision. This makes our test inadequate for very large numbers. Explain these
-statements, with examples showing how the test fails for small and large
+statements, with quotes showing how the test fails for small and large
 numbers.
 
 An alternative strategy for implementing `good-enough?' is to watch how
@@ -213,7 +213,7 @@ uses this kind of end test. Does this work better for small and large
 numbers?
 
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -225,7 +225,7 @@ numbers?
 
 #+END_SRC
 ** 1.8
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Newton's method for cube roots is based on the fact that if y is an
 approximation to the cube root of x, then a better approximation is given
 by the value
@@ -240,7 +240,7 @@ Newton's method in general as an abstraction of these square-root and
 cube-root procedures.)
 
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -254,7 +254,7 @@ cube-root procedures.)
 
 #+END_SRC
 ** 1.9
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Each of the following two procedures defines a method for adding two
 positive integers in terms of the procedures `inc', which increments its
 argument by 1, and `dec', which decrements its argument by 1.
@@ -274,10 +274,10 @@ procedure in evaluating `(+ 4 5)'. Are these processes iterative or
 recursive?
 
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 
 The first is recursive:
 
@@ -321,9 +321,9 @@ The second function is iterative
   trace: |  (pl 0 9)
   trace: |  9
 
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.10
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 The following procedure computes a mathematical function called Ackermann's
 function.
 
@@ -348,14 +348,14 @@ Consider the following procedures, where A is the procedure defined above:
       (define (k n) (* 5 n n))
 
 Give concise mathematical definitions for the functions computed by the
-procedures f, g, and h for positive integer values of n. For example, (k n)
+procedures f, g, and h for positive integer values of n. For quote, (k n)
 computes 5n^2.
 
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 
 A trace of the first Ackermann function shown produces a long list of
 recursive calls, which is only exaggerated as `x' increases.
@@ -407,9 +407,9 @@ The functions described can be simplified as follows:
   (define (h n) (A 2 n))
   →  2↑n
 
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.11
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 A function f is defined by the rule that
 
     f(n) = n if n < 3
@@ -421,7 +421,7 @@ and
 Write a procedure that computes f by means of a recursive process.
 Write a procedure that computes f by means of an iterative process.
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -442,7 +442,7 @@ Write a procedure that computes f by means of an iterative process.
 
 #+END_SRC
 ** 1.12
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 The following pattern of numbers is called "Pascal's triangle".
 
                                 1
@@ -455,7 +455,7 @@ The numbers at the edge of the triangle are all 1, and each number inside
 the triangle is the sum of the two numbers above it. Write a procedure that
 computes elements of Pascal's triangle by means of a recursive process.
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -484,16 +484,16 @@ computes elements of Pascal's triangle by means of a recursive process.
 
 *** Answer
 ** 1.14
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Draw the tree illustrating the process generated by the `count-change'
 procedure of section *Note 1.2.2 in making change for 11 cents. What are
 the orders of growth of the space and number of steps used by this process
 as the amount to be changed increases?
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 trace: (count-change 11)
 trace: (cc 11 5)
 trace: |  (cc 11 4)
@@ -659,9 +659,9 @@ trace: |  50
 trace: |  (cc -39 5)
 trace: |  0
 trace: 4
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.15
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 The sine of an angle (specified in radians) can be computed by making use
 of the approximation `sin' xapprox x if x is sufficiently small, and the
 trigonometric identity
@@ -691,15 +691,15 @@ b. What is the order of growth in space and number of steps (as a function
 of a) used by the process generated by the `sine' procedure when `(sine a)'
 is evaluated?
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 a. The procedure is evaluated 5 times
 b. The order of growth is O(log(n))
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.16
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Design a procedure that evolves an iterative exponentiation process that
 uses successive squaring and uses a logarithmic number of steps, as does
 `fast-expt'.
@@ -713,7 +713,7 @@ general, the technique of defining an "invariant quantity" that remains
 unchanged from state to state is a powerful way to think about the design
 of iterative algorithms.)
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -725,7 +725,7 @@ of iterative algorithms.)
 
 #+END_SRC
 ** 1.17
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 The exponentiation algorithms in this section are based on performing
 exponentiation by means of repeated multiplication. In a similar way, one
 can perform integer multiplication by means of repeated addition. The
@@ -743,7 +743,7 @@ integer, and `halve', which divides an (even) integer by 2. Using these,
 design a multiplication procedure analogous to `fast-expt' that uses a
 logarithmic number of steps.
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -759,7 +759,7 @@ logarithmic number of steps.
 
 *** Answer
 ** 1.19
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 There is a clever algorithm for computing the Fibonacci numbers in a
 logarithmic number of steps. Recall the transformation of the state
 variables a and b in the fib-iter process of 1.2.2: a ← a + b and b ← a.
@@ -781,7 +781,7 @@ can compute T n using successive squaring, as in the fast-expt procedure.
 Put this all together to complete the following procedure, which runs in a
 logarithmic number of steps:
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -805,9 +805,9 @@ logarithmic number of steps:
 
 #+END_SRC
 ** 1.20
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 The process that a procedure generates is of course dependent on the rules
-used by the interpreter. As an example, consider the iterative `gcd'
+used by the interpreter. As an quote, consider the iterative `gcd'
 procedure given above. Suppose we were to interpret this procedure using
 normal-order evaluation, as discussed in section *Note 1-1-5. (The
 normal-order-evaluation rule for `if' is described in *Note Exercise 1-5)
@@ -817,18 +817,18 @@ operations that are actually performed. How many `remainder' operations are
 actually performed in the normal-order evaluation of `(gcd 206 40)'? In the
 applicative-order evaluation?
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Performs 18 `remainder' operations
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.21
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Use the smallest-divisor procedure to find the smallest divisor of each of
 the following numbers: 199, 1999, 19999.
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -848,16 +848,16 @@ the following numbers: 199, 1999, 19999.
 
 #+END_SRC
 ** 1.22
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Most Lisp implementations include a primitive called `runtime' that returns
 an integer that specifies the amount of time the system has been running
-(measured, for example, in microseconds). The following `timed-prime-test'
+(measured, for quote, in microseconds). The following `timed-prime-test'
 procedure, when called with an integer n, prints n and checks to see if n
 is prime. If n is prime, the procedure prints three asterisks followed by
 the amount of time used in performing the test.
 
-#+END_EXAMPLE
-#+BEGIN_EXAMPLE
+#+END_QUOTE
+#+BEGIN_QUOTE
           (define (timed-prime-test n)
             (newline)
             (display n)
@@ -873,7 +873,7 @@ the amount of time used in performing the test.
             #t)
 
 #|
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -923,7 +923,7 @@ proportional to the number of steps required for the computation?
 
 #+END_SRC
 ** 1.23
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 The `smallest-divisor' procedure shown at the start of this section does
 lots of needless testing: After it checks to see if the number is divisible
 by 2 there is no point in checking to see if it is divisible by any larger
@@ -939,7 +939,7 @@ it to run about twice as fast. Is this expectation confirmed? If not, what
 is the observed ratio of the speeds of the two algorithms, and how do you
 explain the fact that it is different from 2?
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -950,7 +950,7 @@ explain the fact that it is different from 2?
 
 *** Answer
 ** 1.25
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Alyssa P. Hacker complains that we went to a lot of extra work in writing
 `expmod'. After all, she says, since we already know how to compute
 exponentials, we could have simply written
@@ -960,15 +960,15 @@ exponentials, we could have simply written
 
 Is she correct? Would this procedure serve as well for our fast prime
 tester? Explain. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Depending on the behavior of large values of `base' and `exp' combined with
 the system's handling of large numbers, it is either a middling gain or an
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.26
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Louis Reasoner is having great difficulty doing *Note Exercise 1.24. His
 `fast-prime?' test seems to run more slowly than his `prime?' test. Louis
 calls his friend Eva Lu Ator over to help. When they examine Louis's code,
@@ -988,14 +988,14 @@ multiplication, rather than calling `square':
 "I don't see what difference that could make," says Louis. "I do."
 says Eva. "By writing the procedure like that, you have transformed the
 [theta](`log' n) process into a [theta](n) process." Explain. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Assuming the computer doesn't perform any sort of sophisticated
 memoization, effectively each step is performing twice as much work for n
 steps, e.g n^2, trimming the speed of the original implementation down to
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.27
 
 *** Answer
@@ -1003,10 +1003,10 @@ steps, e.g n^2, trimming the speed of the original implementation down to
 
 *** Answer
 ** 1.30
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 The sum procedure above generates a linear recursion. The procedure can be
 rewritten so that the sum is performed iteratively. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1020,7 +1020,7 @@ rewritten so that the sum is performed iteratively.
 
 #+END_SRC
 ** 1.31
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 1. The `sum' procedure is only the simplest of a vast number of similar
 abstractions that can be captured as higher-order procedures. Write an
 analogous procedure called product that returns the product of the values
@@ -1033,7 +1033,7 @@ formula:
 2. If your product procedure generates a recursive process, write one that
 generates an iterative process. If it generates an iterative process, write
 one that generates a recursive process. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1064,7 +1064,7 @@ one that generates a recursive process.
 
 #+END_SRC
 ** 1.32
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 1. Show that sum and product (Exercise 1.31) are both special cases of a still
 more general notion called accumulate that combines a collection of terms,
 using some general accumulation function:
@@ -1082,7 +1082,7 @@ both be defined as simple calls to accumulate.
 2. If your accumulate procedure generates a recursive process, write one
 that generates an iterative process. If it generates an iterative process,
 write one that generates a recursive process. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1102,7 +1102,7 @@ write one that generates a recursive process.
 
 #+END_SRC
 ** 1.33
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 You can obtain an even more general version of accumulate (Exercise 1.32)
 by introducing the notion of a filter on the terms to be combined. That is,
 combine only those terms derived from values in the range that satisfy a
@@ -1116,7 +1116,7 @@ procedure. Show how to express the following using `filtered-accumulate':
 
 2. the product of all the positive integers less than n that are relatively
 prime to n (i.e., all positive integers i < n such that GCD (i, n) = 1). 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1135,7 +1135,7 @@ prime to n (i.e., all positive integers i < n such that GCD (i, n) = 1).
 
 #+END_SRC
 ** 1.34
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Suppose we define the procedure
 
         (define (f g) (g 2))
@@ -1152,18 +1152,18 @@ What happens if we (perversely) ask the interpreter to evaluate the
 combination (f f)?
 
 Explain. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 
-#+END_EXAMPLE
+#+END_QUOTE
 ** 1.35
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Show that the golden ratio φ (1.2.2) is a fixed point of the transformation
 x↦1+1/x, and use this fact to compute φ by means of the fixed-point
 procedure. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1175,7 +1175,7 @@ procedure.
 
 *** Answer
 ** 1.37
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 a. An infinite "continued fraction" is an expression of the form
 
                   N_1
@@ -1186,7 +1186,7 @@ a. An infinite "continued fraction" is an expression of the form
                   D_2 + ---------
                         D_3 + ...
 
-  As an example, one can show that the infinite continued
+  As an quote, one can show that the infinite continued
   fraction expansion with the Nᵢ and the Dᵢ all equal to 1
   produces 1/φ, where φ is the golden ratio (described
   in section *Note 1.2.2).  One way to approximate an
@@ -1222,10 +1222,10 @@ b. If your `cont-frac' procedure generates a recursive process,
   write one that generates an iterative process.  If it
   generates an iterative process, write one that generates a
   recursive process. 
-#+END_EXAMPLE
-#+BEGIN_EXAMPLE
+#+END_QUOTE
+#+BEGIN_QUOTE
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1246,14 +1246,14 @@ b. If your `cont-frac' procedure generates a recursive process,
 (define cont-frac 1.37/cont-frac-iter)
 #+END_SRC
 ** 1.38
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 In 1737, the Swiss mathematician Leonhard Euler published a memoir `De
 Fractionibus Continuis', which included a continued fraction expansion for
 e - 2, where e is the base of the natural logarithms. In this fraction, the
 nᵢ are all 1, and the Dᵢ are successively 1, 2, 1, 1, 4, 1, 1, 6, 1, 1,
 8, .... Write a program that uses your `cont-frac' procedure from Exercise
 1.37 to approximate e, based on Euler's expansion. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1267,7 +1267,7 @@ nᵢ are all 1, and the Dᵢ are successively 1, 2, 1, 1, 4, 1, 1, 6, 1, 1,
 
 #+END_SRC
 ** 1.39
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 A continued fraction representation of the
 tangent function was published in 1770 by the German mathematician
 J.H. Lambert:
@@ -1284,7 +1284,7 @@ where x is in radians.  Define a procedure `(tan-cf x k)' that
 computes an approximation to the tangent function based on
 Lambert's formula.  `K' specifies the number of terms to compute,
 as in *Note Exercise 1.37 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1295,14 +1295,14 @@ as in *Note Exercise 1.37
 
 #+END_SRC
 ** 1.40
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Define a procedure cubic that can be used together with the newtons-method
 procedure in expressions of the form
 
     (newtons-method (cubic a b c) 1)
 
 to approximate zeros of the cubic x³+ax²+bx+c. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1315,16 +1315,16 @@ to approximate zeros of the cubic x³+ax²+bx+c.
 
 #+END_SRC
 ** 1.41
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Define a procedure double that takes a procedure of one argument as
 argument and returns a procedure that applies the original procedure twice.
-For example, if inc is a procedure that adds 1 to its argument, then
+For quote, if inc is a procedure that adds 1 to its argument, then
 (double inc) should be a procedure that adds 2. What value is returned by
 
     (((double (double double)) inc) 5)
 
 ? 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1332,17 +1332,17 @@ For example, if inc is a procedure that adds 1 to its argument, then
 
 #+END_SRC
 ** 1.42
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Let f and g be two one-argument functions. The composition f after g is
 defined to be the function x↦f(g(x)). Define a procedure compose that
-implements composition. For example, if inc is a procedure that adds 1 to
+implements composition. For quote, if inc is a procedure that adds 1 to
 its argument,
 
     ((compose square inc) 6)
     49
 
 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1350,10 +1350,10 @@ its argument,
 
 #+END_SRC
 ** 1.43
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 If f is a numerical function and n is a positive integer, then we can form
 the nth repeated application of f, which is defined to be the function
-whose value at x is f(f(…(f(x))…)). For example, if f is the function
+whose value at x is f(f(…(f(x))…)). For quote, if f is the function
 x↦x+1, then the nth repeated application of f is the function x↦x+n. If f
 is the operation of squaring a number, then the nth repeated application of
 f is the function that raises its argument to the 2n-th power. Write a
@@ -1365,7 +1365,7 @@ application of f. Your procedure should be able to be used as follows:
     625
 
 Hint: You may find it convenient to use compose from Exercise 1.42. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1377,7 +1377,7 @@ Hint: You may find it convenient to use compose from Exercise 1.42.
 
 #+END_SRC
 ** 1.44
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 The idea of smoothing a function is an important concept in signal
 processing. If f is a function and dx is some small number, then the
 smoothed version of f is the function whose value at a point x is the
@@ -1387,7 +1387,7 @@ the smoothed f. It is sometimes valuable to repeatedly smooth a function
 (that is, smooth the smoothed function, and so on) to obtain the n-fold
 smoothed function. Show how to generate the n-fold smoothed function of any
 given function using smooth and repeated from Exercise 1.43. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
@@ -1403,7 +1403,7 @@ given function using smooth and repeated from Exercise 1.43.
 
 *** Answer
 ** 1.46
-#+BEGIN_EXAMPLE
+#+BEGIN_QUOTE
 Several of the numerical methods described in this chapter are instances of
 an extremely general computational strategy known as iterative improvement.
 Iterative improvement says that, to compute something, we start with an
@@ -1415,7 +1415,7 @@ enough and a method for improving a guess. Iterative-improve should return
 as its value a procedure that takes a guess as argument and keeps improving
 the guess until it is good enough. Rewrite the sqrt procedure of 1.1.7 and
 the fixed-point procedure of 1.3.3 in terms of iterative-improve. 
-#+END_EXAMPLE
+#+END_QUOTE
 
 *** Answer
 #+BEGIN_SRC scheme
