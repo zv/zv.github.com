@@ -4,6 +4,10 @@
 layout: page
 title: GNU Awk's Manual Exercises
 category: note
+tags:
+  - awk
+  - exercises
+  - solutions
 ---
 #+END_EXPORT
 
