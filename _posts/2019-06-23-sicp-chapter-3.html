@@ -1,7 +1,6 @@
 ---
 layout: page
 title: SICP Chapter 3 Exercises & Solutions
-excerpt: SICP Chapter 3
 category: note
 tags:
 - sicp
@@ -45,9 +44,9 @@ make-accumulator should specify the initial value of the sum;
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org51f5812" class="outline-4">
-<h4 id="org51f5812">Answer</h4>
-<div class="outline-text-4" id="text-org51f5812">
+<div id="outline-container-orgbb583e0" class="outline-4">
+<h4 id="orgbb583e0">Answer</h4>
+<div class="outline-text-4" id="text-orgbb583e0">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">make-accumulator</span> x<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">(</span>n<span style="color: #268bd2;">)</span>
@@ -76,9 +75,9 @@ counter. For instance, we could make a monitored version of the sqrt procedure:
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org4da7496" class="outline-4">
-<h4 id="org4da7496">Answer</h4>
-<div class="outline-text-4" id="text-org4da7496">
+<div id="outline-container-org83eaf94" class="outline-4">
+<h4 id="org83eaf94">Answer</h4>
+<div class="outline-text-4" id="text-org83eaf94">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">make-monitored</span> f<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">calls</span> <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span>
@@ -105,9 +104,9 @@ as in
 </blockquote>
 </div>
 </div>
-<div id="outline-container-orgd6dfdbf" class="outline-4">
-<h4 id="orgd6dfdbf">Answer</h4>
-<div class="outline-text-4" id="text-orgd6dfdbf">
+<div id="outline-container-org550d9c5" class="outline-4">
+<h4 id="org550d9c5">Answer</h4>
+<div class="outline-text-4" id="text-org550d9c5">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">3.3/acc</span> <span style="color: #b58900;">(</span>make-account <span style="color: #6c71c4;">100</span> 'secret-password<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">3.3/make-account</span> acct# passwd<span style="color: #b58900;">)</span>
@@ -172,9 +171,9 @@ number less than its input.136
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgc717ddc" class="outline-4">
-<h4 id="orgc717ddc">Answer</h4>
-<div class="outline-text-4" id="text-orgc717ddc">
+<div id="outline-container-orgc7bbcef" class="outline-4">
+<h4 id="orgc7bbcef">Answer</h4>
+<div class="outline-text-4" id="text-orgc7bbcef">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">random-in-range</span> low high<span style="color: #b58900;">)</span>
   <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">had to write my own</span>
@@ -223,9 +222,9 @@ very handy to have when testing and debugging programs that use random numbers.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orga08d58f" class="outline-4">
-<h4 id="orga08d58f">Answer</h4>
-<div class="outline-text-4" id="text-orga08d58f">
+<div id="outline-container-org446d4d3" class="outline-4">
+<h4 id="org446d4d3">Answer</h4>
+<div class="outline-text-4" id="text-org446d4d3">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">This is what I assume he meant??</span>
@@ -272,9 +271,9 @@ empty x.)
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org52a4075" class="outline-4">
-<h4 id="org52a4075">Answer</h4>
-<div class="outline-text-4" id="text-org52a4075">
+<div id="outline-container-org73bf99b" class="outline-4">
+<h4 id="org73bf99b">Answer</h4>
+<div class="outline-text-4" id="text-org73bf99b">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">last-pair</span> x<span style="color: #b58900;">)</span>
@@ -308,9 +307,9 @@ empty x.)
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org4815551" class="outline-4">
-<h4 id="org4815551">Answer</h4>
-<div class="outline-text-4" id="text-org4815551">
+<div id="outline-container-org22015f2" class="outline-4">
+<h4 id="org22015f2">Answer</h4>
+<div class="outline-text-4" id="text-org22015f2">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">mystery</span> x<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">loop</span> x y<span style="color: #268bd2;">)</span>
@@ -370,9 +369,9 @@ Ben’s procedure would return 3; return 4; return 7; never return at all.
 </blockquote>
 </div>
 
-<div id="outline-container-org77b2240" class="outline-4">
-<h4 id="org77b2240">Answer</h4>
-<div class="outline-text-4" id="text-org77b2240">
+<div id="outline-container-org41148ef" class="outline-4">
+<h4 id="org41148ef">Answer</h4>
+<div class="outline-text-4" id="text-org41148ef">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">count-three-pairs</span> '<span style="color: #b58900;">(</span>a b c<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">count-four-pairs</span> '<span style="color: #b58900;">(</span>a b c<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
@@ -408,9 +407,9 @@ used to keep track of which pairs have already been counted.)
 </blockquote>
 </div>
 
-<div id="outline-container-org1dda1c7" class="outline-4">
-<h4 id="org1dda1c7">Answer</h4>
-<div class="outline-text-4" id="text-org1dda1c7">
+<div id="outline-container-orga2cbe92" class="outline-4">
+<h4 id="orga2cbe92">Answer</h4>
+<div class="outline-text-4" id="text-orga2cbe92">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">zv-count-pairs</span> xs<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">counted</span> '<span style="color: #268bd2;">()</span><span style="color: #b58900;">)</span>
@@ -443,9 +442,9 @@ such lists.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org47783ce" class="outline-4">
-<h4 id="org47783ce">Answer</h4>
-<div class="outline-text-4" id="text-org47783ce">
+<div id="outline-container-org5a847f1" class="outline-4">
+<h4 id="org5a847f1">Answer</h4>
+<div class="outline-text-4" id="text-org5a847f1">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">has-cycles?</span> xs<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">visited</span> '<span style="color: #268bd2;">()</span><span style="color: #b58900;">)</span>
@@ -474,9 +473,9 @@ space. (This requires a very clever idea.)
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org9e82f2c" class="outline-4">
-<h4 id="org9e82f2c">Answer</h4>
-<div class="outline-text-4" id="text-org9e82f2c">
+<div id="outline-container-org12a43fb" class="outline-4">
+<h4 id="org12a43fb">Answer</h4>
+<div class="outline-text-4" id="text-org12a43fb">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define*</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">linear-cycle-search</span> x1
 <span style="color: #657b83; font-weight: bold;">#:optional</span> <span style="color: #268bd2;">(</span>x2 <span style="color: #6c71c4;">(</span>cdr x1<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
@@ -514,9 +513,9 @@ the sequence of items in the queue.
 </blockquote>
 </div>
 
-<div id="outline-container-org5612578" class="outline-4">
-<h4 id="org5612578">Answer</h4>
-<div class="outline-text-4" id="text-org5612578">
+<div id="outline-container-org4ccb474" class="outline-4">
+<h4 id="org4ccb474">Answer</h4>
+<div class="outline-text-4" id="text-org4ccb474">
 <p>
 #+begin<sub>src</sub> scheme
 (define (print-queue qs)
@@ -554,9 +553,9 @@ operations using this representation.
 </blockquote>
 </div>
 
-<div id="outline-container-org6cbf4e5" class="outline-4">
-<h4 id="org6cbf4e5">Answer</h4>
-<div class="outline-text-4" id="text-org6cbf4e5">
+<div id="outline-container-org6ce4a46" class="outline-4">
+<h4 id="org6ce4a46">Answer</h4>
+<div class="outline-text-4" id="text-org6ce4a46">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">make-curryq</span><span style="color: #b58900;">)</span>
 <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>front-ptr '<span style="color: #859900;">()</span><span style="color: #6c71c4;">)</span>
@@ -607,9 +606,9 @@ accomplished in Θ(1) steps.
 </blockquote>
 </div>
 
-<div id="outline-container-org53a736f" class="outline-4">
-<h4 id="org53a736f">Answer</h4>
-<div class="outline-text-4" id="text-org53a736f">
+<div id="outline-container-orgf54c202" class="outline-4">
+<h4 id="orgf54c202">Answer</h4>
+<div class="outline-text-4" id="text-orgf54c202">
 <p>
 #+begin<sub>src</sub> scheme
 </p>
@@ -841,9 +840,9 @@ access appropriate `lookup' and `insert!' procedures for a local table.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgab90fb5" class="outline-4">
-<h4 id="orgab90fb5">Answer</h4>
-<div class="outline-text-4" id="text-orgab90fb5">
+<div id="outline-container-orgfe57c59" class="outline-4">
+<h4 id="orgfe57c59">Answer</h4>
+<div class="outline-text-4" id="text-orgfe57c59">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">make-table-with-key</span> same-key?<span style="color: #b58900;">)</span>
@@ -897,9 +896,9 @@ table.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgcbccbff" class="outline-4">
-<h4 id="orgcbccbff">Answer</h4>
-<div class="outline-text-4" id="text-orgcbccbff">
+<div id="outline-container-org00c0fe3" class="outline-4">
+<h4 id="org00c0fe3">Answer</h4>
+<div class="outline-text-4" id="text-org00c0fe3">
 <p>
 #+begin<sub>src</sub> scheme
 </p>
@@ -907,9 +906,9 @@ table.
 </div>
 </div>
 
-<div id="outline-container-orgd1f2f3a" class="outline-3">
-<h3 id="orgd1f2f3a">Answer:</h3>
-<div class="outline-text-3" id="text-orgd1f2f3a">
+<div id="outline-container-orgfa915e9" class="outline-3">
+<h3 id="orgfa915e9">Answer:</h3>
+<div class="outline-text-3" id="text-orgfa915e9">
 <blockquote>
 <p>
 The easiest way to accomplish this is to accept variadic arguments to
@@ -918,9 +917,9 @@ directly (which `equal?' can compare)
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org05808b2" class="outline-4">
-<h4 id="org05808b2">Answer</h4>
-<div class="outline-text-4" id="text-org05808b2">
+<div id="outline-container-orgabf6897" class="outline-4">
+<h4 id="orgabf6897">Answer</h4>
+<div class="outline-text-4" id="text-orgabf6897">
 <p>
 #+begin<sub>src</sub> scheme
 #+end<sub>src</sub>#+end<sub>src</sub>
@@ -945,9 +944,9 @@ Exercise 2-66 of Chapter 2)
 </blockquote>
 </div>
 
-<div id="outline-container-org232b8a7" class="outline-4">
-<h4 id="org232b8a7">Answer:</h4>
-<div class="outline-text-4" id="text-org232b8a7">
+<div id="outline-container-org2de6cd0" class="outline-4">
+<h4 id="org2de6cd0">Answer:</h4>
+<div class="outline-text-4" id="text-org2de6cd0">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">The value that is to be inserted is converted into it's numeric form. Insert</span>
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">&amp; Lookup function as you would expect</span>
@@ -1019,9 +1018,9 @@ defined `memo-fib' to be `(memoize fib)'?
 </blockquote>
 </div>
 
-<div id="outline-container-org8748d05" class="outline-4">
-<h4 id="org8748d05">Answer:</h4>
-<div class="outline-text-4" id="text-org8748d05">
+<div id="outline-container-orga159d25" class="outline-4">
+<h4 id="orga159d25">Answer:</h4>
+<div class="outline-text-4" id="text-orga159d25">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">memo-fib is O(N) because the fibonacci sequence can simply be computed in</span>
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">2*(&#931;(N)) steps (half of which are 'precomputed')</span>
@@ -1045,9 +1044,9 @@ be similar to and-gate.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgad31936" class="outline-4">
-<h4 id="orgad31936">Answer</h4>
-<div class="outline-text-4" id="text-orgad31936">
+<div id="outline-container-org56a269d" class="outline-4">
+<h4 id="org56a269d">Answer</h4>
+<div class="outline-text-4" id="text-org56a269d">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">or-gate-delay</span> <span style="color: #6c71c4;">5</span><span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">or-gate</span> a1 a2 output<span style="color: #b58900;">)</span>
@@ -1081,9 +1080,9 @@ inverter-delay?
 </blockquote>
 </div>
 
-<div id="outline-container-org2180445" class="outline-4">
-<h4 id="org2180445">Answer</h4>
-<div class="outline-text-4" id="text-org2180445">
+<div id="outline-container-orgcbd3acd" class="outline-4">
+<h4 id="orgcbd3acd">Answer</h4>
+<div class="outline-text-4" id="text-orgcbd3acd">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span>!a1<span style="color: #2aa198;">)</span> &amp;&amp; a2 is congruent to a1 <span style="color: #2aa198;">||</span> a2, it is as fast as <span style="color: #2aa198;">(</span>AND-DELAY + INVERTER_DELAY<span style="color: #2aa198;">)</span>
 </pre>
@@ -1113,9 +1112,9 @@ and inverters?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org38ef913" class="outline-4">
-<h4 id="org38ef913">Answer</h4>
-<div class="outline-text-4" id="text-org38ef913">
+<div id="outline-container-orgeb53132" class="outline-4">
+<h4 id="orgeb53132">Answer</h4>
+<div class="outline-text-4" id="text-orgeb53132">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
@@ -1144,9 +1143,9 @@ system’s response would differ if we had defined accept-action-procedure! as
 </blockquote>
 </div>
 
-<div id="outline-container-orgfa915e9" class="outline-4">
-<h4 id="orgfa915e9">Answer:</h4>
-<div class="outline-text-4" id="text-orgfa915e9">
+<div id="outline-container-orge57b6ba" class="outline-4">
+<h4 id="orge57b6ba">Answer:</h4>
+<div class="outline-text-4" id="text-orge57b6ba">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">the signal value must be initialized or the entire system will run the action</span>
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">procedures (no matter what has changed)</span>
@@ -1184,9 +1183,9 @@ constraint that the value of c is the average of the values of a and b.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org61d9506" class="outline-4">
-<h4 id="org61d9506">Answer</h4>
-<div class="outline-text-4" id="text-org61d9506">
+<div id="outline-container-orgd3cdd34" class="outline-4">
+<h4 id="orgd3cdd34">Answer</h4>
+<div class="outline-text-4" id="text-orgd3cdd34">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">averager</span> a b c<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>with-connectors <span style="color: #268bd2;">(</span>half sum<span style="color: #268bd2;">)</span>
@@ -1220,9 +1219,9 @@ There is a serious flaw in this idea. Explain.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgf76f72d" class="outline-4">
-<h4 id="orgf76f72d">Answer</h4>
-<div class="outline-text-4" id="text-orgf76f72d">
+<div id="outline-container-org52e6f07" class="outline-4">
+<h4 id="org52e6f07">Answer</h4>
+<div class="outline-text-4" id="text-org52e6f07">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Answer: The value of `a' is not "duplicated" across -- so `process-new-value' only</span>
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">reads either `rhs' or `lhs''s value</span>
@@ -1260,9 +1259,9 @@ me)
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org60f04d3" class="outline-4">
-<h4 id="org60f04d3">Answer</h4>
-<div class="outline-text-4" id="text-org60f04d3">
+<div id="outline-container-org6217ae0" class="outline-4">
+<h4 id="org6217ae0">Answer</h4>
+<div class="outline-text-4" id="text-org6217ae0">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define-class</span> <span style="color: #b58900;">&lt;squarer&gt;</span> <span style="color: #b58900;">(</span><span style="color: #b58900;">&lt;constraint&gt;</span><span style="color: #b58900;">)</span>
@@ -1333,9 +1332,9 @@ expression is evaluated.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org62bcdde" class="outline-4">
-<h4 id="org62bcdde">Answer</h4>
-<div class="outline-text-4" id="text-org62bcdde">
+<div id="outline-container-org31eee37" class="outline-4">
+<h4 id="org31eee37">Answer</h4>
+<div class="outline-text-4" id="text-org31eee37">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
@@ -1384,9 +1383,9 @@ to define compound constraints as in the converter example above.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgce0eb5d" class="outline-4">
-<h4 id="orgce0eb5d">Answer</h4>
-<div class="outline-text-4" id="text-orgce0eb5d">
+<div id="outline-container-orge8c8a7b" class="outline-4">
+<h4 id="orge8c8a7b">Answer</h4>
+<div class="outline-text-4" id="text-orge8c8a7b">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">c+</span> augend addend<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>with-connectors <span style="color: #268bd2;">(</span>sum<span style="color: #268bd2;">)</span>
@@ -1444,9 +1443,9 @@ explain how these values can occur.</li>
 </ol>
 </blockquote>
 </div>
-<div id="outline-container-org7745f48" class="outline-4">
-<h4 id="org7745f48">Answer</h4>
-<div class="outline-text-4" id="text-org7745f48">
+<div id="outline-container-org079a328" class="outline-4">
+<h4 id="org079a328">Answer</h4>
+<div class="outline-text-4" id="text-org079a328">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">#| Answer (1):</span>
@@ -1484,9 +1483,9 @@ we instead serialize execution as follows:
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org0478faf" class="outline-4">
-<h4 id="org0478faf">Answer</h4>
-<div class="outline-text-4" id="text-org0478faf">
+<div id="outline-container-org07cf083" class="outline-4">
+<h4 id="org07cf083">Answer</h4>
+<div class="outline-text-4" id="text-org07cf083">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">ANSWER: 101, 100, 121</span>
 </pre>
@@ -1524,9 +1523,9 @@ Which of these possibilities remain if we instead use serialized procedures:
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org18d9c5d" class="outline-4">
-<h4 id="org18d9c5d">Answer</h4>
-<div class="outline-text-4" id="text-org18d9c5d">
+<div id="outline-container-org6250698" class="outline-4">
+<h4 id="org6250698">Answer</h4>
+<div class="outline-text-4" id="text-org6250698">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Answer: x*6 (multiplication is commutative)</span>
 </pre>
@@ -1580,9 +1579,9 @@ behavior. Do you agree? Is there any scenario that demonstrates Ben’s concern?
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org6a517c8" class="outline-4">
-<h4 id="org6a517c8">Answer</h4>
-<div class="outline-text-4" id="text-org6a517c8">
+<div id="outline-container-orgf33802c" class="outline-4">
+<h4 id="orgf33802c">Answer</h4>
+<div class="outline-text-4" id="text-orgf33802c">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">First off, this question is phrased in a really shitty way. Second off, no</span>
@@ -1639,9 +1638,9 @@ dispatch)))
 </blockquote>
 </div>
 
-<div id="outline-container-org0ee0a75" class="outline-4">
-<h4 id="org0ee0a75">Answer</h4>
-<div class="outline-text-4" id="text-org0ee0a75">
+<div id="outline-container-org869b37d" class="outline-4">
+<h4 id="org869b37d">Answer</h4>
+<div class="outline-text-4" id="text-org869b37d">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Answer: This is fine</span>
 </pre>
@@ -1669,9 +1668,9 @@ transactions on individual accounts.
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgbb583e0" class="outline-4">
-<h4 id="orgbb583e0">Answer</h4>
-<div class="outline-text-4" id="text-orgbb583e0">
+<div id="outline-container-org09f1aad" class="outline-4">
+<h4 id="org09f1aad">Answer</h4>
+<div class="outline-text-4" id="text-org09f1aad">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">#| SKIPPED: Timing diagram |#</span>
 </pre>

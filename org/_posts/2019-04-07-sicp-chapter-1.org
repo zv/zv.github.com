@@ -2,7 +2,6 @@
 ---
 layout: page
 title: SICP Chapter 1 Exercises & Solutions
-excerpt: SICP Chapter 1
 category: note
 tags:
   - sicp

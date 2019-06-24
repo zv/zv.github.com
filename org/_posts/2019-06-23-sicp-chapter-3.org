@@ -2,7 +2,6 @@
 ---
 layout: page
 title: SICP Chapter 3 Exercises & Solutions
-excerpt: SICP Chapter 3
 category: note
 tags:
 - sicp
