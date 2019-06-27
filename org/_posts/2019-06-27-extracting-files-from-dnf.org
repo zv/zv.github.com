@@ -1,0 +1,43 @@
+#+BEGIN_EXPORT html
+---
+layout: page
+title: Extract package files from RPM repos
+category: note
+tags:
+- howto
+- linux
+- fedora
+- package-manager
+- dnf
+---
+#+END_EXPORT
+#+HTML_DOCTYPE: html5
+#+OPTIONS: H:3
+
+* 
+  ~dnf~ & ~repoquery~ don't provide ready faculties for extracting a file from a RPM package. You can do so without installing third-party software with ~rpm2cpio~ and ~cpio~, which are distributed with Fedora Workstation & RHEL.
+  
+  #+begin_src shell
+#!/bin/bash
+
+dnf_extract() {
+    pkg="${1?Must supply package name}"
+    file="${2?Must supply file path}"
+    tmpdir="$(mktemp -d)"
+    mkdir -p "$tmpdir"
+    (
+        cd "$tmpdir" || exit 3
+        pkgname=$(dnf download --downloadonly "$pkg" --destdir="$tmpdir" \
+                      | tee >(grep -o '[^[:space:]]*.rpm') 1>&2)
+        rpm2cpio "$pkgname" | cpio -icvd "*$file"
+        cat "${file:1}"
+    )
+    rm -r "$tmpdir"
+}
+  #+end_src
+
+  Which can be called with the package name and absolute file path:
+  
+  #+begin_example
+  $ dnf_extract bash-5.0.7-1.fc30.x86_64 /usr/share/licenses/bash/COPYING
+  #+end_example

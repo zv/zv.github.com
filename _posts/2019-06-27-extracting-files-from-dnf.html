@@ -1,0 +1,48 @@
+---
+layout: page
+title: Extract package files from RPM repos
+category: note
+tags:
+- howto
+- linux
+- fedora
+- package-manager
+- dnf
+---
+
+<section id="outline-container-org72f426a" class="outline-2">
+<h2 id="org72f426a"></h2>
+<div class="outline-text-2" id="text-org72f426a">
+<p>
+<code>dnf</code> &amp; <code>repoquery</code> don't provide ready faculties for extracting a file from a RPM package. You can do so without installing third-party software with <code>rpm2cpio</code> and <code>cpio</code>, which are distributed with Fedora Workstation &amp; RHEL.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #93a1a1;">#</span><span style="color: #93a1a1;">!/bin/</span><span style="color: #859900; font-weight: bold;">bash</span>
+
+<span style="color: #268bd2;">dnf_extract</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #268bd2;">pkg</span>=<span style="color: #2aa198;">"${1?Must supply package name}"</span>
+    <span style="color: #268bd2;">file</span>=<span style="color: #2aa198;">"${2?Must supply file path}"</span>
+    <span style="color: #268bd2;">tmpdir</span>=<span style="color: #2aa198;">"$(</span><span style="color: #6c71c4; font-weight: bold;">mktemp</span><span style="color: #2aa198;"> -d)"</span>
+    mkdir -p <span style="color: #2aa198;">"$tmpdir"</span>
+    <span style="color: #b58900;">(</span>
+        <span style="color: #657b83; font-weight: bold;">cd</span> <span style="color: #2aa198;">"$tmpdir"</span> || <span style="color: #859900; font-weight: bold;">exit</span> <span style="color: #6c71c4;">3</span>
+        <span style="color: #268bd2;">pkgname</span>=$<span style="color: #268bd2;">(</span><span style="color: #6c71c4; font-weight: bold;">dnf</span> download --downloadonly <span style="color: #2aa198;">"$pkg"</span> --destdir=<span style="color: #2aa198;">"$tmpdir"</span> <span style="color: #b58900; font-weight: bold;">\</span>
+                      | tee &gt;<span style="color: #6c71c4;">(</span>grep -o <span style="color: #2aa198;">'[^[:space:]]*.rpm'</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">1</span>&gt;&amp;<span style="color: #6c71c4;">2</span><span style="color: #268bd2;">)</span>
+        rpm2cpio <span style="color: #2aa198;">"$pkgname"</span> | cpio -icvd <span style="color: #2aa198;">"*$file"</span>
+        cat <span style="color: #2aa198;">"${file:1}"</span>
+    <span style="color: #b58900;">)</span>
+    rm -r <span style="color: #2aa198;">"$tmpdir"</span>
+<span style="color: #2aa198;">}</span>
+</pre>
+</div>
+
+<p>
+Which can be called with the package name and absolute file path:
+</p>
+
+<pre class="example">
+$ dnf_extract bash-5.0.7-1.fc30.x86_64 /usr/share/licenses/bash/COPYING
+</pre>
+</div>
+</section>
