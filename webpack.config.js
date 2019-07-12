@@ -1,23 +1,21 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
-    entry: './js/page.js',
-    output: {
-        filename: 'page.js',
-        path: path.resolve(__dirname, 'dist')
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /(node_modules|_dist)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['env']
-                    }
-                }
-            }
-        ]
-    }
+  entry: './js/page.ts',
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ]
+  },
+  output: {
+    filename: 'page.js',
+    path: path.resolve(__dirname, 'dist')
+  }
 };
