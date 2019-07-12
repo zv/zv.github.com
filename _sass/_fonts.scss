@@ -6,8 +6,8 @@ pre, code, span.verbatim {
 
 code {
     // This color is *essentially* $base02
-    @include bg_alpha_calc($base2, 0.25, $base3);
-    padding: 0.2em;
+    // @include bg_alpha_calc($base2, 0.25, $base3);
+    // padding: 0.2em;
 }
 
 /* Site Layout */
@@ -47,7 +47,7 @@ h1.post-title {
 .outline-2 > h2 {
     color: $yellow;
     font: $header2;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     letter-spacing: 0.05rem;
 
     b,i,code,pre {
@@ -60,7 +60,7 @@ h1.post-title {
     color: $green;
     font: $header3;
     letter-spacing: 0.05rem;
-    margin: 1.2rem 0;
+    margin: 2rem 0;
 
     b,i,code,pre {
         color: inherit;
@@ -70,7 +70,7 @@ h1.post-title {
 .outline-4 > h4 {
     color: $base01;
     font: $header4;
-    margin: 1.2rem 0;
+    margin: 2rem 0;
     letter-spacing: 0.05rem;
 
     b,i,code,pre {
@@ -81,7 +81,7 @@ h1.post-title {
 .outline-5 > h5 {
     color: $base00;
     font: $header5;
-    margin: 1.2rem 0;
+    margin: 2rem 0;
     letter-spacing: 0.05rem;
 }
 
