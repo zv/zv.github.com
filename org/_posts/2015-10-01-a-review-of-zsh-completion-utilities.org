@@ -55,7 +55,7 @@ get a high-level view of completion script's structure unintentionally defy it
 and spend time working against, rather than with the grain of the system.
 
 1. An entry point (e.g =git=) will processes the command line string. 
-2. A function for each subcommand such as =diff=, typically wrapping ~_arguments~
+2. A function for each subcommand such as =diff=, typically wrapping =_arguments=
 3. One function for each type of object, referred to as a /tag/ in ZSH nomenclature.
 4. In some cases, functions to handle special values, files, sockets, fifos.
 
@@ -75,7 +75,7 @@ git command, again followed by options to /that/ command. A high level view of
 what-must-be-completed-when in git demonstrates it's recursive nature
 immediately.
 
-** The structure of ~_arguments~ 
+** The structure of =_arguments= 
 The function /_arguments/ has been described as having `the syntax from hell', but
 with the arguments already laid out in front of you it doesn't look so bad. The
 are three types of argument: options to _arguments itself, arguments saying how
@@ -120,11 +120,11 @@ shouldn't complete options after =--=, which is a common UNIX 'pattern' to
 indicate options have ended.
 
 *** The optspec
-The long strings of option specification that follows the flags to ~_arguments~
+The long strings of option specification that follows the flags to =_arguments=
 and a colon are known known as ~optspec~s or option specification.
 
 *** Option Naming
-~_arguments~ broadly supports 7 different option specification varieties, all of
+=_arguments= broadly supports 7 different option specification varieties, all of
 which can be directly followed by a bracketed explanation string.
 | specification | description                                       |
 |---------------+---------------------------------------------------|
@@ -166,7 +166,7 @@ fi
 The ~_guard~ can break between two tags, dependent upon the regex; if this
 doesn't seem extraordinarily useful to you, you're not alone -- In the body of
 existing ZSH completion scripts, ~_guard~ is typically used an the /action/ for
-the specification pased into ~_arguments~ and similar functions.
+the specification pased into =_arguments= and similar functions.
 
 The =zshcompsys= manpage itself describes behavior reminiscent of the completion
 behavior of ~fc(1)~

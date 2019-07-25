@@ -1,7 +1,7 @@
 #+BEGIN_EXPORT html
 ---
 layout: page
-title: Extract package files from RPM repos
+title: Extract package files from RPM 
 category: note
 tags:
 - howto
