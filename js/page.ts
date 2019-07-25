@@ -2,6 +2,7 @@ import { reposition_footnotes, ElementCollection } from './footnotes';
 import { load_comments } from './comments';
 
 const page_init = () => {
+
   // // Reposition footnotes onto right side
   if (window.innerWidth >= 1024) {
     window.addEventListener('load', function() {
