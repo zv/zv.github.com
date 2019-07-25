@@ -4,14 +4,9 @@
 @charset "utf-8";
 
 // Our variables
-
-$spacing-unit:     30px;
-
 // Body
-$main-width: 750px;
-$main-wide-width: 810px;
-$menu-width: 80%;
-
+$main-width: 45rem;
+$main-wide-width: 55rem;
 $mobile-width: 90%;
 
 $base03:    #002b36;
@@ -60,14 +55,10 @@ $nav-color: $base1;
 $nav-selected-color: $base01;
 $nav-selected-border: 2px solid $base01;
 
-// Width of the content area
-$content-width:    800px;
-
-$fontname: unquote('Calibri, sans-serif');
+$fontname: unquote('Calibri, "Helvetica Neue", Helvetica, Arial, sans-serif');
 $monofontname: unquote('monospace');
-$headerfontname: unquote('Calibri, sans-serif');
+$headerfontname: $fontname;
 $font: 400 17px/30px $fontname;
-$base-line-height: 1.5;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import

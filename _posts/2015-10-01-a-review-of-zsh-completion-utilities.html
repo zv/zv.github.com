@@ -12,7 +12,7 @@ category: note
 <li><a href="#orgb1331ee">Prologue</a></li>
 <li><a href="#orgf6849b4">The structure of standard argument completion.</a>
 <ul>
-<li><a href="#orge2f994e">The structure of <code>_arguments</code></a></li>
+<li><a href="#org1f5efa3">The structure of <span class="verbatim">_arguments</span></a></li>
 </ul>
 </li>
 <li><a href="#orge95012d">Utility Functions</a>
@@ -115,7 +115,7 @@ and spend time working against, rather than with the grain of the system.
 
 <ol class="org-ol">
 <li>An entry point (e.g <span class="verbatim">git</span>) will processes the command line string.</li>
-<li>A function for each subcommand such as <span class="verbatim">diff</span>, typically wrapping <code>_arguments</code></li>
+<li>A function for each subcommand such as <span class="verbatim">diff</span>, typically wrapping <span class="verbatim">_arguments</span></li>
 <li>One function for each type of object, referred to as a <i>tag</i> in ZSH nomenclature.</li>
 <li>In some cases, functions to handle special values, files, sockets, fifos.</li>
 </ol>
@@ -143,9 +143,9 @@ immediately.
 </p>
 </div>
 
-<div id="outline-container-orge2f994e" class="outline-3">
-<h3 id="orge2f994e">The structure of <code>_arguments</code></h3>
-<div class="outline-text-3" id="text-orge2f994e">
+<div id="outline-container-org1f5efa3" class="outline-3">
+<h3 id="org1f5efa3">The structure of <span class="verbatim">_arguments</span></h3>
+<div class="outline-text-3" id="text-org1f5efa3">
 <p>
 The function <i>_arguments</i> has been described as having `the syntax from hell', but
 with the arguments already laid out in front of you it doesn't look so bad. The
@@ -160,20 +160,20 @@ The following is an excerpt from the <i>p4 diff</i> completion function (in turn
 excerpted from the manual) and covers some important fundamentals of argument parsing.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #707183;">(</span><span style="color: #7388D6;">(</span> $+functions<span style="color: #909183;">[</span>_git-diff<span style="color: #909183;">]</span> <span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> ||
-<span style="color: #006699;">_git-diff</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
-      _arguments -s : <span style="color: #008000;">\ </span>
-          <span style="color: #008000;">'-f[diff every file]'</span> <span style="color: #008000;">\ </span>
-          <span style="color: #008000;">'-t[include non-text files]'</span> <span style="color: #008000;">\ </span>
-          <span style="color: #008000;">'(-sd -se -sr)-sa[opened files, different or missing]'</span> <span style="color: #008000;">\ </span>
-          <span style="color: #008000;">'(-sa -se -sr)-sd[unopened files, missing]'</span> <span style="color: #008000;">\ </span>
-          <span style="color: #008000;">'(-sa -sd -sr)-se[unopened files, different]'</span> <span style="color: #008000;">\ </span>
-          <span style="color: #008000;">'(-sa -sd -se)-sr[opened files, same as depot]'</span> <span style="color: #008000;">\ </span>
-          <span style="color: #008000;">'-d-[select diff option]:diff option:'</span> <span style="color: #008000;">\ </span>
-  <span style="color: #008000;">'((b\:ignore\ blanks c\:context n\:RCS s\:summary'</span> <span style="color: #008000;">\ </span>
-    <span style="color: #008000;">'u\:unified w\:ignore\ all\ whitespace))'</span> <span style="color: #008000;">\ </span>
-          <span style="color: #008000;">"*::file:_perforce_files"</span>
-  <span style="color: #707183;">}</span>
+<pre class="src src-sh"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span> $+functions<span style="color: #268bd2;">[</span>_git-diff<span style="color: #268bd2;">]</span> <span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span> ||
+<span style="color: #268bd2;">_git-diff</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+      _arguments -s : <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'-f[diff every file]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'-t[include non-text files]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'(-sd -se -sr)-sa[opened files, different or missing]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'(-sa -se -sr)-sd[unopened files, missing]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'(-sa -sd -sr)-se[unopened files, different]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'(-sa -sd -se)-sr[opened files, same as depot]'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">'-d-[select diff option]:diff option:'</span> <span style="color: #2aa198;">\ </span>
+  <span style="color: #2aa198;">'((b\:ignore\ blanks c\:context n\:RCS s\:summary'</span> <span style="color: #2aa198;">\ </span>
+    <span style="color: #2aa198;">'u\:unified w\:ignore\ all\ whitespace))'</span> <span style="color: #2aa198;">\ </span>
+          <span style="color: #2aa198;">"*::file:_perforce_files"</span>
+  <span style="color: #2aa198;">}</span>
 </pre>
 </div>
 </div>
@@ -211,7 +211,7 @@ indicate options have ended.
 <h4 id="org58818f8">The optspec</h4>
 <div class="outline-text-4" id="text-org58818f8">
 <p>
-The long strings of option specification that follows the flags to <code>_arguments</code>
+The long strings of option specification that follows the flags to <span class="verbatim">_arguments</span>
 and a colon are known known as ~optspec~s or option specification.
 </p>
 </div>
@@ -221,7 +221,7 @@ and a colon are known known as ~optspec~s or option specification.
 <h4 id="org042fa8b">Option Naming</h4>
 <div class="outline-text-4" id="text-org042fa8b">
 <p>
-<code>_arguments</code> broadly supports 7 different option specification varieties, all of
+<span class="verbatim">_arguments</span> broadly supports 7 different option specification varieties, all of
 which can be directly followed by a bracketed explanation string.
 </p>
 <table>
@@ -278,14 +278,14 @@ The following is an extract of the iproute2 argument handling in <a href="https:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #006FE0;">local</span> args
-<span style="color: #BA36A5;">args</span>=<span style="color: #707183;">(</span>
-  <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Command word</span>
-  /$<span style="color: #008000;">'[^\0]#\0'</span>/
-  <span style="color: #008000;">'l*ink:configure network device:$link_cmds'</span> <span style="color: #008000;">\</span>
-  <span style="color: #008000;">'addrlabel:manage addrlabel:$addrlabel_cmds'</span> <span style="color: #008000;">\</span>
-  <span style="color: #008000;">'a*ddr:manage protocol address:$addr_cmds'</span> <span style="color: #008000;">\</span>
-<span style="color: #707183;">)</span>
+<pre class="src src-sh"><span style="color: #657b83; font-weight: bold;">local</span> args
+<span style="color: #268bd2;">args</span>=<span style="color: #2aa198;">(</span>
+  <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Command word</span>
+  /$<span style="color: #2aa198;">'[^\0]#\0'</span>/
+  <span style="color: #2aa198;">'l*ink:configure network device:$link_cmds'</span> <span style="color: #b58900; font-weight: bold;">\</span>
+  <span style="color: #2aa198;">'addrlabel:manage addrlabel:$addrlabel_cmds'</span> <span style="color: #b58900; font-weight: bold;">\</span>
+  <span style="color: #2aa198;">'a*ddr:manage protocol address:$addr_cmds'</span> <span style="color: #b58900; font-weight: bold;">\</span>
+<span style="color: #2aa198;">)</span>
 _regex_arguments _command 
 </pre>
 </div>
@@ -296,13 +296,13 @@ _regex_arguments _command
 <h3 id="org7cf4a70"><code>_pick_variant</code> to add options depending upon the version of a program.</h3>
 <div class="outline-text-3" id="text-org7cf4a70">
 <div class="org-src-container">
-<pre class="src src-shell-script"><span style="color: #006FE0;">local</span> arguments
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">We supply a regex to _pick_variant, in this case checking gor the string `gnu`</span>
-<span style="color: #0000FF;">if</span> ! _pick_variant <span style="color: #BA36A5;">gnu</span>=gnu unix --help; <span style="color: #0000FF;">then</span>
-  <span style="color: #BA36A5;">arguments</span>=<span style="color: #707183;">(</span><span style="color: #008000;">'-g[This flag only works on gnu distributions of this binary]'</span><span style="color: #707183;">)</span>
-<span style="color: #0000FF;">else</span>
-  <span style="color: #BA36A5;">arguments</span>=<span style="color: #707183;">(</span><span style="color: #008000;">'-a[Otherwise this flag is available]'</span><span style="color: #707183;">)</span>
-<span style="color: #0000FF;">fi</span>
+<pre class="src src-shell-script"><span style="color: #657b83; font-weight: bold;">local</span> arguments
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">We supply a regex to _pick_variant, in this case checking gor the string `gnu`</span>
+<span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900; font-weight: bold;">!</span> _pick_variant <span style="color: #268bd2;">gnu</span>=gnu unix --help; <span style="color: #859900; font-weight: bold;">then</span>
+  <span style="color: #268bd2;">arguments</span>=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">'-g[This flag only works on gnu distributions of this binary]'</span><span style="color: #2aa198;">)</span>
+<span style="color: #859900; font-weight: bold;">else</span>
+  <span style="color: #268bd2;">arguments</span>=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">'-a[Otherwise this flag is available]'</span><span style="color: #2aa198;">)</span>
+<span style="color: #859900; font-weight: bold;">fi</span>
 </pre>
 </div>
 </div>
@@ -315,7 +315,7 @@ _regex_arguments _command
 The <code>_guard</code> can break between two tags, dependent upon the regex; if this
 doesn't seem extraordinarily useful to you, you're not alone &#x2013; In the body of
 existing ZSH completion scripts, <code>_guard</code> is typically used an the <i>action</i> for
-the specification pased into <code>_arguments</code> and similar functions.
+the specification pased into <span class="verbatim">_arguments</span> and similar functions.
 </p>
 
 <p>
@@ -338,26 +338,26 @@ zshcompsys(4)
 <a href="https://github.com/zsh-users/zsh/blob/5deb57714fc799918552b22f077cc4b1daf1f68f/Completion/Zsh/Command/_fc">The <code>_fc</code> completion demonstrates this here:</a>
 </p>
 <div class="org-src-container">
-<pre class="src src-shell-script"><span style="color: #0000FF;">if</span> <span style="color: #707183;">[</span><span style="color: #7388D6;">[</span> -n $<span style="color: #BA36A5;">state</span> <span style="color: #7388D6;">]</span><span style="color: #707183;">]</span>; <span style="color: #0000FF;">then</span>
-  zstyle -s <span style="color: #008000;">":completion:${curcontext}:"</span> list-separator sep || <span style="color: #BA36A5;">sep</span>=--
-  <span style="color: #0000FF;">if</span> <span style="color: #707183;">[</span><span style="color: #7388D6;">[</span> -z $<span style="color: #909183;">{</span><span style="color: #BA36A5;">line</span>:#*=*<span style="color: #909183;">}</span> <span style="color: #7388D6;">]</span><span style="color: #707183;">]</span> &amp;&amp; compset -P <span style="color: #008000;">'*='</span>; <span style="color: #0000FF;">then</span>
-    _message -e replacements <span style="color: #008000;">'replacement'</span>
-  <span style="color: #0000FF;">elif</span> <span style="color: #707183;">[</span><span style="color: #7388D6;">[</span> -prefix <span style="color: #909183;">[</span><span style="color: #D0372D;">0-9</span><span style="color: #909183;">]</span> <span style="color: #7388D6;">]</span><span style="color: #707183;">]</span>; <span style="color: #0000FF;">then</span>
-    <span style="color: #BA36A5;">events</span>=<span style="color: #707183;">(</span> $<span style="color: #7388D6;">{</span><span style="color: #909183;">(</span><span style="color: #D0372D;">0</span><span style="color: #909183;">)</span><span style="color: #008000;">"$(</span><span style="color: #FF1493;">printf</span><span style="color: #008000;"> "%-${#HISTNO}.${#HISTNO}s $sep %s\0" "${(kv)history[@]}")"</span><span style="color: #7388D6;">}</span> <span style="color: #707183;">)</span>
-    _wanted -2V events expl <span style="color: #008000;">"$state_descr"</span> compadd -M <span style="color: #008000;">"B:0="</span> -ld events - <span style="color: #008000;">\</span>
-        <span style="color: #008000;">"${events[@]%% *}"</span>
-  <span style="color: #0000FF;">elif</span> <span style="color: #707183;">[</span><span style="color: #7388D6;">[</span> -prefix - <span style="color: #7388D6;">]</span><span style="color: #707183;">]</span>; <span style="color: #0000FF;">then</span>
-    <span style="color: #0000FF;">for</span> num cmd<span style="color: #0000FF;"> in</span> <span style="color: #008000;">"${(kv@)history}"</span>; <span style="color: #0000FF;">do</span>
-      <span style="color: #707183;">(</span><span style="color: #7388D6;">(</span> <span style="color: #BA36A5;">num</span>=num - HISTNO <span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-      <span style="color: #BA36A5;">events</span>+=<span style="color: #707183;">(</span> <span style="color: #008000;">"${(r.1+$#HISTNO.)num} $sep $cmd"</span> <span style="color: #707183;">)</span>
-    <span style="color: #0000FF;">done</span>
-    _wanted -2V events expl <span style="color: #008000;">"$state_descr"</span> compadd -ld events - <span style="color: #008000;">\</span>
-        <span style="color: #008000;">"${events[@]%% *}"</span>
-  <span style="color: #0000FF;">else</span>
-    _wanted events expl <span style="color: #008000;">"$state_descr"</span> compadd -S <span style="color: #008000;">''</span> - <span style="color: #008000;">\</span>
-        $<span style="color: #707183;">{</span><span style="color: #BA36A5;">$</span><span style="color: #7388D6;">{</span><span style="color: #006FE0;">history</span>%%<span style="color: #909183;">[</span>=<span style="color: #709870;">[</span>:IFS:<span style="color: #709870;">]</span><span style="color: #909183;">]</span>*<span style="color: #7388D6;">}</span>:#<span style="color: #7388D6;">[</span><span style="color: #D0372D;">0-9-</span><span style="color: #7388D6;">]</span>*<span style="color: #707183;">}</span> || _guard <span style="color: #008000;">"[0-9]#"</span> event
-  <span style="color: #0000FF;">fi</span>
-<span style="color: #0000FF;">fi</span> &amp;&amp; <span style="color: #BA36A5;">ret</span>=<span style="color: #D0372D;">0</span>
+<pre class="src src-shell-script"><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> -n $<span style="color: #268bd2;">state</span> <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
+  zstyle -s <span style="color: #2aa198;">":completion:${curcontext}:"</span> list-separator sep || <span style="color: #268bd2;">sep</span>=--
+  <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> -z $<span style="color: #268bd2;">{</span><span style="color: #268bd2;">line</span>:#*=*<span style="color: #268bd2;">}</span> <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span> &amp;&amp; compset -P <span style="color: #2aa198;">'*='</span>; <span style="color: #859900; font-weight: bold;">then</span>
+    _message -e replacements <span style="color: #2aa198;">'replacement'</span>
+  <span style="color: #859900; font-weight: bold;">elif</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> -prefix <span style="color: #268bd2;">[</span><span style="color: #6c71c4;">0-9</span><span style="color: #268bd2;">]</span> <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
+    <span style="color: #268bd2;">events</span>=<span style="color: #2aa198;">(</span> $<span style="color: #b58900;">{</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">0</span><span style="color: #268bd2;">)</span><span style="color: #2aa198;">"$(</span><span style="color: #6c71c4; font-weight: bold;">printf</span><span style="color: #2aa198;"> "%-${#HISTNO}.${#HISTNO}s $sep %s\0" "${(kv)history[@]}")"</span><span style="color: #b58900;">}</span> <span style="color: #2aa198;">)</span>
+    _wanted -2V events expl <span style="color: #2aa198;">"$state_descr"</span> compadd -M <span style="color: #2aa198;">"B:0="</span> -ld events - <span style="color: #b58900; font-weight: bold;">\</span>
+        <span style="color: #2aa198;">"${events[@]%% *}"</span>
+  <span style="color: #859900; font-weight: bold;">elif</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> -prefix - <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
+    <span style="color: #859900; font-weight: bold;">for</span> num cmd<span style="color: #859900; font-weight: bold;"> in</span> <span style="color: #2aa198;">"${(kv@)history}"</span>; <span style="color: #859900; font-weight: bold;">do</span>
+      <span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span> <span style="color: #268bd2;">num</span>=num - HISTNO <span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+      <span style="color: #268bd2;">events</span>+=<span style="color: #2aa198;">(</span> <span style="color: #2aa198;">"${(r.1+$#HISTNO.)num} $sep $cmd"</span> <span style="color: #2aa198;">)</span>
+    <span style="color: #859900; font-weight: bold;">done</span>
+    _wanted -2V events expl <span style="color: #2aa198;">"$state_descr"</span> compadd -ld events - <span style="color: #b58900; font-weight: bold;">\</span>
+        <span style="color: #2aa198;">"${events[@]%% *}"</span>
+  <span style="color: #859900; font-weight: bold;">else</span>
+    _wanted events expl <span style="color: #2aa198;">"$state_descr"</span> compadd -S <span style="color: #2aa198;">''</span> - <span style="color: #b58900; font-weight: bold;">\</span>
+        $<span style="color: #2aa198;">{</span><span style="color: #268bd2;">$</span><span style="color: #b58900;">{</span><span style="color: #657b83; font-weight: bold;">history</span>%%<span style="color: #268bd2;">[</span>=<span style="color: #6c71c4;">[</span>:IFS:<span style="color: #6c71c4;">]</span><span style="color: #268bd2;">]</span>*<span style="color: #b58900;">}</span>:#<span style="color: #b58900;">[</span><span style="color: #6c71c4;">0-9-</span><span style="color: #b58900;">]</span>*<span style="color: #2aa198;">}</span> || _guard <span style="color: #2aa198;">"[0-9]#"</span> event
+  <span style="color: #859900; font-weight: bold;">fi</span>
+<span style="color: #859900; font-weight: bold;">fi</span> &amp;&amp; <span style="color: #268bd2;">ret</span>=<span style="color: #6c71c4;">0</span>
 </pre>
 </div>
 </div>
@@ -400,20 +400,20 @@ completion lies in the following.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell-script"><span style="color: #BA36A5;">list_terminator</span>=<span style="color: #008000;">'*[=]'</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Corresponds to `=` </span>
-<span style="color: #BA36A5;">delimiter</span>=<span style="color: #008000;">','</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">The character that delimits the list</span>
-<span style="color: #BA36A5;">options</span>=<span style="color: #707183;">(</span><span style="color: #008000;">"e:effective"</span>, <span style="color: #008000;">"i:inheritable"</span>, <span style="color: #008000;">"p:permitted"</span><span style="color: #707183;">)</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Valid options</span>
-<span style="color: #0000FF;">case</span> $<span style="color: #BA36A5;">state</span><span style="color: #0000FF;"> in</span>
-  <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">compset -P checks if we've reached a user entering a $list_terminator</span>
-  <span style="color: #0000FF;">if</span> compset -P $<span style="color: #BA36A5;">list_terminator</span>; <span style="color: #0000FF;">then</span>
-    _describe -t options <span style="color: #008000;">"options"</span> options
-  <span style="color: #0000FF;">else</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Otherwise complete from these list of items.</span>
-    _values -s $<span style="color: #BA36A5;">delimiter</span> items 
-      <span style="color: #008000;">'foo[Description of foo]'</span> <span style="color: #008000;">\</span>
-      <span style="color: #008000;">'bar[Description of bar]'</span>
-  <span style="color: #0000FF;">fi</span>
+<pre class="src src-shell-script"><span style="color: #268bd2;">list_terminator</span>=<span style="color: #2aa198;">'*[=]'</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Corresponds to `=` </span>
+<span style="color: #268bd2;">delimiter</span>=<span style="color: #2aa198;">','</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">The character that delimits the list</span>
+<span style="color: #268bd2;">options</span>=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">"e:effective"</span>, <span style="color: #2aa198;">"i:inheritable"</span>, <span style="color: #2aa198;">"p:permitted"</span><span style="color: #2aa198;">)</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Valid options</span>
+<span style="color: #859900; font-weight: bold;">case</span> $<span style="color: #268bd2;">state</span><span style="color: #859900; font-weight: bold;"> in</span>
+  <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">compset -P checks if we've reached a user entering a $list_terminator</span>
+  <span style="color: #859900; font-weight: bold;">if</span> compset -P $<span style="color: #268bd2;">list_terminator</span>; <span style="color: #859900; font-weight: bold;">then</span>
+    _describe -t options <span style="color: #2aa198;">"options"</span> options
+  <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Otherwise complete from these list of items.</span>
+    _values -s $<span style="color: #268bd2;">delimiter</span> items 
+      <span style="color: #2aa198;">'foo[Description of foo]'</span> <span style="color: #b58900; font-weight: bold;">\</span>
+      <span style="color: #2aa198;">'bar[Description of bar]'</span>
+  <span style="color: #859900; font-weight: bold;">fi</span>
   ;;
-<span style="color: #0000FF;">esac</span>
+<span style="color: #859900; font-weight: bold;">esac</span>
 </pre>
 </div>
 </div>
@@ -423,18 +423,18 @@ completion lies in the following.
 <h3 id="org88329c5">Operating system specific flags with <span class="verbatim">$OSTYPE</span></h3>
 <div class="outline-text-3" id="text-org88329c5">
 <div class="org-src-container">
-<pre class="src src-shell-script"><span style="color: #006FE0;">local</span> arguments
-<span style="color: #BA36A5;">arguments</span>=<span style="color: #707183;">(</span><span style="color: #008000;">'-b[Base argument]'</span><span style="color: #707183;">)</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">We might add additional arguments based on the operating system</span>
-<span style="color: #0000FF;">if</span> <span style="color: #707183;">[</span><span style="color: #7388D6;">[</span> <span style="color: #008000;">"$OSTYPE"</span> = <span style="color: #909183;">(</span>freebsd*|darwin*<span style="color: #909183;">)</span> <span style="color: #7388D6;">]</span><span style="color: #707183;">]</span>; <span style="color: #0000FF;">then</span>
-  <span style="color: #BA36A5;">arguments</span>+=<span style="color: #707183;">(</span><span style="color: #008000;">'-m[OSX or FreeBSD Specific Flag]'</span><span style="color: #707183;">)</span>
-<span style="color: #0000FF;">fi</span>
-<span style="color: #0000FF;">if</span> <span style="color: #707183;">[</span><span style="color: #7388D6;">[</span> $<span style="color: #BA36A5;">OSTYPE</span> = solaris* <span style="color: #7388D6;">]</span><span style="color: #707183;">]</span>; <span style="color: #0000FF;">then</span>
-  <span style="color: #BA36A5;">arguments</span>+=<span style="color: #707183;">(</span><span style="color: #008000;">'-s[Solaris specific flag]'</span><span style="color: #707183;">)</span>
-<span style="color: #0000FF;">fi</span>
-<span style="color: #0000FF;">if</span> <span style="color: #707183;">[</span><span style="color: #7388D6;">[</span> $<span style="color: #BA36A5;">OSTYPE</span> = linux* <span style="color: #7388D6;">]</span><span style="color: #707183;">]</span>; <span style="color: #0000FF;">then</span>
-  <span style="color: #BA36A5;">arguments</span>+=<span style="color: #707183;">(</span><span style="color: #008000;">'-l[Linux specific flag]'</span><span style="color: #707183;">)</span>
-<span style="color: #0000FF;">fi</span>
+<pre class="src src-shell-script"><span style="color: #657b83; font-weight: bold;">local</span> arguments
+<span style="color: #268bd2;">arguments</span>=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">'-b[Base argument]'</span><span style="color: #2aa198;">)</span>
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">We might add additional arguments based on the operating system</span>
+<span style="color: #859900; font-weight: bold;">if</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> <span style="color: #2aa198;">"$OSTYPE"</span> = <span style="color: #268bd2;">(</span>freebsd*|darwin*<span style="color: #268bd2;">)</span> <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
+  <span style="color: #268bd2;">arguments</span>+=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">'-m[OSX or FreeBSD Specific Flag]'</span><span style="color: #2aa198;">)</span>
+<span style="color: #859900; font-weight: bold;">fi</span>
+<span style="color: #859900; font-weight: bold;">if</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> $<span style="color: #268bd2;">OSTYPE</span> = solaris* <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
+  <span style="color: #268bd2;">arguments</span>+=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">'-s[Solaris specific flag]'</span><span style="color: #2aa198;">)</span>
+<span style="color: #859900; font-weight: bold;">fi</span>
+<span style="color: #859900; font-weight: bold;">if</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> $<span style="color: #268bd2;">OSTYPE</span> = linux* <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
+  <span style="color: #268bd2;">arguments</span>+=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">'-l[Linux specific flag]'</span><span style="color: #2aa198;">)</span>
+<span style="color: #859900; font-weight: bold;">fi</span>
 </pre>
 </div>
 </div>
@@ -450,9 +450,9 @@ that calls <span class="verbatim">compadd</span> with the list of words you want
 
 <div class="org-src-container">
 <pre class="src src-shell-script">typedef -a _tmux_words
-<span style="color: #006699;">_tmux_list</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+<span style="color: #268bd2;">_tmux_list</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
    compadd -a _tmux_words
-<span style="color: #707183;">}</span>
+<span style="color: #2aa198;">}</span>
 </pre>
 </div>
 
@@ -516,15 +516,15 @@ and then reload the cache if it has changed.
 
 
 <div class="org-src-container">
-<pre class="src src-shell-script"><span style="color: #006699;">_xrcache</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
-  <span style="color: #0000FF;">if</span> <span style="color: #7388D6;">(</span><span style="color: #909183;">(</span> $<span style="color: #BA36A5;">_xr_HISTNO</span> != $<span style="color: #BA36A5;">HISTNO</span> <span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
-  <span style="color: #0000FF;">then</span>
-    <span style="color: #BA36A5;">_xr_HISTNO</span>=$<span style="color: #BA36A5;">HISTNO</span>
-    <span style="color: #BA36A5;">_xr_output</span>=$<span style="color: #7388D6;">(</span><span style="color: #FF1493;">xrandr</span> -q<span style="color: #7388D6;">)</span>
-  <span style="color: #0000FF;">fi</span>
-  <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">1</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">always "fail" so other completers are tried</span>
-<span style="color: #707183;">}</span>
-zstyle <span style="color: #008000;">':completion:*'</span> completer _xrcache _oldlist _expand _complete <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">etc.</span>
+<pre class="src src-shell-script"><span style="color: #268bd2;">_xrcache</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+  <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span> $<span style="color: #268bd2;">_xr_HISTNO</span> != $<span style="color: #268bd2;">HISTNO</span> <span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #859900; font-weight: bold;">then</span>
+    <span style="color: #268bd2;">_xr_HISTNO</span>=$<span style="color: #268bd2;">HISTNO</span>
+    <span style="color: #268bd2;">_xr_output</span>=$<span style="color: #b58900;">(</span><span style="color: #6c71c4; font-weight: bold;">xrandr</span> -q<span style="color: #b58900;">)</span>
+  <span style="color: #859900; font-weight: bold;">fi</span>
+  <span style="color: #859900; font-weight: bold;">return</span> <span style="color: #6c71c4;">1</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">always "fail" so other completers are tried</span>
+<span style="color: #2aa198;">}</span>
+zstyle <span style="color: #2aa198;">':completion:*'</span> completer _xrcache _oldlist _expand _complete <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">etc.</span>
 </pre>
 </div>
 </div>
@@ -624,10 +624,10 @@ completion system) and do:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell-script"><span style="color: #006FE0;">local</span> expl
+<pre class="src src-shell-script"><span style="color: #657b83; font-weight: bold;">local</span> expl
 
 _description tag expl &lt;descr&gt;
-compadd <span style="color: #008000;">"$expl@]"</span> - &lt;matches ...&gt;
+compadd <span style="color: #2aa198;">"$expl@]"</span> - &lt;matches ...&gt;
 </pre>
 </div>
 
@@ -638,8 +638,8 @@ example:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell-script">_description tag expl <span style="color: #008000;">'...'</span>
-compadd <span style="color: #008000;">"$expl[@]"</span> -1V foo - ...    <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">THIS IS WRONG!!!</span>
+<pre class="src src-shell-script">_description tag expl <span style="color: #2aa198;">'...'</span>
+compadd <span style="color: #2aa198;">"$expl[@]"</span> -1V foo - ...    <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">THIS IS WRONG!!!</span>
 </pre>
 </div>
 
@@ -648,8 +648,8 @@ is <b>not</b> the right way to use a unsorted group. Instead do:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell-script">_description -1V tag expl <span style="color: #008000;">'...'</span>
-compadd <span style="color: #008000;">"$expl[@]"</span> - ...
+<pre class="src src-shell-script">_description -1V tag expl <span style="color: #2aa198;">'...'</span>
+compadd <span style="color: #2aa198;">"$expl[@]"</span> - ...
 </pre>
 </div>
 
