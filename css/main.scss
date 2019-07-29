@@ -55,7 +55,10 @@ $nav-color: $base1;
 $nav-selected-color: $base01;
 $nav-selected-border: 2px solid $base01;
 
-$fontname: unquote('Calibri, "Helvetica Neue", Helvetica, Arial, sans-serif');
+$fontname: unquote('Calibri, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                        Helvetica, Arial, sans-serif,
+                        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"');
+
 $monofontname: unquote('monospace');
 $headerfontname: $fontname;
 $font: 400 17px/30px $fontname;
