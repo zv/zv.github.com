@@ -1,23 +1,26 @@
-import { reposition_footnotes, ElementCollection } from './footnotes';
-import { load_comments } from './comments';
+import { repositionFootnotes, ElementCollection } from './footnotes';
+import { loadGithubComments } from './comments';
 
-const page_init = () => {
-
-  // // Reposition footnotes onto right side
-  if (window.innerWidth >= 1024) {
-    window.addEventListener('load', function() {
-      let refs = document.getElementsByClassName("footref") as ElementCollection;
-      let definitions = document.getElementsByClassName("footdef") as ElementCollection;
-      reposition_footnotes(refs, definitions);
-    })
-  }
-
-  // Fetch & insert comments
-  const CONTAINER_ELT = document.querySelector("div.comments-container") as HTMLElement;
-  const github_id = CONTAINER_ELT.getAttribute("data-github-user")!;
-  const repo_issues_url = CONTAINER_ELT.getAttribute("data-issues-url")!;
-  const issue_id = CONTAINER_ELT.getAttribute("data-issue-id")!;
-  load_comments(CONTAINER_ELT, github_id, repo_issues_url, issue_id);
+// Reposition footnotes onto right side
+if (window.innerWidth >= 1024) {
+  window.addEventListener('load', function () {
+    console.log('repositioning footnotes...')
+    repositionFootnotes(document.getElementsByClassName("footref") as ElementCollection)
+  })
 }
 
-page_init()
+// Fetch & insert comments
+document.addEventListener('scroll', function doLoadComments() {
+  // if they are more than halfway done with the article, load our comments.
+  if (((window.innerHeight + window.scrollY)) >= (document.body.offsetHeight >> 1)) {
+    console.log('loading comments...')
+    const CONTAINER_ELT = document.querySelector("div.comments-container") as HTMLElement;
+    const [github_id, repo_issues_url, issue_id] = [
+      'data-github-user',
+      'data-issues-url',
+      'data-issue-id'
+    ].map(attr => CONTAINER_ELT.getAttribute(attr)!)
+    loadGithubComments(CONTAINER_ELT, github_id, repo_issues_url, issue_id)
+    document.removeEventListener('scroll', doLoadComments)
+  }
+})

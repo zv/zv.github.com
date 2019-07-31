@@ -2,39 +2,39 @@
  * This is a quick script to align within the page -- if this can be
  * done without javascript I would be ecstatic!!!
  */
-
 export type ElementCollection = HTMLCollectionOf<HTMLElement>
 
 /*
   Moves each footnote to it's 'correct' layout position by doing the following:
-    For each footnote definition:
-      - calculate a footnote definition's position from the top
-      - lookup corresponding footnote reference, add an appropriate style & 'position: top'
-      - remove footnote reference from footer
-     Hide footnote container
- */
-export const reposition_footnotes = (refNode: HTMLCollectionOf<HTMLElement>, defNode: HTMLCollectionOf<HTMLElement>) => {
-  let refs = refNode;
-  let definitions = defNode;
-
-  if (refs.length !== definitions.length) {
-    throw new Error("Could not uniformly assign footref -> footdef, aborting")
-  }
-
+  For each footnote definition:
+  - calculate a footnote definition's position from the top
+  - lookup corresponding footnote reference, add an appropriate style & 'position: top'
+  - remove footnote reference from footer
+  Hide footnote container
+*/
+export const repositionFootnotes = (refNodes: HTMLCollectionOf<HTMLElement>) => {
   let lastBottom = 0;
   let eltAbsoluteTop;
-  for (let i = 0; i < definitions.length; i++) {
-    let ref = refs[i]
-    let def = definitions[i]
-    let top = cumulativeOffset(ref).top
-    def.className += " footnote-definition"
+
+  for (let ref of Array.from(refNodes)) {
+    const def = findDefinition(ref)
+    const { top } = cumulativeOffset(ref)
+    console.log('assigning ', ref, ' to ', def)
+    def.classList.add("footnote-definition")
     eltAbsoluteTop = (top > lastBottom) ? top : lastBottom
-    def.style.top = eltAbsoluteTop + "px"
+    def.style.top = `${eltAbsoluteTop}px`
     lastBottom = eltAbsoluteTop + def.scrollHeight
   }
 
-  removeFootnoteHeader()
+  removeFootnoteHeader("h2.footnotes")
 }
+
+
+/*
+ * Find a footnote reference's corresponding definition.
+ */
+const findDefinition = (ref: HTMLElement): HTMLElement =>
+  document.querySelector(`.footdef a[href="#${ref.getAttribute('id')}"]`)!.closest('.footdef') as HTMLElement
 
 /*
  * Calculates the total offset from the top of the page.
@@ -48,18 +48,15 @@ const cumulativeOffset = (element: HTMLElement) => {
     element = element.offsetParent as HTMLElement
   } while (element)
 
-  return {
-    top: top,
-    left: left
-  }
+  return {top, left}
 }
 
 /*
  * Find and remove a footnote from the footer of the page (where footnotes live
  * prior to repositioning)
  */
-const removeFootnoteHeader = (selector = "h2.footnotes") => {
-  let bottomNotes = document.querySelector(selector)
+const removeFootnoteHeader = (selectors: string) => {
+  const bottomNotes = document.querySelector(selectors)
   if (bottomNotes) {
     bottomNotes.remove()
   }

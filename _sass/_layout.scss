@@ -138,6 +138,7 @@ article ol.org-ol {
 
 // Footnotes/Asides || [fn:1] and [fn:Inline]
 aside {
+    will-change: scroll-position;
     p {
         font: normal 0.9em $fontname;
     }
@@ -258,7 +259,6 @@ article > section > div table {
 
 $comment-padding: 5rem;
 .comments-container {
-    display: none;
     padding-top: $comment-padding;
     padding-bottom: $comment-padding;
 
