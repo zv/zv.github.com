@@ -32,7 +32,11 @@ sass:
 
 # exclude files for generated site
 exclude: 
-  - org/
   - LICENSE
-  - node_modules
+  - README
+  - node_modules/
+  - org/
+  - .git/
   - package.json
+  - tsconfig.json
+  - webpack.config.js
