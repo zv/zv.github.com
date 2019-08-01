@@ -1,9 +1,33 @@
+@import "base";
+
+* {
+    box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
+}
+
 html {
+    font: $font;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    color-profile: sRGB;
+    rendering-intent: auto;
     /*
      * Force a scrollbar so we don't get "jumps" between pages
      * long enough to have a scrollbar and those that don't.
      */
     overflow-y: scroll;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 2px solid $base1;
+}
+
+pre, code, span.verbatim {
+    font: 300 0.9em $monofontname;
 }
 
 /**
@@ -43,8 +67,6 @@ header#nav-container {
         }
     }
 }
-
-
 
 @media screen and (max-width: 1200px) {
     main { max-width: 90vw; }

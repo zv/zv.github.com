@@ -1,25 +1,56 @@
-* {
-    -moz-box-sizing: border-box !important;
-    -webkit-box-sizing: border-box !important;
-    box-sizing: border-box !important;
+// Our variables
+// Body
+$main-width: 45rem;
+$main-wide-width: 55rem;
+$mobile-width: 90%;
+
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
+
+$text-color: white;
+
+@mixin rebase($rebase03,$rebase02,$rebase01,$rebase00,$rebase0,$rebase1,$rebase2,$rebase3)
+{
+    background-color:$rebase03;
+    color:$rebase0;
+    * { color:$rebase0; }
+    a, a:active, a:visited { color: $rebase1; }
+}
+@mixin accentize($accent) {
+    a, a:active, a:visited, code.url { color: $accent; }
+    h1,h2,h3,h4,h5,h6 {color:$accent}
 }
 
-html {
-    font: $font;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-}
+/* light is default mode, so pair with general html definition */
+html, .light { @include rebase($base3,$base2,$base1,$base0,$base00,$base01,$base02,$base03)}
+// .dark        { @include rebase($base03,$base02,$base01,$base00,$base0,$base1,$base2,$base3)}
 
-a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 2px solid $base1;
-}
+// Nav Items
+$nav-color: $base1;
+$nav-selected-border: 2px solid $base01;
+$nav-selected-color: $base1;
 
-pre, code, span.verbatim {
-    font: 300 0.9em $monofontname;
-}
+$fontname: Calibri, -apple-system, BlinkMacSystemFont, "Segoe UI",
+           Helvetica, Arial, sans-serif,
+           "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+$monofontname: monospace;
+$headerfontname: $fontname;
+$font: 400 17px/30px $fontname;
 
 // Calculate the correct color + an alpha
 @mixin bg_alpha_calc($desired_colour, $desired_alpha, $background_colour) {
@@ -36,4 +67,3 @@ pre, code, span.verbatim {
     //background-color: $desired_colour;
     background-color: rgba($r1, $g1, $b1, $desired_alpha);
 }
-

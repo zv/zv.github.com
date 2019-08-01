@@ -1,56 +1,57 @@
+@import "base";
 // Org Mode
+$lite: 400;
 
-$header1: 1.7rem;
-$header2: 1.4rem;
-$header3: 1.2rem;
-$header4: 1.15rem;
-$header5: 1.05em;
-
-@mixin header-margin {
+@mixin header-margin($nth) {
     font-family: $headerfontname;
-    font-weight: 400;
+    font-weight: $lite;
     margin: 1.5em 0;
     letter-spacing: 0.05em;
 
     b,i,code,pre {
         color: inherit;
     }
+
+    @if $nth >= 1 {
+        $header-font-sz: 1.75rem;
+        @for $_ from 1 through $nth {
+            $header-font-sz: $header-font-sz * 0.90;
+        }
+        font-size: $header-font-sz
+    } @else {
+        font-size: 1.9rem;
+    }
 }
 
 header.post-header {
     h1.post-title {
         color: $yellow;
-        font-size: $header1;
         text-align: center;
-        letter-spacing: 0.05em;
+        @include header-margin(0);
     }
 
-    @include header-margin;
+    @include header-margin(1);
 }
 
 // Level 1 headings
 .outline-2 > h2 {
     color: $yellow;
-    font-size: $header2;
-    @include header-margin;
+    @include header-margin(2);
 }
 
 .outline-3 > h3 {
     color: $green;
-    font-size: $header3;
-    @include header-margin;
+    @include header-margin(3);
 }
 
 .outline-4 > h4 {
     color: $base01;
-    font-size: $header4;
-    @include header-margin;
+    @include header-margin(4);
 }
 
 .outline-5 > h5 {
     color: $base00;
-    font-size: $header5;
-    @include header-margin;
+    @include header-margin(5);
 }
 
 // Generated TOC
@@ -73,7 +74,6 @@ article figure {
 
 // Source code container || #+BEGIN_SRC
 .org-src-container {
-    // background-color: #073642;
     overflow-x: auto;
     white-space: nowrap;
     border-left: 0.25em dashed $base2;
@@ -82,10 +82,9 @@ article figure {
     margin: 1em 0;
 }
 
-
 // Footnotes/Asides || [fn:1] and [fn:Inline]
 .footnote-definition {
-    font: normal 400 0.7em $fontname;
+    font: normal $lite 0.7em $fontname;
     position: absolute;
     margin-left: $main-width;
     padding-left: 2em;
@@ -94,7 +93,7 @@ article figure {
 
 // Quotes #+BEGIN_QUOTE
 .post-content blockquote {
-    font: italic 400 1em $fontname;
+    font: italic $lite 1em $fontname;
 }
 
 // Examples
