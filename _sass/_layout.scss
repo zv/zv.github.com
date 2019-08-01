@@ -20,27 +20,35 @@ main {
 header#nav-container {
     max-width: $main-width;
     margin: 0 auto;
-}
+    clear: clear;
 
-nav#site-nav {
-    padding: 1.5rem 0;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
+    nav#site-nav {
+        padding: 1.5rem 0;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
 
-    li {
-        list-style-type: none;
+        li {
+            list-style-type: none;
 
-        a.nav-item {
-            color: $nav-color;
-            border-color: transparent;
+            a.nav-item {
+                color: $nav-color;
+                border-color: transparent;
 
-            &:hover, &#selected {
-                color: $nav-selected-color;
-                border-bottom: $nav-selected-border;
+                &:hover, &#selected {
+                    color: $nav-selected-color;
+                    border-bottom: $nav-selected-border;
+                }
             }
         }
     }
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    main { max-width: 90vw; }
+    #nav-container { max-width: 70vw; }
 }
 
 /**
