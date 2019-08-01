@@ -10,58 +10,30 @@ html {
  * Basic styling
  */
 main {
-    width: $main-width;
+    max-width: $main-width;
     margin: 0 auto;
-
-    &.wide {
-        width: $main-wide-width;
-    }
 }
 
 /**
  * Site header
  */
 header#nav-container {
+    max-width: $main-width;
     margin: 0 auto;
-    width: $main-width;
-
-    &.wide {
-        width: $main-wide-width;
-    }
-}
-
-
-@media all and (max-width: 800px) {
-    main {
-        padding: 0;
-        width: $mobile-width;
-        margin: 0 auto;
-    }
-
-    /**
-     * Site header
-     */
-    header#nav-container {
-        width: $mobile-width;
-        margin: 0 auto;
-    }
-
 }
 
 nav#site-nav {
     padding: 1.5rem 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
 
     li {
-        display: inline-block;
-        margin-right: 1em;
         list-style-type: none;
-        vertical-align: top;
 
         a.nav-item {
-            font-family: $headerfontname;
             color: $nav-color;
             border-color: transparent;
-            display: inline-block;
 
             &:hover, &#selected {
                 color: $nav-selected-color;
@@ -76,24 +48,9 @@ nav#site-nav {
 **/
 ul.post-list {
     font-family: $headerfontname;
-    padding: 0;
-    width: 80%;
     list-style-type: none;
 }
 
 li.post-section {
     margin: 1rem 0;
-}
-
-
-/* Site Layout */
-.post-list h2 {
-    font-size: 2rem;
-    text-decoration: none;
-    margin: 0 0 1rem 0;
-}
-
-span.postlist-date {
-    font-size: 0.8rem;
-    color: hsl(215, 50%, 75%);
 }
