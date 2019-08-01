@@ -15,7 +15,7 @@ $lite: 400;
     @if $nth >= 1 {
         $header-font-sz: 1.75rem;
         @for $_ from 1 through $nth {
-            $header-font-sz: $header-font-sz * 0.90;
+            $header-font-sz: $header-font-sz * 0.91;
         }
         font-size: $header-font-sz
     } @else {
