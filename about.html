@@ -4,18 +4,18 @@ layout: default
 <div class="business-card" itemscope itemtype="http://schema.org/Person">
   <div id="info-container">
 
-    <img id="photo" src="//avatars0.githubusercontent.com/u/987494?v=3&s=73" alt="Photo of Zephyr Pellerin"/>
+      <img id="photo" src="//avatars0.githubusercontent.com/u/987494?v=3&s=73" alt="Photo of {{ site.author.name }}"/>
 
     <div class="text">
       <div class="personal-labels">
-        <h1 class="personal-name" id="given_name" itemprop="givenName">Zephyr Pellerin</h1>
+          <h1 class="personal-name" id="given_name" itemprop="givenName">{{ site.author.name }}</h1>
         <h1 class="personal-name" id="handle" "itemprop="alternateName">〈zv〉</h1>
       </div>
       <p class="description">
           a tri-brained unix philosophy radical.
       </p>
       <p class="links">
-        <a href="mailto:zephyr.pellerin@gmail.com" itemprop="email"">zephyr.pellerin@gmail.com</a>·
+      <a href="mailto:zv@nxvr.org" itemprop="email"">{{ site.author.email }} </a>·
         <a href="//github.com/zv" itemprop="url">github</a>·
         <a href="//twitter.com/zefyear" itemprop="url"">twitter</a>·
         <a href="//stackexchange.com/users/100096">stackexchange</a>.
