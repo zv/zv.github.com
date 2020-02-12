@@ -1,11 +1,5 @@
-#+HTML_DOCTYPE: html5
-#+BEGIN_EXPORT html
----
-layout: page
-title: Using a Texinfo edition of SICP
-category: note
----
-#+END_EXPORT
+#+TITLE: Using a Texinfo edition of SICP
+#+INCLUDE: "_include.org"
 
 * 
 SICP's availability has allowed for reworking it's text for contemporary
@@ -18,6 +12,7 @@ format Texinfo. Installing texinfo documents is simple but the provided
 documentation inexplicably leaves out critical steps. Here's what I did to get
 it working
 
-1. [[http://www.neilvandyke.org/sicp-texi/sicp.info.gz][Download a /.texi/ copy of SICP]] 
-3. =$ mv =(unzip sicp.info.gz) /usr/local/share/info=
-2. =$ install-info ~/Downloads/sicp.info.gz=
+1. [[http://www.neilvandyke.org/sicp-texi/sicp.info.gz][Download an /.info/ copy of SICP]] 
+2. =$mv ~/Downloads/sicp.info.gz ~/Downloads/sicp.info=
+3. =$ mv =(unzip sicp.info) /usr/local/share/info=
+4. =$ install-info ~/Downloads/sicp.info=
