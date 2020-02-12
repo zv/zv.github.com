@@ -7,13 +7,30 @@ tags:
   - awk
   - solutions
 ---
+<style>
+.outline-text-3 > p.verse {
+    background-color: #eee8d5;
+    font: italic 400 1.0em Calibri,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
+    padding: 1em;
+    padding-left: 1.5em;
+    border-left: 3px solid #2aa198;
+}
+</style>
+<style>
+div.org-src-container + pre.example {
+  border-top: 3px ridge #073642;
+  border-left: none;
+  background: #fdf6e3;
+}
+</style>
 
-<section id="outline-container-org5948d6f" class="outline-2">
-<h2 id="org5948d6f"></h2>
-<div class="outline-text-2" id="text-org5948d6f">
+
+<section id="outline-container-orgfeb7478" class="outline-2">
+<h2 id="orgfeb7478"></h2>
+<div class="outline-text-2" id="text-orgfeb7478">
 <p>
 <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Print">The GNU Awk manual</a> contains a handful of exercises to assist in learning
-<span class="verbatim">awk</span>.
+<code>awk</code>.
 </p>
 
 <p>
@@ -29,29 +46,23 @@ submit a pull request!</a>
 </div>
 </section>
 
-<section id="outline-container-org7874e2f" class="outline-2">
-<h2 id="org7874e2f">Exercises</h2>
-<div class="outline-text-2" id="text-org7874e2f">
+<section id="outline-container-org2bbc2c3" class="outline-2">
+<h2 id="org2bbc2c3">Input</h2>
+<div class="outline-text-2" id="text-org2bbc2c3">
 </div>
-<div id="outline-container-orge63a750" class="outline-3">
-<h3 id="orge63a750">Input</h3>
-<div class="outline-text-3" id="text-orge63a750">
-</div>
-<div id="outline-container-orgcbf8a71" class="outline-4">
-<h4 id="orgcbf8a71">#1</h4>
-<div class="outline-text-4" id="text-orgcbf8a71">
-<blockquote>
-<p>
-Using the <span class="verbatim">FIELDWIDTHS</span> variable (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Constant-Size">Constant Size</a>), write a program to read
-election data, where each record represents one voter’s votes. Come up with a
-way to define which columns are associated with each ballot item, and print the
-total votes, including abstentions, for each item.
+<div id="outline-container-org8d1d548" class="outline-3">
+<h3 id="org8d1d548">#1</h3>
+<div class="outline-text-3" id="text-org8d1d548">
+<p class="verse">
+Using the <code>FIELDWIDTHS</code> variable (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Constant-Size">Constant Size</a>), write a program to read<br>
+election data, where each record represents one voter’s votes. Come up with a<br>
+way to define which columns are associated with each ballot item, and print the<br>
+total votes, including abstentions, for each item.<br>
 </p>
-</blockquote>
 </div>
-<div id="outline-container-org8b149b8" class="outline-5">
-<h5 id="org8b149b8">Answer</h5>
-<div class="outline-text-5" id="text-org8b149b8">
+<div id="outline-container-orgf4ce812" class="outline-4">
+<h4 id="orgf4ce812">Answer</h4>
+<div class="outline-text-4" id="text-orgf4ce812">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span>  <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">FIELDWIDTHS</span> = <span style="color: #2aa198;">"18 9 15"</span> <span style="color: #2aa198;">}</span>
 
@@ -72,22 +83,20 @@ total votes, including abstentions, for each item.
 </div>
 </div>
 
-<div id="outline-container-orgef9fa92" class="outline-4">
-<h4 id="orgef9fa92">#2</h4>
-<div class="outline-text-4" id="text-orgef9fa92">
-<blockquote>
-<p>
-Plain Getline, presented a program to remove C-style comments (‘/* … */’) from
-the input. That program does not work if one comment ends on one line and
-another one starts later on the same line. That can be fixed by making one
-simple change. What is it?
+<div id="outline-container-orgf6a9c5e" class="outline-3">
+<h3 id="orgf6a9c5e">#2</h3>
+<div class="outline-text-3" id="text-orgf6a9c5e">
+<p class="verse">
+Plain Getline, presented a program to remove C-style comments (‘/* … */’) from<br>
+the input. That program does not work if one comment ends on one line and<br>
+another one starts later on the same line. That can be fixed by making one<br>
+simple change. What is it?<br>
 </p>
-</blockquote>
 </div>
 
-<div id="outline-container-org9e27a95" class="outline-5">
-<h5 id="org9e27a95">Answer</h5>
-<div class="outline-text-5" id="text-org9e27a95">
+<div id="outline-container-org9b5d77b" class="outline-4">
+<h4 id="org9b5d77b">Answer</h4>
+<div class="outline-text-4" id="text-org9b5d77b">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #2aa198;">{</span>
     <span style="color: #859900; font-weight: bold;">while</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>i = <span style="color: #268bd2;">index</span><span style="color: #6c71c4;">(</span>$0, <span style="color: #2aa198;">"/*"</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span> != <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
@@ -122,34 +131,30 @@ simple change. What is it?
 </div>
 </div>
 </div>
-</div>
+</section>
 
-<div id="outline-container-org0ce0e5b" class="outline-3">
-<h3 id="org0ce0e5b">Output</h3>
-<div class="outline-text-3" id="text-org0ce0e5b">
+<section id="outline-container-orge7c535c" class="outline-2">
+<h2 id="orge7c535c">Output</h2>
+<div class="outline-text-2" id="text-orge7c535c">
 </div>
-<div id="outline-container-org51a1067" class="outline-4">
-<h4 id="org51a1067">#1</h4>
-<div class="outline-text-4" id="text-org51a1067">
-<blockquote>
-<p>
-Rewrite the program:
+<div id="outline-container-org62cce2e" class="outline-3">
+<h3 id="org62cce2e">#1</h3>
+<div class="outline-text-3" id="text-org62cce2e">
+<p class="verse">
+Rewrite the program from Output Separators, by using a new value of OFS.<br>
 </p>
+
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span> <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"Month Crates"</span>; <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"----- ------"</span> <span style="color: #2aa198;">}</span>
 <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> $1, <span style="color: #2aa198;">"     "</span>, $2 <span style="color: #2aa198;">}</span>
 </pre>
 </div>
-
-<p>
-from Output Separators, by using a new value of OFS.
-</p>
-</blockquote>
 </div>
 
-<div id="outline-container-org3c1871f" class="outline-5">
-<h5 id="org3c1871f">Answer</h5>
-<div class="outline-text-5" id="text-org3c1871f">
+
+<div id="outline-container-orgdf77ac3" class="outline-4">
+<h4 id="orgdf77ac3">Answer</h4>
+<div class="outline-text-4" id="text-orgdf77ac3">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span> <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"Month Crates"</span>; <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"----- ------"</span>; <span style="color: #268bd2;">OFS</span>=<span style="color: #2aa198;">"     "</span> <span style="color: #2aa198;">}</span>
 <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> $1, $2 <span style="color: #2aa198;">}</span>
@@ -158,26 +163,24 @@ from Output Separators, by using a new value of OFS.
 </div>
 </div>
 </div>
+</section>
+<section id="outline-container-orgc488ac7" class="outline-2">
+<h2 id="orgc488ac7">Library</h2>
+<div class="outline-text-2" id="text-orgc488ac7">
 </div>
-<div id="outline-container-org010ceb5" class="outline-3">
-<h3 id="org010ceb5">Library</h3>
-<div class="outline-text-3" id="text-org010ceb5">
-</div>
-<div id="outline-container-org953279e" class="outline-4">
-<h4 id="org953279e">#1</h4>
-<div class="outline-text-4" id="text-org953279e">
-<blockquote>
-<p>
-In Empty Files, we presented the <code>zerofile.awk</code> program, which made use of gawk’s
-<span class="verbatim">ARGIND</span> variable. Can this problem be solved without relying on <span class="verbatim">ARGIND</span>? If so,
-how?
+<div id="outline-container-orgc314bd7" class="outline-3">
+<h3 id="orgc314bd7">#1</h3>
+<div class="outline-text-3" id="text-orgc314bd7">
+<p class="verse">
+In Empty Files, we presented the <code>zerofile.awk</code> program, which made use of gawk’s<br>
+<code>ARGIND</code> variable. Can this problem be solved without relying on <code>ARGIND</code>? If so,<br>
+how?<br>
 </p>
-</blockquote>
 </div>
 
-<div id="outline-container-orgfffcfb3" class="outline-5">
-<h5 id="orgfffcfb3">Answer</h5>
-<div class="outline-text-5" id="text-orgfffcfb3">
+<div id="outline-container-org26584ab" class="outline-4">
+<h4 id="org26584ab">Answer</h4>
+<div class="outline-text-4" id="text-org26584ab">
 <p>
 Use <code>ENDFILE</code> to run a function at the end of each file. You could match
 <code>argc~/~argv</code> as well if you wanted to determine the index of the filename
@@ -191,15 +194,13 @@ argument.
 </div>
 </div>
 </div>
-<div id="outline-container-org62b2a55" class="outline-4">
-<h4 id="org62b2a55">#2</h4>
-<div class="outline-text-4" id="text-org62b2a55">
-<blockquote>
-<p>
-As a related challenge, revise that code to handle the case where an
-intervening value in <code>ARGV</code> is a variable assignment.
+<div id="outline-container-org3d2ad0a" class="outline-3">
+<h3 id="org3d2ad0a">#2</h3>
+<div class="outline-text-3" id="text-org3d2ad0a">
+<p class="verse">
+As a related challenge, revise that code to handle the case where an<br>
+intervening value in <code>ARGV</code> is a variable assignment.<br>
 </p>
-</blockquote>
 
 <div class="org-src-container">
 <pre class="src src-awk">ENDFILE <span style="color: #2aa198;">{</span>
@@ -211,23 +212,21 @@ intervening value in <code>ARGV</code> is a variable assignment.
 </div>
 </div>
 </div>
+</section>
+<section id="outline-container-orgaaa2485" class="outline-2">
+<h2 id="orgaaa2485">Programs</h2>
+<div class="outline-text-2" id="text-orgaaa2485">
 </div>
-<div id="outline-container-org6342af4" class="outline-3">
-<h3 id="org6342af4">Programs</h3>
-<div class="outline-text-3" id="text-org6342af4">
-</div>
-<div id="outline-container-orga91a9f6" class="outline-4">
-<h4 id="orga91a9f6">#1</h4>
-<div class="outline-text-4" id="text-orga91a9f6">
-<blockquote>
-<p>
-Rewrite cut.awk (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Cut-Program">Cut Program</a>) using <code>split()</code> with "" as the separator.
+<div id="outline-container-orge4178cf" class="outline-3">
+<h3 id="orge4178cf">#1</h3>
+<div class="outline-text-3" id="text-orge4178cf">
+<p class="verse">
+Rewrite cut.awk (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Cut-Program">Cut Program</a>) using <code>split()</code> with "" as the separator.<br>
 </p>
-</blockquote>
 </div>
-<div id="outline-container-orgb4e20db" class="outline-5">
-<h5 id="orgb4e20db">Answer</h5>
-<div class="outline-text-5" id="text-orgb4e20db">
+<div id="outline-container-org611f036" class="outline-4">
+<h4 id="org611f036">Answer</h4>
+<div class="outline-text-4" id="text-org611f036">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">cut.awk --- implement cut in awk</span>
 
@@ -375,44 +374,40 @@ Rewrite cut.awk (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html
 </div>
 </div>
 
-<div id="outline-container-orgbba4ce9" class="outline-4">
-<h4 id="orgbba4ce9">#2</h4>
-<div class="outline-text-4" id="text-orgbba4ce9">
-<blockquote>
-<p>
-In <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Egrep-Program">Egrep Program</a>, we mentioned that <code>‘egrep -i’</code> could be simulated in
-versions of <span class="verbatim">awk</span> without <span class="verbatim">IGNORECASE</span> by using <span class="verbatim">tolower()</span> on the line and the
-pattern. In a footnote there, we also mentioned that this solution has a
-bug: the translated line is output, and not the original one. Fix this
-problem.
+<div id="outline-container-orgf95950a" class="outline-3">
+<h3 id="orgf95950a">#2</h3>
+<div class="outline-text-3" id="text-orgf95950a">
+<p class="verse">
+In <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Egrep-Program">Egrep Program</a>, we mentioned that <code>‘egrep -i’</code> could be simulated in<br>
+versions of <code>awk</code> without <code>IGNORECASE</code> by using <code>tolower()</code> on the line and the<br>
+pattern. In a footnote there, we also mentioned that this solution has a<br>
+bug: the translated line is output, and not the original one. Fix this<br>
+problem.<br>
 </p>
-</blockquote>
 </div>
-<div id="outline-container-orgb588e2d" class="outline-5">
-<h5 id="orgb588e2d">Answer</h5>
-<div class="outline-text-5" id="text-orgb588e2d">
+<div id="outline-container-org332fd12" class="outline-4">
+<h4 id="org332fd12">Answer</h4>
+<div class="outline-text-4" id="text-org332fd12">
 <p>
-Simply check the results of <span class="verbatim">tolower()</span> without assigning output.
+Simply check the results of <code>tolower()</code> without assigning output.
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org6839790" class="outline-4">
-<h4 id="org6839790">#3</h4>
-<div class="outline-text-4" id="text-org6839790">
-<blockquote>
-<p>
-The POSIX version of <span class="verbatim">id</span> takes options that control which information is
-printed. Modify the <span class="verbatim">awk</span> version (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Id-Program">Id Program</a>) to accept the same
-arguments and perform in the same way.
+<div id="outline-container-orgc223987" class="outline-3">
+<h3 id="orgc223987">#3</h3>
+<div class="outline-text-3" id="text-orgc223987">
+<p class="verse">
+The POSIX version of <code>id</code> takes options that control which information is<br>
+printed. Modify the <code>awk</code> version (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Id-Program">Id Program</a>) to accept the same<br>
+arguments and perform in the same way.<br>
 </p>
-</blockquote>
 </div>
 
-<div id="outline-container-org586baff" class="outline-5">
-<h5 id="org586baff">Answer</h5>
-<div class="outline-text-5" id="text-org586baff">
+<div id="outline-container-orga5b7590" class="outline-4">
+<h4 id="orga5b7590">Answer</h4>
+<div class="outline-text-4" id="text-orga5b7590">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">id.awk --- implement id in awk</span>
 <span style="color: #93a1a1;">#</span>
@@ -495,46 +490,42 @@ arguments and perform in the same way.
 
 
 
-<div id="outline-container-orgd4b09f7" class="outline-4">
-<h4 id="orgd4b09f7">#6</h4>
-<div class="outline-text-4" id="text-orgd4b09f7">
-<blockquote>
-<p>
-Why can’t the <span class="verbatim">wc.awk</span> program (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Wc-Program">Wc Program</a>) just use the value of <span class="verbatim">FNR</span> in
-<span class="verbatim">endfile()</span>? Hint: Examine the code in <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Filetrans-Function">Filetrans Function</a>.
+<div id="outline-container-org94fbc59" class="outline-3">
+<h3 id="org94fbc59">#6</h3>
+<div class="outline-text-3" id="text-org94fbc59">
+<p class="verse">
+Why can’t the <code>wc.awk</code> program (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Wc-Program">Wc Program</a>) just use the value of <code>FNR</code> in<br>
+<code>endfile()</code>? Hint: Examine the code in <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Filetrans-Function">Filetrans Function</a>.<br>
 </p>
-</blockquote>
 </div>
-<div id="outline-container-org36bf2fe" class="outline-5">
-<h5 id="org36bf2fe">Answer</h5>
-<div class="outline-text-5" id="text-org36bf2fe">
+<div id="outline-container-orgb0a6f32" class="outline-4">
+<h4 id="orgb0a6f32">Answer</h4>
+<div class="outline-text-4" id="text-orgb0a6f32">
 <p>
-This is a confusing question because <span class="verbatim">ENDFILE</span> <b>can</b> use <span class="verbatim">FNR</span>, but this
+This is a confusing question because <code>ENDFILE</code> <b>can</b> use <code>FNR</code>, but this
 question concerns an arbitrary user-defined function coincidentally named
-<span class="verbatim">endfile()</span> which cannot. <span class="verbatim">endfile()</span> is run within the body of
-<span class="verbatim">END</span>, which as the manual indicates, only occurs as the termination of
+<code>endfile()</code> which cannot. <code>endfile()</code> is run within the body of
+<code>END</code>, which as the manual indicates, only occurs as the termination of
 the entire program.
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org6392086" class="outline-4">
-<h4 id="org6392086">#7</h4>
-<div class="outline-text-4" id="text-org6392086">
-<blockquote>
-<p>
-Manipulation of individual characters in the <span class="verbatim">translate</span> program (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Translate-Program">Translate Program</a>) 
-is painful using standard awk functions. Given that <span class="verbatim">gawk</span> can split strings
-into individual characters using "" as the separator, how might you use this
-feature to simplify the program?
+<div id="outline-container-orga54c7ca" class="outline-3">
+<h3 id="orga54c7ca">#7</h3>
+<div class="outline-text-3" id="text-orga54c7ca">
+<p class="verse">
+Manipulation of individual characters in the <code>translate</code> program (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Translate-Program">Translate Program</a>)<br>
+is painful using standard awk functions. Given that <code>gawk</code> can split strings<br>
+into individual characters using "" as the separator, how might you use this<br>
+feature to simplify the program?<br>
 </p>
-</blockquote>
 </div>
 
-<div id="outline-container-org962333d" class="outline-5">
-<h5 id="org962333d">Answer</h5>
-<div class="outline-text-5" id="text-org962333d">
+<div id="outline-container-orgce17100" class="outline-4">
+<h4 id="orgce17100">Answer</h4>
+<div class="outline-text-4" id="text-orgce17100">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">stranslate</span><span style="color: #2aa198;">(</span>from, to, target, lf, lt, ltarget, t_ar, i, c, result<span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">{</span>
@@ -578,19 +569,17 @@ feature to simplify the program?
 </div>
 </div>
 
-<div id="outline-container-org95cffd9" class="outline-4">
-<h4 id="org95cffd9">#8</h4>
-<div class="outline-text-4" id="text-org95cffd9">
-<blockquote>
-<p>
-The <code>extract.awk</code> program (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Extract-Program">Extract Program</a>) was written before <span class="verbatim">gawk</span> had
-the <code>gensub()</code> function. Use it to simplify the code.
+<div id="outline-container-org8c0c73b" class="outline-3">
+<h3 id="org8c0c73b">#8</h3>
+<div class="outline-text-3" id="text-org8c0c73b">
+<p class="verse">
+The <code>extract.awk</code> program (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Extract-Program">Extract Program</a>) was written before <code>gawk</code> had<br>
+the <code>gensub()</code> function. Use it to simplify the code.<br>
 </p>
-</blockquote>
 </div>
-<div id="outline-container-org4b7a1cd" class="outline-5">
-<h5 id="org4b7a1cd">Answer</h5>
-<div class="outline-text-5" id="text-org4b7a1cd">
+<div id="outline-container-org3a8f560" class="outline-4">
+<h4 id="org3a8f560">Answer</h4>
+<div class="outline-text-4" id="text-org3a8f560">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span>    <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">IGNORECASE</span> = <span style="color: #6c71c4;">1</span> <span style="color: #2aa198;">}</span>
 
@@ -676,7 +665,6 @@ the <code>gensub()</code> function. Use it to simplify the code.
     <span style="color: #859900; font-weight: bold;">while</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">getline</span> tmp &lt; curfile<span style="color: #b58900;">)</span> <span style="color: #268bd2;">print</span> tmp
 <span style="color: #2aa198;">}</span>
 </pre>
-</div>
 </div>
 </div>
 </div>

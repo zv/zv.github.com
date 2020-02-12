@@ -46,9 +46,9 @@ positive, and if the rational number is negative, only the numerator is<br>
 negative.<br>
 </p>
 </div>
-<div id="outline-container-orgf62c723" class="outline-4">
-<h4 id="orgf62c723">Answer</h4>
-<div class="outline-text-4" id="text-orgf62c723">
+<div id="outline-container-orgd554017" class="outline-4">
+<h4 id="orgd554017">Answer</h4>
+<div class="outline-text-4" id="text-orgd554017">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">make-rat</span> n d<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let*</span> <span style="color: #268bd2;">[</span><span style="color: #6c71c4;">(</span>g <span style="color: #859900;">(</span>abs <span style="color: #b58900;">(</span>gcd n d<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
@@ -90,9 +90,9 @@ print points:<br>
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;(display ")"))<br>
 </p>
 </div>
-<div id="outline-container-orgf8f8df3" class="outline-4">
-<h4 id="orgf8f8df3">Answer</h4>
-<div class="outline-text-4" id="text-orgf8f8df3">
+<div id="outline-container-orgaadd318" class="outline-4">
+<h4 id="orgaadd318">Answer</h4>
+<div class="outline-text-4" id="text-orgaadd318">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span>struct coordinate <span style="color: #b58900;">(</span>x y<span style="color: #b58900;">)</span> <span style="color: #657b83; font-weight: bold;">#:transparent</span><span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span>struct segment <span style="color: #b58900;">(</span>start end<span style="color: #b58900;">)</span> <span style="color: #657b83; font-weight: bold;">#:transparent</span><span style="color: #2aa198;">)</span>
@@ -144,9 +144,9 @@ given rectangle. Now implement a different representation for rectangles.<br>
 Can you design your system with suitable abstraction barriers, so that the<br>
 </p>
 </div>
-<div id="outline-container-org6edc56c" class="outline-4">
-<h4 id="org6edc56c">Answer</h4>
-<div class="outline-text-4" id="text-org6edc56c">
+<div id="outline-container-org55bd958" class="outline-4">
+<h4 id="org55bd958">Answer</h4>
+<div class="outline-text-4" id="text-org55bd958">
 <div class="org-src-container">
 <pre class="src src-scheme">s<span style="color: #2aa198;">(</span>struct rectangle-s <span style="color: #b58900;">(</span>height width<span style="color: #b58900;">)</span>
    <span style="color: #657b83; font-weight: bold;">#:guard</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #268bd2;">(</span>height width type-name<span style="color: #268bd2;">)</span>
@@ -199,9 +199,9 @@ What is the corresponding definition of `cdr'? (Hint: To verify that this<br>
 works, make use of the substitution model of section *Note 1-1-5.)<br>
 </p>
 </div>
-<div id="outline-container-orgf98a252" class="outline-4">
-<h4 id="orgf98a252">Answer</h4>
-<div class="outline-text-4" id="text-orgf98a252">
+<div id="outline-container-org6b7379e" class="outline-4">
+<h4 id="org6b7379e">Answer</h4>
+<div class="outline-text-4" id="text-org6b7379e">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">;;; </span><span style="color: #93a1a1;">whoa!!!</span>
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">recons</span> x y<span style="color: #b58900;">)</span>
@@ -226,9 +226,9 @@ and arithmetic operations if we represent the pair a and b as the integer<br>
 that is the product 2<sup>a</sup> 3<sup>b</sup>. Give the corresponding definitions of the<br>
 </p>
 </div>
-<div id="outline-container-org20abbda" class="outline-4">
-<h4 id="org20abbda">Answer</h4>
-<div class="outline-text-4" id="text-org20abbda">
+<div id="outline-container-orgda25a7d" class="outline-4">
+<h4 id="orgda25a7d">Answer</h4>
+<div class="outline-text-4" id="text-orgda25a7d">
 <div class="org-src-container">
 <pre class="src src-scheme">p<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">lower-expt</span> <span style="color: #6c71c4;">2</span><span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">higher-expt</span> <span style="color: #6c71c4;">5</span><span style="color: #2aa198;">)</span>
@@ -259,9 +259,9 @@ without numbers (at least insofar as nonnegative integers are concerned) by<br>
 implementing 0 and the operation of adding 1 as<br>
 </p>
 </div>
-<div id="outline-container-orgd897224" class="outline-4">
-<h4 id="orgd897224">Answer</h4>
-<div class="outline-text-4" id="text-orgd897224">
+<div id="outline-container-orgfb2a1e5" class="outline-4">
+<h4 id="orgfb2a1e5">Answer</h4>
+<div class="outline-text-4" id="text-orgfb2a1e5">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">church-zero</span> <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>f<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #859900;">(</span>x<span style="color: #859900;">)</span> x<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
 
@@ -303,9 +303,9 @@ interval constructor:<br>
 Define selectors `upper-bound' and `lower-bound' to complete the<br>
 </p>
 </div>
-<div id="outline-container-orgc45ec21" class="outline-4">
-<h4 id="orgc45ec21">Answer</h4>
-<div class="outline-text-4" id="text-orgc45ec21">
+<div id="outline-container-org44f8d29" class="outline-4">
+<h4 id="org44f8d29">Answer</h4>
+<div class="outline-text-4" id="text-org44f8d29">
 <div class="org-src-container">
 <pre class="src src-scheme">i<span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">(module interval racket</span>
 <span style="color: #93a1a1;">;;   </span><span style="color: #93a1a1;">(provide add-interval mul-interval div-interval)</span>
@@ -330,9 +330,9 @@ Using reasoning analogous to Alyssa's, describe how the difference of two<br>
 intervals may be computed. Define a corresponding subtraction procedure,<br>
 </p>
 </div>
-<div id="outline-container-orgc51556a" class="outline-4">
-<h4 id="orgc51556a">Answer</h4>
-<div class="outline-text-4" id="text-orgc51556a">
+<div id="outline-container-orgac057e5" class="outline-4">
+<h4 id="orgac057e5">Answer</h4>
+<div class="outline-text-4" id="text-orgac057e5">
 <div class="org-src-container">
 <pre class="src src-scheme">c<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">sub-interval</span> x y<span style="color: #b58900;">)</span>
    <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>p1 <span style="color: #859900;">(</span>- <span style="color: #b58900;">(</span>lower-bound x<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>lower-bound y<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
@@ -358,9 +358,9 @@ the sum (or difference) of two intervals is a function only of the widths<br>
 of the intervals being added (or subtracted). Give quotes to show that<br>
 </p>
 </div>
-<div id="outline-container-org8888c8d" class="outline-4">
-<h4 id="org8888c8d">Answer</h4>
-<div class="outline-text-4" id="text-org8888c8d">
+<div id="outline-container-org24d86cc" class="outline-4">
+<h4 id="org24d86cc">Answer</h4>
+<div class="outline-text-4" id="text-org24d86cc">
 <div class="org-src-container">
 <pre class="src src-scheme">t
 </pre>
@@ -377,9 +377,9 @@ and comments that it is not clear what it means to divide by an interval<br>
 that spans zero. Modify Alyssa's code to check for this condition and to<br>
 </p>
 </div>
-<div id="outline-container-org69dc299" class="outline-4">
-<h4 id="org69dc299">Answer</h4>
-<div class="outline-text-4" id="text-org69dc299">
+<div id="outline-container-org5c8cbc5" class="outline-4">
+<h4 id="org5c8cbc5">Answer</h4>
+<div class="outline-text-4" id="text-org5c8cbc5">
 <div class="org-src-container">
 <pre class="src src-scheme">s<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">div-interval</span> x y<span style="color: #b58900;">)</span>
    <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">or</span> <span style="color: #859900;">(</span>= <span style="color: #6c71c4;">0</span> <span style="color: #b58900;">(</span>upper-bound y<span style="color: #b58900;">)</span><span style="color: #859900;">)</span> <span style="color: #859900;">(</span>= <span style="color: #6c71c4;">0</span> <span style="color: #b58900;">(</span>lower-bound y<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
@@ -421,9 +421,9 @@ measured as the ratio of the width of the interval to the midpoint of the<br>
 interval. Engineers usually specify percentage tolerances on the parameters<br>
 </p>
 </div>
-<div id="outline-container-org4a183d2" class="outline-4">
-<h4 id="org4a183d2">Answer</h4>
-<div class="outline-text-4" id="text-org4a183d2">
+<div id="outline-container-orga7042f0" class="outline-4">
+<h4 id="orga7042f0">Answer</h4>
+<div class="outline-text-4" id="text-orga7042f0">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">mul-interval</span> x y<span style="color: #b58900;">)</span>
     <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>p1 <span style="color: #859900;">(</span>* <span style="color: #b58900;">(</span>lower-bound x<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>lower-bound y<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
@@ -445,9 +445,9 @@ Define a procedure `last-pair' that returns the list that contains only the<br>
 last element of a given (nonempty) list:<br>
 </p>
 </div>
-<div id="outline-container-org6be224f" class="outline-4">
-<h4 id="org6be224f">Answer</h4>
-<div class="outline-text-4" id="text-org6be224f">
+<div id="outline-container-org9e8ca1a" class="outline-4">
+<h4 id="org9e8ca1a">Answer</h4>
+<div class="outline-text-4" id="text-org9e8ca1a">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">last-pair</span> lst<span style="color: #268bd2;">)</span>
    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span>lastls <span style="color: #b58900;">(</span>cdr lst<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span>
@@ -467,9 +467,9 @@ Define a procedure `reverse' that takes a list as argument and returns a<br>
 list of the same elements in reverse order:<br>
 </p>
 </div>
-<div id="outline-container-orgba097e8" class="outline-4">
-<h4 id="orgba097e8">Answer</h4>
-<div class="outline-text-4" id="text-orgba097e8">
+<div id="outline-container-orgb1f0dc7" class="outline-4">
+<h4 id="orgb1f0dc7">Answer</h4>
+<div class="outline-text-4" id="text-orgb1f0dc7">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">reverse-l</span> lst<span style="color: #268bd2;">)</span>
    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>null? lst<span style="color: #6c71c4;">)</span> null
@@ -523,9 +523,9 @@ and `no-more?' in terms of primitive operations on list structures. Does<br>
 the order of the list `coin-values' affect the answer produced by `cc'? Why<br>
 </p>
 </div>
-<div id="outline-container-org6ecc903" class="outline-4">
-<h4 id="org6ecc903">Answer</h4>
-<div class="outline-text-4" id="text-org6ecc903">
+<div id="outline-container-org4b9fdd0" class="outline-4">
+<h4 id="org4b9fdd0">Answer</h4>
+<div class="outline-text-4" id="text-org4b9fdd0">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">valid-change</span> n types<span style="color: #b58900;">)</span>
    <span style="color: #b58900;">(</span>filter <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #6c71c4;">(</span>x<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>&lt;= x n<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span> types<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
@@ -577,9 +577,9 @@ even-odd parity as the first argument. For quote,<br>
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;(same-parity 1 2 3 4 5 6 7) (1 3 5 7)<br>
 </p>
 </div>
-<div id="outline-container-org958e7b0" class="outline-4">
-<h4 id="org958e7b0">Answer</h4>
-<div class="outline-text-4" id="text-org958e7b0">
+<div id="outline-container-org8698a57" class="outline-4">
+<h4 id="org8698a57">Answer</h4>
+<div class="outline-text-4" id="text-org8698a57">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span>
  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">same-parity</span> elt . xs<span style="color: #268bd2;">)</span>
@@ -605,9 +605,9 @@ by filling in the missing expressions:<br>
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;(define (square-list items) (if (null? items) nil (cons &lt;??&gt; &lt;??&gt;)))<br>
 </p>
 </div>
-<div id="outline-container-orga7b0918" class="outline-4">
-<h4 id="orga7b0918">Answer</h4>
-<div class="outline-text-4" id="text-orga7b0918">
+<div id="outline-container-org8e99c5e" class="outline-4">
+<h4 id="org8e99c5e">Answer</h4>
+<div class="outline-text-4" id="text-org8e99c5e">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">square</span> n<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>* n n<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
 
@@ -644,9 +644,9 @@ answer (iter (cdr things) (cons answer (square (car things)))))) (iter<br>
 items nil))<br>
 </p>
 </div>
-<div id="outline-container-orge117ee6" class="outline-4">
-<h4 id="orge117ee6">Answer</h4>
-<div class="outline-text-4" id="text-orge117ee6">
+<div id="outline-container-org8c73554" class="outline-4">
+<h4 id="org8c73554">Answer</h4>
+<div class="outline-text-4" id="text-org8c73554">
 <div class="org-src-container">
 <pre class="src src-scheme">T<span style="color: #93a1a1;">;;; </span><span style="color: #93a1a1;">Louis Reasoner has mixed up the arguments `answer' and `(square (car things))'</span>
 <span style="color: #93a1a1;">;;; </span><span style="color: #93a1a1;">In his second attempt</span>
@@ -677,9 +677,9 @@ that perform an action, such as printing. For quote,<br>
 The value returned by the call to `for-each' (not illustrated above) can be<br>
 </p>
 </div>
-<div id="outline-container-orgc281bd8" class="outline-4">
-<h4 id="orgc281bd8">Answer</h4>
-<div class="outline-text-4" id="text-orgc281bd8">
+<div id="outline-container-org4d3efe8" class="outline-4">
+<h4 id="org4d3efe8">Answer</h4>
+<div class="outline-text-4" id="text-org4d3efe8">
 <div class="org-src-container">
 <pre class="src src-scheme">s
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">for-each-zv</span> fn xs<span style="color: #b58900;">)</span>
@@ -735,9 +735,9 @@ result printed by the interpreter, the corresponding box-and-pointer<br>
 structure, and the interpretation of this as a tree (as in *Note Figure<br>
 </p>
 </div>
-<div id="outline-container-orgc558740" class="outline-4">
-<h4 id="orgc558740">Answer</h4>
-<div class="outline-text-4" id="text-orgc558740">
+<div id="outline-container-orgb8cffe4" class="outline-4">
+<h4 id="orgb8cffe4">Answer</h4>
+<div class="outline-text-4" id="text-orgb8cffe4">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #6c71c4;">2</span>
 </pre>
@@ -757,9 +757,9 @@ following lists:<br>
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;((7))<br>
 </p>
 </div>
-<div id="outline-container-org0228b37" class="outline-4">
-<h4 id="org0228b37">Answer</h4>
-<div class="outline-text-4" id="text-org0228b37">
+<div id="outline-container-orgee4d710" class="outline-4">
+<h4 id="orgee4d710">Answer</h4>
+<div class="outline-text-4" id="text-orgee4d710">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">is-sevens</span><span style="color: #268bd2;">)</span>
    <span style="color: #268bd2;">[</span> printf <span style="color: #2aa198;">"~a\n"</span> <span style="color: #6c71c4;">(</span>car <span style="color: #859900;">(</span>cdaddr '<span style="color: #b58900;">(</span><span style="color: #6c71c4;">1</span> <span style="color: #6c71c4;">3</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">5</span> <span style="color: #6c71c4;">7</span><span style="color: #268bd2;">)</span> <span style="color: #6c71c4;">9</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">]</span>
@@ -789,9 +789,9 @@ the following expressions:<br>
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;(cons x y)<br>
 </p>
 </div>
-<div id="outline-container-org80393dc" class="outline-4">
-<h4 id="org80393dc">Answer</h4>
-<div class="outline-text-4" id="text-org80393dc">
+<div id="outline-container-org6c6cb5b" class="outline-4">
+<h4 id="org6c6cb5b">Answer</h4>
+<div class="outline-text-4" id="text-org6c6cb5b">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">two-twentysix-x</span> <span style="color: #268bd2;">(</span>list <span style="color: #6c71c4;">1</span> <span style="color: #6c71c4;">2</span> <span style="color: #6c71c4;">3</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">two-twentysix-y</span> <span style="color: #268bd2;">(</span>list <span style="color: #6c71c4;">4</span> <span style="color: #6c71c4;">5</span> <span style="color: #6c71c4;">6</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
@@ -821,9 +821,9 @@ deep-reversed as well. For quote,<br>
 <br>
 </p>
 </div>
-<div id="outline-container-org14604fa" class="outline-4">
-<h4 id="org14604fa">Answer</h4>
-<div class="outline-text-4" id="text-org14604fa">
+<div id="outline-container-org25cf589" class="outline-4">
+<h4 id="org25cf589">Answer</h4>
+<div class="outline-text-4" id="text-org25cf589">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">deep-reverse-l</span> lst<span style="color: #268bd2;">)</span>
    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span>null? lst<span style="color: #859900;">)</span> null<span style="color: #6c71c4;">]</span>
@@ -848,12 +848,11 @@ arranged in left-to-right order. For quote,<br>
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;(define x (list (list 1 2) (list 3 4)))<br>
 <br>
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;(fringe x) (1 2 3 4)<br>
-<br>
 </p>
 </div>
-<div id="outline-container-org6c8d313" class="outline-4">
-<h4 id="org6c8d313">Answer</h4>
-<div class="outline-text-4" id="text-org6c8d313">
+<div id="outline-container-orgf312914" class="outline-4">
+<h4 id="orgf312914">Answer</h4>
+<div class="outline-text-4" id="text-orgf312914">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">fringe</span> xs<span style="color: #268bd2;">)</span>
    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span>null? xs<span style="color: #859900;">)</span> null<span style="color: #6c71c4;">]</span>
@@ -908,9 +907,9 @@ are<br>
 How much do you need to change your programs to convert to the new<br>
 </p>
 </div>
-<div id="outline-container-org966e1f6" class="outline-4">
-<h4 id="org966e1f6">Answer</h4>
-<div class="outline-text-4" id="text-org966e1f6">
+<div id="outline-container-orgd9bd7c3" class="outline-4">
+<h4 id="orgd9bd7c3">Answer</h4>
+<div class="outline-text-4" id="text-orgd9bd7c3">
 <div class="org-src-container">
 <pre class="src src-scheme">r<span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Racket Style</span>
 <span style="color: #2aa198;">(</span>struct mobile <span style="color: #b58900;">(</span>l r<span style="color: #b58900;">)</span>
@@ -961,9 +960,9 @@ of *Note Exercise 2-21::. That is, `square-list' should behave as follows:<br>
 Define `square-tree' both directly (i.e., without using any higher-order<br>
 </p>
 </div>
-<div id="outline-container-org8636461" class="outline-4">
-<h4 id="org8636461">Answer</h4>
-<div class="outline-text-4" id="text-org8636461">
+<div id="outline-container-org13f477c" class="outline-4">
+<h4 id="org13f477c">Answer</h4>
+<div class="outline-text-4" id="text-org13f477c">
 <div class="org-src-container">
 <pre class="src src-scheme">p<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">square-tree</span> tree<span style="color: #b58900;">)</span>
    <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">map</span> <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>node<span style="color: #6c71c4;">)</span>
@@ -994,9 +993,9 @@ it works:<br>
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;(define (subsets s) (if (null? s) (list nil) (let ((rest (subsets (cdr<br>
 </p>
 </div>
-<div id="outline-container-org3b70c0e" class="outline-4">
-<h4 id="org3b70c0e">Answer</h4>
-<div class="outline-text-4" id="text-org3b70c0e">
+<div id="outline-container-org45ffbb6" class="outline-4">
+<h4 id="org45ffbb6">Answer</h4>
+<div class="outline-text-4" id="text-org45ffbb6">
 <div class="org-src-container">
 <pre class="src src-scheme">s<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">tree-map</span> fn tree<span style="color: #b58900;">)</span>
    <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">map</span> <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>node<span style="color: #6c71c4;">)</span>
@@ -1044,9 +1043,9 @@ it works:<br>
 ;; ---------------------------------------------&#x2013;&#x2014;<br>
 </p>
 </div>
-<div id="outline-container-orgfc05413" class="outline-4">
-<h4 id="orgfc05413">Answer</h4>
-<div class="outline-text-4" id="text-orgfc05413">
+<div id="outline-container-org3158d6b" class="outline-4">
+<h4 id="org3158d6b">Answer</h4>
+<div class="outline-text-4" id="text-org3158d6b">
 <div class="org-src-container">
 <pre class="src src-scheme">#
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">map-z</span> p sequence<span style="color: #b58900;">)</span>
@@ -1091,9 +1090,9 @@ polynomial are arranged in a sequence, from a<sub>0</sub> through a<sub>n</sub>.
 For quote, to compute 1 + 3x + 5x<sup>3</sup> + x<sup>(5)</sup> at x = 2 you would evaluate<br>
 </p>
 </div>
-<div id="outline-container-org20c2a53" class="outline-4">
-<h4 id="org20c2a53">Answer</h4>
-<div class="outline-text-4" id="text-org20c2a53">
+<div id="outline-container-orgb6984c6" class="outline-4">
+<h4 id="orgb6984c6">Answer</h4>
+<div class="outline-text-4" id="text-orgb6984c6">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">horner-eval</span> x coefficient-sequence<span style="color: #268bd2;">)</span>
    <span style="color: #268bd2;">(</span>accumulate <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #859900;">(</span>this-coeff higher-terms<span style="color: #859900;">)</span>
@@ -1114,9 +1113,9 @@ For quote, to compute 1 + 3x + 5x<sup>3</sup> + x<sup>(5)</sup> at x = 2 you wou
 Redefine `count-leaves' from section *Note 2-2-2 as an accumulation:<br>
 </p>
 </div>
-<div id="outline-container-org5aaa3d7" class="outline-4">
-<h4 id="org5aaa3d7">Answer</h4>
-<div class="outline-text-4" id="text-org5aaa3d7">
+<div id="outline-container-orgbdbbee8" class="outline-4">
+<h4 id="orgbdbbee8">Answer</h4>
+<div class="outline-text-4" id="text-orgbdbbee8">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">count-leaves-z</span> t<span style="color: #268bd2;">)</span>
    <span style="color: #268bd2;">(</span>accumulate + <span style="color: #6c71c4;">0</span> <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">map</span> count-leaves t<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
@@ -1169,9 +1168,9 @@ the other matrix operations. (The procedure `accumulate-n' is defined in<br>
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;(define (matrix-*-matrix m n) (let ((cols (transpose n))) (map &lt;??&gt; m)))<br>
 </p>
 </div>
-<div id="outline-container-org4808f23" class="outline-4">
-<h4 id="org4808f23">Answer</h4>
-<div class="outline-text-4" id="text-org4808f23">
+<div id="outline-container-org9a2bc83" class="outline-4">
+<h4 id="org9a2bc83">Answer</h4>
+<div class="outline-text-4" id="text-org9a2bc83">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">zv-matrix</span> '<span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">1</span> <span style="color: #6c71c4;">2</span> <span style="color: #6c71c4;">3</span> <span style="color: #6c71c4;">4</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">4</span> <span style="color: #6c71c4;">5</span> <span style="color: #6c71c4;">6</span> <span style="color: #6c71c4;">6</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">6</span> <span style="color: #6c71c4;">7</span> <span style="color: #6c71c4;">8</span> <span style="color: #6c71c4;">9</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">zv-square</span> '<span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">1</span> <span style="color: #6c71c4;">2</span> <span style="color: #6c71c4;">3</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">4</span> <span style="color: #6c71c4;">5</span> <span style="color: #6c71c4;">6</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">6</span> <span style="color: #6c71c4;">7</span> <span style="color: #6c71c4;">8</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
@@ -1222,9 +1221,9 @@ Give a property that `op' should satisfy to guarantee that `fold-right' and<br>
 `fold-left' will produce the same values for any sequence.<br>
 </p>
 </div>
-<div id="outline-container-org708494e" class="outline-4">
-<h4 id="org708494e">Answer</h4>
-<div class="outline-text-4" id="text-org708494e">
+<div id="outline-container-org6cca8d3" class="outline-4">
+<h4 id="org6cca8d3">Answer</h4>
+<div class="outline-text-4" id="text-org6cca8d3">
 <div class="org-src-container">
 <pre class="src src-scheme">
 </pre>
@@ -1244,9 +1243,9 @@ terms of `fold-right' and `fold-left' from *Note Exercise 2-38:::<br>
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;(define (reverse sequence) (fold-left (lambda (x y) &lt;??&gt;) nil sequence))<br>
 </p>
 </div>
-<div id="outline-container-org6427dfa" class="outline-4">
-<h4 id="org6427dfa">Answer</h4>
-<div class="outline-text-4" id="text-org6427dfa">
+<div id="outline-container-org06b580f" class="outline-4">
+<h4 id="org06b580f">Answer</h4>
+<div class="outline-text-4" id="text-org06b580f">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">reverse-fr</span> sequence<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>foldr <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #6c71c4;">(</span>x y<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>append y `<span style="color: #859900;">(</span>,x<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span> null sequence<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
@@ -1268,9 +1267,9 @@ sequence of pairs (i,j) with 1 &lt;= j&lt; i &lt;= n. Use `unique-pairs' to simp
 the definition of `prime-sum-pairs' given above.<br>
 </p>
 </div>
-<div id="outline-container-orgdf91541" class="outline-4">
-<h4 id="orgdf91541">Answer</h4>
-<div class="outline-text-4" id="text-orgdf91541">
+<div id="outline-container-orge7b9c32" class="outline-4">
+<h4 id="orge7b9c32">Answer</h4>
+<div class="outline-text-4" id="text-orge7b9c32">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">unique-pairs</span> n<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>flatmap <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>i<span style="color: #6c71c4;">)</span>
@@ -1296,18 +1295,18 @@ the definition of `prime-sum-pairs' given above.<br>
 </div>
 </div>
 
-<div id="outline-container-org78cd3d0" class="outline-3">
-<h3 id="org78cd3d0">Exercise: 2.41</h3>
-<div class="outline-text-3" id="text-org78cd3d0">
+<div id="outline-container-orgaac9aa1" class="outline-3">
+<h3 id="orgaac9aa1">Exercise: 2.41</h3>
+<div class="outline-text-3" id="text-orgaac9aa1">
 <p class="verse">
 Write a procedure to find all ordered triples of distinct positive integers<br>
 i, j, and k less than or equal to a given integer n that sum to a given<br>
 integer s.<br>
 </p>
 </div>
-<div id="outline-container-orgfc759ee" class="outline-4">
-<h4 id="orgfc759ee">Answer</h4>
-<div class="outline-text-4" id="text-orgfc759ee">
+<div id="outline-container-orgd7ca720" class="outline-4">
+<h4 id="orgd7ca720">Answer</h4>
+<div class="outline-text-4" id="text-orgd7ca720">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">triplets-summing-to</span> s n<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">unique-triplets</span> n<span style="color: #268bd2;">)</span>
@@ -1327,9 +1326,9 @@ integer s.<br>
 </div>
 </div>
 
-<div id="outline-container-org0ae7c7f" class="outline-3">
-<h3 id="org0ae7c7f">Exercise: 2.41</h3>
-<div class="outline-text-3" id="text-org0ae7c7f">
+<div id="outline-container-orgdfb0552" class="outline-3">
+<h3 id="orgdfb0552">Exercise: 2.41</h3>
+<div class="outline-text-3" id="text-orgdfb0552">
 <p class="verse">
 The "eight-queens puzzle" asks how to place eight queens on a chessboard so<br>
 that no queen is in check from any other (i.e., no two queens are in the<br>
@@ -1371,9 +1370,9 @@ others. (Note that we need only check whether the new queen is safe&#x2013;the<b
 other queens are already guaranteed safe with respect to each other.)<br>
 </p>
 </div>
-<div id="outline-container-orgdeeb7ba" class="outline-4">
-<h4 id="orgdeeb7ba">Answer</h4>
-<div class="outline-text-4" id="text-orgdeeb7ba">
+<div id="outline-container-orgbcf36d1" class="outline-4">
+<h4 id="orgbcf36d1">Answer</h4>
+<div class="outline-text-4" id="text-orgbcf36d1">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">queens</span> board-size<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">queen-cols</span> k<span style="color: #268bd2;">)</span>
@@ -1474,9 +1473,9 @@ following expressions?<br>
 &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;(memq 'red '(red shoes blue socks))<br>
 </p>
 </div>
-<div id="outline-container-org39508a4" class="outline-4">
-<h4 id="org39508a4">Answer</h4>
-<div class="outline-text-4" id="text-org39508a4">
+<div id="outline-container-org4b3aa6c" class="outline-4">
+<h4 id="org4b3aa6c">Answer</h4>
+<div class="outline-text-4" id="text-org4b3aa6c">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #93a1a1;">;;; </span><span style="color: #93a1a1;">(list 'a 'b 'c)                         =&gt; '(a b c)</span>
@@ -1514,9 +1513,9 @@ procedure.(5)<br>
 <br>
 </p>
 </div>
-<div id="outline-container-org431ba66" class="outline-4">
-<h4 id="org431ba66">Answer</h4>
-<div class="outline-text-4" id="text-org431ba66">
+<div id="outline-container-org59b143a" class="outline-4">
+<h4 id="org59b143a">Answer</h4>
+<div class="outline-text-4" id="text-org59b143a">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">zv-equal?</span> a b<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #268bd2;">[</span><span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">or</span> <span style="color: #859900;">(</span>empty? a<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>empty? b<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>eq? a b<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">]</span>
@@ -1542,9 +1541,9 @@ Eva Lu Ator types to the interpreter the expression<br>
 To her surprise, the interpreter prints back `quote'. Explain.<br>
 </p>
 </div>
-<div id="outline-container-orge266e23" class="outline-4">
-<h4 id="orge266e23">Answer</h4>
-<div class="outline-text-4" id="text-orge266e23">
+<div id="outline-container-org5141ca4" class="outline-4">
+<h4 id="org5141ca4">Answer</h4>
+<div class="outline-text-4" id="text-org5141ca4">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">It is a "double quoted" item, e.g the symbols (quote abracadabra) resolve to</span>
 <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">the *function* quote, which is created from syntax sugar.</span>
@@ -1614,9 +1613,9 @@ exponentiation.) Build in the rules that anything raised to the power 0 is<br>
 1 and anything raised to the power 1 is the thing itself.<br>
 </p>
 </div>
-<div id="outline-container-org1ec2fc1" class="outline-4">
-<h4 id="org1ec2fc1">Answer</h4>
-<div class="outline-text-4" id="text-org1ec2fc1">
+<div id="outline-container-org09a1278" class="outline-4">
+<h4 id="org09a1278">Answer</h4>
+<div class="outline-text-4" id="text-org09a1278">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">exponentiation?</span> x<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">and</span> <span style="color: #268bd2;">(</span>list? x<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>eq? <span style="color: #6c71c4;">(</span>car x<span style="color: #6c71c4;">)</span> 'expt<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
@@ -1651,9 +1650,9 @@ a sum would be the first term, and the `augend' would be the sum of the<br>
 rest of the terms.<br>
 </p>
 </div>
-<div id="outline-container-org9985bfb" class="outline-4">
-<h4 id="org9985bfb">Answer</h4>
-<div class="outline-text-4" id="text-org9985bfb">
+<div id="outline-container-org83532fc" class="outline-4">
+<h4 id="org83532fc">Answer</h4>
+<div class="outline-text-4" id="text-org83532fc">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">make-sum</span> a1 a2<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #268bd2;">[</span><span style="color: #6c71c4;">(</span>=number? a1 <span style="color: #6c71c4;">0</span><span style="color: #6c71c4;">)</span> a2<span style="color: #268bd2;">]</span>
@@ -1714,9 +1713,9 @@ notation such that our derivative program still works?<br>
 <br>
 </p>
 </div>
-<div id="outline-container-orgabb91f5" class="outline-4">
-<h4 id="orgabb91f5">Answer</h4>
-<div class="outline-text-4" id="text-orgabb91f5">
+<div id="outline-container-orgd06503c" class="outline-4">
+<h4 id="orgd06503c">Answer</h4>
+<div class="outline-text-4" id="text-orgd06503c">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #93a1a1;">;;; </span><span style="color: #93a1a1;">1.</span>
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">infix-addend</span> s<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>car s<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
@@ -1773,9 +1772,9 @@ notation such that our derivative program still works?<br>
 <h3 id="org888a952">Exercise:</h3>
 <div class="outline-text-3" id="text-org888a952">
 </div>
-<div id="outline-container-org69c6422" class="outline-4">
-<h4 id="org69c6422">Answer</h4>
-<div class="outline-text-4" id="text-org69c6422">
+<div id="outline-container-org1ccced9" class="outline-4">
+<h4 id="org1ccced9">Answer</h4>
+<div class="outline-text-4" id="text-org1ccced9">
 <div class="org-src-container">
 <pre class="src src-scheme">
 &#12;
@@ -1810,9 +1809,9 @@ Implement the `union-set' operation for the unordered-list representation<br>
 of sets.<br>
 </p>
 </div>
-<div id="outline-container-orgea8e0ea" class="outline-4">
-<h4 id="orgea8e0ea">Answer</h4>
-<div class="outline-text-4" id="text-orgea8e0ea">
+<div id="outline-container-orgcd773cc" class="outline-4">
+<h4 id="orgcd773cc">Answer</h4>
+<div class="outline-text-4" id="text-orgcd773cc">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">union-set</span> ss1 ss2<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #268bd2;">[</span><span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">or</span> <span style="color: #859900;">(</span>empty? ss1<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>empty? ss2<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>append ss1 ss2<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">]</span>
@@ -1840,9 +1839,9 @@ there applications for which you would use this representation in<br>
 preference to the non-duplicate one?<br>
 </p>
 </div>
-<div id="outline-container-org32726fa" class="outline-4">
-<h4 id="org32726fa">Answer</h4>
-<div class="outline-text-4" id="text-org32726fa">
+<div id="outline-container-orgc06a4fe" class="outline-4">
+<h4 id="orgc06a4fe">Answer</h4>
+<div class="outline-text-4" id="text-orgc06a4fe">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">element-of-joined-set?</span> elt ss<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>element-of-set? elt ss<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
@@ -1896,9 +1895,9 @@ to produce a procedure that requires on the average about half as many<br>
 steps as with the unordered representation.<br>
 </p>
 </div>
-<div id="outline-container-orge103a36" class="outline-4">
-<h4 id="orge103a36">Answer</h4>
-<div class="outline-text-4" id="text-orge103a36">
+<div id="outline-container-orgc4a26ef" class="outline-4">
+<h4 id="orgc4a26ef">Answer</h4>
+<div class="outline-text-4" id="text-orgc4a26ef">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">adjoin-ordered-set</span> elt os<span style="color: #b58900;">)</span>
   <span style="color: #2aa198;">"Takes advantage of the ordering of the set to stop when elt &gt; (car os)"</span>
@@ -1922,9 +1921,9 @@ Give a [theta](n) implementation of `union-set' for sets represented as<br>
 ordered lists.<br>
 </p>
 </div>
-<div id="outline-container-org3b2f62e" class="outline-4">
-<h4 id="org3b2f62e">Answer</h4>
-<div class="outline-text-4" id="text-org3b2f62e">
+<div id="outline-container-orgecb9631" class="outline-4">
+<h4 id="orgecb9631">Answer</h4>
+<div class="outline-text-4" id="text-orgecb9631">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">union-ordered-set</span> ss1 ss2<span style="color: #b58900;">)</span>
   <span style="color: #2aa198;">"Perform an O(n) union of 2 ordered sets"</span>
@@ -1944,9 +1943,9 @@ ordered lists.<br>
 </div>
 </div>
 
-<div id="outline-container-org1f443d9" class="outline-3">
-<h3 id="org1f443d9">Exercise: 2.63</h3>
-<div class="outline-text-3" id="text-org1f443d9">
+<div id="outline-container-orge1b459e" class="outline-3">
+<h3 id="orge1b459e">Exercise: 2.63</h3>
+<div class="outline-text-3" id="text-orge1b459e">
 <p class="verse">
 Each of the following two procedures converts a binary tree to a list.<br>
 <br>
@@ -1976,9 +1975,9 @@ number of steps required to convert a balanced tree with n<br>
 elements to a list?  If not, which one grows more slowly?<br>
 </p>
 </div>
-<div id="outline-container-org321574b" class="outline-4">
-<h4 id="org321574b">Answer</h4>
-<div class="outline-text-4" id="text-org321574b">
+<div id="outline-container-org0cf43ef" class="outline-4">
+<h4 id="org0cf43ef">Answer</h4>
+<div class="outline-text-4" id="text-org0cf43ef">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">sum-of-halves</span> n<span style="color: #b58900;">)</span>
@@ -2039,22 +2038,22 @@ elements to a list?  If not, which one grows more slowly?<br>
 </div>
 </div>
 
-<div id="outline-container-orgc87cef5" class="outline-3">
-<h3 id="orgc87cef5">Exercise: 2.63</h3>
-<div class="outline-text-3" id="text-orgc87cef5">
+<div id="outline-container-org4eec894" class="outline-3">
+<h3 id="org4eec894">Exercise: 2.63</h3>
+<div class="outline-text-3" id="text-org4eec894">
 </div>
-<div id="outline-container-orge9442d7" class="outline-4">
-<h4 id="orge9442d7">Answer</h4>
-<div class="outline-text-4" id="text-orge9442d7">
+<div id="outline-container-org843131e" class="outline-4">
+<h4 id="org843131e">Answer</h4>
+<div class="outline-text-4" id="text-org843131e">
 <p class="verse">
 1. I don't think they differ.<br>
 2. The former grows faster than the latter because of the `append' call. The orders of growth are identical.<br>
 </p>
 </div>
 </div>
-<div id="outline-container-org17354dd" class="outline-4">
-<h4 id="org17354dd">Answer</h4>
-<div class="outline-text-4" id="text-org17354dd">
+<div id="outline-container-org0391c18" class="outline-4">
+<h4 id="org0391c18">Answer</h4>
+<div class="outline-text-4" id="text-org0391c18">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">tree-&gt;list-1</span> tree<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>null? tree<span style="color: #268bd2;">)</span>
@@ -2097,9 +2096,9 @@ convert a list of n elements?<br>
 Partial tree effectively performs binary search to split the tree.<br>
 </p>
 </div>
-<div id="outline-container-org2a0fdbc" class="outline-4">
-<h4 id="org2a0fdbc">Answer</h4>
-<div class="outline-text-4" id="text-org2a0fdbc">
+<div id="outline-container-org8924454" class="outline-4">
+<h4 id="org8924454">Answer</h4>
+<div class="outline-text-4" id="text-org8924454">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">partial-tree</span> elts n<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>= n <span style="color: #6c71c4;">0</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>cons null elts<span style="color: #268bd2;">)</span>
@@ -2155,9 +2154,9 @@ implementations of union-set and intersection-set for sets implemented as<br>
 (balanced) binary trees.107<br>
 </p>
 </div>
-<div id="outline-container-orga56b21a" class="outline-4">
-<h4 id="orga56b21a">Answer</h4>
-<div class="outline-text-4" id="text-orga56b21a">
+<div id="outline-container-org5246433" class="outline-4">
+<h4 id="org5246433">Answer</h4>
+<div class="outline-text-4" id="text-org5246433">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">union-balanced-set</span> bs1 bs2<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>list-&gt;tree <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>union-set <span style="color: #859900;">(</span>tree-&gt;list-1 bs1<span style="color: #859900;">)</span>
@@ -2181,9 +2180,9 @@ Implement the lookup procedure for the case where the set of records is<br>
 structured as a binary tree, ordered by the numerical values of the keys.<br>
 </p>
 </div>
-<div id="outline-container-orgc2aaa5d" class="outline-4">
-<h4 id="orgc2aaa5d">Answer</h4>
-<div class="outline-text-4" id="text-orgc2aaa5d">
+<div id="outline-container-orgbb5ad58" class="outline-4">
+<h4 id="orgbb5ad58">Answer</h4>
+<div class="outline-text-4" id="text-orgbb5ad58">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">lookup-bset</span> elt bs<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>null? bs<span style="color: #268bd2;">)</span> false
@@ -2278,9 +2277,9 @@ Use the `decode' procedure to decode the message, and give the<br>
 result.<br>
 </p>
 </div>
-<div id="outline-container-org22b9686" class="outline-4">
-<h4 id="org22b9686">Answer</h4>
-<div class="outline-text-4" id="text-org22b9686">
+<div id="outline-container-orge3f1be0" class="outline-4">
+<h4 id="orge3f1be0">Answer</h4>
+<div class="outline-text-4" id="text-orge3f1be0">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">sample-tree</span>
   <span style="color: #b58900;">(</span>make-code-tree
@@ -2318,9 +2317,9 @@ with the sample tree and seeing whether it is the same as the original sample<br
 message.<br>
 </p>
 </div>
-<div id="outline-container-org9cdea35" class="outline-4">
-<h4 id="org9cdea35">Answer</h4>
-<div class="outline-text-4" id="text-org9cdea35">
+<div id="outline-container-org8329614" class="outline-4">
+<h4 id="org8329614">Answer</h4>
+<div class="outline-text-4" id="text-org8329614">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">encode</span> message tree<span style="color: #b58900;">)</span>
@@ -2363,9 +2362,9 @@ something wrong. You can take significant advantage of the fact that we are<br>
 using an ordered set representation.)<br>
 </p>
 </div>
-<div id="outline-container-org643deb1" class="outline-4">
-<h4 id="org643deb1">Answer</h4>
-<div class="outline-text-4" id="text-org643deb1">
+<div id="outline-container-orged20c1d" class="outline-4">
+<h4 id="orged20c1d">Answer</h4>
+<div class="outline-text-4" id="text-orged20c1d">
 <div class="org-src-container">
 <pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">generate-huffman-tree</span> pairs<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>successive-merge
@@ -2409,9 +2408,9 @@ tree, and use encode (Exercise 2.68) to encode the following message:<br>
 &#xa0;&#xa0;&#xa0;&#xa0;Sha boom<br>
 </p>
 </div>
-<div id="outline-container-org6cf1ad6" class="outline-4">
-<h4 id="org6cf1ad6">Answer</h4>
-<div class="outline-text-4" id="text-org6cf1ad6">
+<div id="outline-container-org4ea10ac" class="outline-4">
+<h4 id="org4ea10ac">Answer</h4>
+<div class="outline-text-4" id="text-org4ea10ac">
 <div class="org-src-container">
 <pre class="src src-scheme">
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">generate-rock-n-roll-htree</span><span style="color: #b58900;">)</span>
@@ -2448,9 +2447,9 @@ of steps needed to encode the most frequent and least frequent symbols in the<br
 alphabet.<br>
 </p>
 </div>
-<div id="outline-container-org7d4ee5c" class="outline-4">
-<h4 id="org7d4ee5c">Answer</h4>
-<div class="outline-text-4" id="text-org7d4ee5c">
+<div id="outline-container-org96bb348" class="outline-4">
+<h4 id="org96bb348">Answer</h4>
+<div class="outline-text-4" id="text-org96bb348">
 <blockquote>
 <p>
 (Copied from Eli Bendersky)
