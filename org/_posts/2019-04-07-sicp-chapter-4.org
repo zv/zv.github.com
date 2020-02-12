@@ -2734,4 +2734,3 @@ Complete the following definition of analyze-require.
    method of problem solving?  (This problem is open-ended.  A good
    answer is probably worth a Ph.D.) 
    #+end_verse
-   #+end_verse

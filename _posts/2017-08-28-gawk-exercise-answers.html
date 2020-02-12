@@ -15,15 +15,22 @@ tags:
     padding-left: 1.5em;
     border-left: 3px solid #2aa198;
 }
-</style>
-<style>
+ 
 div.org-src-container + pre.example {
-  border-top: 3px ridge #073642;
-  border-left: none;
-  background: #fdf6e3;
+  border: none;
+  border-top: 2px dotted #586e75;
+  color: #073642;
+  font-size: 0.80em;
+}
+
+div.org-src-container + pre.example:before {
+  content: "output";
+  float: right;
+  font-size: 0.75em;
+  font-weight: bold;
+  color: #586e75;
 }
 </style>
-
 
 <section id="outline-container-orgfeb7478" class="outline-2">
 <h2 id="orgfeb7478"></h2>
@@ -34,13 +41,13 @@ div.org-src-container + pre.example {
 </p>
 
 <p>
-The manual doesn't contain answers to these exercises and having not found
-them elsewhere, I've published my own solutions here.
+The manual doesn&rsquo;t contain answers to these exercises and having not found
+them elsewhere, I&rsquo;ve published my own solutions here.
 </p>
 
 <p>
 All of the exercises use features <i>exclusively</i> presented prior to the section
-where the exercise appears. If you think you've got a neat solution, <a href="https://github.com/zv/gawk-exercise/issues">please
+where the exercise appears. If you think you&rsquo;ve got a neat solution, <a href="https://github.com/zv/gawk-exercise/issues">please
 submit a pull request!</a>
 </p>
 </div>
@@ -50,9 +57,9 @@ submit a pull request!</a>
 <h2 id="org2bbc2c3">Input</h2>
 <div class="outline-text-2" id="text-org2bbc2c3">
 </div>
-<div id="outline-container-org8d1d548" class="outline-3">
-<h3 id="org8d1d548">#1</h3>
-<div class="outline-text-3" id="text-org8d1d548">
+<div id="outline-container-orgca8d50b" class="outline-3">
+<h3 id="orgca8d50b">#1</h3>
+<div class="outline-text-3" id="text-orgca8d50b">
 <p class="verse">
 Using the <code>FIELDWIDTHS</code> variable (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Constant-Size">Constant Size</a>), write a program to read<br>
 election data, where each record represents one voter’s votes. Come up with a<br>
@@ -60,9 +67,9 @@ way to define which columns are associated with each ballot item, and print the<
 total votes, including abstentions, for each item.<br>
 </p>
 </div>
-<div id="outline-container-orgf4ce812" class="outline-4">
-<h4 id="orgf4ce812">Answer</h4>
-<div class="outline-text-4" id="text-orgf4ce812">
+<div id="outline-container-org3a12a78" class="outline-4">
+<h4 id="org3a12a78">Answer</h4>
+<div class="outline-text-4" id="text-org3a12a78">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span>  <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">FIELDWIDTHS</span> = <span style="color: #2aa198;">"18 9 15"</span> <span style="color: #2aa198;">}</span>
 
@@ -79,13 +86,17 @@ total votes, including abstentions, for each item.<br>
 <span style="color: #859900; font-weight: bold;">END</span> <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"Bush:"</span>, bush, <span style="color: #2aa198;">"Gore:"</span>, gore, <span style="color: #2aa198;">"Abstained:"</span>, abstained <span style="color: #2aa198;">}</span>
 </pre>
 </div>
+
+<pre class="example">
+Bush: 9 Gore: 10 Abstained: 1
+</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgf6a9c5e" class="outline-3">
-<h3 id="orgf6a9c5e">#2</h3>
-<div class="outline-text-3" id="text-orgf6a9c5e">
+<div id="outline-container-orgbe9988a" class="outline-3">
+<h3 id="orgbe9988a">#2</h3>
+<div class="outline-text-3" id="text-orgbe9988a">
 <p class="verse">
 Plain Getline, presented a program to remove C-style comments (‘/* … */’) from<br>
 the input. That program does not work if one comment ends on one line and<br>
@@ -94,9 +105,9 @@ simple change. What is it?<br>
 </p>
 </div>
 
-<div id="outline-container-org9b5d77b" class="outline-4">
-<h4 id="org9b5d77b">Answer</h4>
-<div class="outline-text-4" id="text-org9b5d77b">
+<div id="outline-container-org08cda16" class="outline-4">
+<h4 id="org08cda16">Answer</h4>
+<div class="outline-text-4" id="text-org08cda16">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #2aa198;">{</span>
     <span style="color: #859900; font-weight: bold;">while</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>i = <span style="color: #268bd2;">index</span><span style="color: #6c71c4;">(</span>$0, <span style="color: #2aa198;">"/*"</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span> != <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
@@ -128,6 +139,22 @@ simple change. What is it?<br>
 <span style="color: #2aa198;">}</span>
 </pre>
 </div>
+
+<pre class="example">
+#include &lt;errno.h&gt;
+#include &lt;termios.h&gt;
+
+int __set_errno(int n) { return n; }
+
+int __libc_tcdrain (int fd) {
+  if (fd &lt; 0) {
+      __set_errno (EBADF);
+      return -1;
+    }
+   __set_errno (ENOSYS);
+  return -1;
+}
+</pre>
 </div>
 </div>
 </div>
@@ -137,9 +164,9 @@ simple change. What is it?<br>
 <h2 id="orge7c535c">Output</h2>
 <div class="outline-text-2" id="text-orge7c535c">
 </div>
-<div id="outline-container-org62cce2e" class="outline-3">
-<h3 id="org62cce2e">#1</h3>
-<div class="outline-text-3" id="text-org62cce2e">
+<div id="outline-container-org6b16a44" class="outline-3">
+<h3 id="org6b16a44">#1</h3>
+<div class="outline-text-3" id="text-org6b16a44">
 <p class="verse">
 Rewrite the program from Output Separators, by using a new value of OFS.<br>
 </p>
@@ -149,17 +176,37 @@ Rewrite the program from Output Separators, by using a new value of OFS.<br>
 <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> $1, <span style="color: #2aa198;">"     "</span>, $2 <span style="color: #2aa198;">}</span>
 </pre>
 </div>
+<pre class="example">
+Month Crates
+----- ------
+Jan       13
+Feb       15
+Mar       15
+Aug       11
+Sep       25
+Dec       6
+</pre>
 </div>
 
 
-<div id="outline-container-orgdf77ac3" class="outline-4">
-<h4 id="orgdf77ac3">Answer</h4>
-<div class="outline-text-4" id="text-orgdf77ac3">
+<div id="outline-container-orga7855e8" class="outline-4">
+<h4 id="orga7855e8">Answer</h4>
+<div class="outline-text-4" id="text-orga7855e8">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span> <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"Month Crates"</span>; <span style="color: #268bd2;">print</span> <span style="color: #2aa198;">"----- ------"</span>; <span style="color: #268bd2;">OFS</span>=<span style="color: #2aa198;">"     "</span> <span style="color: #2aa198;">}</span>
 <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span> $1, $2 <span style="color: #2aa198;">}</span>
 </pre>
 </div>
+<pre class="example">
+Month Crates
+----- ------
+Jan     13
+Feb     15
+Mar     15
+Aug     11
+Sep     25
+Dec     6
+</pre>
 </div>
 </div>
 </div>
@@ -168,9 +215,9 @@ Rewrite the program from Output Separators, by using a new value of OFS.<br>
 <h2 id="orgc488ac7">Library</h2>
 <div class="outline-text-2" id="text-orgc488ac7">
 </div>
-<div id="outline-container-orgc314bd7" class="outline-3">
-<h3 id="orgc314bd7">#1</h3>
-<div class="outline-text-3" id="text-orgc314bd7">
+<div id="outline-container-org6a85908" class="outline-3">
+<h3 id="org6a85908">#1</h3>
+<div class="outline-text-3" id="text-org6a85908">
 <p class="verse">
 In Empty Files, we presented the <code>zerofile.awk</code> program, which made use of gawk’s<br>
 <code>ARGIND</code> variable. Can this problem be solved without relying on <code>ARGIND</code>? If so,<br>
@@ -178,9 +225,9 @@ how?<br>
 </p>
 </div>
 
-<div id="outline-container-org26584ab" class="outline-4">
-<h4 id="org26584ab">Answer</h4>
-<div class="outline-text-4" id="text-org26584ab">
+<div id="outline-container-org04b0077" class="outline-4">
+<h4 id="org04b0077">Answer</h4>
+<div class="outline-text-4" id="text-org04b0077">
 <p>
 Use <code>ENDFILE</code> to run a function at the end of each file. You could match
 <code>argc~/~argv</code> as well if you wanted to determine the index of the filename
@@ -191,12 +238,17 @@ argument.
 <pre class="src src-awk">ENDFILE <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">print</span><span style="color: #b58900;">(</span><span style="color: #268bd2;">FILENAME</span>, ++argi<span style="color: #b58900;">)</span> <span style="color: #2aa198;">}</span>
 </pre>
 </div>
+
+<pre class="example">
+data/empty 1
+data/empty1 2
+</pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org3d2ad0a" class="outline-3">
-<h3 id="org3d2ad0a">#2</h3>
-<div class="outline-text-3" id="text-org3d2ad0a">
+<div id="outline-container-org2d86c55" class="outline-3">
+<h3 id="org2d86c55">#2</h3>
+<div class="outline-text-3" id="text-org2d86c55">
 <p class="verse">
 As a related challenge, revise that code to handle the case where an<br>
 intervening value in <code>ARGV</code> is a variable assignment.<br>
@@ -204,12 +256,17 @@ intervening value in <code>ARGV</code> is a variable assignment.<br>
 
 <div class="org-src-container">
 <pre class="src src-awk">ENDFILE <span style="color: #2aa198;">{</span>
-  <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>argv<span style="color: #268bd2;">[</span>argi++<span style="color: #268bd2;">]</span> !~ <span style="color: #2aa198;">/^[a-zA-Z_][a-zA-Z0-9_]*=.*/</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-      <span style="color: #268bd2;">print</span><span style="color: #268bd2;">(</span><span style="color: #268bd2;">FILENAME</span>, argi<span style="color: #268bd2;">)</span>
-  <span style="color: #b58900;">}</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>argv<span style="color: #268bd2;">[</span>argi++<span style="color: #268bd2;">]</span> !~ <span style="color: #2aa198;">/^[a-zA-Z_][a-zA-Z0-9_]*=.*/</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+        <span style="color: #268bd2;">print</span><span style="color: #268bd2;">(</span><span style="color: #268bd2;">FILENAME</span>, argi<span style="color: #268bd2;">)</span>
+    <span style="color: #b58900;">}</span>
 <span style="color: #2aa198;">}</span>
 </pre>
 </div>
+
+<pre class="example">
+data/empty 1
+data/empty1 2
+</pre>
 </div>
 </div>
 </section>
@@ -217,16 +274,16 @@ intervening value in <code>ARGV</code> is a variable assignment.<br>
 <h2 id="orgaaa2485">Programs</h2>
 <div class="outline-text-2" id="text-orgaaa2485">
 </div>
-<div id="outline-container-orge4178cf" class="outline-3">
-<h3 id="orge4178cf">#1</h3>
-<div class="outline-text-3" id="text-orge4178cf">
+<div id="outline-container-org040e5ae" class="outline-3">
+<h3 id="org040e5ae">#1</h3>
+<div class="outline-text-3" id="text-org040e5ae">
 <p class="verse">
-Rewrite cut.awk (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Cut-Program">Cut Program</a>) using <code>split()</code> with "" as the separator.<br>
+Rewrite cut.awk (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Cut-Program">Cut Program</a>) using <code>split()</code> with &ldquo;&rdquo; as the separator.<br>
 </p>
 </div>
-<div id="outline-container-org611f036" class="outline-4">
-<h4 id="org611f036">Answer</h4>
-<div class="outline-text-4" id="text-org611f036">
+<div id="outline-container-orga1db607" class="outline-4">
+<h4 id="orga1db607">Answer</h4>
+<div class="outline-text-4" id="text-orga1db607">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">cut.awk --- implement cut in awk</span>
 
@@ -303,7 +360,7 @@ Rewrite cut.awk (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html
             m = <span style="color: #268bd2;">split</span><span style="color: #6c71c4;">(</span>f<span style="color: #859900;">[</span>i<span style="color: #859900;">]</span>, g, <span style="color: #2aa198;">"-"</span><span style="color: #6c71c4;">)</span>
             <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>m != <span style="color: #6c71c4;">2</span> || g<span style="color: #859900;">[</span><span style="color: #6c71c4;">1</span><span style="color: #859900;">]</span> &gt;= g<span style="color: #859900;">[</span><span style="color: #6c71c4;">2</span><span style="color: #859900;">]</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">{</span>
                 <span style="color: #268bd2;">printf</span><span style="color: #859900;">(</span><span style="color: #2aa198;">"cut: bad field list: %s\n"</span>,
-                                  f<span style="color: #b58900;">[</span>i<span style="color: #b58900;">]</span><span style="color: #859900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+                       f<span style="color: #b58900;">[</span>i<span style="color: #b58900;">]</span><span style="color: #859900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
                 <span style="color: #859900; font-weight: bold;">exit</span> <span style="color: #6c71c4;">1</span>
             <span style="color: #6c71c4;">}</span>
             <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #6c71c4;">(</span>k = g<span style="color: #859900;">[</span><span style="color: #6c71c4;">1</span><span style="color: #859900;">]</span>; k &lt;= g<span style="color: #859900;">[</span><span style="color: #6c71c4;">2</span><span style="color: #859900;">]</span>; k++<span style="color: #6c71c4;">)</span>
@@ -325,7 +382,7 @@ Rewrite cut.awk (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html
             m = <span style="color: #268bd2;">split</span><span style="color: #6c71c4;">(</span>f<span style="color: #859900;">[</span>i<span style="color: #859900;">]</span>, g, <span style="color: #2aa198;">"-"</span><span style="color: #6c71c4;">)</span>
             <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>m != <span style="color: #6c71c4;">2</span> || g<span style="color: #859900;">[</span><span style="color: #6c71c4;">1</span><span style="color: #859900;">]</span> &gt;= g<span style="color: #859900;">[</span><span style="color: #6c71c4;">2</span><span style="color: #859900;">]</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">{</span>
                 <span style="color: #268bd2;">printf</span><span style="color: #859900;">(</span><span style="color: #2aa198;">"cut: bad character list: %s\n"</span>,
-                               f<span style="color: #b58900;">[</span>i<span style="color: #b58900;">]</span><span style="color: #859900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+                       f<span style="color: #b58900;">[</span>i<span style="color: #b58900;">]</span><span style="color: #859900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
                 <span style="color: #859900; font-weight: bold;">exit</span> <span style="color: #6c71c4;">1</span>
             <span style="color: #6c71c4;">}</span>
             len = g<span style="color: #6c71c4;">[</span><span style="color: #6c71c4;">2</span><span style="color: #6c71c4;">]</span> - g<span style="color: #6c71c4;">[</span><span style="color: #6c71c4;">1</span><span style="color: #6c71c4;">]</span> + <span style="color: #6c71c4;">1</span>
@@ -374,9 +431,9 @@ Rewrite cut.awk (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html
 </div>
 </div>
 
-<div id="outline-container-orgf95950a" class="outline-3">
-<h3 id="orgf95950a">#2</h3>
-<div class="outline-text-3" id="text-orgf95950a">
+<div id="outline-container-orga414488" class="outline-3">
+<h3 id="orga414488">#2</h3>
+<div class="outline-text-3" id="text-orga414488">
 <p class="verse">
 In <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Egrep-Program">Egrep Program</a>, we mentioned that <code>‘egrep -i’</code> could be simulated in<br>
 versions of <code>awk</code> without <code>IGNORECASE</code> by using <code>tolower()</code> on the line and the<br>
@@ -385,9 +442,9 @@ bug: the translated line is output, and not the original one. Fix this<br>
 problem.<br>
 </p>
 </div>
-<div id="outline-container-org332fd12" class="outline-4">
-<h4 id="org332fd12">Answer</h4>
-<div class="outline-text-4" id="text-org332fd12">
+<div id="outline-container-org27a8e79" class="outline-4">
+<h4 id="org27a8e79">Answer</h4>
+<div class="outline-text-4" id="text-org27a8e79">
 <p>
 Simply check the results of <code>tolower()</code> without assigning output.
 </p>
@@ -405,9 +462,9 @@ arguments and perform in the same way.<br>
 </p>
 </div>
 
-<div id="outline-container-orga5b7590" class="outline-4">
-<h4 id="orga5b7590">Answer</h4>
-<div class="outline-text-4" id="text-orga5b7590">
+<div id="outline-container-orge6f6788" class="outline-4">
+<h4 id="orge6f6788">Answer</h4>
+<div class="outline-text-4" id="text-orge6f6788">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">id.awk --- implement id in awk</span>
 <span style="color: #93a1a1;">#</span>
@@ -484,6 +541,10 @@ arguments and perform in the same way.<br>
 <span style="color: #2aa198;">}</span>
 </pre>
 </div>
+
+<pre class="example">
+uid=1000(zv)(zv) groups=10(wheel),968(docker),977(wireshark),1000(zv)
+</pre>
 </div>
 </div>
 </div>
@@ -498,9 +559,9 @@ Why can’t the <code>wc.awk</code> program (see <a href="https://www.gnu.org/so
 <code>endfile()</code>? Hint: Examine the code in <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Filetrans-Function">Filetrans Function</a>.<br>
 </p>
 </div>
-<div id="outline-container-orgb0a6f32" class="outline-4">
-<h4 id="orgb0a6f32">Answer</h4>
-<div class="outline-text-4" id="text-orgb0a6f32">
+<div id="outline-container-org28aeea9" class="outline-4">
+<h4 id="org28aeea9">Answer</h4>
+<div class="outline-text-4" id="text-org28aeea9">
 <p>
 This is a confusing question because <code>ENDFILE</code> <b>can</b> use <code>FNR</code>, but this
 question concerns an arbitrary user-defined function coincidentally named
@@ -518,14 +579,14 @@ the entire program.
 <p class="verse">
 Manipulation of individual characters in the <code>translate</code> program (see <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Translate-Program">Translate Program</a>)<br>
 is painful using standard awk functions. Given that <code>gawk</code> can split strings<br>
-into individual characters using "" as the separator, how might you use this<br>
+into individual characters using &ldquo;&rdquo; as the separator, how might you use this<br>
 feature to simplify the program?<br>
 </p>
 </div>
 
-<div id="outline-container-orgce17100" class="outline-4">
-<h4 id="orgce17100">Answer</h4>
-<div class="outline-text-4" id="text-orgce17100">
+<div id="outline-container-org23b7c85" class="outline-4">
+<h4 id="org23b7c85">Answer</h4>
+<div class="outline-text-4" id="text-org23b7c85">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">stranslate</span><span style="color: #2aa198;">(</span>from, to, target, lf, lt, ltarget, t_ar, i, c, result<span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">{</span>
@@ -577,9 +638,9 @@ The <code>extract.awk</code> program (see <a href="https://www.gnu.org/software/
 the <code>gensub()</code> function. Use it to simplify the code.<br>
 </p>
 </div>
-<div id="outline-container-org3a8f560" class="outline-4">
-<h4 id="org3a8f560">Answer</h4>
-<div class="outline-text-4" id="text-org3a8f560">
+<div id="outline-container-org9e6284a" class="outline-4">
+<h4 id="org9e6284a">Answer</h4>
+<div class="outline-text-4" id="text-org9e6284a">
 <div class="org-src-container">
 <pre class="src src-awk"><span style="color: #859900; font-weight: bold;">BEGIN</span>    <span style="color: #2aa198;">{</span> <span style="color: #268bd2;">IGNORECASE</span> = <span style="color: #6c71c4;">1</span> <span style="color: #2aa198;">}</span>
 
@@ -643,9 +704,9 @@ the <code>gensub()</code> function. Use it to simplify the code.<br>
 <span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">join</span><span style="color: #2aa198;">(</span>array, start, end, sep, result, i<span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">{</span>
     <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>sep == <span style="color: #2aa198;">""</span><span style="color: #b58900;">)</span>
-       sep = <span style="color: #2aa198;">" "</span>
+        sep = <span style="color: #2aa198;">" "</span>
     <span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>sep == <span style="color: #268bd2;">SUBSEP</span><span style="color: #b58900;">)</span> <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">magic value</span>
-       sep = <span style="color: #2aa198;">""</span>
+        sep = <span style="color: #2aa198;">""</span>
     result = array<span style="color: #b58900;">[</span>start<span style="color: #b58900;">]</span>
     <span style="color: #859900; font-weight: bold;">for</span> <span style="color: #b58900;">(</span>i = start + <span style="color: #6c71c4;">1</span>; i &lt;= end; i++<span style="color: #b58900;">)</span>
         result = result sep array<span style="color: #b58900;">[</span>i<span style="color: #b58900;">]</span>
@@ -655,7 +716,7 @@ the <code>gensub()</code> function. Use it to simplify the code.<br>
 <span style="color: #859900; font-weight: bold;">function</span> <span style="color: #268bd2;">unexpected_eof</span><span style="color: #2aa198;">()</span>
 <span style="color: #2aa198;">{</span>
     <span style="color: #268bd2;">printf</span><span style="color: #b58900;">(</span><span style="color: #2aa198;">"extract: %s:%d: unexpected EOF or error\n"</span>,
-                     <span style="color: #268bd2;">FILENAME</span>, <span style="color: #268bd2;">FNR</span><span style="color: #b58900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
+           <span style="color: #268bd2;">FILENAME</span>, <span style="color: #268bd2;">FNR</span><span style="color: #b58900;">)</span> &gt; <span style="color: #268bd2;">"/dev/stderr"</span>
     <span style="color: #859900; font-weight: bold;">exit</span> <span style="color: #6c71c4;">1</span>
 <span style="color: #2aa198;">}</span>
 
@@ -666,6 +727,11 @@ the <code>gensub()</code> function. Use it to simplify the code.<br>
 <span style="color: #2aa198;">}</span>
 </pre>
 </div>
+
+<pre class="example">
+BEGIN { print "Don't panic!" }
+END { print "Always avoid bored archaeologists!" }
+</pre>
 </div>
 </div>
 </div>
