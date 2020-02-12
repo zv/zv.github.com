@@ -10,8 +10,8 @@
   solutions, you think you've spotted an error or you have something you'd like
   to share about the exercises, don't hesitate to leave a comment below
   (or a pull request on the source repo).
-  
 
+  
 * Exercises Chapter 4
   
 ** Exercise 4.1

@@ -1,13 +1,6 @@
-#+HTML_DOCTYPE: html5
-#+BEGIN_EXPORT html
----
-layout: page
-title: Using Openbox as a Tiling Window Manager
-tags: 
-  - setup
-category: note
----
-#+END_EXPORT
+#+TITLE: Using Openbox as a Tiling Window Manager
+#+FILETAGS: :window_manager:
+#+INCLUDE: "_include.org"
 
 * Advantages
   I've been satisfied with pure tiling window managers for the past decade, but

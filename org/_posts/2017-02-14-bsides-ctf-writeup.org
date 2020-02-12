@@ -1,14 +1,6 @@
-#+BEGIN_EXPORT html
----
-layout: page
-title: San Francisco BSides CTF Writeup
-excerpt: A quick writeup of San Francisco Bsides CTF
-tags:
-  - ctf
-  - infosec
-category: note
----
-#+END_EXPORT
+#+TITLE: San Francisco BSides CTF Writeup
+#+FILETAGS: :ctf:infosec:
+#+INCLUDE: "_include.org"
 
 * Writeups
 

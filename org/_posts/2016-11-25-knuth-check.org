@@ -1,14 +1,6 @@
-#+HTML_DOCTYPE: html5
-#+BEGIN_EXPORT html
----
-layout: page
-title: Pride in my Knuth Check
-excerpt: can't be any geek off the street
-tags: 
-  - knuth
-category: note
----
-#+END_EXPORT
+#+TITLE: Pride in my Knuth Check
+#+FILETAGS: :knuth:
+#+INCLUDE: "_include.org"
 
 * 
 

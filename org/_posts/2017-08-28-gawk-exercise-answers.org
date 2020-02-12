@@ -1,15 +1,17 @@
-#+HTML_DOCTYPE: html5
+#+TITLE: GNU Awk's Manual Exercises
+#+FILETAGS: :awk:solutions:
+#+INCLUDE: "_include.org"
+#+INCLUDE: "_exercises.org"
 #+BEGIN_EXPORT html
----
-layout: page
-title: GNU Awk's Manual Exercises
-category: note
-tags:
-  - awk
-  - exercises
-  - solutions
----
+<style>
+div.org-src-container + pre.example {
+  border-top: 3px ridge #073642;
+  border-left: none;
+  background: #fdf6e3;
+}
+</style>
 #+END_EXPORT
+
 
 * 
   [[https://www.gnu.org/software/gawk/manual/gawk.html#Print][The GNU Awk manual]] contains a handful of exercises to assist in learning
@@ -22,173 +24,170 @@ tags:
   where the exercise appears. If you think you've got a neat solution, [[https://github.com/zv/gawk-exercise/issues][please
   submit a pull request!]]
 
-* Exercises
-** Input
-*** #1
-    #+BEGIN_QUOTE
-    Using the =FIELDWIDTHS= variable (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Constant-Size][Constant Size]]), write a program to read
-    election data, where each record represents one voter’s votes. Come up with a
-    way to define which columns are associated with each ballot item, and print the
-    total votes, including abstentions, for each item.
-    #+END_QUOTE
-**** Answer
-      #+BEGIN_SRC awk :in-file data/election_data :results pp :exports both
-        BEGIN  { FIELDWIDTHS = "18 9 15" }
+* Input
+** #1
+   #+BEGIN_VERSE
+   Using the =FIELDWIDTHS= variable (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Constant-Size][Constant Size]]), write a program to read
+   election data, where each record represents one voter’s votes. Come up with a
+   way to define which columns are associated with each ballot item, and print the
+   total votes, including abstentions, for each item.
+   #+END_VERSE
+*** Answer
+     #+BEGIN_SRC awk :in-file data/election_data :results value raw :exports both
+       BEGIN  { FIELDWIDTHS = "18 9 15" }
 
-        NR > 2 {
-            if ($2 ~ "x") {
-                gore++
-            } else if ($3 ~ "x") {
-                bush++
-            } else {
-                abstained++
-            }
-        }
+       NR > 2 {
+           if ($2 ~ "x") {
+               gore++
+           } else if ($3 ~ "x") {
+               bush++
+           } else {
+               abstained++
+           }
+       }
 
-        END { print "Bush:", bush, "Gore:", gore, "Abstained:", abstained }
-      #+END_SRC
+       END { print "Bush:", bush, "Gore:", gore, "Abstained:", abstained }
+     #+END_SRC
 
-      #+RESULTS:
-      : Bush: 9 Gore: 10 Abstained: 1
+     #+RESULTS:
+     : Bush: 9 Gore: 10 Abstained: 1
 
-*** #2
-    #+BEGIN_QUOTE
-    Plain Getline, presented a program to remove C-style comments (‘/* … */’) from
-    the input. That program does not work if one comment ends on one line and
-    another one starts later on the same line. That can be fixed by making one
-    simple change. What is it?
-    #+END_QUOTE
+** #2
+   #+BEGIN_VERSE
+   Plain Getline, presented a program to remove C-style comments (‘/* … */’) from
+   the input. That program does not work if one comment ends on one line and
+   another one starts later on the same line. That can be fixed by making one
+   simple change. What is it?
+   #+END_VERSE
 
-**** Answer
-      #+BEGIN_SRC awk :in-file data/tcdrain.c :results pp :exports both
-      {
-          while ((i = index($0, "/*")) != 0) {
-              out = substr($0, 1, i - 1)  # leading part of the string
-              rest = substr($0, i + 2)    # ... */ ...
-              j = index(rest, "*/")       # is */ in trailing part?
-              if (j > 0) {
-                  rest = substr(rest, j + 2)  # remove comment
-              } else {
-                  while (j == 0) {
-                      # get more text
-                      if (getline <= 0) {
-                          print("unexpected EOF or error:", ERRNO) > "/dev/stderr"
-                          exit
-                      }
-                      # build up the line using string concatenation
-                      rest = rest $0
-                      j = index(rest, "*/")   # is */ in trailing part?
-                      if (j != 0) {
-                          rest = substr(rest, j + 2)
-                          break
-                      }
-                  }
-              }
-              # build up the output line using string concatenation
-              $0 = out rest
-          }
-          print $0
-      }
-      #+END_SRC
+*** Answer
+     #+BEGIN_SRC awk :in-file data/tcdrain.c :results pp :exports both
+     {
+         while ((i = index($0, "/*")) != 0) {
+             out = substr($0, 1, i - 1)  # leading part of the string
+             rest = substr($0, i + 2)    # ... */ ...
+             j = index(rest, "*/")       # is */ in trailing part?
+             if (j > 0) {
+                 rest = substr(rest, j + 2)  # remove comment
+             } else {
+                 while (j == 0) {
+                     # get more text
+                     if (getline <= 0) {
+                         print("unexpected EOF or error:", ERRNO) > "/dev/stderr"
+                         exit
+                     }
+                     # build up the line using string concatenation
+                     rest = rest $0
+                     j = index(rest, "*/")   # is */ in trailing part?
+                     if (j != 0) {
+                         rest = substr(rest, j + 2)
+                         break
+                     }
+                 }
+             }
+             # build up the output line using string concatenation
+             $0 = out rest
+         }
+         print $0
+     }
+     #+END_SRC
 
-      #+RESULTS:
-      #+begin_example
+     #+RESULTS:
+     #+begin_example
 
-      #include <errno.h>
-      #include <termios.h>
+     #include <errno.h>
+     #include <termios.h>
 
-      int __set_errno(int n) { return n; }
+     int __set_errno(int n) { return n; }
 
-      int __libc_tcdrain (int fd) {
-        if (fd < 0) {
-            __set_errno (EBADF);
-            return -1;
-          }
-         __set_errno (ENOSYS);
-        return -1;
-      }
-  #+end_example
+     int __libc_tcdrain (int fd) {
+       if (fd < 0) {
+           __set_errno (EBADF);
+           return -1;
+         }
+        __set_errno (ENOSYS);
+       return -1;
+     }
+ #+end_example
 
-** Output
-*** #1
-    #+BEGIN_QUOTE
-    Rewrite the program:
-    #+BEGIN_SRC awk :in-file data/inventory-shipped :results pp :exports both
-    BEGIN { print "Month Crates"; print "----- ------" }
-    { print $1, "     ", $2 }
-    #+END_SRC
+* Output
+** #1
+   #+BEGIN_VERSE
+   Rewrite the program from Output Separators, by using a new value of OFS.
+   #+END_VERSE
+   
+   #+BEGIN_SRC awk :in-file data/inventory-shipped :results pp :exports both
+   BEGIN { print "Month Crates"; print "----- ------" }
+   { print $1, "     ", $2 }
+   #+END_SRC
+   #+RESULTS:
+   : Month Crates
+   : ----- ------
+   : Jan       13
+   : Feb       15
+   : Mar       15
+   : Aug       11
+   : Sep       25
+   : Dec       6
 
-    #+RESULTS:
-    : Month Crates
-    : ----- ------
-    : Jan       13
-    : Feb       15
-    : Mar       15
-    : Aug       11
-    : Sep       25
-    : Dec       6
 
-    from Output Separators, by using a new value of OFS.
-    #+END_QUOTE
+*** Answer
+     #+BEGIN_SRC awk :in-file data/inventory-shipped :results pp :exports both
+     BEGIN { print "Month Crates"; print "----- ------"; OFS="     " }
+     { print $1, $2 }
+     #+END_SRC
+     #+RESULTS:
+     : Month Crates
+     : ----- ------
+     : Jan     13
+     : Feb     15
+     : Mar     15
+     : Aug     11
+     : Sep     25
+     : Dec     6
+* Library
+** #1
+   #+BEGIN_VERSE
+   In Empty Files, we presented the ~zerofile.awk~ program, which made use of gawk’s
+   =ARGIND= variable. Can this problem be solved without relying on =ARGIND=? If so,
+   how?
+   #+END_VERSE
 
-**** Answer
-      #+BEGIN_SRC awk :in-file data/inventory-shipped :results pp :exports both
-      BEGIN { print "Month Crates"; print "----- ------"; OFS="     " }
-      { print $1, $2 }
-      #+END_SRC
+*** Answer
+     Use ~ENDFILE~ to run a function at the end of each file. You could match
+     ~argc~/~argv~ as well if you wanted to determine the index of the filename
+     argument.
 
-      #+RESULTS:
-      : Month Crates
-      : ----- ------
-      : Jan     13
-      : Feb     15
-      : Mar     15
-      : Aug     11
-      : Sep     25
-      : Dec     6
-** Library
-*** #1
-    #+BEGIN_QUOTE
-    In Empty Files, we presented the ~zerofile.awk~ program, which made use of gawk’s
-    =ARGIND= variable. Can this problem be solved without relying on =ARGIND=? If so,
-    how?
-    #+END_QUOTE
+     #+BEGIN_SRC awk :in-file data/empty data/empty1 :results pp :exports both
+     ENDFILE { print(FILENAME, ++argi) }
+     #+END_SRC
 
-**** Answer
-      Use ~ENDFILE~ to run a function at the end of each file. You could match
-      ~argc~/~argv~ as well if you wanted to determine the index of the filename
-      argument.
+     #+RESULTS:
+     : data/empty 1
+     : data/empty1 2
+** #2
+   #+BEGIN_VERSE
+   As a related challenge, revise that code to handle the case where an
+   intervening value in ~ARGV~ is a variable assignment.
+   #+END_VERSE
 
-      #+BEGIN_SRC awk :in-file data/empty data/empty1 :results pp :exports both
-      ENDFILE { print(FILENAME, ++argi) }
-      #+END_SRC
+   #+BEGIN_SRC awk :cmd-line "--assign=nval=9" :in-file data/empty data/empty1 :results pp :exports both
+     ENDFILE {
+       if (argv[argi++] !~ /^[a-zA-Z_][a-zA-Z0-9_]*=.*/) {
+           print(FILENAME, argi)
+       }
+     }
+   #+END_SRC
 
-      #+RESULTS:
-      : data/empty 1
-      : data/empty1 2
-*** #2
-    #+BEGIN_QUOTE
-    As a related challenge, revise that code to handle the case where an
-    intervening value in ~ARGV~ is a variable assignment.
-    #+END_QUOTE
-
-    #+BEGIN_SRC awk :cmd-line "--assign=nval=9" :in-file data/empty data/empty1 :results pp :exports both
-      ENDFILE {
-        if (argv[argi++] !~ /^[a-zA-Z_][a-zA-Z0-9_]*=.*/) {
-            print(FILENAME, argi)
-        }
-      }
-    #+END_SRC
-
-    #+RESULTS:
-    : data/empty 1
-    : data/empty1 2
-** Programs
-*** #1
-    #+BEGIN_QUOTE
-    Rewrite cut.awk (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Cut-Program][Cut Program]]) using ~split()~ with "" as the separator.
-    #+END_QUOTE
-**** Answer
+   #+RESULTS:
+   : data/empty 1
+   : data/empty1 2
+* Programs
+** #1
+   #+BEGIN_VERSE
+   Rewrite cut.awk (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Cut-Program][Cut Program]]) using ~split()~ with "" as the separator.
+   #+END_VERSE
+*** Answer
       #+BEGIN_SRC awk :in-file data/inventory-shipped :results pp :exports both
 # cut.awk --- implement cut in awk
 
@@ -331,258 +330,258 @@ function set_charlist(    field, i, j, f, g, n, m, t,
 }
 
       #+END_SRC
-*** #2
-    #+BEGIN_QUOTE
-    In [[https://www.gnu.org/software/gawk/manual/gawk.html#Egrep-Program][Egrep Program]], we mentioned that ~‘egrep -i’~ could be simulated in
-    versions of =awk= without =IGNORECASE= by using =tolower()= on the line and the
-    pattern. In a footnote there, we also mentioned that this solution has a
-    bug: the translated line is output, and not the original one. Fix this
-    problem.
-    #+END_QUOTE
-**** Answer
-      Simply check the results of =tolower()= without assigning output.
+** #2
+   #+BEGIN_VERSE
+   In [[https://www.gnu.org/software/gawk/manual/gawk.html#Egrep-Program][Egrep Program]], we mentioned that ~‘egrep -i’~ could be simulated in
+   versions of =awk= without =IGNORECASE= by using =tolower()= on the line and the
+   pattern. In a footnote there, we also mentioned that this solution has a
+   bug: the translated line is output, and not the original one. Fix this
+   problem.
+   #+END_VERSE
+*** Answer
+     Simply check the results of =tolower()= without assigning output.
 
-*** #3
-    #+BEGIN_QUOTE
-    The POSIX version of =id= takes options that control which information is
-    printed. Modify the =awk= version (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Id-Program][Id Program]]) to accept the same
-    arguments and perform in the same way.
-    #+END_QUOTE
+** #3
+   #+BEGIN_VERSE
+   The POSIX version of =id= takes options that control which information is
+   printed. Modify the =awk= version (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Id-Program][Id Program]]) to accept the same
+   arguments and perform in the same way.
+   #+END_VERSE
 
-**** Answer
-      #+BEGIN_SRC awk :results pp :exports both
-        # id.awk --- implement id in awk
-        #
-        # Requires user and group library functions
-        # output is:
-        # uid=12(foo) euid=34(bar) gid=3(baz) \
-        #             egid=5(blat) groups=9(nine),2(two),1(one)
-        @include "vendor/group.awk"
-        @include "vendor/passwd.awk"
-        @include "vendor/getopt.awk"
+*** Answer
+     #+BEGIN_SRC awk :results pp :exports both
+       # id.awk --- implement id in awk
+       #
+       # Requires user and group library functions
+       # output is:
+       # uid=12(foo) euid=34(bar) gid=3(baz) \
+       #             egid=5(blat) groups=9(nine),2(two),1(one)
+       @include "vendor/group.awk"
+       @include "vendor/passwd.awk"
+       @include "vendor/getopt.awk"
 
-        BEGIN {
-            if (ARGC < 2) {
-                print_uid++
-                print_egid++
-                print_groups++
-            } else {
-                while ((c = getopt(ARGC, ARGV, "gGnru")) != -1) {
-                    if (c == "g") { print_gid++ }
-                    else if (c == "G") { print_groups++ }
-                    else if (c == "u") { print_uid++ }
-                }
-            }
+       BEGIN {
+           if (ARGC < 2) {
+               print_uid++
+               print_egid++
+               print_groups++
+           } else {
+               while ((c = getopt(ARGC, ARGV, "gGnru")) != -1) {
+                   if (c == "g") { print_gid++ }
+                   else if (c == "G") { print_groups++ }
+                   else if (c == "u") { print_uid++ }
+               }
+           }
 
-            uid = PROCINFO["uid"]
-            euid = PROCINFO["euid"]
-            gid = PROCINFO["gid"]
-            egid = PROCINFO["egid"]
+           uid = PROCINFO["uid"]
+           euid = PROCINFO["euid"]
+           gid = PROCINFO["gid"]
+           egid = PROCINFO["egid"]
 
-            if (print_uid)
-                printf("uid=%d", uid)
-            pw = getpwuid(uid)
-            pr_first_field(pw)
+           if (print_uid)
+               printf("uid=%d", uid)
+           pw = getpwuid(uid)
+           pr_first_field(pw)
 
-            if (print_uid && euid != uid) {
-                printf(" euid=%d", euid)
-                pw = getpwuid(euid)
-                pr_first_field(pw)
-            }
+           if (print_uid && euid != uid) {
+               printf(" euid=%d", euid)
+               pw = getpwuid(euid)
+               pr_first_field(pw)
+           }
 
-            if (print_gid)
-                printf(" gid=%d", gid)
-            pw = getgrgid(gid)
-            pr_first_field(pw)
+           if (print_gid)
+               printf(" gid=%d", gid)
+           pw = getgrgid(gid)
+           pr_first_field(pw)
 
-            if (print_gid && egid != gid) {
-                printf(" egid=%d", egid)
-                pw = getgrgid(egid)
-                pr_first_field(pw)
-            }
+           if (print_gid && egid != gid) {
+               printf(" egid=%d", egid)
+               pw = getgrgid(egid)
+               pr_first_field(pw)
+           }
 
-            if (print_groups) {
-                for (i = 1; ("group" i) in PROCINFO; i++) {
-                    if (i == 1)
-                        printf(" groups=")
-                    group = PROCINFO["group" i]
-                    printf("%d", group)
-                    pw = getgrgid(group)
-                    pr_first_field(pw)
-                    if (("group" (i+1)) in PROCINFO)
-                        printf(",")
-                }
-            }
+           if (print_groups) {
+               for (i = 1; ("group" i) in PROCINFO; i++) {
+                   if (i == 1)
+                       printf(" groups=")
+                   group = PROCINFO["group" i]
+                   printf("%d", group)
+                   pw = getgrgid(group)
+                   pr_first_field(pw)
+                   if (("group" (i+1)) in PROCINFO)
+                       printf(",")
+               }
+           }
 
-            print ""
-        }
+           print ""
+       }
 
-        function pr_first_field(str,  a)
-        {
-            if (str != "") {
-                split(str, a, ":")
-                printf("(%s)", a[1])
-            }
-        }
-      #+END_SRC
+       function pr_first_field(str,  a)
+       {
+           if (str != "") {
+               split(str, a, ":")
+               printf("(%s)", a[1])
+           }
+       }
+     #+END_SRC
 
-      #+RESULTS:
-      : uid=1000(zv)(zv) groups=10(wheel),968(docker),977(wireshark),1000(zv)
+     #+RESULTS:
+     : uid=1000(zv)(zv) groups=10(wheel),968(docker),977(wireshark),1000(zv)
 
 
 
-*** #6
-    #+BEGIN_QUOTE
-    Why can’t the =wc.awk= program (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Wc-Program][Wc Program]]) just use the value of =FNR= in
-    =endfile()=? Hint: Examine the code in [[https://www.gnu.org/software/gawk/manual/gawk.html#Filetrans-Function][Filetrans Function]].
-    #+END_QUOTE
-**** Answer
-     This is a confusing question because =ENDFILE= *can* use =FNR=, but this
-     question concerns an arbitrary user-defined function coincidentally named
-     =endfile()= which cannot. =endfile()= is run within the body of
-     =END=, which as the manual indicates, only occurs as the termination of
-     the entire program.
+** #6
+   #+BEGIN_VERSE
+   Why can’t the =wc.awk= program (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Wc-Program][Wc Program]]) just use the value of =FNR= in
+   =endfile()=? Hint: Examine the code in [[https://www.gnu.org/software/gawk/manual/gawk.html#Filetrans-Function][Filetrans Function]].
+   #+END_VERSE
+*** Answer
+    This is a confusing question because =ENDFILE= *can* use =FNR=, but this
+    question concerns an arbitrary user-defined function coincidentally named
+    =endfile()= which cannot. =endfile()= is run within the body of
+    =END=, which as the manual indicates, only occurs as the termination of
+    the entire program.
 
-*** #7
-    #+BEGIN_QUOTE
-    Manipulation of individual characters in the =translate= program (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Translate-Program][Translate Program]]) 
-    is painful using standard awk functions. Given that =gawk= can split strings
-    into individual characters using "" as the separator, how might you use this
-    feature to simplify the program?
-    #+END_QUOTE
+** #7
+   #+BEGIN_VERSE
+   Manipulation of individual characters in the =translate= program (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Translate-Program][Translate Program]]) 
+   is painful using standard awk functions. Given that =gawk= can split strings
+   into individual characters using "" as the separator, how might you use this
+   feature to simplify the program?
+   #+END_VERSE
 
-**** Answer
-      #+BEGIN_SRC awk :results pp :exports both
-        function stranslate(from, to, target, lf, lt, ltarget, t_ar, i, c, result)
-        {
-            split(from, f_a, "");
-            split(to, t_a, "");
-            for (i in f_a) t_ar[f_a[i]] = t_a[i];
-            if (lt < lf)
-                for (; i <= lf; i++) t_ar[f_a[i]] = t_a[length(t_a)]
+*** Answer
+     #+BEGIN_SRC awk :results pp :exports both
+       function stranslate(from, to, target, lf, lt, ltarget, t_ar, i, c, result)
+       {
+           split(from, f_a, "");
+           split(to, t_a, "");
+           for (i in f_a) t_ar[f_a[i]] = t_a[i];
+           if (lt < lf)
+               for (; i <= lf; i++) t_ar[f_a[i]] = t_a[length(t_a)]
 
-            split(target, target_chs, "")
-            for (idx in target_chs) {
-                c = target[chs]
-                if (c in t_ar) target_chs[c] = t_ar[c]
-                result = result c
-            }
+           split(target, target_chs, "")
+           for (idx in target_chs) {
+               c = target[chs]
+               if (c in t_ar) target_chs[c] = t_ar[c]
+               result = result c
+           }
 
-            return result
-        }
+           return result
+       }
 
-        function translate(from, to) { return $0 = stranslate(from, to, $0) }
+       function translate(from, to) { return $0 = stranslate(from, to, $0) }
 
-        # main program
-        BEGIN {
-            if (ARGC < 3) {
-                print "usage: translate from to" > "/dev/stderr"
-                exit
-            }
-            FROM = ARGV[1]
-            TO = ARGV[2]
-            ARGC = 2
-            ARGV[1] = "-"
-        }
+       # main program
+       BEGIN {
+           if (ARGC < 3) {
+               print "usage: translate from to" > "/dev/stderr"
+               exit
+           }
+           FROM = ARGV[1]
+           TO = ARGV[2]
+           ARGC = 2
+           ARGV[1] = "-"
+       }
 
-        {
-            translate(FROM, TO)
-            print
-        }
-      #+END_SRC
-*** #8
-    #+BEGIN_QUOTE
-    The ~extract.awk~ program (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Extract-Program][Extract Program]]) was written before =gawk= had
-    the ~gensub()~ function. Use it to simplify the code.
-    #+END_QUOTE
-**** Answer
+       {
+           translate(FROM, TO)
+           print
+       }
+     #+END_SRC
+** #8
+   #+BEGIN_VERSE
+   The ~extract.awk~ program (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Extract-Program][Extract Program]]) was written before =gawk= had
+   the ~gensub()~ function. Use it to simplify the code.
+   #+END_VERSE
+*** Answer
 
-      #+BEGIN_SRC awk :in-file data/gawk.texti :results pp :exports both
-        BEGIN    { IGNORECASE = 1 }
+     #+BEGIN_SRC awk :in-file data/gawk.texti :results pp :exports both
+       BEGIN    { IGNORECASE = 1 }
 
-        /^@c(omment)?[ \t]+system/ {
-            if (NF < 3) {
-                e = ("extract: " FILENAME ":" FNR)
-                e = (e  ": badly formed `system' line")
-                print e > "/dev/stderr"
-                next
-            }
-            $1 = ""
-            $2 = ""
-            stat = system($0)
-            if (stat != 0) {
-                e = ("extract: " FILENAME ":" FNR)
-                e = (e ": warning: system returned " stat)
-                print e > "/dev/stderr"
-            }
-        }
+       /^@c(omment)?[ \t]+system/ {
+           if (NF < 3) {
+               e = ("extract: " FILENAME ":" FNR)
+               e = (e  ": badly formed `system' line")
+               print e > "/dev/stderr"
+               next
+           }
+           $1 = ""
+           $2 = ""
+           stat = system($0)
+           if (stat != 0) {
+               e = ("extract: " FILENAME ":" FNR)
+               e = (e ": warning: system returned " stat)
+               print e > "/dev/stderr"
+           }
+       }
 
-        /^@c(omment)?[ \t]+file/ {
-            if (NF != 3) {
-                e = ("extract: " FILENAME ":" FNR ": badly formed `file' line")
-                print e > "/dev/stderr"
-                next
-            }
-            if ($3 != curfile) {
-                if (curfile != "")
-                    close(curfile)
-                curfile = $3
-            }
+       /^@c(omment)?[ \t]+file/ {
+           if (NF != 3) {
+               e = ("extract: " FILENAME ":" FNR ": badly formed `file' line")
+               print e > "/dev/stderr"
+               next
+           }
+           if ($3 != curfile) {
+               if (curfile != "")
+                   close(curfile)
+               curfile = $3
+           }
 
-            for (;;) {
-                if ((getline line) <= 0)
-                    unexpected_eof()
-                if (line ~ /^@c(omment)?[ \t]+endfile/)
-                    break
-                else if (line ~ /^@(end[ \t]+)?group/)
-                    continue
-                else if (line ~ /^@c(omment+)?[ \t]+/)
-                    continue
-                gensub(/@[^@]o/, "\\1", "g", line)
-                if (index(line, "@") == 0) {
-                    print line > curfile
-                    continue
-                }
-                n = split(line, a, "@")
-                # if a[1] == "", means leading @,
-                # don't add one back in.
-                for (i = 2; i <= n; i++) {
-                    if (a[i] == "") { # was an @@
-                        a[i] = "@"
-                        if (a[i+1] == "")
-                            i++
-                    }
-                }
-                print join(a, 1, n, SUBSEP) > curfile
-            }
-        }
+           for (;;) {
+               if ((getline line) <= 0)
+                   unexpected_eof()
+               if (line ~ /^@c(omment)?[ \t]+endfile/)
+                   break
+               else if (line ~ /^@(end[ \t]+)?group/)
+                   continue
+               else if (line ~ /^@c(omment+)?[ \t]+/)
+                   continue
+               gensub(/@[^@]o/, "\\1", "g", line)
+               if (index(line, "@") == 0) {
+                   print line > curfile
+                   continue
+               }
+               n = split(line, a, "@")
+               # if a[1] == "", means leading @,
+               # don't add one back in.
+               for (i = 2; i <= n; i++) {
+                   if (a[i] == "") { # was an @@
+                       a[i] = "@"
+                       if (a[i+1] == "")
+                           i++
+                   }
+               }
+               print join(a, 1, n, SUBSEP) > curfile
+           }
+       }
 
-        function join(array, start, end, sep, result, i)
-        {
-            if (sep == "")
-               sep = " "
-            else if (sep == SUBSEP) # magic value
-               sep = ""
-            result = array[start]
-            for (i = start + 1; i <= end; i++)
-                result = result sep array[i]
-            return result
-        }
+       function join(array, start, end, sep, result, i)
+       {
+           if (sep == "")
+              sep = " "
+           else if (sep == SUBSEP) # magic value
+              sep = ""
+           result = array[start]
+           for (i = start + 1; i <= end; i++)
+               result = result sep array[i]
+           return result
+       }
 
-        function unexpected_eof()
-        {
-            printf("extract: %s:%d: unexpected EOF or error\n",
-                             FILENAME, FNR) > "/dev/stderr"
-            exit 1
-        }
+       function unexpected_eof()
+       {
+           printf("extract: %s:%d: unexpected EOF or error\n",
+                            FILENAME, FNR) > "/dev/stderr"
+           exit 1
+       }
 
-        END {
-            if (curfile) close(curfile)
-            # to accommodate literate programming, print out our file
-            while (getline tmp < curfile) print tmp
-        }
-      #+END_SRC
+       END {
+           if (curfile) close(curfile)
+           # to accommodate literate programming, print out our file
+           while (getline tmp < curfile) print tmp
+       }
+     #+END_SRC
 
-      #+RESULTS:
-      : BEGIN { print "Don't panic!" }
-      : END { print "Always avoid bored archaeologists!" }
+     #+RESULTS:
+     : BEGIN { print "Don't panic!" }
+     : END { print "Always avoid bored archaeologists!" }

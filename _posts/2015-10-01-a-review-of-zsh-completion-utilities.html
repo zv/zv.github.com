@@ -1,55 +1,55 @@
 ---
 layout: page
 title: A Review of ZSH Completion
-excerpt: Walking through ZSH completion, step by step.
-tags: 
+category: note
+tags:
+  - post
   - zsh
   - completion
-category: note
 ---
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb1331ee">Prologue</a></li>
-<li><a href="#orgf6849b4">The structure of standard argument completion.</a>
+<li><a href="#org6885529">Prologue</a></li>
+<li><a href="#org7d3834e">The structure of standard argument completion.</a>
 <ul>
-<li><a href="#org1f5efa3">The structure of <span class="verbatim">_arguments</span></a></li>
+<li><a href="#orgea014fe">The structure of <code>_arguments</code></a></li>
 </ul>
 </li>
-<li><a href="#orge95012d">Utility Functions</a>
+<li><a href="#org5bcbe2a">Utility Functions</a>
 <ul>
-<li><a href="#orgfe08dbf">Creating a dummy first argument</a></li>
-<li><a href="#org7cf4a70"><code>_pick_variant</code> to add options depending upon the version of a program.</a></li>
-<li><a href="#org63a145e">Match an ambiguous clause with <code>_guard</code></a></li>
+<li><a href="#orge81293a">Creating a dummy first argument</a></li>
+<li><a href="#org7ff0bb7"><code>_pick_variant</code> to add options depending upon the version of a program.</a></li>
+<li><a href="#org54fc4df">Match an ambiguous clause with <code>_guard</code></a></li>
 </ul>
 </li>
-<li><a href="#orga1c9910">Examples</a>
+<li><a href="#org74ac426">Examples</a>
 <ul>
-<li><a href="#org334f5c0">Delimited values with final option</a></li>
-<li><a href="#org88329c5">Operating system specific flags with <span class="verbatim">$OSTYPE</span></a></li>
-<li><a href="#org0c1fecb">Completion from a dynamic list</a></li>
-<li><a href="#orgf9ad056">Caching variables during completion</a></li>
-<li><a href="#orge7573e9">Manual ordering of completion alternatives</a></li>
+<li><a href="#org00762f5">Delimited values with final option</a></li>
+<li><a href="#orga42d5fc">Operating system specific flags with <code>$OSTYPE</code></a></li>
+<li><a href="#orge01ce72">Completion from a dynamic list</a></li>
+<li><a href="#org97ab78f">Caching variables during completion</a></li>
+<li><a href="#orgabf0ca6">Manual ordering of completion alternatives</a></li>
 </ul>
 </li>
-<li><a href="#org71709f2">Notable <span class="verbatim">zstyle</span> options</a>
+<li><a href="#org802022f">Notable <code>zstyle</code> options</a>
 <ul>
-<li><a href="#org4fac174">Hidden completion list</a></li>
+<li><a href="#org4da0f00">Hidden completion list</a></li>
 </ul>
 </li>
-<li><a href="#org5f305b5">Style and Convention</a>
+<li><a href="#org290fab9">Style and Convention</a>
 <ul>
-<li><a href="#org3a5a133">Descriptions</a></li>
-<li><a href="#org9dcc437">Terminology</a></li>
-<li><a href="#org3df5b46">Variables</a></li>
+<li><a href="#orga06d68d">Descriptions</a></li>
+<li><a href="#org57370cf">Terminology</a></li>
+<li><a href="#org8b5bb55">Variables</a></li>
 </ul>
 </li>
-<li><a href="#org9dbbd77">External Resources</a></li>
+<li><a href="#org0609594">External Resources</a></li>
 </ul>
 </div>
 
-<section id="outline-container-orgb1331ee" class="outline-2">
-<h2 id="orgb1331ee">Prologue</h2>
-<div class="outline-text-2" id="text-orgb1331ee">
+<section id="outline-container-org6885529" class="outline-2">
+<h2 id="org6885529">Prologue</h2>
+<div class="outline-text-2" id="text-org6885529">
 <p>
 After many years of research, I've finally come to an important conclusion:
 </p>
@@ -95,9 +95,9 @@ other disambiguation for this hairy topic.
 </section>
 
 
-<section id="outline-container-orgf6849b4" class="outline-2">
-<h2 id="orgf6849b4">The structure of standard argument completion.</h2>
-<div class="outline-text-2" id="text-orgf6849b4">
+<section id="outline-container-org7d3834e" class="outline-2">
+<h2 id="org7d3834e">The structure of standard argument completion.</h2>
+<div class="outline-text-2" id="text-org7d3834e">
 <p>
 ZSH's completion system is <i>contextual</i>, sensitive to the point at which it is
 invoked, consequently a common pattern is to progressively backtrack to current
@@ -114,8 +114,8 @@ and spend time working against, rather than with the grain of the system.
 </p>
 
 <ol class="org-ol">
-<li>An entry point (e.g <span class="verbatim">git</span>) will processes the command line string.</li>
-<li>A function for each subcommand such as <span class="verbatim">diff</span>, typically wrapping <span class="verbatim">_arguments</span></li>
+<li>An entry point (e.g <code>git</code>) will processes the command line string.</li>
+<li>A function for each subcommand such as <code>diff</code>, typically wrapping <code>_arguments</code></li>
 <li>One function for each type of object, referred to as a <i>tag</i> in ZSH nomenclature.</li>
 <li>In some cases, functions to handle special values, files, sockets, fifos.</li>
 </ol>
@@ -143,9 +143,9 @@ immediately.
 </p>
 </div>
 
-<div id="outline-container-org1f5efa3" class="outline-3">
-<h3 id="org1f5efa3">The structure of <span class="verbatim">_arguments</span></h3>
-<div class="outline-text-3" id="text-org1f5efa3">
+<div id="outline-container-orgea014fe" class="outline-3">
+<h3 id="orgea014fe">The structure of <code>_arguments</code></h3>
+<div class="outline-text-3" id="text-orgea014fe">
 <p>
 The function <i>_arguments</i> has been described as having `the syntax from hell', but
 with the arguments already laid out in front of you it doesn't look so bad. The
@@ -178,9 +178,9 @@ excerpted from the manual) and covers some important fundamentals of argument pa
 </div>
 </div>
 
-<div id="outline-container-org88640cd" class="outline-4">
-<h4 id="org88640cd">Flags</h4>
-<div class="outline-text-4" id="text-org88640cd">
+<div id="outline-container-orgcd44ed6" class="outline-4">
+<h4 id="orgcd44ed6">Flags</h4>
+<div class="outline-text-4" id="text-orgcd44ed6">
 <p>
 The excerpt above only has one flag, and it's the most meaningful flag as well,
 but I won't waste an opportunity to briefly cover some other very handy flags:
@@ -201,27 +201,27 @@ valid as well)
 
 <p>
 <code>-S</code> is completely unrelated, it indicates that the completion function
-shouldn't complete options after <span class="verbatim">--</span>, which is a common UNIX 'pattern' to
+shouldn't complete options after <code>--</code>, which is a common UNIX 'pattern' to
 indicate options have ended.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org58818f8" class="outline-4">
-<h4 id="org58818f8">The optspec</h4>
-<div class="outline-text-4" id="text-org58818f8">
+<div id="outline-container-org33eef15" class="outline-4">
+<h4 id="org33eef15">The optspec</h4>
+<div class="outline-text-4" id="text-org33eef15">
 <p>
-The long strings of option specification that follows the flags to <span class="verbatim">_arguments</span>
+The long strings of option specification that follows the flags to <code>_arguments</code>
 and a colon are known known as ~optspec~s or option specification.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org042fa8b" class="outline-4">
-<h4 id="org042fa8b">Option Naming</h4>
-<div class="outline-text-4" id="text-org042fa8b">
+<div id="outline-container-orgc441740" class="outline-4">
+<h4 id="orgc441740">Option Naming</h4>
+<div class="outline-text-4" id="text-orgc441740">
 <p>
-<span class="verbatim">_arguments</span> broadly supports 7 different option specification varieties, all of
+<code>_arguments</code> broadly supports 7 different option specification varieties, all of
 which can be directly followed by a bracketed explanation string.
 </p>
 <table>
@@ -266,15 +266,15 @@ which can be directly followed by a bracketed explanation string.
 </section>
 
 
-<section id="outline-container-orge95012d" class="outline-2">
-<h2 id="orge95012d">Utility Functions</h2>
-<div class="outline-text-2" id="text-orge95012d">
+<section id="outline-container-org5bcbe2a" class="outline-2">
+<h2 id="org5bcbe2a">Utility Functions</h2>
+<div class="outline-text-2" id="text-org5bcbe2a">
 </div>
-<div id="outline-container-orgfe08dbf" class="outline-3">
-<h3 id="orgfe08dbf">Creating a dummy first argument</h3>
-<div class="outline-text-3" id="text-orgfe08dbf">
+<div id="outline-container-orge81293a" class="outline-3">
+<h3 id="orge81293a">Creating a dummy first argument</h3>
+<div class="outline-text-3" id="text-orge81293a">
 <p>
-The following is an extract of the iproute2 argument handling in <a href="https://github.com/zsh-users/zsh/blob/master/Completion/Unix/Command/_ip"><span class="verbatim">_ip</span></a>
+The following is an extract of the iproute2 argument handling in <a href="https://github.com/zsh-users/zsh/blob/master/Completion/Unix/Command/_ip"><code>_ip</code></a>
 </p>
 
 <div class="org-src-container">
@@ -292,9 +292,9 @@ _regex_arguments _command
 </div>
 </div>
 
-<div id="outline-container-org7cf4a70" class="outline-3">
-<h3 id="org7cf4a70"><code>_pick_variant</code> to add options depending upon the version of a program.</h3>
-<div class="outline-text-3" id="text-org7cf4a70">
+<div id="outline-container-org7ff0bb7" class="outline-3">
+<h3 id="org7ff0bb7"><code>_pick_variant</code> to add options depending upon the version of a program.</h3>
+<div class="outline-text-3" id="text-org7ff0bb7">
 <div class="org-src-container">
 <pre class="src src-shell-script"><span style="color: #657b83; font-weight: bold;">local</span> arguments
 <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">We supply a regex to _pick_variant, in this case checking gor the string `gnu`</span>
@@ -308,20 +308,20 @@ _regex_arguments _command
 </div>
 </div>
 
-<div id="outline-container-org63a145e" class="outline-3">
-<h3 id="org63a145e">Match an ambiguous clause with <code>_guard</code></h3>
-<div class="outline-text-3" id="text-org63a145e">
+<div id="outline-container-org54fc4df" class="outline-3">
+<h3 id="org54fc4df">Match an ambiguous clause with <code>_guard</code></h3>
+<div class="outline-text-3" id="text-org54fc4df">
 <p>
 The <code>_guard</code> can break between two tags, dependent upon the regex; if this
 doesn't seem extraordinarily useful to you, you're not alone &#x2013; In the body of
 existing ZSH completion scripts, <code>_guard</code> is typically used an the <i>action</i> for
-the specification pased into <span class="verbatim">_arguments</span> and similar functions.
+the specification pased into <code>_arguments</code> and similar functions.
 </p>
 
 <p>
-The <span class="verbatim">zshcompsys</span> manpage itself describes behavior reminiscent of the completion
+The <code>zshcompsys</code> manpage itself describes behavior reminiscent of the completion
 behavior of <code>fc(1)</code>
-<span class="verbatim">_guard</span>
+<code>_guard</code>
 </p>
 <blockquote>
 <p>
@@ -365,36 +365,36 @@ zshcompsys(4)
 </section>
 
 
-<section id="outline-container-orga1c9910" class="outline-2">
-<h2 id="orga1c9910">Examples</h2>
-<div class="outline-text-2" id="text-orga1c9910">
+<section id="outline-container-org74ac426" class="outline-2">
+<h2 id="org74ac426">Examples</h2>
+<div class="outline-text-2" id="text-org74ac426">
 <p>
 A statement about these examples should be made here
 </p>
 </div>
 
-<div id="outline-container-org334f5c0" class="outline-3">
-<h3 id="org334f5c0">Delimited values with final option</h3>
-<div class="outline-text-3" id="text-org334f5c0">
+<div id="outline-container-org00762f5" class="outline-3">
+<h3 id="org00762f5">Delimited values with final option</h3>
+<div class="outline-text-3" id="text-org00762f5">
 <p>
-A common scenario that occurs in commands such as <span class="verbatim">libcap</span>'s capability
-manipulation toolchain, <span class="verbatim">bintools</span> and <span class="verbatim">coreutils</span> is the requirement to
+A common scenario that occurs in commands such as <code>libcap</code>'s capability
+manipulation toolchain, <code>bintools</code> and <code>coreutils</code> is the requirement to
 complete a list of arbitrary keywords, each with a unix-style (equal sign)
 option after each one.
 </p>
 
 
 <p>
-An example of such a command is exemplified by <a href="https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap"><span class="verbatim">setcap</span></a>
+An example of such a command is exemplified by <a href="https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap"><code>setcap</code></a>
 </p>
 
-<figure id="org2f4a6d7">
+<figure id="org31617b3">
 <img src="../../images/zsh-setcap-example.png" alt="zsh-setcap-example.png">
 
 </figure>
 
 <p>
-You might initially look at the <span class="verbatim">chmod</span> completion, and this would get you far,
+You might initially look at the <code>chmod</code> completion, and this would get you far,
 however the completion script itself is quite long. The core of the unix options
 completion lies in the following.
 </p>
@@ -419,9 +419,9 @@ completion lies in the following.
 </div>
 </div>
 
-<div id="outline-container-org88329c5" class="outline-3">
-<h3 id="org88329c5">Operating system specific flags with <span class="verbatim">$OSTYPE</span></h3>
-<div class="outline-text-3" id="text-org88329c5">
+<div id="outline-container-orga42d5fc" class="outline-3">
+<h3 id="orga42d5fc">Operating system specific flags with <code>$OSTYPE</code></h3>
+<div class="outline-text-3" id="text-orga42d5fc">
 <div class="org-src-container">
 <pre class="src src-shell-script"><span style="color: #657b83; font-weight: bold;">local</span> arguments
 <span style="color: #268bd2;">arguments</span>=<span style="color: #2aa198;">(</span><span style="color: #2aa198;">'-b[Base argument]'</span><span style="color: #2aa198;">)</span>
@@ -440,12 +440,12 @@ completion lies in the following.
 </div>
 </div>
 
-<div id="outline-container-org0c1fecb" class="outline-3">
-<h3 id="org0c1fecb">Completion from a dynamic list</h3>
-<div class="outline-text-3" id="text-org0c1fecb">
+<div id="outline-container-orge01ce72" class="outline-3">
+<h3 id="orge01ce72">Completion from a dynamic list</h3>
+<div class="outline-text-3" id="text-orge01ce72">
 <p>
 There are two ways to go about this. Both require that you create a function
-that calls <span class="verbatim">compadd</span> with the list of words you want completed.
+that calls <code>compadd</code> with the list of words you want completed.
 </p>
 
 <div class="org-src-container">
@@ -491,9 +491,9 @@ tried as possible completions.
 </div>
 </div>
 
-<div id="outline-container-orgf9ad056" class="outline-3">
-<h3 id="orgf9ad056">Caching variables during completion</h3>
-<div class="outline-text-3" id="text-orgf9ad056">
+<div id="outline-container-org97ab78f" class="outline-3">
+<h3 id="org97ab78f">Caching variables during completion</h3>
+<div class="outline-text-3" id="text-org97ab78f">
 <p>
 Depending on whether you mean all completions for the current command
 line or just all repetitions of completion for the same word (e.g.,
@@ -510,7 +510,7 @@ function tests (somehow) whether the cached state needs to be refreshed.
 </p>
 
 <p>
-Bart Schaefer describes a crude procedure to cache the value value of <span class="verbatim">$HISTNO</span>
+Bart Schaefer describes a crude procedure to cache the value value of <code>$HISTNO</code>
 and then reload the cache if it has changed.
 </p>
 
@@ -530,9 +530,9 @@ zstyle <span style="color: #2aa198;">':completion:*'</span> completer _xrcache _
 </div>
 </div>
 
-<div id="outline-container-orge7573e9" class="outline-3">
-<h3 id="orge7573e9">Manual ordering of completion alternatives</h3>
-<div class="outline-text-3" id="text-orge7573e9">
+<div id="outline-container-orgabf0ca6" class="outline-3">
+<h3 id="orgabf0ca6">Manual ordering of completion alternatives</h3>
+<div class="outline-text-3" id="text-orgabf0ca6">
 <p>
 You can prevent alphabetical sorting by passing <code>-V</code> and the matchname: <code>compadd -V unsorted - $revarray</code>
 </p>
@@ -545,13 +545,13 @@ You can prevent alphabetical sorting by passing <code>-V</code> and the matchnam
 </section>
 
 
-<section id="outline-container-org71709f2" class="outline-2">
-<h2 id="org71709f2">Notable <span class="verbatim">zstyle</span> options</h2>
-<div class="outline-text-2" id="text-org71709f2">
+<section id="outline-container-org802022f" class="outline-2">
+<h2 id="org802022f">Notable <code>zstyle</code> options</h2>
+<div class="outline-text-2" id="text-org802022f">
 </div>
-<div id="outline-container-org4fac174" class="outline-3">
-<h3 id="org4fac174">Hidden completion list</h3>
-<div class="outline-text-3" id="text-org4fac174">
+<div id="outline-container-org4da0f00" class="outline-3">
+<h3 id="org4da0f00">Hidden completion list</h3>
+<div class="outline-text-3" id="text-org4da0f00">
 <p>
 This sort of question occassionally appears on newsgroups from time to time:
 </p>
@@ -560,7 +560,7 @@ This sort of question occassionally appears on newsgroups from time to time:
 <p>
 I want to have the alternatives offered by consecutive presses of alt-e, and I
 don't want the alternatives to be listed below the command line. To achieve
-this, I have had to set the option <span class="verbatim">BASH_AUTO_LIST</span>. If this option is not set,
+this, I have had to set the option <code>BASH_AUTO_LIST</code>. If this option is not set,
 a list of alternatives is displayed as soon as I hit alt-e (and at the same
 time the first alternative is put on the command line, which is good). But I
 don't want this option to be set globally. I have not been able to figure out
@@ -570,16 +570,16 @@ setting the global option. Is there a way to achieve this?
 </blockquote>
 
 <p>
-The answer is to set the <span class="verbatim">hidden</span> <code>zstyle</code>, which can be done like this:
+The answer is to set the <code>hidden</code> <code>zstyle</code>, which can be done like this:
 </p>
 
 <p>
-<span class="verbatim">zstyle ':completion:*list-comp:*' hidden all</span>
+<code>zstyle ':completion:*list-comp:*' hidden all</code>
 </p>
 
 <p>
-But hidden is looked up from <span class="verbatim">_description</span> which you don't call.
-You could add <span class="verbatim">_wanted</span> around the compadd but all the hidden style
+But hidden is looked up from <code>_description</code> which you don't call.
+You could add <code>_wanted</code> around the compadd but all the hidden style
 actually does is cause the <code>-n</code> option to be passed to compadd which you
 could do directly.
 </p>
@@ -588,9 +588,9 @@ could do directly.
 </section>
 
 
-<section id="outline-container-org5f305b5" class="outline-2">
-<h2 id="org5f305b5">Style and Convention</h2>
-<div class="outline-text-2" id="text-org5f305b5">
+<section id="outline-container-org290fab9" class="outline-2">
+<h2 id="org290fab9">Style and Convention</h2>
+<div class="outline-text-2" id="text-org290fab9">
 <p>
 ZSH completion scripts are (fortunately) never given the opportunity to evolve
 into the complex balls of mud that a 'real' programming environment affords;
@@ -604,16 +604,16 @@ are
 </p>
 </div>
 
-<div id="outline-container-org3a5a133" class="outline-3">
-<h3 id="org3a5a133">Descriptions</h3>
-<div class="outline-text-3" id="text-org3a5a133">
+<div id="outline-container-orga06d68d" class="outline-3">
+<h3 id="orga06d68d">Descriptions</h3>
+<div class="outline-text-3" id="text-orga06d68d">
 <p>
 Always use description. This is important. Really. <b>Always</b> use descriptions. If
-you have just written down a <span class="verbatim">compadd</span> without a <code>$expl[@]</code> (or equivalent), you
-have just made an error. Even in helper functions where you use a <span class="verbatim">$@</span>: if you
+you have just written down a <code>compadd</code> without a <code>$expl[@]</code> (or equivalent), you
+have just made an error. Even in helper functions where you use a <code>$@</code>: if you
 can't be sure that there is a description in the arguments, add one. You can
 (and, in most cases, should) then give the description you generated after the
-<span class="verbatim">$@</span>. This makes sure that the, probably more specific, description given by the
+<code>$@</code>. This makes sure that the, probably more specific, description given by the
 calling function takes precedence over the generic one you have just generated.
 </p>
 
@@ -632,8 +632,8 @@ compadd <span style="color: #2aa198;">"$expl@]"</span> - &lt;matches ...&gt;
 </div>
 
 <p>
-Note that this function also accepts <span class="verbatim">-V</span> and <span class="verbatim">-J</span>, optionally (in the same
-word) preceded by <span class="verbatim">1</span> or <span class="verbatim">2</span> to describe the type of group you want to use. For
+Note that this function also accepts <code>-V</code> and <code>-J</code>, optionally (in the same
+word) preceded by <code>1</code> or <code>2</code> to describe the type of group you want to use. For
 example:
 </p>
 
@@ -659,7 +659,7 @@ and everything will work fine.
 
 <p>
 Also, if you are about to add multiple different types of matches, use multiple
-calls to <span class="verbatim">_description</span> and add them with multiple calls to <span class="verbatim">compadd</span>. But in
+calls to <code>_description</code> and add them with multiple calls to <code>compadd</code>. But in
 almost all cases you should then add them using different tags anyway, so, see
 above.
 </p>
@@ -691,31 +691,31 @@ description at the same time.
 </div>
 
 
-<div id="outline-container-org9dcc437" class="outline-3">
-<h3 id="org9dcc437">Terminology</h3>
-<div class="outline-text-3" id="text-org9dcc437">
+<div id="outline-container-org57370cf" class="outline-3">
+<h3 id="org57370cf">Terminology</h3>
+<div class="outline-text-3" id="text-org57370cf">
 <ul class="org-ul">
-<li><span class="verbatim">spec</span> : Argument Specification</li>
-<li><span class="verbatim">tag</span> : The 'varieties' of types of objects that are valid completions, e.x a command that takes a set of permissions OR a file as it's next argument.</li>
+<li><code>spec</code> : Argument Specification</li>
+<li><code>tag</code> : The 'varieties' of types of objects that are valid completions, e.x a command that takes a set of permissions OR a file as it's next argument.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3df5b46" class="outline-3">
-<h3 id="org3df5b46">Variables</h3>
-<div class="outline-text-3" id="text-org3df5b46">
+<div id="outline-container-org8b5bb55" class="outline-3">
+<h3 id="org8b5bb55">Variables</h3>
+<div class="outline-text-3" id="text-org8b5bb55">
 <ul class="org-ul">
-<li><span class="verbatim">$state</span>: The canonical variable for processing which tag you are in.</li>
-<li><span class="verbatim">$expl</span>: An idiom for options normally given to compadd at some point, typically an array</li>
-<li><span class="verbatim">$descr</span>: Argument description variables</li>
+<li><code>$state</code>: The canonical variable for processing which tag you are in.</li>
+<li><code>$expl</code>: An idiom for options normally given to compadd at some point, typically an array</li>
+<li><code>$descr</code>: Argument description variables</li>
 </ul>
 </div>
 </div>
 </section>
 
 
-<section id="outline-container-org9dbbd77" class="outline-2">
-<h2 id="org9dbbd77">External Resources</h2>
-<div class="outline-text-2" id="text-org9dbbd77">
+<section id="outline-container-org0609594" class="outline-2">
+<h2 id="org0609594">External Resources</h2>
+<div class="outline-text-2" id="text-org0609594">
 <ul class="org-ul">
 <li><a href="http://zsh.sourceforge.net/Guide/zshguide06.html#l144">The ZSH User Guide: Completion</a></li>
 <li><a href="https://twitter.com/dailyzshtip">Daily ZSH Tips</a></li>

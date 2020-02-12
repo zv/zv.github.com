@@ -1,15 +1,6 @@
-#+BEGIN_EXPORT html
----
-layout: page
-title: A Review of ZSH Completion
-excerpt: Walking through ZSH completion, step by step.
-tags: 
-  - zsh
-  - completion
-category: note
----
-#+END_EXPORT
-#+HTML_DOCTYPE: html5
+#+TITLE: A Review of ZSH Completion
+#+FILETAGS: :zsh:completion:
+#+INCLUDE: "_include.org"
 #+TOC: headlines 2 local
 
 * Prologue 

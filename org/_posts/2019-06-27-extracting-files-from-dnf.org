@@ -1,18 +1,6 @@
-#+BEGIN_EXPORT html
----
-layout: page
-title: Extract package files from RPM 
-category: note
-tags:
-- howto
-- linux
-- fedora
-- package-manager
-- dnf
----
-#+END_EXPORT
-#+HTML_DOCTYPE: html5
-#+OPTIONS: H:3
+#+TITLE: Extract package files from RPM
+#+FILETAGS: :howto:linux:fedora:package-manager:dnf:
+#+INCLUDE: "_include.org"
 
 * 
   ~dnf~ & ~repoquery~ don't provide ready faculties for extracting a file from a RPM package. You can do so without installing third-party software with ~rpm2cpio~ and ~cpio~, which are distributed with Fedora Workstation & RHEL.
