@@ -1,0 +1,14 @@
+#+AUTHOR: zv
+#+EMAIL: zv@nxvr.org
+#+HTML_DOCTYPE: html5
+#+CATEGORY: note
+#+OPTIONS: html5-fancy:t pri:nil toc:nil
+#+STARTUP: noinlineimages showall
+#+BEGIN_EXPORT html
+---
+layout: page
+title: ${title}
+category: note
+${tagslist}
+---
+#+END_EXPORT
