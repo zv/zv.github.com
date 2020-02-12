@@ -9,10 +9,15 @@ Scheme.
 
 Emacs offers an extremely in-depth (if esoteric) help system using the document
 format Texinfo. Installing texinfo documents is simple but the provided
-documentation inexplicably leaves out critical steps. Here's what I did to get
-it working
+documentation inexplicably leaves out critical steps. 
+
+Here's what I did to get it working [fn:1].
 
 1. [[http://www.neilvandyke.org/sicp-texi/sicp.info.gz][Download an /.info/ copy of SICP]] 
 2. =$mv ~/Downloads/sicp.info.gz ~/Downloads/sicp.info=
 3. =$ mv =(unzip sicp.info) /usr/local/share/info=
 4. =$ install-info ~/Downloads/sicp.info=
+
+* Footnotes
+
+[fn:1] Thanks to Adom H. for reaching out with a correction to these instructions.
