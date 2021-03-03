@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PDKDF2 Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font: 13px Verdana, Sans-Serif;
+        background: #eee;
+      }
+
+      #container {
+        margin: 0px auto;
+        width: 700px;
+      }
+
+      form#digest label {
+        clear: both;
+        display: block;
+        padding: 10px;
+        line-height: 35px;
+      }
+
+      form#digest input {
+        float: right;
+        width: 85%;
+        height: 35px;
+        font-family: monospace;
+      }
+
+      form#digest input[readonly] {
+        background-color: rgba(239, 239, 239, 0.3);
+        border-color: rgba(118, 118, 118, 0.3);
+      }
+
+      #keyboard {
+        padding: 0;
+      }
+
+      #keyboard .keyboard-row {
+        display: flex;
+        line-height: 40px;
+        list-style: none;
+      }
+
+      #keyboard li {
+        margin: 3px;
+        flex: 1 1 0;
+        text-align: center;
+        background: #fff;
+        border: 1px solid #f9f9f9;
+      }
+
+      #keyboard li:hover {
+        position: relative;
+        top: 1px;
+        left: 1px;
+        border-color: #e5e5e5;
+        cursor: pointer;
+      }
+
+      #keyboard li.tab,
+      #keyboard li.return,
+      #keyboard li.shift,
+      #keyboard li.capslock,
+      #keyboard li.delete {
+        flex-grow: 2;
+      }
+
+      #keyboard li.uppercase {
+        text-transform: uppercase;
+      }
+
+      #keyboard li > span.off {
+        display: none;
+      }
+    </style>
+
+    <script type="text/javascript">
+      "use strict";
+
+      async function pbkdf2(password, salt, iterations = 100000) {
+        const cryptoKey = await crypto.subtle.importKey(
+          "raw",
+          new TextEncoder().encode(password),
+          "PBKDF2",
+          false,
+          ["deriveBits"]
+        );
+
+        const keyBuffer = await crypto.subtle.deriveBits(
+          {
+            name: "PBKDF2",
+            hash: "SHA-256",
+            salt: new TextEncoder().encode(salt),
+            iterations: iterations
+          },
+          cryptoKey,
+          96
+        );
+
+        const bytes = Array.from(new Uint8Array(keyBuffer))
+          .map(byte => String.fromCharCode(byte))
+          .join("");
+
+        return btoa(bytes);
+      }
+
+      const setDigest = (name, value) =>
+        (document.querySelector(`fieldset#keyout input#${name}`).value = value);
+
+      const b64_alphabet =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+        "abcdefghijklmnopqrstuvwxyz" +
+        "0123456789" +
+        "+/=";
+
+      const b64_digit_map =
+        "01234567890123456789012345" +
+        "01234567890123456789012345" +
+        "0123456789" +
+        "013";
+
+      const b64_lower_map =
+        "abcdefghijklmnopqrstuvwxyz" +
+        "abcdefghijklmnopqrstuvwxyz" +
+        "abcdefghij" +
+        "abc";
+
+      function translateB64(str, dstAlphabet, srcAlphabet = b64_alphabet) {
+        return str
+          .split("")
+          .map(ch => dstAlphabet[srcAlphabet.indexOf(ch)])
+          .join("");
+      }
+
+      function togglePasswordInput(e) {
+        e.target.parentElement.querySelectorAll("input").forEach(i => {
+          i.type = i.type == "text" ? "password" : "text";
+        });
+      }
+
+      window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search),
+          $keyInput = document.querySelector("input#key"),
+          $saltInput = document.querySelector("input#salt"),
+          $keyboard = document.querySelector("ul#keyboard");
+
+        if (urlParams.has("salt")) $saltInput.value = urlParams.get("salt");
+
+        let $focus = $keyInput, timeout = null;
+
+        function debounceDigests() {
+          clearTimeout(timeout);
+
+          if ($keyInput.checkValidity() && $saltInput.checkValidity()) {
+            timeout = setTimeout(async () => {
+              const result = await pbkdf2($keyInput.value, $saltInput.value);
+              setDigest("raw", result);
+              setDigest("shadow", "$Zv3$".concat(result));
+              setDigest("alnum16", result.replace('+', 'A').replace('/', 'a').replace('=', '0'));
+              setDigest("short", translateB64(result, b64_lower_map).substr(0, 9));
+              setDigest("pin", translateB64(result, b64_digit_map).substr(0, 4));
+            }, 200);
+          } else {
+            document
+              .querySelectorAll("fieldset#keyout input")
+              .forEach(t => setDigest(t.id, ""));
+          }
+        }
+
+        for (let $input of [$keyInput, $saltInput]) {
+          $input.addEventListener("focus", e => ($focus = e.target));
+          $input.addEventListener("input", debounceDigests);
+        }
+
+        $keyboard.querySelectorAll("li").forEach($key =>
+          $key.addEventListener("click", _ => {
+            if (
+              $key.classList.contains("shift") ||
+              $key.classList.contains("capslock")
+            ) {
+              $keyboard
+                .querySelectorAll("li.letter")
+                .forEach(l => l.classList.toggle("uppercase"));
+
+              $keyboard.querySelectorAll("li.symbol span").forEach(l => {
+                l.classList.toggle("off");
+                l.classList.toggle("on");
+              });
+
+              return;
+            }
+
+            if ($key.classList.contains("delete"))
+              $focus.value = $focus.value.substr(0, $focus.value.length - 1);
+            else if ($key.classList.contains("space")) $focus.value += " ";
+            else if ($key.classList.contains("tab")) $focus.value += "\t";
+            else if ($key.classList.contains("return")) $focus.value += "\n";
+            else $focus.value += $key.innerText;
+
+            $focus.dispatchEvent(new Event("input"));
+          })
+        );
+      };
+    </script>
+  </head>
+
+  <body>
+    <div id="container">
+      <form id="digest">
+        <fieldset id="keyin">
+          <legend onclick="togglePasswordInput(event);">Input</legend>
+          <label>
+            Key
+            <input type="text" id="key" name="key" required autofocus />
+          </label>
+          <label>
+            Salt
+            <input type="text" id="salt" name="salt" required />
+          </label>
+        </fieldset>
+
+        <br />
+
+        <fieldset id="keyout">
+          <legend onclick="togglePasswordInput(event);">Output</legend>
+          <label>
+            Raw <input type="text" id="raw" name="raw" readonly />
+          </label>
+          <label>
+            Shadow
+            <input type="text" id="shadow" name="shadow" readonly />
+          </label>
+          <label>
+            Alnum16
+            <input type="text" id="alnum16" name="alnum16" readonly />
+          </label>
+          <label>
+            Short
+            <input type="text" id="short" name="short" readonly />
+          </label>
+          <label>
+            PIN
+            <input type="text" id="pin" name="pin" readonly />
+          </label>
+        </fieldset>
+      </form>
+
+      <br />
+
+      <ul id="keyboard">
+        <div class="keyboard-row" id="first-row">
+          <li class="symbol">
+            <span class="on">`</span><span class="off">~</span>
+          </li>
+          <li class="symbol">
+            <span class="on">1</span><span class="off">!</span>
+          </li>
+          <li class="symbol">
+            <span class="on">2</span><span class="off">@</span>
+          </li>
+          <li class="symbol">
+            <span class="on">3</span><span class="off">#</span>
+          </li>
+          <li class="symbol">
+            <span class="on">4</span><span class="off">$</span>
+          </li>
+          <li class="symbol">
+            <span class="on">5</span><span class="off">%</span>
+          </li>
+          <li class="symbol">
+            <span class="on">6</span><span class="off">^</span>
+          </li>
+          <li class="symbol">
+            <span class="on">7</span><span class="off">&amp;</span>
+          </li>
+          <li class="symbol">
+            <span class="on">8</span><span class="off">*</span>
+          </li>
+          <li class="symbol">
+            <span class="on">9</span><span class="off">(</span>
+          </li>
+          <li class="symbol">
+            <span class="on">0</span><span class="off">)</span>
+          </li>
+          <li class="symbol">
+            <span class="on">-</span><span class="off">_</span>
+          </li>
+          <li class="symbol">
+            <span class="on">=</span><span class="off">+</span>
+          </li>
+          <li class="delete lastitem">Delete</li>
+        </div>
+        <div class="keyboard-row" id="second-row">
+          <li class="tab">Tab</li>
+          <li class="letter">q</li>
+          <li class="letter">w</li>
+          <li class="letter">e</li>
+          <li class="letter">r</li>
+          <li class="letter">t</li>
+          <li class="letter">y</li>
+          <li class="letter">u</li>
+          <li class="letter">i</li>
+          <li class="letter">o</li>
+          <li class="letter">p</li>
+          <li class="symbol">
+            <span class="on">[</span><span class="off">{</span>
+          </li>
+          <li class="symbol">
+            <span class="on">]</span><span class="off">}</span>
+          </li>
+          <li class="symbol lastitem">
+            <span class="on">\</span><span class="off">|</span>
+          </li>
+        </div>
+        <div class="keyboard-row" id="third-row">
+          <li class="capslock">Caps</li>
+          <li class="letter">a</li>
+          <li class="letter">s</li>
+          <li class="letter">d</li>
+          <li class="letter">f</li>
+          <li class="letter">g</li>
+          <li class="letter">h</li>
+          <li class="letter">j</li>
+          <li class="letter">k</li>
+          <li class="letter">l</li>
+          <li class="symbol">
+            <span class="on">;</span><span class="off">:</span>
+          </li>
+          <li class="symbol">
+            <span class="on">'</span><span class="off">&quot;</span>
+          </li>
+          <li class="return lastitem">Enter</li>
+        </div>
+        <div class="keyboard-row" id="fourth-row">
+          <li class="shift left-shift">Shift</li>
+          <li class="letter">z</li>
+          <li class="letter">x</li>
+          <li class="letter">c</li>
+          <li class="letter">v</li>
+          <li class="letter">b</li>
+          <li class="letter">n</li>
+          <li class="letter">m</li>
+          <li class="symbol">
+            <span class="on">,</span><span class="off">&lt;</span>
+          </li>
+          <li class="symbol">
+            <span class="on">.</span><span class="off">&gt;</span>
+          </li>
+          <li class="symbol">
+            <span class="on">/</span><span class="off">?</span>
+          </li>
+          <li class="shift right-shift lastitem">Shift</li>
+        </div>
+        <div class="keyboard-row" id="space-row">
+          <li class="space lastitem">&nbsp;</li>
+        </div>
+      </ul>
+    </div>
+  </body>
+</html>
