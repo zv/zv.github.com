@@ -22,7 +22,7 @@ name: zv's blog
 description: zv's blog
 
 # Site settings
-baseurl: "" 
+baseurl: ""
 twitter_username: zefyear
 github_username: zv
 
@@ -31,7 +31,7 @@ sass:
   style: compressed
 
 # exclude files for generated site
-exclude: 
+exclude:
   - LICENSE
   - README
   - node_modules/
@@ -41,3 +41,9 @@ exclude:
   - tsconfig.json
   - webpack.config.js
   - js
+
+defaults:
+  - scope:
+      path: "static/img"
+    values:
+      image: true

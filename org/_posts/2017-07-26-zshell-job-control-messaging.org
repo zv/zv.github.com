@@ -18,13 +18,13 @@ compile_run () {
   Which works as expected for well-behaved programs:
 
   #+NAME:   fig:crun
-  [[../images/job_control_1.png]]
+  [[/static/img/job_control_1.png]]
 
   If your program contains a segmentation fault however, job control messages
   will be hidden from you as if your program printed no input at all.
 
   #+NAME:   fig:crun1
-  [[../images/job_control_2.png]]
+  [[/static/img/job_control_2.png]]
 
   You may have known that messages like =[1] 21212 segmentation fault (core
   dumped) ./faulty= aren't ordinary messages in the sense you can't capture them
@@ -96,4 +96,4 @@ compile_run () {
    status code of your program is:
 
    #+NAME:   fig:print_exit_value
-   [[../images/job_control_3.png]]
+   [[/static/img/job_control_3.png]]

@@ -39,7 +39,7 @@
    =lxpanel=.
 
    #+ATTR_HTML: :width 100%
-   [[file:../../images/openbox/bar.png]]
+   [[file:../../static/img/openbox/bar.png]]
 
    LXDE has gone to considerable lengths to preserve some degree of
    compatibility with the interface guidelines and standards set forth by
@@ -140,7 +140,7 @@
     a focused window 'terminal' (indicated by =[= and =]=)
 
     #+HTML: <center>
-    #+BEGIN_SRC ditaa :cmdline -E -T :file ../../images/openbox/twopiece.png
+    #+BEGIN_SRC ditaa :cmdline -E -T :file ../../static/img/openbox/twopiece.png
         +---------------+-----------------+
         |               |                 |
         | documentation |   [terminal]    |
@@ -152,7 +152,7 @@
     Pressing ~🗔-Shift-h~ swaps their position.
    
     #+HTML: <center>
-    #+BEGIN_SRC ditaa :cmdline -E -T :file ../../images/openbox/twopieceinvert.png
+    #+BEGIN_SRC ditaa :cmdline -E -T :file ../../static/img/openbox/twopieceinvert.png
         +---------------+-----------------+
         |               |                 |
         |  [terminal]   |  documentation  |
@@ -182,7 +182,7 @@
    show something like the following.
    
    #+ATTR_HTML: :style margin-left: auto; margin-right: auto;
-   [[file:../../images/openbox/dmenu.png]]
+   [[file:../../static/img/openbox/dmenu.png]]
 
    I could hit ⏎ (return) and Chrome would start, I could also select other
    binaries with left/right keys as well.

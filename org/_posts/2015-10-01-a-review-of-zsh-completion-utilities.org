@@ -206,7 +206,7 @@ fi && ret=0
 
    An example of such a command is exemplified by [[https://github.com/zv/zsh-completions/blob/9ca66cf7d4af9ecfe5c3d91e7b56f24408b7f312/src/_setcap][=setcap=]]
      #+NAME:   zsh-setcap-example
-     [[../../images/zsh-setcap-example.png]]
+     [[../../static/img/zsh-setcap-example.png]]
 
    You might initially look at the =chmod= completion, and this would get you far,
    however the completion script itself is quite long. The core of the unix options
