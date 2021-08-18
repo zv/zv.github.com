@@ -121,6 +121,11 @@ div.work_container {
     width: 750px;
 }
 
+canvas#tree {
+    position: relative;
+    top: 1em;
+}
+
 @media all and (max-width: 599px) {
     canvas#tree {
         width: 330px;
