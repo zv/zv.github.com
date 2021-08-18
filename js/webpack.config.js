@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './js/page.ts',
+  entry: './page.ts',
   module: {
     rules: [
       {
@@ -16,6 +16,6 @@ module.exports = {
   },
   output: {
     filename: 'page.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, '../dist')
   }
 };

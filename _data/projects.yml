@@ -16,7 +16,7 @@
 - name: Conflict Free Computing 2016 Laptop Buyers Guide
   description: A compilation of excellent laptops for developers made by firms with a strong commitment to ethically sourcing minerals used in the manufacture of electronics.
   links:
-    direct: https://zv.github.io/buyers-guide.html
+    direct: https://zv.github.io/buyers-guide
 
 - name: weechat-gateway-replacer
   description: A weechat plugin to integrate Slack or Telegram gateways with the real usernames they transmit

@@ -17,8 +17,5 @@
     "isolatedModules": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true
-  },
-  "include": [
-    "js"
-  ]
+  }
 }

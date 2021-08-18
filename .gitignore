@@ -5,6 +5,7 @@ _site
 _drafts
 .sass-cache
 *.min.js
+.jekyll-cache/
 Rakefile
 
 # Logs, Leftovers
@@ -15,6 +16,5 @@ _posts/2015-10-02-test-org-mode.html
 
 notes.org
 
-
 org/_drafts
-node_modules/
+js/node_modules/
