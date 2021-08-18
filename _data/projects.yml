@@ -1,5 +1,5 @@
 - name: zv-tree
-  description: This is the tree you (should be) seeing now! This tree is algorithmically generated <i>without</i> any sort of base texture and modeled off of Inconvergent Trees, the outline is generated from a modified L-System and the shading is a stochastic process. You can find both it's source and formal description in the repo. 
+  description: Algorithmically generated trees <i>without</i> base textures.
   links:
     github: https://github.com/zv/tree
 
@@ -24,11 +24,6 @@
     weechat: https://weechat.org/scripts/source/gateway_rename.scm.html/
     github: https://github.com/zv/weechat-gateway-replacer
 
-- name: otp
-  description: I've written features, fixed bugs and plenty inbetween for Erlang/OTP. I've worked on a <a href="https://klee.github.io/">KLEE</a> script that found <a href="https://github.com/erlang/otp/pull/1108">several</a> <a href="https://github.com/erlang/otp/pull/1111">exploitable</a> <a href="http://erlang.org/pipermail/erlang-questions/2016-February/0875733.html">bugs</a> as well as a custom inprocess fuzzer using <a href="http://llvm.org/docs/LibFuzzer.html">clang's fuzzing framework</a> to fuzz EPMD and the term decoding libraries. It's not all just vulnerability hunting however, I wrote a patch that permits a user to use ecdsa keys to authenticate an Erlang node rather than a single shared cookie or password.
-  links:
-    github: https://github.com/zv/otp
-
 - name: z3-mode
   description: After lots of frustration dealing with running SMTLIB2 code myself, I wrote an emacs major mode for SAT, SMT solvers with theorem proof extensions for Z3 from Microsoft Research.
   links:
@@ -46,7 +41,7 @@
 
 - name: psdebug
   description: A classic ptrace debugger with a curses GUI.
-  
+
 - name: SHA3inRARVM
   description: RAR archiver files contain a prescriptive compression language intended for compressing long instruction sequences. This is an implementation of SHA3 inside of the RAR archiver's virtual machine.
   links:
@@ -63,24 +58,6 @@
     github: https://github.com/zv/btcfs
 
 - name: Gravity
-  description: To learn Elm I wrote an orbital simulation game, my friend stephen balaban later picked it up. 
+  description: An orbital simulation game
   links:
     github: https://github.com/stephenbalaban/Gravity 
-
-- name: ZiP
-  description: Zine In Progress strives to be the definitive src for the Mission District Hack/Phreak scene. Published out of the Noisebridge hackerspace collective, the idea was first concieved over late night hacking between myself and Tony LeTigre.
-  links:
-    issue_1: http://zine.noisebridge.net/zip
-    issue_2: http://zine.noisebridge.net/zip/chapter1
-    issue_3: http://zine.noisebridge.net/zip/chapter1
-  
-- name: Noisedraw
-  description: This is a complete x86 demo that I intended to present at Assembly 2011.
-  
-- name: NXVR
-  description: Eschewing the stylistic traditions of the torrent site genre; degenerate ranting about the moral legitimacy of internet piracy, pornographic ads and poorly disguised Trojan downloads. NXVR was made of a softer, gentler kind of downloadable content. Housed with troves of probing and ponderous philosophical texts, commercially fruitless cult classics and acclaimed relics of the past. The man later shut me down.
-  
-- name: Swiftcrack
-  description: My first open source project complete with embarrasing mistakes and terrifically bad code! This uses patched WUSB54GS drivers and h1kar1s excellent `chop-chop` package to make one of the very first WEP crackers for Windows. Surprisingly, it lives on despite the presence of considerably more advanced tools like aircrack.
-  links:
-    Sourceforge_Page: http://sourceforge.net/projects/swiftcrack/
