@@ -29,7 +29,7 @@ to share about the exercises, don&rsquo;t hesitate to leave a comment below
 <div id="outline-container-orgde2406a" class="outline-3">
 <h3 id="orgde2406a">1.1</h3>
 <div class="outline-text-3" id="text-orgde2406a">
-<div class="question" id="org26e1a86">
+<div class="question" id="org3e97c30">
 <p>
 Below is a sequence of expressions. What is the result printed by the
 interpreter in response to each expression? Assume that the sequence is to be
@@ -43,10 +43,10 @@ evaluated in the order in which it is presented.
 </div>
 </div>
 
-<div id="outline-container-orgdf74f3c" class="outline-4">
-<h4 id="orgdf74f3c">Answer</h4>
-<div class="outline-text-4" id="text-orgdf74f3c">
-<div class="textanswer" id="orgc0d90e8">
+<div id="outline-container-org1403159" class="outline-4">
+<h4 id="org1403159">Answer</h4>
+<div class="outline-text-4" id="text-org1403159">
+<div class="textanswer" id="orgba5a02d">
 <p>
 Respectively:
 </p>
@@ -123,7 +123,7 @@ scheme@(guile-user)&gt; 16
 <div id="outline-container-org55e389c" class="outline-3">
 <h3 id="org55e389c">1.2</h3>
 <div class="outline-text-3" id="text-org55e389c">
-<div class="question" id="org219cdfe">
+<div class="question" id="org4b22776">
 <p>
 Translate the following expression into prefix form.
 </p>
@@ -139,10 +139,10 @@ Translate the following expression into prefix form.
 </div>
 </div>
 
-<div id="outline-container-orgc720102" class="outline-4">
-<h4 id="orgc720102">Answer</h4>
-<div class="outline-text-4" id="text-orgc720102">
-<div class="question" id="orgaf462c2">
+<div id="outline-container-org83cd088" class="outline-4">
+<h4 id="org83cd088">Answer</h4>
+<div class="outline-text-4" id="text-org83cd088">
+<div class="question" id="org5f9d94e">
 <p>
 (/ (+ (+ 5 4) (- 2 (- 3 (+ 6 (/ 4 5))))) (* 3 (- 6 2) (- 2 7)))
 </p>
@@ -154,7 +154,7 @@ Translate the following expression into prefix form.
 <div id="outline-container-org77fd50c" class="outline-3">
 <h3 id="org77fd50c">1.3</h3>
 <div class="outline-text-3" id="text-org77fd50c">
-<div class="question" id="org7a6f151">
+<div class="question" id="orgfddc365">
 <p>
 Define a procedure that takes three numbers as arguments and returns the sum of
 the squares of the two larger numbers.
@@ -163,14 +163,14 @@ the squares of the two larger numbers.
 </div>
 </div>
 
-<div id="outline-container-org38be213" class="outline-4">
-<h4 id="org38be213">Answer</h4>
-<div class="outline-text-4" id="text-org38be213">
+<div id="outline-container-org395f8eb" class="outline-4">
+<h4 id="org395f8eb">Answer</h4>
+<div class="outline-text-4" id="text-org395f8eb">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">largest-squares</span> x y z<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>+
-   <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>&gt; x y<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>square x<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>square y<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-   <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>&gt; y z<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>square y<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>square z<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">largest-squares</span> x y z<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>+
+   <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>&gt; x y<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>square x<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>square y<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+   <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>&gt; y z<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>square y<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>square z<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -180,7 +180,7 @@ the squares of the two larger numbers.
 <div id="outline-container-org1fa1c0a" class="outline-3">
 <h3 id="org1fa1c0a">1.4</h3>
 <div class="outline-text-3" id="text-org1fa1c0a">
-<div class="question" id="org43d1b45">
+<div class="question" id="orgde779fc">
 <p>
 Observe that our model of evaluation allows for combinations whose operators are
 compound expressions. Use this observation to describe the behavior of the
@@ -195,10 +195,10 @@ following procedure:
 </div>
 </div>
 
-<div id="outline-container-orga72db59" class="outline-4">
-<h4 id="orga72db59">Answer</h4>
-<div class="outline-text-4" id="text-orga72db59">
-<div class="textanswer" id="orgea50263">
+<div id="outline-container-orgdfa2993" class="outline-4">
+<h4 id="orgdfa2993">Answer</h4>
+<div class="outline-text-4" id="text-orgdfa2993">
+<div class="textanswer" id="org35942c1">
 <p>
 If b is greater than 0, add a to b.
 Otherwise, subtract b from a
@@ -211,7 +211,7 @@ Otherwise, subtract b from a
 <div id="outline-container-org0386767" class="outline-3">
 <h3 id="org0386767">1.5</h3>
 <div class="outline-text-3" id="text-org0386767">
-<div class="question" id="org2762ec0">
+<div class="question" id="orgc6353a9">
 <p>
 Ben Bitdiddle has invented a test to determine whether the interpreter he is
 faced with is using applicative-order evaluation or normal-order evaluation. He
@@ -249,10 +249,10 @@ determines whether to evaluate the consequent or the alternative expression.)
 </div>
 </div>
 
-<div id="outline-container-org56822b2" class="outline-4">
-<h4 id="org56822b2">Answer</h4>
-<div class="outline-text-4" id="text-org56822b2">
-<div class="question" id="orge8ec106">
+<div id="outline-container-org52ec25d" class="outline-4">
+<h4 id="org52ec25d">Answer</h4>
+<div class="outline-text-4" id="text-org52ec25d">
+<div class="question" id="orgacc9653">
 <p>
 An applicative order evaluator would never terminate. The value of `p&rsquo; is
 expanded prior to the logic of `test&rsquo; being applied.
@@ -270,7 +270,7 @@ expand `p&rsquo;
 <div id="outline-container-org5a40170" class="outline-3">
 <h3 id="org5a40170">1.6</h3>
 <div class="outline-text-3" id="text-org5a40170">
-<div class="question" id="org9959e08">
+<div class="question" id="orga9def6e">
 <p>
 Alyssa P. Hacker doesn&rsquo;t see why `if&rsquo; needs to be provided as a special form.
 &ldquo;Why can&rsquo;t I just define it as an ordinary procedure in terms of `cond&rsquo;?&rdquo; she
@@ -318,10 +318,10 @@ roots?  Explain.
 </div>
 </div>
 
-<div id="outline-container-orgd4c6683" class="outline-4">
-<h4 id="orgd4c6683">Answer</h4>
-<div class="outline-text-4" id="text-orgd4c6683">
-<div class="textanswer" id="org9be5f0a">
+<div id="outline-container-org171bcab" class="outline-4">
+<h4 id="org171bcab">Answer</h4>
+<div class="outline-text-4" id="text-org171bcab">
+<div class="textanswer" id="orgd680bce">
 <p>
 Any function supplied to `new-if&rsquo; will be applied, `sqrt-iter&rsquo; will thus infinitely loop.
 </p>
@@ -333,7 +333,7 @@ Any function supplied to `new-if&rsquo; will be applied, `sqrt-iter&rsquo; will 
 <div id="outline-container-org4429e5d" class="outline-3">
 <h3 id="org4429e5d">1.7</h3>
 <div class="outline-text-3" id="text-org4429e5d">
-<div class="question" id="org12c8325">
+<div class="question" id="org27f419f">
 <p>
 The `good-enough?&rsquo; test used in computing square roots will not be very
 effective for finding the square roots of very small numbers. Also, in real
@@ -354,15 +354,15 @@ numbers?
 </div>
 </div>
 
-<div id="outline-container-org1c1f3da" class="outline-4">
-<h4 id="org1c1f3da">Answer</h4>
-<div class="outline-text-4" id="text-org1c1f3da">
+<div id="outline-container-orgbf4d79d" class="outline-4">
+<h4 id="orgbf4d79d">Answer</h4>
+<div class="outline-text-4" id="text-orgbf4d79d">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">fix/sqrt-iter</span> guess last-guess x<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">let</span> <span style="color: #2d9574;">(</span><span style="color: #67b11d;">[</span>good-enough? <span style="color: #b1951d;">(</span>&lt; <span style="color: #3a81c3;">(</span>abs <span style="color: #6c3163;">(</span>- guess last-guess<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span> <span style="color: #4e3163;">0.001</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span>
-        <span style="color: #67b11d;">[</span>next-guess <span style="color: #b1951d;">(</span>average guess <span style="color: #3a81c3;">(</span>/ x guess<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> good-enough? guess
-        <span style="color: #67b11d;">(</span>fix/sqrt-iter next-guess guess x<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">fix/sqrt-iter</span> guess last-guess x<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">[</span>good-enough? <span style="color: #859900;">(</span>&lt; <span style="color: #b58900;">(</span>abs <span style="color: #268bd2;">(</span>- guess last-guess<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span> <span style="color: #6c71c4;">0.001</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span>
+        <span style="color: #6c71c4;">[</span>next-guess <span style="color: #859900;">(</span>average guess <span style="color: #b58900;">(</span>/ x guess<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> good-enough? guess
+        <span style="color: #6c71c4;">(</span>fix/sqrt-iter next-guess guess x<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -372,7 +372,7 @@ numbers?
 <div id="outline-container-orge8f36ca" class="outline-3">
 <h3 id="orge8f36ca">1.8</h3>
 <div class="outline-text-3" id="text-orge8f36ca">
-<div class="question" id="org226c26d">
+<div class="question" id="orgc6a192f">
 <p>
 Newton&rsquo;s method for cube roots is based on the fact that if y is an
 approximation to the cube root of x, then a better approximation is given
@@ -397,17 +397,17 @@ cube-root procedures.)
 </div>
 </div>
 
-<div id="outline-container-org0a1e570" class="outline-4">
-<h4 id="org0a1e570">Answer</h4>
-<div class="outline-text-4" id="text-org0a1e570">
+<div id="outline-container-org09faccf" class="outline-4">
+<h4 id="org09faccf">Answer</h4>
+<div class="outline-text-4" id="text-org09faccf">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.8/sqrt-iter</span> guess last-guess x<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">let</span> <span style="color: #2d9574;">(</span><span style="color: #67b11d;">[</span>good-enough? <span style="color: #b1951d;">(</span>&lt; <span style="color: #3a81c3;">(</span>abs <span style="color: #6c3163;">(</span>- guess last-guess<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span> <span style="color: #4e3163;">0.001</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span>
-        <span style="color: #67b11d;">[</span>next-guess <span style="color: #b1951d;">(</span>/ <span style="color: #3a81c3;">(</span>+ <span style="color: #6c3163;">(</span>/ x <span style="color: #2d9574;">(</span>square guess<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-                       <span style="color: #6c3163;">(</span>* <span style="color: #4e3163;">2</span> guess<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-                    <span style="color: #4e3163;">3</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> good-enough? guess
-        <span style="color: #67b11d;">(</span>fix/sqrt-iter next-guess guess x<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.8/sqrt-iter</span> guess last-guess x<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">[</span>good-enough? <span style="color: #859900;">(</span>&lt; <span style="color: #b58900;">(</span>abs <span style="color: #268bd2;">(</span>- guess last-guess<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span> <span style="color: #6c71c4;">0.001</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span>
+        <span style="color: #6c71c4;">[</span>next-guess <span style="color: #859900;">(</span>/ <span style="color: #b58900;">(</span>+ <span style="color: #268bd2;">(</span>/ x <span style="color: #6c71c4;">(</span>square guess<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+                       <span style="color: #268bd2;">(</span>* <span style="color: #6c71c4;">2</span> guess<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+                    <span style="color: #6c71c4;">3</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> good-enough? guess
+        <span style="color: #6c71c4;">(</span>fix/sqrt-iter next-guess guess x<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -417,7 +417,7 @@ cube-root procedures.)
 <div id="outline-container-orgf616be9" class="outline-3">
 <h3 id="orgf616be9">1.9</h3>
 <div class="outline-text-3" id="text-orgf616be9">
-<div class="question" id="orgc27151c">
+<div class="question" id="orgfece0aa">
 <p>
 Each of the following two procedures defines a method for adding two
 positive integers in terms of the procedures `inc&rsquo;, which increments its
@@ -447,10 +447,10 @@ recursive?
 </div>
 </div>
 
-<div id="outline-container-org958150c" class="outline-4">
-<h4 id="org958150c">Answer</h4>
-<div class="outline-text-4" id="text-org958150c">
-<div class="textanswer" id="org53d23be">
+<div id="outline-container-org68762e8" class="outline-4">
+<h4 id="org68762e8">Answer</h4>
+<div class="outline-text-4" id="text-org68762e8">
+<div class="textanswer" id="org77e25b3">
 <p>
 
 </p>
@@ -517,7 +517,7 @@ trace: |  9
 <div id="outline-container-orgc7818bd" class="outline-3">
 <h3 id="orgc7818bd">1.10</h3>
 <div class="outline-text-3" id="text-orgc7818bd">
-<div class="question" id="org2f18b2e">
+<div class="question" id="orgfb7d362">
 <p>
 The following procedure computes a mathematical function called Ackermann&rsquo;s
 function.
@@ -562,10 +562,10 @@ computes 5n<sup>2</sup>.
 </div>
 </div>
 
-<div id="outline-container-orgb4a4ded" class="outline-4">
-<h4 id="orgb4a4ded">Answer</h4>
-<div class="outline-text-4" id="text-orgb4a4ded">
-<div class="question" id="orgc77d1de">
+<div id="outline-container-org8507263" class="outline-4">
+<h4 id="org8507263">Answer</h4>
+<div class="outline-text-4" id="text-org8507263">
+<div class="question" id="org66c8736">
 <p>
 
 </p>
@@ -639,7 +639,7 @@ The functions described can be simplified as follows:
 <div id="outline-container-orgf1f5ac4" class="outline-3">
 <h3 id="orgf1f5ac4">1.11</h3>
 <div class="outline-text-3" id="text-orgf1f5ac4">
-<div class="question" id="org7105286">
+<div class="question" id="org4f05ba4">
 <p>
 A function f is defined by the rule that
 </p>
@@ -664,24 +664,24 @@ Write a procedure that computes f by means of an iterative process.
 </div>
 </div>
 
-<div id="outline-container-org535bf1b" class="outline-4">
-<h4 id="org535bf1b">Answer</h4>
-<div class="outline-text-4" id="text-org535bf1b">
+<div id="outline-container-org9445944" class="outline-4">
+<h4 id="org9445944">Answer</h4>
+<div class="outline-text-4" id="text-org9445944">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">rule1.11/recursive</span> n<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #2d9574;">(</span>&lt; n <span style="color: #4e3163;">3</span><span style="color: #2d9574;">)</span> n
-      <span style="color: #2d9574;">(</span>+ <span style="color: #67b11d;">(</span>rule1.11/recursive <span style="color: #b1951d;">(</span>- n <span style="color: #4e3163;">1</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
-         <span style="color: #67b11d;">(</span>* <span style="color: #4e3163;">2</span> <span style="color: #b1951d;">(</span>rule1.11/recursive <span style="color: #3a81c3;">(</span>- n <span style="color: #4e3163;">2</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
-         <span style="color: #67b11d;">(</span>* <span style="color: #4e3163;">3</span> <span style="color: #b1951d;">(</span>rule1.11/recursive <span style="color: #3a81c3;">(</span>- n <span style="color: #4e3163;">3</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">rule1.11/recursive</span> n<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>&lt; n <span style="color: #6c71c4;">3</span><span style="color: #268bd2;">)</span> n
+      <span style="color: #268bd2;">(</span>+ <span style="color: #6c71c4;">(</span>rule1.11/recursive <span style="color: #859900;">(</span>- n <span style="color: #6c71c4;">1</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+         <span style="color: #6c71c4;">(</span>* <span style="color: #6c71c4;">2</span> <span style="color: #859900;">(</span>rule1.11/recursive <span style="color: #b58900;">(</span>- n <span style="color: #6c71c4;">2</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+         <span style="color: #6c71c4;">(</span>* <span style="color: #6c71c4;">3</span> <span style="color: #859900;">(</span>rule1.11/recursive <span style="color: #b58900;">(</span>- n <span style="color: #6c71c4;">3</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">rule1.11/iterative</span> n<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">driver</span> count a b c<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>= count n<span style="color: #67b11d;">)</span> c
-        <span style="color: #67b11d;">(</span>driver <span style="color: #b1951d;">(</span>+ count <span style="color: #4e3163;">1</span><span style="color: #b1951d;">)</span>
-                       <span style="color: #b1951d;">(</span>+ a <span style="color: #3a81c3;">(</span>* <span style="color: #4e3163;">2</span> b<span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>* <span style="color: #4e3163;">3</span> c<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">rule1.11/iterative</span> n<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">driver</span> count a b c<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>= count n<span style="color: #6c71c4;">)</span> c
+        <span style="color: #6c71c4;">(</span>driver <span style="color: #859900;">(</span>+ count <span style="color: #6c71c4;">1</span><span style="color: #859900;">)</span>
+                       <span style="color: #859900;">(</span>+ a <span style="color: #b58900;">(</span>* <span style="color: #6c71c4;">2</span> b<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>* <span style="color: #6c71c4;">3</span> c<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
                        a
-                       b<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>driver <span style="color: #4e3163;">0</span> <span style="color: #4e3163;">2</span> <span style="color: #4e3163;">1</span> <span style="color: #4e3163;">0</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+                       b<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>driver <span style="color: #6c71c4;">0</span> <span style="color: #6c71c4;">2</span> <span style="color: #6c71c4;">1</span> <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -691,7 +691,7 @@ Write a procedure that computes f by means of an iterative process.
 <div id="outline-container-org311bb22" class="outline-3">
 <h3 id="org311bb22">1.12</h3>
 <div class="outline-text-3" id="text-org311bb22">
-<div class="question" id="orgc45e490">
+<div class="question" id="org9f12f1e">
 <p>
 The following pattern of numbers is called &ldquo;Pascal&rsquo;s triangle&rdquo;.
 </p>
@@ -713,29 +713,29 @@ computes elements of Pascal&rsquo;s triangle by means of a recursive process.
 </div>
 </div>
 
-<div id="outline-container-orga472696" class="outline-4">
-<h4 id="orga472696">Answer</h4>
-<div class="outline-text-4" id="text-orga472696">
+<div id="outline-container-org64c6b4c" class="outline-4">
+<h4 id="org64c6b4c">Answer</h4>
+<div class="outline-text-4" id="text-org64c6b4c">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">pascals-triangle</span> depth<span style="color: #6c3163;">)</span>
-  <span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">`build-entry' doesn't memoize the finding of each number. You could do</span>
-  <span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">so either here or with more changes to `build-row'.</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">build-entry</span> rows col<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span>
-     <span style="color: #67b11d;">[</span><span style="color: #b1951d;">(</span><span style="color: #3a81c3; font-weight: bold;">and</span> <span style="color: #3a81c3;">(</span>= rows <span style="color: #4e3163;">0</span><span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>= col <span style="color: #4e3163;">0</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span> <span style="color: #4e3163;">1</span><span style="color: #67b11d;">]</span>
-     <span style="color: #67b11d;">[</span><span style="color: #b1951d;">(</span><span style="color: #3a81c3; font-weight: bold;">or</span> <span style="color: #3a81c3;">(</span>&lt; col <span style="color: #4e3163;">0</span><span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>&lt; rows col<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span> <span style="color: #4e3163;">0</span><span style="color: #67b11d;">]</span>
-     <span style="color: #67b11d;">[</span>else <span style="color: #b1951d;">(</span>+ <span style="color: #3a81c3;">(</span>build-entry <span style="color: #6c3163;">(</span>- rows <span style="color: #4e3163;">1</span><span style="color: #6c3163;">)</span> <span style="color: #6c3163;">(</span>- col <span style="color: #4e3163;">1</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-              <span style="color: #3a81c3;">(</span>build-entry <span style="color: #6c3163;">(</span>- rows <span style="color: #4e3163;">1</span><span style="color: #6c3163;">)</span> col<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">pascals-triangle</span> depth<span style="color: #b58900;">)</span>
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">`build-entry' doesn't memoize the finding of each number. You could do</span>
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">so either here or with more changes to `build-row'.</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">build-entry</span> rows col<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">cond</span>
+     <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">and</span> <span style="color: #b58900;">(</span>= rows <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>= col <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span> <span style="color: #6c71c4;">1</span><span style="color: #6c71c4;">]</span>
+     <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">or</span> <span style="color: #b58900;">(</span>&lt; col <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>&lt; rows col<span style="color: #b58900;">)</span><span style="color: #859900;">)</span> <span style="color: #6c71c4;">0</span><span style="color: #6c71c4;">]</span>
+     <span style="color: #6c71c4;">[</span>else <span style="color: #859900;">(</span>+ <span style="color: #b58900;">(</span>build-entry <span style="color: #268bd2;">(</span>- rows <span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>- col <span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+              <span style="color: #b58900;">(</span>build-entry <span style="color: #268bd2;">(</span>- rows <span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span> col<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
 
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">build-row</span> ctr length<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>= ctr <span style="color: #b1951d;">(</span>1+ length<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span> '<span style="color: #67b11d;">()</span>
-        <span style="color: #67b11d;">(</span>cons <span style="color: #b1951d;">(</span>build-entry length ctr<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>build-row <span style="color: #3a81c3;">(</span>+ ctr <span style="color: #4e3163;">1</span><span style="color: #3a81c3;">)</span> length<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">build-row</span> ctr length<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>= ctr <span style="color: #859900;">(</span>1+ length<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span> '<span style="color: #6c71c4;">()</span>
+        <span style="color: #6c71c4;">(</span>cons <span style="color: #859900;">(</span>build-entry length ctr<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>build-row <span style="color: #b58900;">(</span>+ ctr <span style="color: #6c71c4;">1</span><span style="color: #b58900;">)</span> length<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
 
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">build</span> n<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>= n depth<span style="color: #67b11d;">)</span> '<span style="color: #67b11d;">()</span>
-        <span style="color: #67b11d;">(</span>cons <span style="color: #b1951d;">(</span>build-row <span style="color: #4e3163;">0</span> n<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>build <span style="color: #3a81c3;">(</span>1+ n<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">build</span> n<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>= n depth<span style="color: #6c71c4;">)</span> '<span style="color: #6c71c4;">()</span>
+        <span style="color: #6c71c4;">(</span>cons <span style="color: #859900;">(</span>build-row <span style="color: #6c71c4;">0</span> n<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>build <span style="color: #b58900;">(</span>1+ n<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
 
-  <span style="color: #6c3163;">(</span>build <span style="color: #4e3163;">0</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+  <span style="color: #b58900;">(</span>build <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -746,14 +746,14 @@ computes elements of Pascal&rsquo;s triangle by means of a recursive process.
 <h3 id="orge60a48c">1.13</h3>
 <div class="outline-text-3" id="text-orge60a48c">
 </div>
-<div id="outline-container-orgda156ca" class="outline-4">
-<h4 id="orgda156ca">Answer</h4>
+<div id="outline-container-org2c42110" class="outline-4">
+<h4 id="org2c42110">Answer</h4>
 </div>
 </div>
 <div id="outline-container-org115d22e" class="outline-3">
 <h3 id="org115d22e">1.14</h3>
 <div class="outline-text-3" id="text-org115d22e">
-<div class="question" id="org46cad6f">
+<div class="question" id="orge8adc42">
 <p>
 Draw the tree illustrating the process generated by the `count-change&rsquo;
 procedure of section *Note 1.2.2 in making change for 11 cents. What are
@@ -764,10 +764,10 @@ as the amount to be changed increases?
 </div>
 </div>
 
-<div id="outline-container-org7678a56" class="outline-4">
-<h4 id="org7678a56">Answer</h4>
-<div class="outline-text-4" id="text-org7678a56">
-<div class="textanswer" id="org048edac">
+<div id="outline-container-org2e48b28" class="outline-4">
+<h4 id="org2e48b28">Answer</h4>
+<div class="outline-text-4" id="text-org2e48b28">
+<div class="textanswer" id="org1c3a2e4">
 <p>
 trace: (count-change 11)
 trace: (cc 11 5)
@@ -944,7 +944,7 @@ trace: 4
 <div id="outline-container-org37c5b29" class="outline-3">
 <h3 id="org37c5b29">1.15</h3>
 <div class="outline-text-3" id="text-org37c5b29">
-<div class="question" id="org46bf2b6">
+<div class="question" id="orge3a0d62">
 <p>
 The sine of an angle (specified in radians) can be computed by making use
 of the approximation `sin&rsquo; xapprox x if x is sufficiently small, and the
@@ -993,10 +993,10 @@ is evaluated?
 </div>
 </div>
 
-<div id="outline-container-org9029261" class="outline-4">
-<h4 id="org9029261">Answer</h4>
-<div class="outline-text-4" id="text-org9029261">
-<div class="textanswer" id="org3dc6bb6">
+<div id="outline-container-orgb8604bd" class="outline-4">
+<h4 id="orgb8604bd">Answer</h4>
+<div class="outline-text-4" id="text-orgb8604bd">
+<div class="textanswer" id="org72d20ea">
 <p>
 a. The procedure is evaluated 5 times
 b. The order of growth is O(log(n))
@@ -1009,7 +1009,7 @@ b. The order of growth is O(log(n))
 <div id="outline-container-org6d17f5f" class="outline-3">
 <h3 id="org6d17f5f">1.16</h3>
 <div class="outline-text-3" id="text-org6d17f5f">
-<div class="question" id="orgfa5daad">
+<div class="question" id="org53e1d57">
 <p>
 Design a procedure that evolves an iterative exponentiation process that
 uses successive squaring and uses a logarithmic number of steps, as does
@@ -1030,15 +1030,15 @@ of iterative algorithms.)
 </div>
 </div>
 
-<div id="outline-container-orgb1b6ff2" class="outline-4">
-<h4 id="orgb1b6ff2">Answer</h4>
-<div class="outline-text-4" id="text-orgb1b6ff2">
+<div id="outline-container-org38be689" class="outline-4">
+<h4 id="org38be689">Answer</h4>
+<div class="outline-text-4" id="text-org38be689">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">zv/expt-iter</span> b n a<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span>
-   <span style="color: #2d9574;">[</span><span style="color: #67b11d;">(</span>= n <span style="color: #4e3163;">0</span><span style="color: #67b11d;">)</span> a<span style="color: #2d9574;">]</span>
-   <span style="color: #2d9574;">[</span><span style="color: #67b11d;">(</span>even? n<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>zv/expt-iter <span style="color: #b1951d;">(</span>* b b<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>/ n <span style="color: #4e3163;">2</span><span style="color: #b1951d;">)</span> a<span style="color: #67b11d;">)</span><span style="color: #2d9574;">]</span>
-   <span style="color: #2d9574;">[</span>else      <span style="color: #67b11d;">(</span>zv/expt-iter  b <span style="color: #b1951d;">(</span>- n <span style="color: #4e3163;">1</span><span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>* a b<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">]</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">zv/expt-iter</span> b n a<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span>
+   <span style="color: #268bd2;">[</span><span style="color: #6c71c4;">(</span>= n <span style="color: #6c71c4;">0</span><span style="color: #6c71c4;">)</span> a<span style="color: #268bd2;">]</span>
+   <span style="color: #268bd2;">[</span><span style="color: #6c71c4;">(</span>even? n<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>zv/expt-iter <span style="color: #859900;">(</span>* b b<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>/ n <span style="color: #6c71c4;">2</span><span style="color: #859900;">)</span> a<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">]</span>
+   <span style="color: #268bd2;">[</span>else      <span style="color: #6c71c4;">(</span>zv/expt-iter  b <span style="color: #859900;">(</span>- n <span style="color: #6c71c4;">1</span><span style="color: #859900;">)</span> <span style="color: #859900;">(</span>* a b<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">]</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -1048,7 +1048,7 @@ of iterative algorithms.)
 <div id="outline-container-org950df1c" class="outline-3">
 <h3 id="org950df1c">1.17</h3>
 <div class="outline-text-3" id="text-org950df1c">
-<div class="question" id="org07775d4">
+<div class="question" id="orgc608d9c">
 <p>
 The exponentiation algorithms in this section are based on performing
 exponentiation by means of repeated multiplication. In a similar way, one
@@ -1075,16 +1075,16 @@ logarithmic number of steps.
 </div>
 </div>
 
-<div id="outline-container-org0ec6e49" class="outline-4">
-<h4 id="org0ec6e49">Answer</h4>
-<div class="outline-text-4" id="text-org0ec6e49">
+<div id="outline-container-org835d90a" class="outline-4">
+<h4 id="org835d90a">Answer</h4>
+<div class="outline-text-4" id="text-org835d90a">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.17/fast-*</span> a b<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">double</span> x<span style="color: #2d9574;">)</span> <span style="color: #2d9574;">(</span>+ x x<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">halve</span> x<span style="color: #2d9574;">)</span> <span style="color: #2d9574;">(</span>/ x <span style="color: #4e3163;">2</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span>= b <span style="color: #4e3163;">0</span><span style="color: #67b11d;">)</span> <span style="color: #4e3163;">0</span><span style="color: #2d9574;">)</span>
-        <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span>even? b<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>double <span style="color: #b1951d;">(</span>* a <span style="color: #3a81c3;">(</span>halve b<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-        <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">else</span> <span style="color: #67b11d;">(</span>+ a <span style="color: #b1951d;">(</span>* a <span style="color: #3a81c3;">(</span>- b <span style="color: #4e3163;">1</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.17/fast-*</span> a b<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">double</span> x<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>+ x x<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">halve</span> x<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>/ x <span style="color: #6c71c4;">2</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>= b <span style="color: #6c71c4;">0</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">0</span><span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>even? b<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>double <span style="color: #859900;">(</span>* a <span style="color: #b58900;">(</span>halve b<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">else</span> <span style="color: #6c71c4;">(</span>+ a <span style="color: #859900;">(</span>* a <span style="color: #b58900;">(</span>- b <span style="color: #6c71c4;">1</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -1095,14 +1095,14 @@ logarithmic number of steps.
 <h3 id="org94702f6">1.18</h3>
 <div class="outline-text-3" id="text-org94702f6">
 </div>
-<div id="outline-container-orgcceaaf7" class="outline-4">
-<h4 id="orgcceaaf7">Answer</h4>
+<div id="outline-container-orgf3e90b8" class="outline-4">
+<h4 id="orgf3e90b8">Answer</h4>
 </div>
 </div>
 <div id="outline-container-orgcfdcc75" class="outline-3">
 <h3 id="orgcfdcc75">1.19</h3>
 <div class="outline-text-3" id="text-orgcfdcc75">
-<div class="question" id="org7a3abf5">
+<div class="question" id="org24312a9">
 <p>
 There is a clever algorithm for computing the Fibonacci numbers in a
 logarithmic number of steps. Recall the transformation of the state
@@ -1135,27 +1135,27 @@ logarithmic number of steps:
 </div>
 </div>
 
-<div id="outline-container-org3153297" class="outline-4">
-<h4 id="org3153297">Answer</h4>
-<div class="outline-text-4" id="text-org3153297">
+<div id="outline-container-org2e5b88d" class="outline-4">
+<h4 id="org2e5b88d">Answer</h4>
+<div class="outline-text-4" id="text-org2e5b88d">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.19/fib</span> n<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>1.19/fib-iter <span style="color: #4e3163;">1</span> <span style="color: #4e3163;">0</span> <span style="color: #4e3163;">0</span> <span style="color: #4e3163;">1</span> n<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.19/fib</span> n<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>1.19/fib-iter <span style="color: #6c71c4;">1</span> <span style="color: #6c71c4;">0</span> <span style="color: #6c71c4;">0</span> <span style="color: #6c71c4;">1</span> n<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.19/fib-iter</span> a b p q count<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span>= count <span style="color: #4e3163;">0</span><span style="color: #67b11d;">)</span> b<span style="color: #2d9574;">)</span>
-        <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span>even? count<span style="color: #67b11d;">)</span>
-         <span style="color: #67b11d;">(</span>1.19/fib-iter a
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.19/fib-iter</span> a b p q count<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>= count <span style="color: #6c71c4;">0</span><span style="color: #6c71c4;">)</span> b<span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>even? count<span style="color: #6c71c4;">)</span>
+         <span style="color: #6c71c4;">(</span>1.19/fib-iter a
                    b
-                   <span style="color: #b1951d;">(</span>+ <span style="color: #3a81c3;">(</span>square p<span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>square q<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span> <span style="color: #2aa1ae; background-color: #ecf3ec;">; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">compute p'</span>
-                   <span style="color: #b1951d;">(</span>+ <span style="color: #3a81c3;">(</span>* <span style="color: #4e3163;">2</span> p q<span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>square q<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>  <span style="color: #2aa1ae; background-color: #ecf3ec;">; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">compute q'</span>
-                   <span style="color: #b1951d;">(</span>/ count <span style="color: #4e3163;">2</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-        <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">else</span> <span style="color: #67b11d;">(</span>1.19/fib-iter <span style="color: #b1951d;">(</span>+ <span style="color: #3a81c3;">(</span>* b q<span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>* a q<span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>* a p<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-                        <span style="color: #b1951d;">(</span>+ <span style="color: #3a81c3;">(</span>* b p<span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>* a q<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
+                   <span style="color: #859900;">(</span>+ <span style="color: #b58900;">(</span>square p<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>square q<span style="color: #b58900;">)</span><span style="color: #859900;">)</span> <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">compute p'</span>
+                   <span style="color: #859900;">(</span>+ <span style="color: #b58900;">(</span>* <span style="color: #6c71c4;">2</span> p q<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>square q<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>  <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">compute q'</span>
+                   <span style="color: #859900;">(</span>/ count <span style="color: #6c71c4;">2</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">else</span> <span style="color: #6c71c4;">(</span>1.19/fib-iter <span style="color: #859900;">(</span>+ <span style="color: #b58900;">(</span>* b q<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>* a q<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>* a p<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+                        <span style="color: #859900;">(</span>+ <span style="color: #b58900;">(</span>* b p<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>* a q<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
                         p
                         q
-                        <span style="color: #b1951d;">(</span>- count <span style="color: #4e3163;">1</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #dc752f;">TODO</span><span style="color: #2aa1ae; background-color: #ecf3ec;"> </span><span style="color: #dc752f;">XXX</span><span style="color: #2aa1ae; background-color: #ecf3ec;"> write test</span>
+                        <span style="color: #859900;">(</span>- count <span style="color: #6c71c4;">1</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #93a1a1;">;; </span><span style="color: #cc9393;">TODO</span><span style="color: #93a1a1;"> </span><span style="color: #cc9393;">XXX</span><span style="color: #93a1a1;"> write test</span>
 
 </pre>
 </div>
@@ -1165,7 +1165,7 @@ logarithmic number of steps:
 <div id="outline-container-org1970a30" class="outline-3">
 <h3 id="org1970a30">1.20</h3>
 <div class="outline-text-3" id="text-org1970a30">
-<div class="question" id="org40f4b9e">
+<div class="question" id="orgd01abb6">
 <p>
 The process that a procedure generates is of course dependent on the rules
 used by the interpreter. As an quote, consider the iterative `gcd&rsquo;
@@ -1182,10 +1182,10 @@ applicative-order evaluation?
 </div>
 </div>
 
-<div id="outline-container-org8571b1f" class="outline-4">
-<h4 id="org8571b1f">Answer</h4>
-<div class="outline-text-4" id="text-org8571b1f">
-<div class="textanswer" id="org68710dd">
+<div id="outline-container-org20cd295" class="outline-4">
+<h4 id="org20cd295">Answer</h4>
+<div class="outline-text-4" id="text-org20cd295">
+<div class="textanswer" id="org03fb1b9">
 <p>
 Performs 18 `remainder&rsquo; operations
 </p>
@@ -1197,7 +1197,7 @@ Performs 18 `remainder&rsquo; operations
 <div id="outline-container-orgbcc0c23" class="outline-3">
 <h3 id="orgbcc0c23">1.21</h3>
 <div class="outline-text-3" id="text-orgbcc0c23">
-<div class="question" id="org0abb864">
+<div class="question" id="org79098c3">
 <p>
 Use the smallest-divisor procedure to find the smallest divisor of each of
 the following numbers: 199, 1999, 19999.
@@ -1206,23 +1206,23 @@ the following numbers: 199, 1999, 19999.
 </div>
 </div>
 
-<div id="outline-container-orgf2bb9e8" class="outline-4">
-<h4 id="orgf2bb9e8">Answer</h4>
-<div class="outline-text-4" id="text-orgf2bb9e8">
+<div id="outline-container-orgbacb2b2" class="outline-4">
+<h4 id="orgbacb2b2">Answer</h4>
+<div class="outline-text-4" id="text-orgbacb2b2">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">divides?</span> a b<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>= <span style="color: #2d9574;">(</span>remainder b a<span style="color: #2d9574;">)</span> <span style="color: #4e3163;">0</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">divides?</span> a b<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>= <span style="color: #268bd2;">(</span>remainder b a<span style="color: #268bd2;">)</span> <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">find-divisor</span> n test-divisor<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span>&gt; <span style="color: #b1951d;">(</span>square test-divisor<span style="color: #b1951d;">)</span> n<span style="color: #67b11d;">)</span> n<span style="color: #2d9574;">)</span>
-        <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span>divides? test-divisor n<span style="color: #67b11d;">)</span> test-divisor<span style="color: #2d9574;">)</span>
-        <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">else</span> <span style="color: #67b11d;">(</span>find-divisor n <span style="color: #b1951d;">(</span>+ test-divisor <span style="color: #4e3163;">1</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">find-divisor</span> n test-divisor<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>&gt; <span style="color: #859900;">(</span>square test-divisor<span style="color: #859900;">)</span> n<span style="color: #6c71c4;">)</span> n<span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>divides? test-divisor n<span style="color: #6c71c4;">)</span> test-divisor<span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">else</span> <span style="color: #6c71c4;">(</span>find-divisor n <span style="color: #859900;">(</span>+ test-divisor <span style="color: #6c71c4;">1</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">smallest-divisor</span> n<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>find-divisor n <span style="color: #4e3163;">2</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">smallest-divisor</span> n<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>find-divisor n <span style="color: #6c71c4;">2</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #dc752f;">TODO</span><span style="color: #2aa1ae; background-color: #ecf3ec;"> </span><span style="color: #dc752f;">XXX</span><span style="color: #2aa1ae; background-color: #ecf3ec;"> write test</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">(format #f "~a" (for-each smallest-divisor '(199 1999 1999)))</span>
+<span style="color: #93a1a1;">;; </span><span style="color: #cc9393;">TODO</span><span style="color: #93a1a1;"> </span><span style="color: #cc9393;">XXX</span><span style="color: #93a1a1;"> write test</span>
+<span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">(format #f "~a" (for-each smallest-divisor '(199 1999 1999)))</span>
 
 </pre>
 </div>
@@ -1232,7 +1232,7 @@ the following numbers: 199, 1999, 19999.
 <div id="outline-container-org28a78ec" class="outline-3">
 <h3 id="org28a78ec">1.22</h3>
 <div class="outline-text-3" id="text-org28a78ec">
-<div class="question" id="orgfda3a12">
+<div class="question" id="orgb6dbcf7">
 <p>
 Most Lisp implementations include a primitive called `runtime&rsquo; that returns
 an integer that specifies the amount of time the system has been running
@@ -1276,40 +1276,40 @@ proportional to the number of steps required for the computation?
 </div>
 </div>
 
-<div id="outline-container-orgfbdb053" class="outline-4">
-<h4 id="orgfbdb053">Answer</h4>
-<div class="outline-text-4" id="text-orgfbdb053">
+<div id="outline-container-org1a543d1" class="outline-4">
+<h4 id="org1a543d1">Answer</h4>
+<div class="outline-text-4" id="text-org1a543d1">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">prime?</span> n<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>= n <span style="color: #2d9574;">(</span>smallest-divisor n<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">prime?</span> n<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>= n <span style="color: #268bd2;">(</span>smallest-divisor n<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">expmod</span> base exp m<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span>= exp <span style="color: #4e3163;">0</span><span style="color: #67b11d;">)</span> <span style="color: #4e3163;">1</span><span style="color: #2d9574;">)</span>
-        <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span>even? exp<span style="color: #67b11d;">)</span>
-         <span style="color: #67b11d;">(</span>remainder
-          <span style="color: #b1951d;">(</span>square <span style="color: #3a81c3;">(</span>expmod base <span style="color: #6c3163;">(</span>/ exp <span style="color: #4e3163;">2</span><span style="color: #6c3163;">)</span> m<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-          m<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-        <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">else</span>
-         <span style="color: #67b11d;">(</span>remainder
-          <span style="color: #b1951d;">(</span>* base <span style="color: #3a81c3;">(</span>expmod base <span style="color: #6c3163;">(</span>- exp <span style="color: #4e3163;">1</span><span style="color: #6c3163;">)</span> m<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-          m<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">expmod</span> base exp m<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>= exp <span style="color: #6c71c4;">0</span><span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>even? exp<span style="color: #6c71c4;">)</span>
+         <span style="color: #6c71c4;">(</span>remainder
+          <span style="color: #859900;">(</span>square <span style="color: #b58900;">(</span>expmod base <span style="color: #268bd2;">(</span>/ exp <span style="color: #6c71c4;">2</span><span style="color: #268bd2;">)</span> m<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+          m<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">else</span>
+         <span style="color: #6c71c4;">(</span>remainder
+          <span style="color: #859900;">(</span>* base <span style="color: #b58900;">(</span>expmod base <span style="color: #268bd2;">(</span>- exp <span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span> m<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+          m<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">search-for-primes</span> start<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">is-prime?</span> n<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span>
-     <span style="color: #67b11d;">[</span><span style="color: #b1951d;">(</span>even? n<span style="color: #b1951d;">)</span> #f<span style="color: #67b11d;">]</span>
-     <span style="color: #67b11d;">[</span><span style="color: #b1951d;">(</span>&lt; n <span style="color: #4e3163;">0</span><span style="color: #b1951d;">)</span> #f<span style="color: #67b11d;">]</span>
-     <span style="color: #67b11d;">[</span><span style="color: #b1951d;">(</span>timed-prime-test n<span style="color: #b1951d;">)</span> #t<span style="color: #67b11d;">]</span>
-     <span style="color: #67b11d;">[</span>else <span style="color: #b1951d;">(</span>is-prime? <span style="color: #3a81c3;">(</span>- n <span style="color: #4e3163;">2</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">search-for-primes</span> start<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">is-prime?</span> n<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">cond</span>
+     <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span>even? n<span style="color: #859900;">)</span> #f<span style="color: #6c71c4;">]</span>
+     <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span>&lt; n <span style="color: #6c71c4;">0</span><span style="color: #859900;">)</span> #f<span style="color: #6c71c4;">]</span>
+     <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span>timed-prime-test n<span style="color: #859900;">)</span> #t<span style="color: #6c71c4;">]</span>
+     <span style="color: #6c71c4;">[</span>else <span style="color: #859900;">(</span>is-prime? <span style="color: #b58900;">(</span>- n <span style="color: #6c71c4;">2</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
 
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">driver</span> n primes count<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span>
-     <span style="color: #67b11d;">[</span><span style="color: #b1951d;">(</span>even? n<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>driver <span style="color: #3a81c3;">(</span>+ n <span style="color: #4e3163;">1</span><span style="color: #3a81c3;">)</span> primes count<span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span>
-     <span style="color: #67b11d;">[</span><span style="color: #b1951d;">(</span>= count <span style="color: #4e3163;">3</span><span style="color: #b1951d;">)</span> primes<span style="color: #67b11d;">]</span>
-     <span style="color: #67b11d;">[</span><span style="color: #b1951d;">(</span>is-prime? n<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>driver <span style="color: #3a81c3;">(</span>+ n <span style="color: #4e3163;">2</span><span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>cons n primes<span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>+ count <span style="color: #4e3163;">1</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span>
-     <span style="color: #67b11d;">[</span>else <span style="color: #b1951d;">(</span>driver <span style="color: #3a81c3;">(</span>+ n <span style="color: #4e3163;">2</span><span style="color: #3a81c3;">)</span> primes count<span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">driver</span> n primes count<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">cond</span>
+     <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span>even? n<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>driver <span style="color: #b58900;">(</span>+ n <span style="color: #6c71c4;">1</span><span style="color: #b58900;">)</span> primes count<span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span>
+     <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span>= count <span style="color: #6c71c4;">3</span><span style="color: #859900;">)</span> primes<span style="color: #6c71c4;">]</span>
+     <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span>is-prime? n<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>driver <span style="color: #b58900;">(</span>+ n <span style="color: #6c71c4;">2</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>cons n primes<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>+ count <span style="color: #6c71c4;">1</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span>
+     <span style="color: #6c71c4;">[</span>else <span style="color: #859900;">(</span>driver <span style="color: #b58900;">(</span>+ n <span style="color: #6c71c4;">2</span><span style="color: #b58900;">)</span> primes count<span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
 
-  <span style="color: #6c3163;">(</span>driver start '<span style="color: #2d9574;">()</span> <span style="color: #4e3163;">0</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+  <span style="color: #b58900;">(</span>driver start '<span style="color: #268bd2;">()</span> <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -1318,7 +1318,7 @@ proportional to the number of steps required for the computation?
 <div id="outline-container-org1929719" class="outline-3">
 <h3 id="org1929719">1.23</h3>
 <div class="outline-text-3" id="text-org1929719">
-<div class="question" id="org8bb499f">
+<div class="question" id="orgd8f1bd0">
 <p>
 The `smallest-divisor&rsquo; procedure shown at the start of this section does
 lots of needless testing: After it checks to see if the number is divisible
@@ -1339,11 +1339,11 @@ explain the fact that it is different from 2?
 </div>
 </div>
 
-<div id="outline-container-orgd68881d" class="outline-4">
-<h4 id="orgd68881d">Answer</h4>
-<div class="outline-text-4" id="text-orgd68881d">
+<div id="outline-container-orgc38af0e" class="outline-4">
+<h4 id="orgc38af0e">Answer</h4>
+<div class="outline-text-4" id="text-orgc38af0e">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.23/next</span> n<span style="color: #6c3163;">)</span> <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #2d9574;">(</span>= n <span style="color: #4e3163;">2</span><span style="color: #2d9574;">)</span> <span style="color: #4e3163;">3</span> <span style="color: #2d9574;">(</span>+ n <span style="color: #4e3163;">2</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.23/next</span> n<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>= n <span style="color: #6c71c4;">2</span><span style="color: #268bd2;">)</span> <span style="color: #6c71c4;">3</span> <span style="color: #268bd2;">(</span>+ n <span style="color: #6c71c4;">2</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -1354,14 +1354,14 @@ explain the fact that it is different from 2?
 <h3 id="orgf8283d7">1.24</h3>
 <div class="outline-text-3" id="text-orgf8283d7">
 </div>
-<div id="outline-container-org4dae028" class="outline-4">
-<h4 id="org4dae028">Answer</h4>
+<div id="outline-container-orgce276c3" class="outline-4">
+<h4 id="orgce276c3">Answer</h4>
 </div>
 </div>
 <div id="outline-container-org9065e84" class="outline-3">
 <h3 id="org9065e84">1.25</h3>
 <div class="outline-text-3" id="text-org9065e84">
-<div class="question" id="orgf7eafb6">
+<div class="question" id="org794a1dd">
 <p>
 Alyssa P. Hacker complains that we went to a lot of extra work in writing
 `expmod&rsquo;. After all, she says, since we already know how to compute
@@ -1381,10 +1381,10 @@ tester? Explain.
 </div>
 </div>
 
-<div id="outline-container-orgc7e7ab7" class="outline-4">
-<h4 id="orgc7e7ab7">Answer</h4>
-<div class="outline-text-4" id="text-orgc7e7ab7">
-<div class="textanswer" id="org79781a0">
+<div id="outline-container-orgcb567f5" class="outline-4">
+<h4 id="orgcb567f5">Answer</h4>
+<div class="outline-text-4" id="text-orgcb567f5">
+<div class="textanswer" id="orgfbbb552">
 <p>
 Depending on the behavior of large values of `base&rsquo; and `exp&rsquo; combined with
 the system&rsquo;s handling of large numbers, it is either a middling gain or an
@@ -1397,7 +1397,7 @@ the system&rsquo;s handling of large numbers, it is either a middling gain or an
 <div id="outline-container-org7449784" class="outline-3">
 <h3 id="org7449784">1.26</h3>
 <div class="outline-text-3" id="text-org7449784">
-<div class="question" id="org87f9285">
+<div class="question" id="org63aabc2">
 <p>
 Louis Reasoner is having great difficulty doing *Note Exercise 1.24. His
 `fast-prime?&rsquo; test seems to run more slowly than his `prime?&rsquo; test. Louis
@@ -1427,10 +1427,10 @@ says Eva. &ldquo;By writing the procedure like that, you have transformed the
 </div>
 </div>
 
-<div id="outline-container-orgf73a53c" class="outline-4">
-<h4 id="orgf73a53c">Answer</h4>
-<div class="outline-text-4" id="text-orgf73a53c">
-<div class="textanswer" id="orga644340">
+<div id="outline-container-orgb45e2e2" class="outline-4">
+<h4 id="orgb45e2e2">Answer</h4>
+<div class="outline-text-4" id="text-orgb45e2e2">
+<div class="textanswer" id="org177ef26">
 <p>
 Assuming the computer doesn&rsquo;t perform any sort of sophisticated
 memoization, effectively each step is performing twice as much work for n
@@ -1445,22 +1445,22 @@ steps, e.g n<sup>2</sup>, trimming the speed of the original implementation down
 <h3 id="org90f64f3">1.27</h3>
 <div class="outline-text-3" id="text-org90f64f3">
 </div>
-<div id="outline-container-org05d1e2f" class="outline-4">
-<h4 id="org05d1e2f">Answer</h4>
+<div id="outline-container-org7818614" class="outline-4">
+<h4 id="org7818614">Answer</h4>
 </div>
 </div>
 <div id="outline-container-orgaf76638" class="outline-3">
 <h3 id="orgaf76638">1.28</h3>
 <div class="outline-text-3" id="text-orgaf76638">
 </div>
-<div id="outline-container-org551fb0b" class="outline-4">
-<h4 id="org551fb0b">Answer</h4>
+<div id="outline-container-org81475da" class="outline-4">
+<h4 id="org81475da">Answer</h4>
 </div>
 </div>
 <div id="outline-container-org6203755" class="outline-3">
 <h3 id="org6203755">1.30</h3>
 <div class="outline-text-3" id="text-org6203755">
-<div class="question" id="org162b9eb">
+<div class="question" id="orgf6f4bf6">
 <p>
 The sum procedure above generates a linear recursion. The procedure can be
 rewritten so that the sum is performed iteratively. 
@@ -1469,17 +1469,17 @@ rewritten so that the sum is performed iteratively.
 </div>
 </div>
 
-<div id="outline-container-org09f35bf" class="outline-4">
-<h4 id="org09f35bf">Answer</h4>
-<div class="outline-text-4" id="text-org09f35bf">
+<div id="outline-container-orgbc4cd2e" class="outline-4">
+<h4 id="orgbc4cd2e">Answer</h4>
+<div class="outline-text-4" id="text-orgbc4cd2e">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.30/sum</span> term a next b<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">iter</span> a result<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>&gt; a b<span style="color: #67b11d;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.30/sum</span> term a next b<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">iter</span> a result<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>&gt; a b<span style="color: #6c71c4;">)</span>
         result
-        <span style="color: #67b11d;">(</span>iter <span style="color: #b1951d;">(</span>next a<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>+ <span style="color: #3a81c3;">(</span>term a<span style="color: #3a81c3;">)</span> result<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
+        <span style="color: #6c71c4;">(</span>iter <span style="color: #859900;">(</span>next a<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>+ <span style="color: #b58900;">(</span>term a<span style="color: #b58900;">)</span> result<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
 
-  <span style="color: #6c3163;">(</span>iter a <span style="color: #4e3163;">0</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+  <span style="color: #b58900;">(</span>iter a <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -1489,7 +1489,7 @@ rewritten so that the sum is performed iteratively.
 <div id="outline-container-org31cc941" class="outline-3">
 <h3 id="org31cc941">1.31</h3>
 <div class="outline-text-3" id="text-org31cc941">
-<div class="question" id="org9804197">
+<div class="question" id="org04fe118">
 <ol class="org-ol">
 <li>The `sum&rsquo; procedure is only the simplest of a vast number of similar</li>
 </ol>
@@ -1516,34 +1516,34 @@ one that generates a recursive process.
 </div>
 </div>
 
-<div id="outline-container-org218ba29" class="outline-4">
-<h4 id="org218ba29">Answer</h4>
-<div class="outline-text-4" id="text-org218ba29">
+<div id="outline-container-org89aab27" class="outline-4">
+<h4 id="org89aab27">Answer</h4>
+<div class="outline-text-4" id="text-org89aab27">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">recursive-product</span> term a next b<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #2d9574;">(</span>&gt; a b<span style="color: #2d9574;">)</span> a<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>* <span style="color: #2d9574;">(</span>term a<span style="color: #2d9574;">)</span>
-     <span style="color: #2d9574;">(</span>recursive-product term <span style="color: #67b11d;">(</span>next a<span style="color: #67b11d;">)</span> next b<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">recursive-product</span> term a next b<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>&gt; a b<span style="color: #268bd2;">)</span> a<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>* <span style="color: #268bd2;">(</span>term a<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>recursive-product term <span style="color: #6c71c4;">(</span>next a<span style="color: #6c71c4;">)</span> next b<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">iterative-product</span> term a next b<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">iter</span> a result<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>&gt; a b<span style="color: #67b11d;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">iterative-product</span> term a next b<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">iter</span> a result<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>&gt; a b<span style="color: #6c71c4;">)</span>
         result
-        <span style="color: #67b11d;">(</span>iter <span style="color: #b1951d;">(</span>next a<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>* <span style="color: #3a81c3;">(</span>term a<span style="color: #3a81c3;">)</span> result<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
+        <span style="color: #6c71c4;">(</span>iter <span style="color: #859900;">(</span>next a<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>* <span style="color: #b58900;">(</span>term a<span style="color: #b58900;">)</span> result<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
 
-  <span style="color: #6c3163;">(</span>iter a <span style="color: #4e3163;">0</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+  <span style="color: #b58900;">(</span>iter a <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.31/factorial</span> n<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #2d9574;">(</span>zero? n<span style="color: #2d9574;">)</span> <span style="color: #4e3163;">1</span>
-      <span style="color: #2d9574;">(</span>iterative-product identity <span style="color: #4e3163;">1</span> inc n<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.31/factorial</span> n<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>zero? n<span style="color: #268bd2;">)</span> <span style="color: #6c71c4;">1</span>
+      <span style="color: #268bd2;">(</span>iterative-product identity <span style="color: #6c71c4;">1</span> inc n<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.31/pi-approximate</span> n<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">fnth</span> nth<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>even? nth<span style="color: #67b11d;">)</span>
-        <span style="color: #67b11d;">(</span>/ <span style="color: #b1951d;">(</span>double nth<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>inc <span style="color: #3a81c3;">(</span>double nth<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
-        <span style="color: #67b11d;">(</span>/ <span style="color: #b1951d;">(</span>inc <span style="color: #3a81c3;">(</span>double nth<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>double nth<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.31/pi-approximate</span> n<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">fnth</span> nth<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>even? nth<span style="color: #6c71c4;">)</span>
+        <span style="color: #6c71c4;">(</span>/ <span style="color: #859900;">(</span>double nth<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>inc <span style="color: #b58900;">(</span>double nth<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+        <span style="color: #6c71c4;">(</span>/ <span style="color: #859900;">(</span>inc <span style="color: #b58900;">(</span>double nth<span style="color: #b58900;">)</span><span style="color: #859900;">)</span> <span style="color: #859900;">(</span>double nth<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
 
-  <span style="color: #6c3163;">(</span>* <span style="color: #4e3163;">4.0</span> <span style="color: #2d9574;">(</span>iterative-product fnth <span style="color: #4e3163;">0</span> inc n<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+  <span style="color: #b58900;">(</span>* <span style="color: #6c71c4;">4.0</span> <span style="color: #268bd2;">(</span>iterative-product fnth <span style="color: #6c71c4;">0</span> inc n<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -1553,7 +1553,7 @@ one that generates a recursive process.
 <div id="outline-container-org54e4866" class="outline-3">
 <h3 id="org54e4866">1.32</h3>
 <div class="outline-text-3" id="text-org54e4866">
-<div class="question" id="orgf0b522a">
+<div class="question" id="org991c4f5">
 <ol class="org-ol">
 <li>Show that sum and product (Exercise 1.31) are both special cases of a still</li>
 </ol>
@@ -1587,23 +1587,23 @@ write one that generates a recursive process.
 </div>
 </div>
 
-<div id="outline-container-orgfa8537b" class="outline-4">
-<h4 id="orgfa8537b">Answer</h4>
-<div class="outline-text-4" id="text-orgfa8537b">
+<div id="outline-container-org301ebc7" class="outline-4">
+<h4 id="org301ebc7">Answer</h4>
+<div class="outline-text-4" id="text-org301ebc7">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.32/recursive-accumulate</span> combiner null term a next b<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #2d9574;">(</span>&gt; a b<span style="color: #2d9574;">)</span> a
-      <span style="color: #2d9574;">(</span>combiner <span style="color: #67b11d;">(</span>term a<span style="color: #67b11d;">)</span>
-                <span style="color: #67b11d;">(</span>1.32/recursive-accumulate combiner null term <span style="color: #b1951d;">(</span>next a<span style="color: #b1951d;">)</span> next b<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.32/recursive-accumulate</span> combiner null term a next b<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>&gt; a b<span style="color: #268bd2;">)</span> a
+      <span style="color: #268bd2;">(</span>combiner <span style="color: #6c71c4;">(</span>term a<span style="color: #6c71c4;">)</span>
+                <span style="color: #6c71c4;">(</span>1.32/recursive-accumulate combiner null term <span style="color: #859900;">(</span>next a<span style="color: #859900;">)</span> next b<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.32/iterative-accumulate</span> combiner null term a next b<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">fold-left</span> n acc<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>&gt; n b<span style="color: #67b11d;">)</span> acc
-        <span style="color: #67b11d;">(</span>fold-left <span style="color: #b1951d;">(</span>next n<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>combiner <span style="color: #3a81c3;">(</span>term n<span style="color: #3a81c3;">)</span> acc<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>fold-left a null<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.32/iterative-accumulate</span> combiner null term a next b<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">fold-left</span> n acc<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>&gt; n b<span style="color: #6c71c4;">)</span> acc
+        <span style="color: #6c71c4;">(</span>fold-left <span style="color: #859900;">(</span>next n<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>combiner <span style="color: #b58900;">(</span>term n<span style="color: #b58900;">)</span> acc<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>fold-left a null<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #dc752f;">XXX</span><span style="color: #2aa1ae; background-color: #ecf3ec;">: add to test</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">(1.32/iterative-accumulate * 1 identity 1 inc 5) =&gt; 120</span>
+<span style="color: #93a1a1;">;; </span><span style="color: #cc9393;">XXX</span><span style="color: #93a1a1;">: add to test</span>
+<span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">(1.32/iterative-accumulate * 1 identity 1 inc 5) =&gt; 120</span>
 
 </pre>
 </div>
@@ -1613,7 +1613,7 @@ write one that generates a recursive process.
 <div id="outline-container-orgf0594c2" class="outline-3">
 <h3 id="orgf0594c2">1.33</h3>
 <div class="outline-text-3" id="text-orgf0594c2">
-<div class="question" id="org83bcd9b">
+<div class="question" id="org5ba711f">
 <p>
 You can obtain an even more general version of accumulate (Exercise 1.32)
 by introducing the notion of a filter on the terms to be combined. That is,
@@ -1641,22 +1641,22 @@ prime to n (i.e., all positive integers i &lt; n such that GCD (i, n) = 1).
 </div>
 </div>
 
-<div id="outline-container-org6a5ad1e" class="outline-4">
-<h4 id="org6a5ad1e">Answer</h4>
-<div class="outline-text-4" id="text-org6a5ad1e">
+<div id="outline-container-org60c8818" class="outline-4">
+<h4 id="org60c8818">Answer</h4>
+<div class="outline-text-4" id="text-org60c8818">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.33/filtered-accumulate</span> combiner null term a next b filter<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #2d9574;">(</span>&gt; a b<span style="color: #2d9574;">)</span> null
-      <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>filter a<span style="color: #67b11d;">)</span>
-          <span style="color: #67b11d;">(</span>combiner <span style="color: #b1951d;">(</span>term a<span style="color: #b1951d;">)</span>
-                    <span style="color: #b1951d;">(</span>1.33/filtered-accumulate combiner null term <span style="color: #3a81c3;">(</span>next a<span style="color: #3a81c3;">)</span> next b filter<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
-          <span style="color: #67b11d;">(</span>1.33/filtered-accumulate combiner null term <span style="color: #b1951d;">(</span>next a<span style="color: #b1951d;">)</span> next b filter<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.33/filtered-accumulate</span> combiner null term a next b filter<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>&gt; a b<span style="color: #268bd2;">)</span> null
+      <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>filter a<span style="color: #6c71c4;">)</span>
+          <span style="color: #6c71c4;">(</span>combiner <span style="color: #859900;">(</span>term a<span style="color: #859900;">)</span>
+                    <span style="color: #859900;">(</span>1.33/filtered-accumulate combiner null term <span style="color: #b58900;">(</span>next a<span style="color: #b58900;">)</span> next b filter<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+          <span style="color: #6c71c4;">(</span>1.33/filtered-accumulate combiner null term <span style="color: #859900;">(</span>next a<span style="color: #859900;">)</span> next b filter<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.33/sum-of-prime-squares</span> a b<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>1.33/filtered-accumulate + <span style="color: #4e3163;">0</span> square a inc b prime?<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.33/sum-of-prime-squares</span> a b<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>1.33/filtered-accumulate + <span style="color: #6c71c4;">0</span> square a inc b prime?<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.33/coprimes</span> n<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>1.33/filtered-accumulate * <span style="color: #4e3163;">1</span> identity <span style="color: #4e3163;">1</span> inc n <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #67b11d;">(</span>i<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>= <span style="color: #4e3163;">1</span> <span style="color: #b1951d;">(</span>gcd i n<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.33/coprimes</span> n<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>1.33/filtered-accumulate * <span style="color: #6c71c4;">1</span> identity <span style="color: #6c71c4;">1</span> inc n <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>i<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>= <span style="color: #6c71c4;">1</span> <span style="color: #859900;">(</span>gcd i n<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -1666,7 +1666,7 @@ prime to n (i.e., all positive integers i &lt; n such that GCD (i, n) = 1).
 <div id="outline-container-orgca12785" class="outline-3">
 <h3 id="orgca12785">1.34</h3>
 <div class="outline-text-3" id="text-orgca12785">
-<div class="question" id="orgcd4e052">
+<div class="question" id="org9258349">
 <p>
 Suppose we define the procedure
 </p>
@@ -1705,7 +1705,7 @@ Explain.
 <div id="outline-container-org72e1575" class="outline-3">
 <h3 id="org72e1575">1.35</h3>
 <div class="outline-text-3" id="text-org72e1575">
-<div class="question" id="orgba8d85f">
+<div class="question" id="org8bdebac">
 <p>
 Show that the golden ratio φ (1.2.2) is a fixed point of the transformation
 x↦1+1/x, and use this fact to compute φ by means of the fixed-point
@@ -1715,12 +1715,12 @@ procedure.
 </div>
 </div>
 
-<div id="outline-container-org9f9f941" class="outline-4">
-<h4 id="org9f9f941">Answer</h4>
-<div class="outline-text-4" id="text-org9f9f941">
+<div id="outline-container-org4c1e72d" class="outline-4">
+<h4 id="org4c1e72d">Answer</h4>
+<div class="outline-text-4" id="text-org4c1e72d">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.35/find-golden-ratio</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>fixed-point <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #67b11d;">(</span>n<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>+ <span style="color: #4e3163;">1</span> <span style="color: #b1951d;">(</span>/ <span style="color: #4e3163;">1</span> n<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span> <span style="color: #4e3163;">1</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.35/find-golden-ratio</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>fixed-point <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>n<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>+ <span style="color: #6c71c4;">1</span> <span style="color: #859900;">(</span>/ <span style="color: #6c71c4;">1</span> n<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span> <span style="color: #6c71c4;">1</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -1731,7 +1731,7 @@ procedure.
 <div id="outline-container-org3f08295" class="outline-3">
 <h3 id="org3f08295">1.37</h3>
 <div class="outline-text-3" id="text-org3f08295">
-<div class="question" id="org1713eb1">
+<div class="question" id="org049ff4a">
 <p>
 a. An infinite &ldquo;continued fraction&rdquo; is an expression of the form
 </p>
@@ -1802,25 +1802,25 @@ b. If your `cont-frac&rsquo; procedure generates a recursive process,
 </div>
 </div>
 
-<div id="outline-container-orgdb205fa" class="outline-4">
-<h4 id="orgdb205fa">Answer</h4>
-<div class="outline-text-4" id="text-orgdb205fa">
+<div id="outline-container-orgead7ca3" class="outline-4">
+<h4 id="orgead7ca3">Answer</h4>
+<div class="outline-text-4" id="text-orgead7ca3">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.37/cont-frac-recursive</span> n d kth<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">nth-continuation</span> nth<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>&gt; nth kth<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>d nth<span style="color: #67b11d;">)</span>
-        <span style="color: #67b11d;">(</span>/ <span style="color: #b1951d;">(</span>n nth<span style="color: #b1951d;">)</span>
-           <span style="color: #b1951d;">(</span>+ <span style="color: #3a81c3;">(</span>d nth<span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>nth-continuation <span style="color: #6c3163;">(</span>inc nth<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>nth-continuation <span style="color: #4e3163;">1</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.37/cont-frac-recursive</span> n d kth<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">nth-continuation</span> nth<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>&gt; nth kth<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>d nth<span style="color: #6c71c4;">)</span>
+        <span style="color: #6c71c4;">(</span>/ <span style="color: #859900;">(</span>n nth<span style="color: #859900;">)</span>
+           <span style="color: #859900;">(</span>+ <span style="color: #b58900;">(</span>d nth<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>nth-continuation <span style="color: #268bd2;">(</span>inc nth<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>nth-continuation <span style="color: #6c71c4;">1</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.37/cont-frac-iter</span> n d kth<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">nth-continuation</span> nth acc<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>&gt; nth kth<span style="color: #67b11d;">)</span> acc
-        <span style="color: #67b11d;">(</span>nth-continuation <span style="color: #b1951d;">(</span>inc nth<span style="color: #b1951d;">)</span>
-                          <span style="color: #b1951d;">(</span>/ <span style="color: #3a81c3;">(</span>n nth<span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>+ <span style="color: #6c3163;">(</span>d nth<span style="color: #6c3163;">)</span> acc<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>nth-continuation <span style="color: #4e3163;">1</span> <span style="color: #4e3163;">0</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.37/cont-frac-iter</span> n d kth<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">nth-continuation</span> nth acc<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>&gt; nth kth<span style="color: #6c71c4;">)</span> acc
+        <span style="color: #6c71c4;">(</span>nth-continuation <span style="color: #859900;">(</span>inc nth<span style="color: #859900;">)</span>
+                          <span style="color: #859900;">(</span>/ <span style="color: #b58900;">(</span>n nth<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>+ <span style="color: #268bd2;">(</span>d nth<span style="color: #268bd2;">)</span> acc<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>nth-continuation <span style="color: #6c71c4;">1</span> <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">cont-frac</span> 1.37/cont-frac-iter<span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">cont-frac</span> 1.37/cont-frac-iter<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -1829,7 +1829,7 @@ b. If your `cont-frac&rsquo; procedure generates a recursive process,
 <div id="outline-container-orge186253" class="outline-3">
 <h3 id="orge186253">1.38</h3>
 <div class="outline-text-3" id="text-orge186253">
-<div class="question" id="org90d03dc">
+<div class="question" id="org82f32ea">
 <p>
 In 1737, the Swiss mathematician Leonhard Euler published a memoir `De
 Fractionibus Continuis&rsquo;, which included a continued fraction expansion for
@@ -1842,17 +1842,17 @@ nᵢ are all 1, and the Dᵢ are successively 1, 2, 1, 1, 4, 1, 1, 6, 1, 1,
 </div>
 </div>
 
-<div id="outline-container-org93facc4" class="outline-4">
-<h4 id="org93facc4">Answer</h4>
-<div class="outline-text-4" id="text-org93facc4">
+<div id="outline-container-orged5e4ee" class="outline-4">
+<h4 id="orged5e4ee">Answer</h4>
+<div class="outline-text-4" id="text-orged5e4ee">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">e-2</span> k<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>cont-frac
-   <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #67b11d;">(</span>i<span style="color: #67b11d;">)</span> <span style="color: #4e3163;">1.0</span><span style="color: #2d9574;">)</span>
-   <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #67b11d;">(</span>n<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #b1951d;">(</span>= <span style="color: #4e3163;">0</span> <span style="color: #3a81c3;">(</span>modulo <span style="color: #6c3163;">(</span>+ n <span style="color: #4e3163;">1</span><span style="color: #6c3163;">)</span> <span style="color: #4e3163;">3</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-              <span style="color: #b1951d;">(</span>* <span style="color: #4e3163;">2</span> <span style="color: #3a81c3;">(</span>/ <span style="color: #6c3163;">(</span>+ n <span style="color: #4e3163;">1</span><span style="color: #6c3163;">)</span> <span style="color: #4e3163;">3</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-              <span style="color: #4e3163;">1</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-   k<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">e-2</span> k<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>cont-frac
+   <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>i<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">1.0</span><span style="color: #268bd2;">)</span>
+   <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>n<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #859900;">(</span>= <span style="color: #6c71c4;">0</span> <span style="color: #b58900;">(</span>modulo <span style="color: #268bd2;">(</span>+ n <span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span> <span style="color: #6c71c4;">3</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+              <span style="color: #859900;">(</span>* <span style="color: #6c71c4;">2</span> <span style="color: #b58900;">(</span>/ <span style="color: #268bd2;">(</span>+ n <span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span> <span style="color: #6c71c4;">3</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+              <span style="color: #6c71c4;">1</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+   k<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -1862,7 +1862,7 @@ nᵢ are all 1, and the Dᵢ are successively 1, 2, 1, 1, 4, 1, 1, 6, 1, 1,
 <div id="outline-container-orgebeedcc" class="outline-3">
 <h3 id="orgebeedcc">1.39</h3>
 <div class="outline-text-3" id="text-orgebeedcc">
-<div class="question" id="org35f28b7">
+<div class="question" id="orgef662ef">
 <p>
 A continued fraction representation of the
 tangent function was published in 1770 by the German mathematician
@@ -1889,14 +1889,14 @@ as in *Note Exercise 1.37
 </div>
 </div>
 
-<div id="outline-container-org37286f5" class="outline-4">
-<h4 id="org37286f5">Answer</h4>
-<div class="outline-text-4" id="text-org37286f5">
+<div id="outline-container-orgf942ff3" class="outline-4">
+<h4 id="orgf942ff3">Answer</h4>
+<div class="outline-text-4" id="text-orgf942ff3">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.39/tan-cf</span> x k<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>cont-frac <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #67b11d;">(</span>i<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #b1951d;">(</span>= i <span style="color: #4e3163;">1</span><span style="color: #b1951d;">)</span> x <span style="color: #b1951d;">(</span>* <span style="color: #4e3163;">-1.0</span> <span style="color: #3a81c3;">(</span>* x x<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-             <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #67b11d;">(</span>i<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>- <span style="color: #b1951d;">(</span>* i <span style="color: #4e3163;">2</span><span style="color: #b1951d;">)</span> <span style="color: #4e3163;">1.0</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-             k<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.39/tan-cf</span> x k<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>cont-frac <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>i<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #859900;">(</span>= i <span style="color: #6c71c4;">1</span><span style="color: #859900;">)</span> x <span style="color: #859900;">(</span>* <span style="color: #6c71c4;">-1.0</span> <span style="color: #b58900;">(</span>* x x<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+             <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>i<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>- <span style="color: #859900;">(</span>* i <span style="color: #6c71c4;">2</span><span style="color: #859900;">)</span> <span style="color: #6c71c4;">1.0</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+             k<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -1906,7 +1906,7 @@ as in *Note Exercise 1.37
 <div id="outline-container-orgeba9704" class="outline-3">
 <h3 id="orgeba9704">1.40</h3>
 <div class="outline-text-3" id="text-orgeba9704">
-<div class="question" id="org9494c2b">
+<div class="question" id="orgbb33bbf">
 <p>
 Define a procedure cubic that can be used together with the newtons-method
 procedure in expressions of the form
@@ -1923,16 +1923,16 @@ to approximate zeros of the cubic x³+ax²+bx+c.
 </div>
 </div>
 
-<div id="outline-container-org9c51936" class="outline-4">
-<h4 id="org9c51936">Answer</h4>
-<div class="outline-text-4" id="text-org9c51936">
+<div id="outline-container-orgbc14468" class="outline-4">
+<h4 id="orgbc14468">Answer</h4>
+<div class="outline-text-4" id="text-orgbc14468">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">cubic</span> a b c<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #2d9574;">(</span>x<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span>+ <span style="color: #67b11d;">(</span>* x x x<span style="color: #67b11d;">)</span>
-       <span style="color: #67b11d;">(</span>* a <span style="color: #b1951d;">(</span>* x x<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
-       <span style="color: #67b11d;">(</span>* b x<span style="color: #67b11d;">)</span>
-       c<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">cubic</span> a b c<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #268bd2;">(</span>x<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>+ <span style="color: #6c71c4;">(</span>* x x x<span style="color: #6c71c4;">)</span>
+       <span style="color: #6c71c4;">(</span>* a <span style="color: #859900;">(</span>* x x<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+       <span style="color: #6c71c4;">(</span>* b x<span style="color: #6c71c4;">)</span>
+       c<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -1942,7 +1942,7 @@ to approximate zeros of the cubic x³+ax²+bx+c.
 <div id="outline-container-orgcec54a9" class="outline-3">
 <h3 id="orgcec54a9">1.41</h3>
 <div class="outline-text-3" id="text-orgcec54a9">
-<div class="question" id="org8e48821">
+<div class="question" id="org58465d3">
 <p>
 Define a procedure double that takes a procedure of one argument as
 argument and returns a procedure that applies the original procedure twice.
@@ -1961,11 +1961,11 @@ For quote, if inc is a procedure that adds 1 to its argument, then
 </div>
 </div>
 
-<div id="outline-container-orgdc32055" class="outline-4">
-<h4 id="orgdc32055">Answer</h4>
-<div class="outline-text-4" id="text-orgdc32055">
+<div id="outline-container-orgb20c71e" class="outline-4">
+<h4 id="orgb20c71e">Answer</h4>
+<div class="outline-text-4" id="text-orgb20c71e">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.41/double</span> fn<span style="color: #6c3163;">)</span> <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #2d9574;">(</span>n<span style="color: #2d9574;">)</span> <span style="color: #2d9574;">(</span>fn <span style="color: #67b11d;">(</span>fn n<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.41/double</span> fn<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #268bd2;">(</span>n<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>fn <span style="color: #6c71c4;">(</span>fn n<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>
@@ -1975,7 +1975,7 @@ For quote, if inc is a procedure that adds 1 to its argument, then
 <div id="outline-container-org3379ac3" class="outline-3">
 <h3 id="org3379ac3">1.42</h3>
 <div class="outline-text-3" id="text-org3379ac3">
-<div class="question" id="orgb3737f9">
+<div class="question" id="org95dd44d">
 <p>
 Let f and g be two one-argument functions. The composition f after g is
 defined to be the function x↦f(g(x)). Define a procedure compose that
@@ -1991,11 +1991,11 @@ its argument,
 </div>
 </div>
 
-<div id="outline-container-orge8f83ec" class="outline-4">
-<h4 id="orge8f83ec">Answer</h4>
-<div class="outline-text-4" id="text-orge8f83ec">
+<div id="outline-container-orgd65d996" class="outline-4">
+<h4 id="orgd65d996">Answer</h4>
+<div class="outline-text-4" id="text-orgd65d996">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.42/compose</span> f g<span style="color: #6c3163;">)</span> <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #2d9574;">(</span>n<span style="color: #2d9574;">)</span> <span style="color: #2d9574;">(</span>f <span style="color: #67b11d;">(</span>g n<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.42/compose</span> f g<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #268bd2;">(</span>n<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>f <span style="color: #6c71c4;">(</span>g n<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -2005,7 +2005,7 @@ its argument,
 <div id="outline-container-org8d28728" class="outline-3">
 <h3 id="org8d28728">1.43</h3>
 <div class="outline-text-3" id="text-org8d28728">
-<div class="question" id="orgda441d4">
+<div class="question" id="org779033b">
 <p>
 If f is a numerical function and n is a positive integer, then we can form
 the nth repeated application of f, which is defined to be the function
@@ -2030,15 +2030,15 @@ Hint: You may find it convenient to use compose from Exercise 1.42.
 </div>
 </div>
 
-<div id="outline-container-org14d234f" class="outline-4">
-<h4 id="org14d234f">Answer</h4>
-<div class="outline-text-4" id="text-org14d234f">
+<div id="outline-container-org0fed088" class="outline-4">
+<h4 id="org0fed088">Answer</h4>
+<div class="outline-text-4" id="text-org0fed088">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.43/repeated-apply</span> fn times<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #2d9574;">(</span>= times <span style="color: #4e3163;">1</span><span style="color: #2d9574;">)</span> <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #67b11d;">(</span>n<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>fn n<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-      <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #67b11d;">(</span>n<span style="color: #67b11d;">)</span>
-        <span style="color: #67b11d;">(</span>fn
-         <span style="color: #b1951d;">(</span><span style="color: #3a81c3;">(</span>1.43/repeated-apply fn <span style="color: #6c3163;">(</span>- times <span style="color: #4e3163;">1</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span> n<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.43/repeated-apply</span> fn times<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>= times <span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>n<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>fn n<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+      <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>n<span style="color: #6c71c4;">)</span>
+        <span style="color: #6c71c4;">(</span>fn
+         <span style="color: #859900;">(</span><span style="color: #b58900;">(</span>1.43/repeated-apply fn <span style="color: #268bd2;">(</span>- times <span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span> n<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -2048,7 +2048,7 @@ Hint: You may find it convenient to use compose from Exercise 1.42.
 <div id="outline-container-org7c0b771" class="outline-3">
 <h3 id="org7c0b771">1.44</h3>
 <div class="outline-text-3" id="text-org7c0b771">
-<div class="question" id="orgf5fbdef">
+<div class="question" id="orge024690">
 <p>
 The idea of smoothing a function is an important concept in signal
 processing. If f is a function and dx is some small number, then the
@@ -2064,16 +2064,16 @@ given function using smooth and repeated from Exercise 1.43.
 </div>
 </div>
 
-<div id="outline-container-org694c162" class="outline-4">
-<h4 id="org694c162">Answer</h4>
-<div class="outline-text-4" id="text-org694c162">
+<div id="outline-container-org4477420" class="outline-4">
+<h4 id="org4477420">Answer</h4>
+<div class="outline-text-4" id="text-org4477420">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.44/smooth</span> f<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #2d9574;">(</span>x<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span>/ <span style="color: #67b11d;">(</span>+ <span style="color: #b1951d;">(</span>f <span style="color: #3a81c3;">(</span>- x dx<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-          <span style="color: #b1951d;">(</span>f x<span style="color: #b1951d;">)</span>
-          <span style="color: #b1951d;">(</span>f <span style="color: #3a81c3;">(</span>+ x dx<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
-       <span style="color: #4e3163;">3</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.44/smooth</span> f<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #268bd2;">(</span>x<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>/ <span style="color: #6c71c4;">(</span>+ <span style="color: #859900;">(</span>f <span style="color: #b58900;">(</span>- x dx<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+          <span style="color: #859900;">(</span>f x<span style="color: #859900;">)</span>
+          <span style="color: #859900;">(</span>f <span style="color: #b58900;">(</span>+ x dx<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+       <span style="color: #6c71c4;">3</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -2083,7 +2083,7 @@ given function using smooth and repeated from Exercise 1.43.
 <div id="outline-container-org70eb6ff" class="outline-3">
 <h3 id="org70eb6ff">1.46</h3>
 <div class="outline-text-3" id="text-org70eb6ff">
-<div class="question" id="org88a9e8b">
+<div class="question" id="org8a0d65a">
 <p>
 Several of the numerical methods described in this chapter are instances of
 an extremely general computational strategy known as iterative improvement.
@@ -2101,29 +2101,29 @@ the fixed-point procedure of 1.3.3 in terms of iterative-improve.
 </div>
 </div>
 
-<div id="outline-container-orgdff7adb" class="outline-4">
-<h4 id="orgdff7adb">Answer</h4>
-<div class="outline-text-4" id="text-orgdff7adb">
+<div id="outline-container-org859c18a" class="outline-4">
+<h4 id="org859c18a">Answer</h4>
+<div class="outline-text-4" id="text-org859c18a">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">iterative-improve</span> good-enough? improve<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #2d9574;">(</span>guess<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">let</span> <span style="color: #67b11d;">(</span><span style="color: #b1951d;">[</span>improved <span style="color: #3a81c3;">(</span>improve guess<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">]</span><span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #b1951d;">(</span>good-enough? guess improved<span style="color: #b1951d;">)</span> guess
-          <span style="color: #b1951d;">(</span><span style="color: #3a81c3;">(</span>iterative-improve good-enough? improve<span style="color: #3a81c3;">)</span> improved<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">iterative-improve</span> good-enough? improve<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #268bd2;">(</span>guess<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #6c71c4;">(</span><span style="color: #859900;">[</span>improved <span style="color: #b58900;">(</span>improve guess<span style="color: #b58900;">)</span><span style="color: #859900;">]</span><span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #859900;">(</span>good-enough? guess improved<span style="color: #859900;">)</span> guess
+          <span style="color: #859900;">(</span><span style="color: #b58900;">(</span>iterative-improve good-enough? improve<span style="color: #b58900;">)</span> improved<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.46/iterative-sqrt</span> n<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>iterative-improve
-   <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #67b11d;">(</span>guess improved<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>&lt; <span style="color: #b1951d;">(</span>abs <span style="color: #3a81c3;">(</span>- guess improved<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span> <span style="color: #4e3163;">0.001</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-   <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #67b11d;">(</span>guess<span style="color: #67b11d;">)</span>
-     <span style="color: #67b11d;">(</span>average guess <span style="color: #b1951d;">(</span>/ n guess<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.46/iterative-sqrt</span> n<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>iterative-improve
+   <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>guess improved<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>&lt; <span style="color: #859900;">(</span>abs <span style="color: #b58900;">(</span>- guess improved<span style="color: #b58900;">)</span><span style="color: #859900;">)</span> <span style="color: #6c71c4;">0.001</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+   <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #6c71c4;">(</span>guess<span style="color: #6c71c4;">)</span>
+     <span style="color: #6c71c4;">(</span>average guess <span style="color: #859900;">(</span>/ n guess<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">1.46/fixed-point</span> f first-guess<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #2d9574;">(</span>iterative-improve
-    <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #b1951d;">(</span>guess<span style="color: #b1951d;">)</span>
-      <span style="color: #b1951d;">(</span>&lt; <span style="color: #3a81c3;">(</span>abs <span style="color: #6c3163;">(</span>- <span style="color: #2d9574;">(</span>f guess<span style="color: #2d9574;">)</span> guess<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-         <span style="color: #4e3163;">0.00001</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
-    <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #b1951d;">(</span>guess<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>f guess<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-   first-guess<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">1.46/fixed-point</span> f first-guess<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>iterative-improve
+    <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #859900;">(</span>guess<span style="color: #859900;">)</span>
+      <span style="color: #859900;">(</span>&lt; <span style="color: #b58900;">(</span>abs <span style="color: #268bd2;">(</span>- <span style="color: #6c71c4;">(</span>f guess<span style="color: #6c71c4;">)</span> guess<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+         <span style="color: #6c71c4;">0.00001</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+    <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #859900;">(</span>guess<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>f guess<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+   first-guess<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
 </pre>
 </div>

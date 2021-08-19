@@ -176,20 +176,18 @@ li.on {code:first-of-type::after {content: "\2611";}}
 div.question {
   background-color: #eee8d5;
   border-left: 3px solid #2aa198;
-  padding-left: 1.5em;
-  padding-bottom: 0.5em;
 
   p {
-    white-space: pre;
+    padding: 1em;
+    padding-left: 1.5em;
     font: italic 400 1.0em Calibri,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
   }
 }
 
 div.textanswer {
-  margin-left: 2em;
-
   p {
-    white-space: pre;
+    margin-left: 2em;
+    white-space: pre-line;
     font: 300 0.9em $monofontname;
   }
 }

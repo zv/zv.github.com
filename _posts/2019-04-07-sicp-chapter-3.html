@@ -29,7 +29,7 @@ to share about the exercises, don&rsquo;t hesitate to leave a comment below
 <div id="outline-container-org56891fe" class="outline-3">
 <h3 id="org56891fe">Exercise 3.1</h3>
 <div class="outline-text-3" id="text-org56891fe">
-<div class="question" id="orgd789081">
+<div class="question" id="org396e657">
 <p>
 An accumulator is a procedure that is called repeatedly with a single numeric
 argument and accumulates its arguments into a sum. Each time it is called, it
@@ -44,13 +44,13 @@ make-accumulator should specify the initial value of the sum;
 
 </div>
 </div>
-<div id="outline-container-org68d0b28" class="outline-4">
-<h4 id="org68d0b28">Answer</h4>
-<div class="outline-text-4" id="text-org68d0b28">
+<div id="outline-container-org1d28566" class="outline-4">
+<h4 id="org1d28566">Answer</h4>
+<div class="outline-text-4" id="text-org1d28566">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">make-accumulator</span> x<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">lambda</span> <span style="color: #2d9574;">(</span>n<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span>+ x n<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">make-accumulator</span> x<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">(</span>n<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>+ x n<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -60,7 +60,7 @@ make-accumulator should specify the initial value of the sum;
 <div id="outline-container-orgf7b6985" class="outline-3">
 <h3 id="orgf7b6985">Exercise 3.2</h3>
 <div class="outline-text-3" id="text-orgf7b6985">
-<div class="question" id="org8cc0e31">
+<div class="question" id="org459dc58">
 <p>
 In software-testing applications, it is useful to be able to count
 the number of times a given procedure is called during the course of a
@@ -76,18 +76,18 @@ counter. For instance, we could make a monitored version of the sqrt procedure:
 
 </div>
 </div>
-<div id="outline-container-orgf77a17a" class="outline-4">
-<h4 id="orgf77a17a">Answer</h4>
-<div class="outline-text-4" id="text-orgf77a17a">
+<div id="outline-container-org0d25b53" class="outline-4">
+<h4 id="org0d25b53">Answer</h4>
+<div class="outline-text-4" id="text-org0d25b53">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">make-monitored</span> f<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">calls</span> <span style="color: #4e3163;">0</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">lambda</span> <span style="color: #2d9574;">(</span>n<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>eq? n 'how-many-calls?<span style="color: #67b11d;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">make-monitored</span> f<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">calls</span> <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">(</span>n<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>eq? n 'how-many-calls?<span style="color: #6c71c4;">)</span>
         calls
-        <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">begin</span>
-          <span style="color: #b1951d;">(</span>set! calls <span style="color: #3a81c3;">(</span>inc calls<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-          <span style="color: #b1951d;">(</span>f n<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+        <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">begin</span>
+          <span style="color: #859900;">(</span>set! calls <span style="color: #b58900;">(</span>inc calls<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+          <span style="color: #859900;">(</span>f n<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -96,7 +96,7 @@ counter. For instance, we could make a monitored version of the sqrt procedure:
 <div id="outline-container-orga1d4192" class="outline-4">
 <h4 id="orga1d4192">Exercise 3.3</h4>
 <div class="outline-text-4" id="text-orga1d4192">
-<div class="question" id="org2a1ab0a">
+<div class="question" id="org9dc0280">
 <p>
 Modify the make-account procedure so that it creates password-protected
 accounts. That is, make-account should take a symbol as an additional argument,
@@ -106,27 +106,27 @@ as in
 </div>
 </div>
 </div>
-<div id="outline-container-orgd4b2729" class="outline-4">
-<h4 id="orgd4b2729">Answer</h4>
-<div class="outline-text-4" id="text-orgd4b2729">
+<div id="outline-container-orgaf116fb" class="outline-4">
+<h4 id="orgaf116fb">Answer</h4>
+<div class="outline-text-4" id="text-orgaf116fb">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">3.3/acc</span> <span style="color: #6c3163;">(</span>make-account <span style="color: #4e3163;">100</span> 'secret-password<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">3.3/make-account</span> acct# passwd<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">withdraw</span> amount<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #67b11d;">(</span>&gt;= balance amount<span style="color: #67b11d;">)</span>
-        <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">begin</span> <span style="color: #b1951d;">(</span>set! balance
-                 <span style="color: #3a81c3;">(</span>- balance amount<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-               balance<span style="color: #67b11d;">)</span>
-        <span style="color: #2d9574;">"Insufficient funds"</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">deposit</span> amount<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span>set! balance <span style="color: #67b11d;">(</span>+ balance amount<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    balance<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">dispatch</span> m<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #67b11d;">(</span><span style="color: #b1951d;">(</span>eq? m 'withdraw<span style="color: #b1951d;">)</span> withdraw<span style="color: #67b11d;">)</span>
-          <span style="color: #67b11d;">(</span><span style="color: #b1951d;">(</span>eq? m 'deposit<span style="color: #b1951d;">)</span> deposit<span style="color: #67b11d;">)</span>
-          <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">else</span> <span style="color: #b1951d;">(</span>error <span style="color: #2d9574;">"Unknown request:</span>
-<span style="color: #2d9574;">                 MAKE-ACCOUNT"</span> m<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  dispatch<span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">3.3/acc</span> <span style="color: #b58900;">(</span>make-account <span style="color: #6c71c4;">100</span> 'secret-password<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">3.3/make-account</span> acct# passwd<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">withdraw</span> amount<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #6c71c4;">(</span>&gt;= balance amount<span style="color: #6c71c4;">)</span>
+        <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">begin</span> <span style="color: #859900;">(</span>set! balance
+                 <span style="color: #b58900;">(</span>- balance amount<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+               balance<span style="color: #6c71c4;">)</span>
+        <span style="color: #2aa198;">"Insufficient funds"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">deposit</span> amount<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>set! balance <span style="color: #6c71c4;">(</span>+ balance amount<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    balance<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">dispatch</span> m<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span>eq? m 'withdraw<span style="color: #859900;">)</span> withdraw<span style="color: #6c71c4;">)</span>
+          <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span>eq? m 'deposit<span style="color: #859900;">)</span> deposit<span style="color: #6c71c4;">)</span>
+          <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">else</span> <span style="color: #859900;">(</span>error <span style="color: #2aa198;">"Unknown request:</span>
+<span style="color: #2aa198;">                 MAKE-ACCOUNT"</span> m<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  dispatch<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -136,7 +136,7 @@ as in
 <div id="outline-container-orgabd0856" class="outline-3">
 <h3 id="orgabd0856">Exercise 3.5</h3>
 <div class="outline-text-3" id="text-orgabd0856">
-<div class="question" id="orgc263033">
+<div class="question" id="org44dac7f">
 <p>
 Monte Carlo integration is a method of estimating definite integrals by means of
 Monte Carlo simulation. Consider computing the area of a region of space
@@ -174,32 +174,32 @@ number less than its input.136
 
 </div>
 </div>
-<div id="outline-container-org7c36794" class="outline-4">
-<h4 id="org7c36794">Answer</h4>
-<div class="outline-text-4" id="text-org7c36794">
+<div id="outline-container-org1d5a0a4" class="outline-4">
+<h4 id="org1d5a0a4">Answer</h4>
+<div class="outline-text-4" id="text-org1d5a0a4">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">random-in-range</span> low high<span style="color: #6c3163;">)</span>
-  <span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">had to write my own</span>
-  <span style="color: #6c3163;">(</span>+ low <span style="color: #2d9574;">(</span>random high<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">random-in-range</span> low high<span style="color: #b58900;">)</span>
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">had to write my own</span>
+  <span style="color: #b58900;">(</span>+ low <span style="color: #268bd2;">(</span>random high<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">estimate-integral</span> p x1 x2 y1 y2 trials<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">width</span> <span style="color: #2d9574;">(</span>abs <span style="color: #67b11d;">(</span>- x2 x1<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">height</span> <span style="color: #2d9574;">(</span>abs <span style="color: #67b11d;">(</span>- y2 y1<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">area</span> <span style="color: #2d9574;">(</span>* width height<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">iter</span> remaining passed<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">let*</span> <span style="color: #67b11d;">(</span><span style="color: #b1951d;">(</span>x <span style="color: #3a81c3;">(</span>random-in-range x1 x2<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-           <span style="color: #b1951d;">(</span>y <span style="color: #3a81c3;">(</span>random-in-range y1 y2<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-           <span style="color: #b1951d;">(</span>is-contained? <span style="color: #3a81c3;">(</span>p x y<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #b1951d;">(</span><span style="color: #3a81c3;">(</span>= remaining <span style="color: #4e3163;">0</span><span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>/ passed trials<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-            <span style="color: #b1951d;">(</span>is-contained? <span style="color: #3a81c3;">(</span>iter <span style="color: #6c3163;">(</span>dec remaining<span style="color: #6c3163;">)</span>
-                                 <span style="color: #6c3163;">(</span>inc passed<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-            <span style="color: #b1951d;">(</span><span style="color: #3a81c3; font-weight: bold;">else</span>
-             <span style="color: #3a81c3;">(</span>iter <span style="color: #6c3163;">(</span>dec remaining<span style="color: #6c3163;">)</span> passed<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>* area
-     <span style="color: #2d9574;">(</span>iter trials <span style="color: #4e3163;">0</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">estimate-integral</span> p x1 x2 y1 y2 trials<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">width</span> <span style="color: #268bd2;">(</span>abs <span style="color: #6c71c4;">(</span>- x2 x1<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">height</span> <span style="color: #268bd2;">(</span>abs <span style="color: #6c71c4;">(</span>- y2 y1<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">area</span> <span style="color: #268bd2;">(</span>* width height<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">iter</span> remaining passed<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let*</span> <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span>x <span style="color: #b58900;">(</span>random-in-range x1 x2<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+           <span style="color: #859900;">(</span>y <span style="color: #b58900;">(</span>random-in-range y1 y2<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+           <span style="color: #859900;">(</span>is-contained? <span style="color: #b58900;">(</span>p x y<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #859900;">(</span><span style="color: #b58900;">(</span>= remaining <span style="color: #6c71c4;">0</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>/ passed trials<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+            <span style="color: #859900;">(</span>is-contained? <span style="color: #b58900;">(</span>iter <span style="color: #268bd2;">(</span>dec remaining<span style="color: #268bd2;">)</span>
+                                 <span style="color: #268bd2;">(</span>inc passed<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+            <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">else</span>
+             <span style="color: #b58900;">(</span>iter <span style="color: #268bd2;">(</span>dec remaining<span style="color: #268bd2;">)</span> passed<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>* area
+     <span style="color: #268bd2;">(</span>iter trials <span style="color: #6c71c4;">0</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">unit-circle-pred</span> x y<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>&lt;= <span style="color: #2d9574;">(</span>+ <span style="color: #67b11d;">(</span>* x x<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>* y y<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span> <span style="color: #4e3163;">1</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">unit-circle-pred</span> x y<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>&lt;= <span style="color: #268bd2;">(</span>+ <span style="color: #6c71c4;">(</span>* x x<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>* y y<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span> <span style="color: #6c71c4;">1</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -209,7 +209,7 @@ number less than its input.136
 <div id="outline-container-org2258025" class="outline-3">
 <h3 id="org2258025">Exercise 3.6</h3>
 <div class="outline-text-3" id="text-org2258025">
-<div class="question" id="org8a5ae27">
+<div class="question" id="orgb49ecdf">
 <p>
 It is useful to be able to reset a random-number generator to produce a sequence
 starting from a given value. Design a new rand procedure that is called with an
@@ -222,23 +222,23 @@ very handy to have when testing and debugging programs that use random numbers.
 
 </div>
 </div>
-<div id="outline-container-org866abbc" class="outline-4">
-<h4 id="org866abbc">Answer</h4>
-<div class="outline-text-4" id="text-org866abbc">
+<div id="outline-container-org8f995c7" class="outline-4">
+<h4 id="org8f995c7">Answer</h4>
+<div class="outline-text-4" id="text-org8f995c7">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">This is what I assume he meant??</span>
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">rand</span> command<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">case</span> command
-    <span style="color: #2d9574;">(</span>'generate <span style="color: #67b11d;">(</span>random <span style="color: #4e3163;">10</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">else</span> <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #b1951d;">(</span>new<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>seed-&gt;random-state new<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">This is what I assume he meant??</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">rand</span> command<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">case</span> command
+    <span style="color: #268bd2;">(</span>'generate <span style="color: #6c71c4;">(</span>random <span style="color: #6c71c4;">10</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">else</span> <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #859900;">(</span>new<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>seed-&gt;random-state new<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">Utilities</span>
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">count-pairs</span> x<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #2d9574;">(</span>not <span style="color: #67b11d;">(</span>pair? x<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-      <span style="color: #4e3163;">0</span>
-      <span style="color: #2d9574;">(</span>+ <span style="color: #67b11d;">(</span>count-pairs <span style="color: #b1951d;">(</span>car x<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
-         <span style="color: #67b11d;">(</span>count-pairs <span style="color: #b1951d;">(</span>cdr x<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
-         <span style="color: #4e3163;">1</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Utilities</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">count-pairs</span> x<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>not <span style="color: #6c71c4;">(</span>pair? x<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+      <span style="color: #6c71c4;">0</span>
+      <span style="color: #268bd2;">(</span>+ <span style="color: #6c71c4;">(</span>count-pairs <span style="color: #859900;">(</span>car x<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+         <span style="color: #6c71c4;">(</span>count-pairs <span style="color: #859900;">(</span>cdr x<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+         <span style="color: #6c71c4;">1</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -248,7 +248,7 @@ very handy to have when testing and debugging programs that use random numbers.
 <div id="outline-container-orgfab8fee" class="outline-3">
 <h3 id="orgfab8fee">Exercise 3.12:</h3>
 <div class="outline-text-3" id="text-orgfab8fee">
-<div class="question" id="orge8bd4a6">
+<div class="question" id="org0e3b2d2">
 <p>
 The following procedure for appending lists was introduced in 2.2.1:
 </p>
@@ -271,30 +271,30 @@ empty x.)
 </div>
 </div>
 
-<div id="outline-container-org809b624" class="outline-4">
-<h4 id="org809b624">Answer</h4>
-<div class="outline-text-4" id="text-org809b624">
-<div class="textanswer" id="org31a1c13">
+<div id="outline-container-org595ba4a" class="outline-4">
+<h4 id="org595ba4a">Answer</h4>
+<div class="outline-text-4" id="text-org595ba4a">
+<div class="textanswer" id="org835e8a7">
 <p>
 An infinite loop occurs (a cycle in the linked list has been made)
 </p>
 
 </div>
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">last-pair</span> x<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #2d9574;">(</span>null? <span style="color: #67b11d;">(</span>cdr x<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">last-pair</span> x<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>null? <span style="color: #6c71c4;">(</span>cdr x<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
       x
-      <span style="color: #2d9574;">(</span>last-pair <span style="color: #67b11d;">(</span>cdr x<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+      <span style="color: #268bd2;">(</span>last-pair <span style="color: #6c71c4;">(</span>cdr x<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">x</span> <span style="color: #6c3163;">(</span>list 'a 'b<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">y</span> <span style="color: #6c3163;">(</span>list 'c 'd<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">z</span> <span style="color: #6c3163;">(</span>append x y<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">x</span> <span style="color: #b58900;">(</span>list 'a 'b<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">y</span> <span style="color: #b58900;">(</span>list 'c 'd<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">z</span> <span style="color: #b58900;">(</span>append x y<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">Exercise 3.13</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">What happens if we try to compute (last-pair z)?</span>
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">make-cycle</span> x<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>set-cdr! <span style="color: #2d9574;">(</span>last-pair x<span style="color: #2d9574;">)</span> x<span style="color: #6c3163;">)</span>
-  x<span style="color: #3a81c3;">)</span>
+<span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Exercise 3.13</span>
+<span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">What happens if we try to compute (last-pair z)?</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">make-cycle</span> x<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>set-cdr! <span style="color: #268bd2;">(</span>last-pair x<span style="color: #268bd2;">)</span> x<span style="color: #b58900;">)</span>
+  x<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -304,7 +304,7 @@ An infinite loop occurs (a cycle in the linked list has been made)
 <div id="outline-container-org7e2c904" class="outline-3">
 <h3 id="org7e2c904">Exercise 3.14:</h3>
 <div class="outline-text-3" id="text-org7e2c904">
-<div class="question" id="orgb83790c">
+<div class="question" id="org4604fb5">
 <p>
 The following procedure is quite useful, although obscure:
 </p>
@@ -332,10 +332,10 @@ printed as the values of v and w?
 
 </div>
 </div>
-<div id="outline-container-orgfe2af2f" class="outline-4">
-<h4 id="orgfe2af2f">Answer</h4>
-<div class="outline-text-4" id="text-orgfe2af2f">
-<div class="textanswer" id="org851b47a">
+<div id="outline-container-org4ae3007" class="outline-4">
+<h4 id="org4ae3007">Answer</h4>
+<div class="outline-text-4" id="text-org4ae3007">
+<div class="textanswer" id="org2f9778b">
 <p>
 Mystery requotes an array &ldquo;in-place&rdquo;
 </p>
@@ -348,7 +348,7 @@ Mystery requotes an array &ldquo;in-place&rdquo;
 <div id="outline-container-org990b436" class="outline-3">
 <h3 id="org990b436">Exercise 3.16</h3>
 <div class="outline-text-3" id="text-org990b436">
-<div class="question" id="orgf5e72cc">
+<div class="question" id="org7e6e3d0">
 <p>
 Ben Bitdiddle decides to write a procedure to count the number of pairs in any
 list structure. “It’s easy,” he reasons. “The number of pairs in any structure
@@ -374,22 +374,22 @@ Ben’s procedure would return 3; return 4; return 7; never return at all.
 </div>
 </div>
 
-<div id="outline-container-orgeebb137" class="outline-4">
-<h4 id="orgeebb137">Answer</h4>
-<div class="outline-text-4" id="text-orgeebb137">
+<div id="outline-container-org99fecb2" class="outline-4">
+<h4 id="org99fecb2">Answer</h4>
+<div class="outline-text-4" id="text-org99fecb2">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">count-three-pairs</span> '<span style="color: #6c3163;">(</span>a b c<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">count-four-pairs</span> '<span style="color: #6c3163;">(</span>a b c<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">count-seven-pairs</span> '<span style="color: #6c3163;">(</span>a b c<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-<span style="color: #3a81c3;">(</span>set-car! <span style="color: #6c3163;">(</span>cdr count-four-pairs<span style="color: #6c3163;">)</span> <span style="color: #6c3163;">(</span>cdr <span style="color: #2d9574;">(</span>cdr count-four-pairs<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-<span style="color: #3a81c3;">(</span>set-car! count-seven-pairs <span style="color: #6c3163;">(</span>cdr count-seven-pairs<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">count-three-pairs</span> '<span style="color: #b58900;">(</span>a b c<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">count-four-pairs</span> '<span style="color: #b58900;">(</span>a b c<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">count-seven-pairs</span> '<span style="color: #b58900;">(</span>a b c<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>set-car! <span style="color: #b58900;">(</span>cdr count-four-pairs<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>cdr <span style="color: #268bd2;">(</span>cdr count-four-pairs<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>set-car! count-seven-pairs <span style="color: #b58900;">(</span>cdr count-seven-pairs<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #2aa1ae; background-color: #ecf3ec;">#|</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;">Answer:</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;">(count-pairs count-three-pairs) =&gt; 3</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;">(count-pairs count-four-pairs)  =&gt; 4</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;">(count-pairs count-seven-pairs) =&gt; 7</span>
-<span style="color: #2aa1ae; background-color: #ecf3ec;">|#</span>
+<span style="color: #93a1a1;">#|</span>
+<span style="color: #93a1a1;">Answer:</span>
+<span style="color: #93a1a1;">(count-pairs count-three-pairs) =&gt; 3</span>
+<span style="color: #93a1a1;">(count-pairs count-four-pairs)  =&gt; 4</span>
+<span style="color: #93a1a1;">(count-pairs count-seven-pairs) =&gt; 7</span>
+<span style="color: #93a1a1;">|#</span>
 </pre>
 </div>
 </div>
@@ -399,7 +399,7 @@ Ben’s procedure would return 3; return 4; return 7; never return at all.
 <div id="outline-container-org2ae6dad" class="outline-3">
 <h3 id="org2ae6dad">Exercise 3.17</h3>
 <div class="outline-text-3" id="text-org2ae6dad">
-<div class="question" id="org044822c">
+<div class="question" id="org30ab9e5">
 <p>
 Devise a correct version of the count-pairs procedure of Exercise 3.16 that
 returns the number of distinct pairs in any structure.
@@ -413,22 +413,22 @@ used to keep track of which pairs have already been counted.)
 </div>
 </div>
 
-<div id="outline-container-org4131c52" class="outline-4">
-<h4 id="org4131c52">Answer</h4>
-<div class="outline-text-4" id="text-org4131c52">
+<div id="outline-container-org48090dd" class="outline-4">
+<h4 id="org48090dd">Answer</h4>
+<div class="outline-text-4" id="text-org48090dd">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">zv-count-pairs</span> xs<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">counted</span> '<span style="color: #2d9574;">()</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">loop</span> xs<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #67b11d;">(</span><span style="color: #b1951d;">(</span>not <span style="color: #3a81c3;">(</span>pair? xs<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span> <span style="color: #4e3163;">1</span><span style="color: #67b11d;">)</span>
-          <span style="color: #67b11d;">(</span><span style="color: #b1951d;">(</span>null? xs<span style="color: #b1951d;">)</span> <span style="color: #4e3163;">0</span><span style="color: #67b11d;">)</span>
-          <span style="color: #67b11d;">(</span><span style="color: #b1951d;">(</span>memq <span style="color: #3a81c3;">(</span>car xs<span style="color: #3a81c3;">)</span> counted<span style="color: #b1951d;">)</span> <span style="color: #4e3163;">0</span><span style="color: #67b11d;">)</span>
-          <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">else</span>
-           <span style="color: #b1951d;">(</span><span style="color: #3a81c3; font-weight: bold;">begin</span>
-             <span style="color: #3a81c3;">(</span>set! counted <span style="color: #6c3163;">(</span>cons <span style="color: #2d9574;">(</span>car xs<span style="color: #2d9574;">)</span> counted<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-             <span style="color: #3a81c3;">(</span>+ <span style="color: #6c3163;">(</span>loop <span style="color: #2d9574;">(</span>car xs<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-                <span style="color: #6c3163;">(</span>loop <span style="color: #2d9574;">(</span>cdr xs<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>loop xs<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">zv-count-pairs</span> xs<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">counted</span> '<span style="color: #268bd2;">()</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">loop</span> xs<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span>not <span style="color: #b58900;">(</span>pair? xs<span style="color: #b58900;">)</span><span style="color: #859900;">)</span> <span style="color: #6c71c4;">1</span><span style="color: #6c71c4;">)</span>
+          <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span>null? xs<span style="color: #859900;">)</span> <span style="color: #6c71c4;">0</span><span style="color: #6c71c4;">)</span>
+          <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span>memq <span style="color: #b58900;">(</span>car xs<span style="color: #b58900;">)</span> counted<span style="color: #859900;">)</span> <span style="color: #6c71c4;">0</span><span style="color: #6c71c4;">)</span>
+          <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">else</span>
+           <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">begin</span>
+             <span style="color: #b58900;">(</span>set! counted <span style="color: #268bd2;">(</span>cons <span style="color: #6c71c4;">(</span>car xs<span style="color: #6c71c4;">)</span> counted<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+             <span style="color: #b58900;">(</span>+ <span style="color: #268bd2;">(</span>loop <span style="color: #6c71c4;">(</span>car xs<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+                <span style="color: #268bd2;">(</span>loop <span style="color: #6c71c4;">(</span>cdr xs<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>loop xs<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -438,7 +438,7 @@ used to keep track of which pairs have already been counted.)
 <div id="outline-container-org5834b0c" class="outline-3">
 <h3 id="org5834b0c">Exercise 3.18</h3>
 <div class="outline-text-3" id="text-org5834b0c">
-<div class="question" id="org116fe22">
+<div class="question" id="org09882cd">
 <p>
 Write a procedure that examines a list and determines whether it contains a
 cycle, that is, whether a program that tried to find the end of the list by
@@ -448,20 +448,20 @@ such lists.
 
 </div>
 </div>
-<div id="outline-container-org8e31465" class="outline-4">
-<h4 id="org8e31465">Answer</h4>
-<div class="outline-text-4" id="text-org8e31465">
+<div id="outline-container-org5ee95d0" class="outline-4">
+<h4 id="org5ee95d0">Answer</h4>
+<div class="outline-text-4" id="text-org5ee95d0">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">has-cycles?</span> xs<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">visited</span> '<span style="color: #2d9574;">()</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">search</span> ys<span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #67b11d;">(</span><span style="color: #b1951d;">(</span>null? ys<span style="color: #b1951d;">)</span> #f<span style="color: #67b11d;">)</span>
-          <span style="color: #67b11d;">(</span><span style="color: #b1951d;">(</span>memq <span style="color: #3a81c3;">(</span>car ys<span style="color: #3a81c3;">)</span> visited<span style="color: #b1951d;">)</span> #t<span style="color: #67b11d;">)</span>
-          <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">else</span>
-           <span style="color: #b1951d;">(</span><span style="color: #3a81c3; font-weight: bold;">begin</span>
-             <span style="color: #3a81c3;">(</span>set! visited <span style="color: #6c3163;">(</span>cons <span style="color: #2d9574;">(</span>car ys<span style="color: #2d9574;">)</span> visited<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-             <span style="color: #3a81c3;">(</span>search <span style="color: #6c3163;">(</span>cdr ys<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>search xs<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">has-cycles?</span> xs<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">visited</span> '<span style="color: #268bd2;">()</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">search</span> ys<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span>null? ys<span style="color: #859900;">)</span> #f<span style="color: #6c71c4;">)</span>
+          <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span>memq <span style="color: #b58900;">(</span>car ys<span style="color: #b58900;">)</span> visited<span style="color: #859900;">)</span> #t<span style="color: #6c71c4;">)</span>
+          <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">else</span>
+           <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">begin</span>
+             <span style="color: #b58900;">(</span>set! visited <span style="color: #268bd2;">(</span>cons <span style="color: #6c71c4;">(</span>car ys<span style="color: #6c71c4;">)</span> visited<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+             <span style="color: #b58900;">(</span>search <span style="color: #268bd2;">(</span>cdr ys<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>search xs<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -471,7 +471,7 @@ such lists.
 <div id="outline-container-org1b5740c" class="outline-3">
 <h3 id="org1b5740c">Exercise 3.19</h3>
 <div class="outline-text-3" id="text-org1b5740c">
-<div class="question" id="org897094b">
+<div class="question" id="org143aa7d">
 <p>
 Redo Exercise 3.18 using an algorithm that takes only a constant amount of
 space. (This requires a very clever idea.)
@@ -479,15 +479,15 @@ space. (This requires a very clever idea.)
 
 </div>
 </div>
-<div id="outline-container-orge3b9c61" class="outline-4">
-<h4 id="orge3b9c61">Answer</h4>
-<div class="outline-text-4" id="text-orge3b9c61">
+<div id="outline-container-org15ca67f" class="outline-4">
+<h4 id="org15ca67f">Answer</h4>
+<div class="outline-text-4" id="text-org15ca67f">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define*</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">linear-cycle-search</span> x1
-                              <span style="color: #3a81c3;">#:optional</span> <span style="color: #2d9574;">(</span>x2 <span style="color: #67b11d;">(</span>cdr x1<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">or</span> <span style="color: #b1951d;">(</span>null? <span style="color: #3a81c3;">(</span>cdr x1<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>null? <span style="color: #3a81c3;">(</span>cdr x2<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span> #f<span style="color: #2d9574;">)</span>
-        <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span>eq? x1 x2<span style="color: #67b11d;">)</span> #t<span style="color: #2d9574;">)</span>
-        <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">else</span> <span style="color: #67b11d;">(</span>linear-cycle-search <span style="color: #b1951d;">(</span>cdr x1<span style="color: #b1951d;">)</span> <span style="color: #b1951d;">(</span>cdr <span style="color: #3a81c3;">(</span>cdr x2<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define*</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">linear-cycle-search</span> x1
+                              <span style="color: #657b83; font-weight: bold;">#:optional</span> <span style="color: #268bd2;">(</span>x2 <span style="color: #6c71c4;">(</span>cdr x1<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">or</span> <span style="color: #859900;">(</span>null? <span style="color: #b58900;">(</span>cdr x1<span style="color: #b58900;">)</span><span style="color: #859900;">)</span> <span style="color: #859900;">(</span>null? <span style="color: #b58900;">(</span>cdr x2<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span> #f<span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>eq? x1 x2<span style="color: #6c71c4;">)</span> #t<span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">else</span> <span style="color: #6c71c4;">(</span>linear-cycle-search <span style="color: #859900;">(</span>cdr x1<span style="color: #859900;">)</span> <span style="color: #859900;">(</span>cdr <span style="color: #b58900;">(</span>cdr x2<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -497,7 +497,7 @@ space. (This requires a very clever idea.)
 <div id="outline-container-orgb0e41a5" class="outline-3">
 <h3 id="orgb0e41a5">Exercise 3.21</h3>
 <div class="outline-text-3" id="text-orgb0e41a5">
-<div class="question" id="org04eab62">
+<div class="question" id="orgf279a0e">
 <p>
 Ben Bitdiddle decides to test the queue implementation described above. He types
 in the procedures to the Lisp interpreter and proceeds to try them out:
@@ -520,11 +520,11 @@ the sequence of items in the queue.
 </div>
 </div>
 
-<div id="outline-container-orgad52612" class="outline-4">
-<h4 id="orgad52612">Answer</h4>
-<div class="outline-text-4" id="text-orgad52612">
+<div id="outline-container-org1fe15f9" class="outline-4">
+<h4 id="org1fe15f9">Answer</h4>
+<div class="outline-text-4" id="text-org1fe15f9">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">print-queue</span> qs<span style="color: #6c3163;">)</span> <span style="color: #6c3163;">(</span>format #t <span style="color: #2d9574;">"~a~%"</span> <span style="color: #2d9574;">(</span>car qs<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">print-queue</span> qs<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>format #t <span style="color: #2aa198;">"~a~%"</span> <span style="color: #268bd2;">(</span>car qs<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -534,7 +534,7 @@ the sequence of items in the queue.
 <div id="outline-container-org4e2446d" class="outline-3">
 <h3 id="org4e2446d">Exercise 3.22</h3>
 <div class="outline-text-3" id="text-org4e2446d">
-<div class="question" id="org32fa5fc">
+<div class="question" id="org05bae1f">
 <p>
 Instead of representing a queue as a pair of pointers, we can build a queue as a
 procedure with local state. The local state will consist of pointers to the
@@ -559,37 +559,37 @@ operations using this representation.
 </div>
 </div>
 
-<div id="outline-container-org33e7922" class="outline-4">
-<h4 id="org33e7922">Answer</h4>
-<div class="outline-text-4" id="text-org33e7922">
+<div id="outline-container-orgcfb2222" class="outline-4">
+<h4 id="orgcfb2222">Answer</h4>
+<div class="outline-text-4" id="text-orgcfb2222">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">make-curryq</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">let</span> <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span>front-ptr '<span style="color: #b1951d;">()</span><span style="color: #67b11d;">)</span>
-        <span style="color: #67b11d;">(</span>rear-ptr '<span style="color: #b1951d;">()</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #67b11d;">(</span><span style="color: #6c3163; font-weight: bold;">set-fptr!</span> item<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>set! front-ptr item<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #67b11d;">(</span><span style="color: #6c3163; font-weight: bold;">set-rptr!</span> item<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>set! rear-ptr item<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #67b11d;">(</span><span style="color: #6c3163; font-weight: bold;">empty-curryq?</span><span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span>null? front-ptr<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #67b11d;">(</span><span style="color: #6c3163; font-weight: bold;">front-curryq</span><span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #b1951d;">(</span>empty-curryq?<span style="color: #b1951d;">)</span>
-          <span style="color: #b1951d;">(</span>error <span style="color: #2d9574;">"FRONT on empty queue"</span><span style="color: #b1951d;">)</span>
-          <span style="color: #b1951d;">(</span>car front-ptr<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #67b11d;">(</span><span style="color: #6c3163; font-weight: bold;">insert-curryq!</span> item<span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">let</span> <span style="color: #b1951d;">(</span><span style="color: #3a81c3;">(</span>new-pair <span style="color: #6c3163;">(</span>cons item '<span style="color: #2d9574;">()</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-        <span style="color: #b1951d;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #3a81c3;">[</span><span style="color: #6c3163;">(</span>empty-curryq?<span style="color: #6c3163;">)</span>
-               <span style="color: #6c3163;">(</span>set-fptr! item<span style="color: #6c3163;">)</span>
-               <span style="color: #6c3163;">(</span>set-rptr! item<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">]</span>
-              <span style="color: #3a81c3;">[</span>else
-               <span style="color: #6c3163;">(</span>set! rear-ptr new-pair<span style="color: #6c3163;">)</span>
-               <span style="color: #6c3163;">(</span>set-rptr! new-pair<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">]</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #67b11d;">(</span><span style="color: #6c3163; font-weight: bold;">print-queue</span><span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span>format #t <span style="color: #2d9574;">"~a~%"</span> front-ptr<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #67b11d;">(</span><span style="color: #6c3163; font-weight: bold;">dispatch</span> m<span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #b1951d;">[</span><span style="color: #3a81c3;">(</span>eq? m 'front-ptr<span style="color: #3a81c3;">)</span> front-ptr<span style="color: #b1951d;">]</span>
-            <span style="color: #b1951d;">[</span><span style="color: #3a81c3;">(</span>eq? m 'rear-ptr<span style="color: #3a81c3;">)</span> rear-ptr<span style="color: #b1951d;">]</span>
-            <span style="color: #b1951d;">[</span><span style="color: #3a81c3;">(</span>eq? m 'insert-queue!<span style="color: #3a81c3;">)</span> insert-curryq!<span style="color: #b1951d;">]</span>
-            <span style="color: #b1951d;">[</span><span style="color: #3a81c3;">(</span>eq? m 'print-queue<span style="color: #3a81c3;">)</span> print-queue<span style="color: #b1951d;">]</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    dispatch<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">make-curryq</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>front-ptr '<span style="color: #859900;">()</span><span style="color: #6c71c4;">)</span>
+        <span style="color: #6c71c4;">(</span>rear-ptr '<span style="color: #859900;">()</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">set-fptr!</span> item<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>set! front-ptr item<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">set-rptr!</span> item<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>set! rear-ptr item<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">empty-curryq?</span><span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span>null? front-ptr<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">front-curryq</span><span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #859900;">(</span>empty-curryq?<span style="color: #859900;">)</span>
+          <span style="color: #859900;">(</span>error <span style="color: #2aa198;">"FRONT on empty queue"</span><span style="color: #859900;">)</span>
+          <span style="color: #859900;">(</span>car front-ptr<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">insert-curryq!</span> item<span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #859900;">(</span><span style="color: #b58900;">(</span>new-pair <span style="color: #268bd2;">(</span>cons item '<span style="color: #6c71c4;">()</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+        <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #b58900;">[</span><span style="color: #268bd2;">(</span>empty-curryq?<span style="color: #268bd2;">)</span>
+               <span style="color: #268bd2;">(</span>set-fptr! item<span style="color: #268bd2;">)</span>
+               <span style="color: #268bd2;">(</span>set-rptr! item<span style="color: #268bd2;">)</span><span style="color: #b58900;">]</span>
+              <span style="color: #b58900;">[</span>else
+               <span style="color: #268bd2;">(</span>set! rear-ptr new-pair<span style="color: #268bd2;">)</span>
+               <span style="color: #268bd2;">(</span>set-rptr! new-pair<span style="color: #268bd2;">)</span><span style="color: #b58900;">]</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">print-queue</span><span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span>format #t <span style="color: #2aa198;">"~a~%"</span> front-ptr<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">dispatch</span> m<span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #859900;">[</span><span style="color: #b58900;">(</span>eq? m 'front-ptr<span style="color: #b58900;">)</span> front-ptr<span style="color: #859900;">]</span>
+            <span style="color: #859900;">[</span><span style="color: #b58900;">(</span>eq? m 'rear-ptr<span style="color: #b58900;">)</span> rear-ptr<span style="color: #859900;">]</span>
+            <span style="color: #859900;">[</span><span style="color: #b58900;">(</span>eq? m 'insert-queue!<span style="color: #b58900;">)</span> insert-curryq!<span style="color: #859900;">]</span>
+            <span style="color: #859900;">[</span><span style="color: #b58900;">(</span>eq? m 'print-queue<span style="color: #b58900;">)</span> print-queue<span style="color: #859900;">]</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    dispatch<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -599,7 +599,7 @@ operations using this representation.
 <div id="outline-container-org047b1b6" class="outline-3">
 <h3 id="org047b1b6">Exercise 3.23</h3>
 <div class="outline-text-3" id="text-org047b1b6">
-<div class="question" id="org20ec9b4">
+<div class="question" id="org433f04e">
 <p>
 A deque (“double-ended queue”) is a sequence in which items can be inserted and
 deleted at either the front or the rear. Operations on deques are the
@@ -613,10 +613,10 @@ accomplished in Θ(1) steps.
 </div>
 </div>
 
-<div id="outline-container-org3c7a7b5" class="outline-4">
-<h4 id="org3c7a7b5">Answer</h4>
-<div class="outline-text-4" id="text-org3c7a7b5">
-<div class="question" id="orgcd25073">
+<div id="outline-container-org7a2b183" class="outline-4">
+<h4 id="org7a2b183">Answer</h4>
+<div class="outline-text-4" id="text-org7a2b183">
+<div class="question" id="org1734965">
 <p>
 This is the structure I&rsquo;ve decided to use for the deque. There may be other
 neat ways to encode a deque with cons-cells. I&rsquo;d love to hear if anyone has
@@ -827,7 +827,7 @@ V   ^&#x2014;+   V   ^&#x2014;+   V
 <div id="outline-container-org402518e" class="outline-3">
 <h3 id="org402518e">Exercise 3.24:</h3>
 <div class="outline-text-3" id="text-org402518e">
-<div class="question" id="org1eef648">
+<div class="question" id="orgc871418">
 <p>
 In the table implementations above, the keys are tested for equality using
 `equal?&rsquo; (called by `assoc&rsquo;). This is not always the appropriate test. For
@@ -841,42 +841,42 @@ access appropriate `lookup&rsquo; and `insert!&rsquo; procedures for a local tab
 
 </div>
 </div>
-<div id="outline-container-org1e269ab" class="outline-4">
-<h4 id="org1e269ab">Answer</h4>
-<div class="outline-text-4" id="text-org1e269ab">
+<div id="outline-container-org973cf6d" class="outline-4">
+<h4 id="org973cf6d">Answer</h4>
+<div class="outline-text-4" id="text-org973cf6d">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">make-table-with-key</span> same-key?<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">let</span> <span style="color: #2d9574;">(</span><span style="color: #67b11d;">(</span>local-table <span style="color: #b1951d;">(</span>list '*table*<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">just redefine `assoc' with `same-key?'</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #67b11d;">(</span><span style="color: #6c3163; font-weight: bold;">assoc</span> key records<span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #b1951d;">(</span><span style="color: #3a81c3;">(</span>null? records<span style="color: #3a81c3;">)</span> #f<span style="color: #b1951d;">)</span>
-            <span style="color: #b1951d;">(</span><span style="color: #3a81c3;">(</span>same-key? key <span style="color: #6c3163;">(</span>caar records<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span> <span style="color: #3a81c3;">(</span>car records<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-            <span style="color: #b1951d;">(</span><span style="color: #3a81c3; font-weight: bold;">else</span> <span style="color: #3a81c3;">(</span>assoc key <span style="color: #6c3163;">(</span>cdr records<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #67b11d;">(</span><span style="color: #6c3163; font-weight: bold;">lookup</span> key-1 key-2<span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">let</span> <span style="color: #b1951d;">(</span><span style="color: #3a81c3;">(</span>subtable <span style="color: #6c3163;">(</span>assoc key-1 <span style="color: #2d9574;">(</span>cdr local-table<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-        <span style="color: #b1951d;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> subtable
-            <span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">let</span> <span style="color: #6c3163;">(</span><span style="color: #2d9574;">(</span>record <span style="color: #887070;">(</span>assoc key-2 <span style="color: #3a81c3;">(</span>cdr subtable<span style="color: #3a81c3;">)</span><span style="color: #887070;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-              <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> record
-                  <span style="color: #2d9574;">(</span>cdr record<span style="color: #2d9574;">)</span>
-                  #f<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-            #f<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #67b11d;">(</span><span style="color: #6c3163; font-weight: bold;">insert!</span> key-1 key-2 value<span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">let</span> <span style="color: #b1951d;">(</span><span style="color: #3a81c3;">(</span>subtable <span style="color: #6c3163;">(</span>assoc key-1 <span style="color: #2d9574;">(</span>cdr local-table<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-        <span style="color: #b1951d;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> subtable
-            <span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">let</span> <span style="color: #6c3163;">(</span><span style="color: #2d9574;">(</span>record <span style="color: #887070;">(</span>assoc key-2 <span style="color: #3a81c3;">(</span>cdr subtable<span style="color: #3a81c3;">)</span><span style="color: #887070;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-              <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">if</span> record
-                  <span style="color: #2d9574;">(</span>set-cdr! record value<span style="color: #2d9574;">)</span>
-                  <span style="color: #2d9574;">(</span>set-cdr! subtable
-                            <span style="color: #887070;">(</span>cons <span style="color: #3a81c3;">(</span>cons key-2 value<span style="color: #3a81c3;">)</span>
-                                  <span style="color: #3a81c3;">(</span>cdr subtable<span style="color: #3a81c3;">)</span><span style="color: #887070;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-            <span style="color: #3a81c3;">(</span>set-cdr! local-table
-                      <span style="color: #6c3163;">(</span>cons <span style="color: #2d9574;">(</span>list key-1
-                                  <span style="color: #887070;">(</span>cons key-2 value<span style="color: #887070;">)</span><span style="color: #2d9574;">)</span>
-                            <span style="color: #2d9574;">(</span>cdr local-table<span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #67b11d;">(</span><span style="color: #6c3163; font-weight: bold;">dispatch</span> m<span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span> <span style="color: #b1951d;">(</span><span style="color: #3a81c3;">(</span>eq? m 'lookup-proc<span style="color: #3a81c3;">)</span> lookup<span style="color: #b1951d;">)</span>
-            <span style="color: #b1951d;">(</span><span style="color: #3a81c3;">(</span>eq? m 'insert-proc!<span style="color: #3a81c3;">)</span> insert!<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-    dispatch<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">make-table-with-key</span> same-key?<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>local-table <span style="color: #859900;">(</span>list '*table*<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">just redefine `assoc' with `same-key?'</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">assoc</span> key records<span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #859900;">(</span><span style="color: #b58900;">(</span>null? records<span style="color: #b58900;">)</span> #f<span style="color: #859900;">)</span>
+            <span style="color: #859900;">(</span><span style="color: #b58900;">(</span>same-key? key <span style="color: #268bd2;">(</span>caar records<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>car records<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+            <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">else</span> <span style="color: #b58900;">(</span>assoc key <span style="color: #268bd2;">(</span>cdr records<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">lookup</span> key-1 key-2<span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #859900;">(</span><span style="color: #b58900;">(</span>subtable <span style="color: #268bd2;">(</span>assoc key-1 <span style="color: #6c71c4;">(</span>cdr local-table<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+        <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">if</span> subtable
+            <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>record <span style="color: #859900;">(</span>assoc key-2 <span style="color: #2aa198;">(</span>cdr subtable<span style="color: #2aa198;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+              <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> record
+                  <span style="color: #6c71c4;">(</span>cdr record<span style="color: #6c71c4;">)</span>
+                  #f<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+            #f<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">insert!</span> key-1 key-2 value<span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #859900;">(</span><span style="color: #b58900;">(</span>subtable <span style="color: #268bd2;">(</span>assoc key-1 <span style="color: #6c71c4;">(</span>cdr local-table<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+        <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">if</span> subtable
+            <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>record <span style="color: #859900;">(</span>assoc key-2 <span style="color: #2aa198;">(</span>cdr subtable<span style="color: #2aa198;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+              <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> record
+                  <span style="color: #6c71c4;">(</span>set-cdr! record value<span style="color: #6c71c4;">)</span>
+                  <span style="color: #6c71c4;">(</span>set-cdr! subtable
+                            <span style="color: #859900;">(</span>cons <span style="color: #2aa198;">(</span>cons key-2 value<span style="color: #2aa198;">)</span>
+                                  <span style="color: #2aa198;">(</span>cdr subtable<span style="color: #2aa198;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+            <span style="color: #b58900;">(</span>set-cdr! local-table
+                      <span style="color: #268bd2;">(</span>cons <span style="color: #6c71c4;">(</span>list key-1
+                                  <span style="color: #859900;">(</span>cons key-2 value<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+                            <span style="color: #6c71c4;">(</span>cdr local-table<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #6c71c4;">(</span><span style="color: #268bd2;">dispatch</span> m<span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold;">cond</span> <span style="color: #859900;">(</span><span style="color: #b58900;">(</span>eq? m 'lookup-proc<span style="color: #b58900;">)</span> lookup<span style="color: #859900;">)</span>
+            <span style="color: #859900;">(</span><span style="color: #b58900;">(</span>eq? m 'insert-proc!<span style="color: #b58900;">)</span> insert!<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    dispatch<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -886,7 +886,7 @@ access appropriate `lookup&rsquo; and `insert!&rsquo; procedures for a local tab
 <div id="outline-container-org4e669b0" class="outline-3">
 <h3 id="org4e669b0">Exercise 3.25</h3>
 <div class="outline-text-3" id="text-org4e669b0">
-<div class="question" id="org3fe3ce6">
+<div class="question" id="orgdc99028">
 <p>
 Generalizing one and two-dimensional tables, show how to implement a table
 in which values are stored under an arbitrary number of keys and different
@@ -898,10 +898,10 @@ table.
 </div>
 </div>
 
-<div id="outline-container-orge485da4" class="outline-4">
-<h4 id="orge485da4">Answer</h4>
-<div class="outline-text-4" id="text-orge485da4">
-<div class="textanswer" id="org640df63">
+<div id="outline-container-org6b01c9b" class="outline-4">
+<h4 id="org6b01c9b">Answer</h4>
+<div class="outline-text-4" id="text-org6b01c9b">
+<div class="textanswer" id="org83974fc">
 <p>
 The easiest way to accomplish this is to accept variadic arguments to
 `insert&rsquo; and `lookup&rsquo;, folding them into a string or using the list
@@ -916,7 +916,7 @@ directly (which `equal?&rsquo; can compare)
 <div id="outline-container-org20905a8" class="outline-3">
 <h3 id="org20905a8">Exercise 3.26</h3>
 <div class="outline-text-3" id="text-org20905a8">
-<div class="question" id="org173296e">
+<div class="question" id="org3faa5ec">
 <p>
 To search a table as implemented above, one needs to scan through the list
 of records. This is basically the unordered list representation of section
@@ -930,10 +930,10 @@ Exercise 2-66 of Chapter 2)
 </div>
 </div>
 
-<div id="outline-container-org21c52e9" class="outline-4">
-<h4 id="org21c52e9">Answer:</h4>
-<div class="outline-text-4" id="text-org21c52e9">
-<div class="textanswer" id="org8539bed">
+<div id="outline-container-orge10b395" class="outline-4">
+<h4 id="orge10b395">Answer:</h4>
+<div class="outline-text-4" id="text-orge10b395">
+<div class="textanswer" id="orgfedb41a">
 <p>
 The value that is to be inserted is converted into it&rsquo;s numeric form. Insert &amp;
 Lookup function as you would expect
@@ -947,7 +947,7 @@ Lookup function as you would expect
 <div id="outline-container-org9d7e1a0" class="outline-3">
 <h3 id="org9d7e1a0">Exercise 3.27</h3>
 <div class="outline-text-3" id="text-org9d7e1a0">
-<div class="question" id="orgf450f8e">
+<div class="question" id="org876fe3f">
 <p>
 &ldquo;Memoization&rdquo; (also called &ldquo;tabulation&rdquo;) is a technique that enables a
 procedure to record, in a local table, values that have previously been
@@ -1007,10 +1007,10 @@ defined `memo-fib&rsquo; to be `(memoize fib)&rsquo;?
 </div>
 </div>
 
-<div id="outline-container-orgd61ca3b" class="outline-4">
-<h4 id="orgd61ca3b">Answer:</h4>
-<div class="outline-text-4" id="text-orgd61ca3b">
-<div class="textanswer" id="orga6de9cf">
+<div id="outline-container-org62c6c1a" class="outline-4">
+<h4 id="org62c6c1a">Answer:</h4>
+<div class="outline-text-4" id="text-org62c6c1a">
+<div class="textanswer" id="orgb53cff5">
 <p>
 memo-fib is O(N) because the fibonacci sequence can simply be computed in
 2*(Σ(N)) steps (half of which are &rsquo;precomputed&rsquo;)
@@ -1027,7 +1027,7 @@ the `table&rsquo; would not be shared between the various applications of
 <div id="outline-container-orgfed4f11" class="outline-3">
 <h3 id="orgfed4f11">Exercise 3.28</h3>
 <div class="outline-text-3" id="text-orgfed4f11">
-<div class="question" id="org57b8e90">
+<div class="question" id="orgdd8ecc0">
 <p>
 Define an or-gate as a primitive function box. Your or-gate constructor should
 be similar to and-gate.
@@ -1036,23 +1036,23 @@ be similar to and-gate.
 </div>
 </div>
 
-<div id="outline-container-org6bc59ee" class="outline-4">
-<h4 id="org6bc59ee">Answer</h4>
-<div class="outline-text-4" id="text-org6bc59ee">
+<div id="outline-container-org6570346" class="outline-4">
+<h4 id="org6570346">Answer</h4>
+<div class="outline-text-4" id="text-org6570346">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163; font-weight: bold;">or-gate-delay</span> <span style="color: #4e3163;">5</span><span style="color: #3a81c3;">)</span>
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">or-gate</span> a1 a2 output<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #2d9574;">(</span><span style="color: #6c3163; font-weight: bold;">or-action-procedure</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">let</span> <span style="color: #67b11d;">(</span><span style="color: #b1951d;">(</span>new-value
-           <span style="color: #3a81c3;">(</span>logior <span style="color: #6c3163;">(</span>signal-value a1<span style="color: #6c3163;">)</span>
-                   <span style="color: #6c3163;">(</span>signal-value a2<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
-      <span style="color: #67b11d;">(</span>after-delay
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">or-gate-delay</span> <span style="color: #6c71c4;">5</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">or-gate</span> a1 a2 output<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2;">or-action-procedure</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span>new-value
+           <span style="color: #b58900;">(</span>logior <span style="color: #268bd2;">(</span>signal-value a1<span style="color: #268bd2;">)</span>
+                   <span style="color: #268bd2;">(</span>signal-value a2<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span>after-delay
        or-gate-delay
-       <span style="color: #b1951d;">(</span><span style="color: #3a81c3; font-weight: bold;">&#955;</span> <span style="color: #3a81c3;">()</span>
-         <span style="color: #3a81c3;">(</span>set-signal! output new-value<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>add-action! a1 or-action-procedure<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>add-action! a2 or-action-procedure<span style="color: #6c3163;">)</span>
-  'ok<span style="color: #3a81c3;">)</span>
+       <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">&#955;</span> <span style="color: #b58900;">()</span>
+         <span style="color: #b58900;">(</span>set-signal! output new-value<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>add-action! a1 or-action-procedure<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>add-action! a2 or-action-procedure<span style="color: #b58900;">)</span>
+  'ok<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -1062,7 +1062,7 @@ be similar to and-gate.
 <div id="outline-container-org495ed30" class="outline-3">
 <h3 id="org495ed30">Exercise 3.29</h3>
 <div class="outline-text-3" id="text-org495ed30">
-<div class="question" id="orgeb7a182">
+<div class="question" id="orgb7c8e5a">
 <p>
 Another way to construct an or-gate is as a compound digital logic device, built
 from and-gates and inverters. Define a procedure or-gate that accomplishes this.
@@ -1073,10 +1073,10 @@ inverter-delay?
 </div>
 </div>
 
-<div id="outline-container-org9a012ca" class="outline-4">
-<h4 id="org9a012ca">Answer</h4>
-<div class="outline-text-4" id="text-org9a012ca">
-<div class="question" id="org084aaf0">
+<div id="outline-container-orgd4558fe" class="outline-4">
+<h4 id="orgd4558fe">Answer</h4>
+<div class="outline-text-4" id="text-orgd4558fe">
+<div class="question" id="orgd9af32e">
 <p>
 (!a1) &amp;&amp; a2 is congruent to a1 || a2, it is as fast as (AND-DELAY + INVERTER<sub>DELAY</sub>)
 </p>
@@ -1089,7 +1089,7 @@ inverter-delay?
 <div id="outline-container-org6c9d1c3" class="outline-3">
 <h3 id="org6c9d1c3"><span class="todo TODO">TODO</span> Exercise 3.30</h3>
 <div class="outline-text-3" id="text-org6c9d1c3">
-<div class="question" id="org829618c">
+<div class="question" id="orgc256f82">
 <p>
 Figure 3.27 shows a ripple-carry adder formed by stringing together n
 full-adders. This is the simplest form of parallel adder for adding two n -bit
@@ -1112,7 +1112,7 @@ and inverters?
 <div id="outline-container-org3f5d17e" class="outline-3">
 <h3 id="org3f5d17e">Exercise 3.31</h3>
 <div class="outline-text-3" id="text-org3f5d17e">
-<div class="question" id="org2f17226">
+<div class="question" id="org6fb524b">
 <p>
 The internal procedure `accept-action-procedure!&rsquo; defined in make-wire specifies
 that when a new action procedure is added to a wire, the procedure is
@@ -1129,10 +1129,10 @@ system’s response would differ if we had defined accept-action-procedure! as
 </div>
 </div>
 
-<div id="outline-container-orge10b395" class="outline-4">
-<h4 id="orge10b395">Answer:</h4>
-<div class="outline-text-4" id="text-orge10b395">
-<div class="question" id="org282543e">
+<div id="outline-container-orga82b15e" class="outline-4">
+<h4 id="orga82b15e">Answer:</h4>
+<div class="outline-text-4" id="text-orga82b15e">
+<div class="question" id="org6b4d7f4">
 <p>
 the signal value must be initialized or the entire system will run the action
 procedures (no matter what has changed)
@@ -1146,7 +1146,7 @@ procedures (no matter what has changed)
 <div id="outline-container-org7f20207" class="outline-3">
 <h3 id="org7f20207"><span class="todo TODO">TODO</span> Exercise 3.32</h3>
 <div class="outline-text-3" id="text-org7f20207">
-<div class="question" id="org1145e39">
+<div class="question" id="org858e2ef">
 <p>
 The procedures to be run during each time segment of the agenda are kept in a
 queue. Thus, the procedures for each segment are called in the order in which
@@ -1164,7 +1164,7 @@ procedures only at the front (last in, first out).
 <div id="outline-container-org590b0b6" class="outline-3">
 <h3 id="org590b0b6">Exercise 3.33</h3>
 <div class="outline-text-3" id="text-org590b0b6">
-<div class="question" id="orga191403">
+<div class="question" id="org2de16d8">
 <p>
 Using primitive multiplier, adder, and constant constraints, define a procedure
 averager that takes three connectors a, b, and c as inputs and establishes the
@@ -1174,16 +1174,16 @@ constraint that the value of c is the average of the values of a and b.
 </div>
 </div>
 
-<div id="outline-container-orga6308a5" class="outline-4">
-<h4 id="orga6308a5">Answer</h4>
-<div class="outline-text-4" id="text-orga6308a5">
+<div id="outline-container-orge0c06d6" class="outline-4">
+<h4 id="orge0c06d6">Answer</h4>
+<div class="outline-text-4" id="text-orge0c06d6">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">averager</span> a b c<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>with-connectors <span style="color: #2d9574;">(</span>half sum<span style="color: #2d9574;">)</span>
-                   <span style="color: #2d9574;">(</span>constant <span style="color: #4e3163;">0.5</span> half<span style="color: #2d9574;">)</span>
-                   <span style="color: #2d9574;">(</span>adder a b sum<span style="color: #2d9574;">)</span>
-                   <span style="color: #2d9574;">(</span>multiplier half sum c<span style="color: #2d9574;">)</span>
-                   'ok<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">averager</span> a b c<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>with-connectors <span style="color: #268bd2;">(</span>half sum<span style="color: #268bd2;">)</span>
+                   <span style="color: #268bd2;">(</span>constant <span style="color: #6c71c4;">0.5</span> half<span style="color: #268bd2;">)</span>
+                   <span style="color: #268bd2;">(</span>adder a b sum<span style="color: #268bd2;">)</span>
+                   <span style="color: #268bd2;">(</span>multiplier half sum c<span style="color: #268bd2;">)</span>
+                   'ok<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -1193,7 +1193,7 @@ constraint that the value of c is the average of the values of a and b.
 <div id="outline-container-orgd4cde4f" class="outline-3">
 <h3 id="orgd4cde4f">Exercise 3.34</h3>
 <div class="outline-text-3" id="text-orgd4cde4f">
-<div class="question" id="orgb23a285">
+<div class="question" id="org3c7c00b">
 <p>
 Louis Reasoner wants to build a squarer, a constraint device with two terminals
 such that the value of connector b on the second terminal will always be the
@@ -1212,10 +1212,10 @@ There is a serious flaw in this idea. Explain.
 </div>
 </div>
 
-<div id="outline-container-orgc79a7be" class="outline-4">
-<h4 id="orgc79a7be">Answer</h4>
-<div class="outline-text-4" id="text-orgc79a7be">
-<div class="textanswer" id="org5ac9288">
+<div id="outline-container-orgc521914" class="outline-4">
+<h4 id="orgc521914">Answer</h4>
+<div class="outline-text-4" id="text-orgc521914">
+<div class="textanswer" id="org95c6c8f">
 <p>
 The value of `a&rsquo; is not &ldquo;duplicated&rdquo; across &#x2013; so `process-new-value&rsquo; only reads either `rhs&rsquo; or `lhs&rsquo;&rsquo;s value
 </p>
@@ -1228,7 +1228,7 @@ The value of `a&rsquo; is not &ldquo;duplicated&rdquo; across &#x2013; so `proce
 <div id="outline-container-org1b34dd6" class="outline-3">
 <h3 id="org1b34dd6">Exercise 3.35</h3>
 <div class="outline-text-3" id="text-org1b34dd6">
-<div class="question" id="orgee44f1b">
+<div class="question" id="org0805e1b">
 <p>
 Ben Bitdiddle tells Louis that one way to avoid the trouble in
 Exercise 3.34 is to define a squarer as a new primitive constraint. Fill in the
@@ -1255,44 +1255,44 @@ me)
 </div>
 </div>
 
-<div id="outline-container-orgbdea1f8" class="outline-4">
-<h4 id="orgbdea1f8">Answer</h4>
-<div class="outline-text-4" id="text-orgbdea1f8">
+<div id="outline-container-orgca21fba" class="outline-4">
+<h4 id="orgca21fba">Answer</h4>
+<div class="outline-text-4" id="text-orgca21fba">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define-class</span> <span style="color: #ba2f59; font-weight: bold;">&lt;squarer&gt;</span> <span style="color: #6c3163;">(</span><span style="color: #ba2f59; font-weight: bold;">&lt;constraint&gt;</span><span style="color: #6c3163;">)</span>
-  <span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">in squarer, there is essentially only one value</span>
-  <span style="color: #6c3163;">(</span>rhs <span style="color: #3a81c3;">#:allocation</span> <span style="color: #3a81c3;">#:virtual</span>
-       <span style="color: #3a81c3;">#:slot-ref</span> <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">lambda</span> <span style="color: #67b11d;">(</span>o<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>slot-ref o 'lhs<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
-       <span style="color: #3a81c3;">#:slot-set!</span> <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">lambda</span> <span style="color: #67b11d;">(</span>o s<span style="color: #67b11d;">)</span> <span style="color: #67b11d;">(</span>slot-set! o 'lhs s<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">strictly speaking these are not nessasary, as they are defined directly in</span>
-  <span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">`process-new-value', they are kept for posteriety.</span>
-  <span style="color: #6c3163;">(</span>operator <span style="color: #3a81c3;">#:init-value</span> square<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>inverse-operator <span style="color: #3a81c3;">#:init-value</span> sqrt<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define-class</span> <span style="color: #b58900;">&lt;squarer&gt;</span> <span style="color: #b58900;">(</span><span style="color: #b58900;">&lt;constraint&gt;</span><span style="color: #b58900;">)</span>
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">in squarer, there is essentially only one value</span>
+  <span style="color: #b58900;">(</span>rhs <span style="color: #657b83; font-weight: bold;">#:allocation</span> <span style="color: #657b83; font-weight: bold;">#:virtual</span>
+       <span style="color: #657b83; font-weight: bold;">#:slot-ref</span> <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #6c71c4;">(</span>o<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>slot-ref o 'lhs<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+       <span style="color: #657b83; font-weight: bold;">#:slot-set!</span> <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #6c71c4;">(</span>o s<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">(</span>slot-set! o 'lhs s<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">strictly speaking these are not nessasary, as they are defined directly in</span>
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">`process-new-value', they are kept for posteriety.</span>
+  <span style="color: #b58900;">(</span>operator <span style="color: #657b83; font-weight: bold;">#:init-value</span> square<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>inverse-operator <span style="color: #657b83; font-weight: bold;">#:init-value</span> sqrt<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define-method</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">process-new-value</span> <span style="color: #2d9574;">(</span>c <span style="color: #ba2f59; font-weight: bold;">&lt;squarer&gt;</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span><span style="color: #3a81c3; font-weight: bold;">let*</span> <span style="color: #2d9574;">(</span><span style="color: #67b11d;">[</span>lhs-conn <span style="color: #b1951d;">(</span>lhs c<span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span>
-         <span style="color: #67b11d;">[</span>total-conn <span style="color: #b1951d;">(</span>total c<span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span>
-         <span style="color: #67b11d;">[</span>has-total? <span style="color: #b1951d;">(</span>has-value? total-conn<span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span>
-         <span style="color: #67b11d;">[</span>has-lhs? <span style="color: #b1951d;">(</span>has-value? lhs-conn<span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span><span style="color: #2d9574;">)</span>
-    <span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">Determine what values *are* known and set the appropriate connector.</span>
-    <span style="color: #2d9574;">(</span><span style="color: #3a81c3; font-weight: bold;">cond</span>
-     <span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">(lhs &lt; 0) =&gt; error</span>
-     <span style="color: #67b11d;">[</span><span style="color: #b1951d;">(</span><span style="color: #3a81c3; font-weight: bold;">and</span> <span style="color: #3a81c3;">(</span>has-lhs?
-            <span style="color: #6c3163;">(</span>&lt; <span style="color: #2d9574;">(</span>connector-value lhs-conn<span style="color: #2d9574;">)</span> <span style="color: #4e3163;">0</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span>
-      <span style="color: #b1951d;">(</span>error <span style="color: #2d9574;">"square less than 0: SQUARER"</span> <span style="color: #3a81c3;">(</span>connector-value lhs-conn<span style="color: #3a81c3;">)</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define-method</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">process-new-value</span> <span style="color: #268bd2;">(</span>c <span style="color: #b58900;">&lt;squarer&gt;</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let*</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">[</span>lhs-conn <span style="color: #859900;">(</span>lhs c<span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span>
+         <span style="color: #6c71c4;">[</span>total-conn <span style="color: #859900;">(</span>total c<span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span>
+         <span style="color: #6c71c4;">[</span>has-total? <span style="color: #859900;">(</span>has-value? total-conn<span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span>
+         <span style="color: #6c71c4;">[</span>has-lhs? <span style="color: #859900;">(</span>has-value? lhs-conn<span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span><span style="color: #268bd2;">)</span>
+    <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Determine what values *are* known and set the appropriate connector.</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">cond</span>
+     <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">(lhs &lt; 0) =&gt; error</span>
+     <span style="color: #6c71c4;">[</span><span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">and</span> <span style="color: #b58900;">(</span>has-lhs?
+            <span style="color: #268bd2;">(</span>&lt; <span style="color: #6c71c4;">(</span>connector-value lhs-conn<span style="color: #6c71c4;">)</span> <span style="color: #6c71c4;">0</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+      <span style="color: #859900;">(</span>error <span style="color: #2aa198;">"square less than 0: SQUARER"</span> <span style="color: #b58900;">(</span>connector-value lhs-conn<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span>
 
-     <span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">lhs = &#8730;total</span>
-     <span style="color: #67b11d;">[</span>has-total?
-      <span style="color: #b1951d;">(</span>set-value! lhs-conn <span style="color: #3a81c3;">(</span>sqrt <span style="color: #6c3163;">(</span>connector-value total-conn<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span> c<span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span>
+     <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">lhs = &#8730;total</span>
+     <span style="color: #6c71c4;">[</span>has-total?
+      <span style="color: #859900;">(</span>set-value! lhs-conn <span style="color: #b58900;">(</span>sqrt <span style="color: #268bd2;">(</span>connector-value total-conn<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span> c<span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span>
 
-     <span style="color: #2aa1ae; background-color: #ecf3ec;">;; </span><span style="color: #2aa1ae; background-color: #ecf3ec;">total = lh&#178;</span>
-     <span style="color: #67b11d;">[</span>has-lhs?
-      <span style="color: #b1951d;">(</span>set-value! total-conn <span style="color: #3a81c3;">(</span>square <span style="color: #6c3163;">(</span>connector-value lhs-conn<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span> c<span style="color: #b1951d;">)</span><span style="color: #67b11d;">]</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+     <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">total = lh&#178;</span>
+     <span style="color: #6c71c4;">[</span>has-lhs?
+      <span style="color: #859900;">(</span>set-value! total-conn <span style="color: #b58900;">(</span>square <span style="color: #268bd2;">(</span>connector-value lhs-conn<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span> c<span style="color: #859900;">)</span><span style="color: #6c71c4;">]</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define-method</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">process-forget-value</span> <span style="color: #2d9574;">(</span>c <span style="color: #ba2f59; font-weight: bold;">&lt;squarer&gt;</span><span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>forget-value! <span style="color: #2d9574;">(</span>lhs c<span style="color: #2d9574;">)</span> c<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>forget-value! <span style="color: #2d9574;">(</span>total c<span style="color: #2d9574;">)</span> c<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>process-new-value c<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define-method</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">process-forget-value</span> <span style="color: #268bd2;">(</span>c <span style="color: #b58900;">&lt;squarer&gt;</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>forget-value! <span style="color: #268bd2;">(</span>lhs c<span style="color: #268bd2;">)</span> c<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>forget-value! <span style="color: #268bd2;">(</span>total c<span style="color: #268bd2;">)</span> c<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>process-new-value c<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -1302,7 +1302,7 @@ me)
 <div id="outline-container-org1bbd6db" class="outline-3">
 <h3 id="org1bbd6db"><span class="todo TODO">TODO</span> Exercise 3.36</h3>
 <div class="outline-text-3" id="text-org1bbd6db">
-<div class="question" id="orgdba712c">
+<div class="question" id="org4db94b7">
 <p>
 Suppose we evaluate the following sequence of expressions in the global
 environment:
@@ -1333,7 +1333,7 @@ expression is evaluated.
 <div id="outline-container-org7ab501c" class="outline-3">
 <h3 id="org7ab501c">Exercise 3.37</h3>
 <div class="outline-text-3" id="text-org7ab501c">
-<div class="question" id="orgfc232f7">
+<div class="question" id="org81051c3">
 <p>
 The celsius-fahrenheit-converter procedure is cumbersome when compared with a
 more expression-oriented style of definition, such as
@@ -1372,33 +1372,33 @@ to define compound constraints as in the converter example above.
 </div>
 </div>
 
-<div id="outline-container-orge7d9f8f" class="outline-4">
-<h4 id="orge7d9f8f">Answer</h4>
-<div class="outline-text-4" id="text-orge7d9f8f">
+<div id="outline-container-orge28f4a6" class="outline-4">
+<h4 id="orge28f4a6">Answer</h4>
+<div class="outline-text-4" id="text-orge28f4a6">
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">c+</span> augend addend<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>with-connectors <span style="color: #2d9574;">(</span>sum<span style="color: #2d9574;">)</span>
-                   <span style="color: #2d9574;">(</span>adder augend addend sum<span style="color: #2d9574;">)</span>
-                   sum<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<pre class="src src-scheme"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">c+</span> augend addend<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>with-connectors <span style="color: #268bd2;">(</span>sum<span style="color: #268bd2;">)</span>
+                   <span style="color: #268bd2;">(</span>adder augend addend sum<span style="color: #268bd2;">)</span>
+                   sum<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">c-</span> minuend subtrahend<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>with-connectors <span style="color: #2d9574;">(</span>difference<span style="color: #2d9574;">)</span>
-                   <span style="color: #2d9574;">(</span>adder difference subtrahend minuend<span style="color: #2d9574;">)</span>
-                   difference<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">c-</span> minuend subtrahend<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>with-connectors <span style="color: #268bd2;">(</span>difference<span style="color: #268bd2;">)</span>
+                   <span style="color: #268bd2;">(</span>adder difference subtrahend minuend<span style="color: #268bd2;">)</span>
+                   difference<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">c*</span> multiplicand m2<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>with-connectors <span style="color: #2d9574;">(</span>product<span style="color: #2d9574;">)</span>
-                   <span style="color: #2d9574;">(</span>multiplier multiplicand  m2 product<span style="color: #2d9574;">)</span>
-                   product<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">c*</span> multiplicand m2<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>with-connectors <span style="color: #268bd2;">(</span>product<span style="color: #268bd2;">)</span>
+                   <span style="color: #268bd2;">(</span>multiplier multiplicand  m2 product<span style="color: #268bd2;">)</span>
+                   product<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">c/</span> dividend divisor<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>with-connectors <span style="color: #2d9574;">(</span>quotient<span style="color: #2d9574;">)</span>
-                   <span style="color: #2d9574;">(</span>multiplier quotient divisor dividend<span style="color: #2d9574;">)</span>
-                   quotient<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
-<span style="color: #3a81c3;">(</span><span style="color: #3a81c3; font-weight: bold;">define</span> <span style="color: #6c3163;">(</span><span style="color: #6c3163; font-weight: bold;">cv</span> value<span style="color: #6c3163;">)</span>
-  <span style="color: #6c3163;">(</span>with-connectors <span style="color: #2d9574;">(</span>result<span style="color: #2d9574;">)</span>
-                   <span style="color: #2d9574;">(</span>constant value result<span style="color: #2d9574;">)</span>
-                   result<span style="color: #6c3163;">)</span><span style="color: #3a81c3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">c/</span> dividend divisor<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>with-connectors <span style="color: #268bd2;">(</span>quotient<span style="color: #268bd2;">)</span>
+                   <span style="color: #268bd2;">(</span>multiplier quotient divisor dividend<span style="color: #268bd2;">)</span>
+                   quotient<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">define</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">cv</span> value<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>with-connectors <span style="color: #268bd2;">(</span>result<span style="color: #268bd2;">)</span>
+                   <span style="color: #268bd2;">(</span>constant value result<span style="color: #268bd2;">)</span>
+                   result<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -1408,7 +1408,7 @@ to define compound constraints as in the converter example above.
 <div id="outline-container-orgee419c7" class="outline-3">
 <h3 id="orgee419c7">Exercise 3.38</h3>
 <div class="outline-text-3" id="text-orgee419c7">
-<div class="question" id="org6b37b50">
+<div class="question" id="org5e06501">
 <p>
 Suppose that Peter, Paul, and Mary share a joint bank account that initially
 contains $100. Concurrently, Peter deposits $10, Paul withdraws $20, and Mary
@@ -1433,10 +1433,10 @@ explain how these values can occur.</li>
 
 </div>
 </div>
-<div id="outline-container-orgb393a14" class="outline-4">
-<h4 id="orgb393a14">Answer</h4>
-<div class="outline-text-4" id="text-orgb393a14">
-<div class="question" id="orgea16b8c">
+<div id="outline-container-org9e1e3be" class="outline-4">
+<h4 id="org9e1e3be">Answer</h4>
+<div class="outline-text-4" id="text-org9e1e3be">
+<div class="question" id="org52dffc1">
 <p>
 Peter-&gt;Paul-&gt;Mary: (calc-eval &ldquo;((100+10)-20)/2&rdquo;)       =&gt; 45
 Peter-&gt;Mary-&gt;Paul: (calc-eval &ldquo;((100+10)/2)-20&rdquo;)       =&gt; 35
@@ -1454,7 +1454,7 @@ Paul-&gt;Mary-&gt;Peter: (calc-eval &ldquo;((100 - 20) / 2) + 10&rdquo;) =&gt; 5
 <div id="outline-container-org02e9bc0" class="outline-3">
 <h3 id="org02e9bc0">Exercise 3.39</h3>
 <div class="outline-text-3" id="text-org02e9bc0">
-<div class="question" id="orgb4ebf13">
+<div class="question" id="org9cc576b">
 <p>
 Which of the five possibilities in the parallel execution shown above remain if
 we instead serialize execution as follows:
@@ -1471,10 +1471,10 @@ we instead serialize execution as follows:
 
 </div>
 </div>
-<div id="outline-container-org3078f84" class="outline-4">
-<h4 id="org3078f84">Answer</h4>
-<div class="outline-text-4" id="text-org3078f84">
-<div class="question" id="org16df3a0">
+<div id="outline-container-orga349edf" class="outline-4">
+<h4 id="orga349edf">Answer</h4>
+<div class="outline-text-4" id="text-orga349edf">
+<div class="question" id="orga7d26fc">
 <p>
 101, 100, 121
 </p>
@@ -1488,7 +1488,7 @@ we instead serialize execution as follows:
 <div id="outline-container-org6b1ac15" class="outline-3">
 <h3 id="org6b1ac15">Exercise 3.40</h3>
 <div class="outline-text-3" id="text-org6b1ac15">
-<div class="question" id="orgfa353e8">
+<div class="question" id="orga811093">
 <p>
 Give all possible values of x that can result from executing
 </p>
@@ -1514,10 +1514,10 @@ Which of these possibilities remain if we instead use serialized procedures:
 
 </div>
 </div>
-<div id="outline-container-orgd87b86d" class="outline-4">
-<h4 id="orgd87b86d">Answer</h4>
-<div class="outline-text-4" id="text-orgd87b86d">
-<div class="question" id="orgf642650">
+<div id="outline-container-orga47ad6e" class="outline-4">
+<h4 id="orga47ad6e">Answer</h4>
+<div class="outline-text-4" id="text-orga47ad6e">
+<div class="question" id="org0b5bd8d">
 <p>
 x*6 (multiplication is commutative)
 </p>
@@ -1530,7 +1530,7 @@ x*6 (multiplication is commutative)
 <div id="outline-container-org7ccf13b" class="outline-3">
 <h3 id="org7ccf13b">Exercise 3.41</h3>
 <div class="outline-text-3" id="text-org7ccf13b">
-<div class="question" id="orgac9e41a">
+<div class="question" id="org23d55f8">
 <p>
 Ben Bitdiddle worries that it would be better to implement the bank account as
 follows (where the commented line has been changed):
@@ -1574,10 +1574,10 @@ behavior. Do you agree? Is there any scenario that demonstrates Ben’s concern?
 </div>
 </div>
 
-<div id="outline-container-orgfa7459f" class="outline-4">
-<h4 id="orgfa7459f">Answer</h4>
-<div class="outline-text-4" id="text-orgfa7459f">
-<div class="textanswer" id="org77f997a">
+<div id="outline-container-org8fecd9d" class="outline-4">
+<h4 id="org8fecd9d">Answer</h4>
+<div class="outline-text-4" id="text-org8fecd9d">
+<div class="textanswer" id="orgb2ae883">
 <p>
 First off, this question is phrased in a really shitty way. Second off, no
 <b>BALANCE</b> is safe. the other functions are <b>UNSAFE</b>
@@ -1591,7 +1591,7 @@ First off, this question is phrased in a really shitty way. Second off, no
 <div id="outline-container-orgbab6b97" class="outline-3">
 <h3 id="orgbab6b97">Exercise 3.42</h3>
 <div class="outline-text-3" id="text-orgbab6b97">
-<div class="question" id="org1bd0778">
+<div class="question" id="org1156f88">
 <p>
 Ben Bitdiddle suggests that it’s a waste of time to create a new serialized
 procedure in response to every withdraw and deposit message. He says that
@@ -1633,10 +1633,10 @@ asked for a withdrawal procedure.
 </div>
 </div>
 
-<div id="outline-container-org6430165" class="outline-4">
-<h4 id="org6430165">Answer</h4>
-<div class="outline-text-4" id="text-org6430165">
-<div class="question" id="org1faeff8">
+<div id="outline-container-org96b3fdc" class="outline-4">
+<h4 id="org96b3fdc">Answer</h4>
+<div class="outline-text-4" id="text-org96b3fdc">
+<div class="question" id="org9192856">
 <p>
 This is fine
 </p>
@@ -1649,7 +1649,7 @@ This is fine
 <div id="outline-container-org72ae360" class="outline-3">
 <h3 id="org72ae360"><span class="todo TODO">TODO</span> Exercise 3.43</h3>
 <div class="outline-text-3" id="text-org72ae360">
-<div class="question" id="org0abb544">
+<div class="question" id="org4108140">
 <p>
 Suppose that the balances in three accounts start out as $10, $20, and $30,
 and that multiple processes run, exchanging the balances in the accounts.
@@ -1666,10 +1666,10 @@ transactions on individual accounts.
 
 </div>
 </div>
-<div id="outline-container-org1d28566" class="outline-4">
-<h4 id="org1d28566">Answer</h4>
-<div class="outline-text-4" id="text-org1d28566">
-<div class="textanswer" id="orgb85b171">
+<div id="outline-container-orgb2f0913" class="outline-4">
+<h4 id="orgb2f0913">Answer</h4>
+<div class="outline-text-4" id="text-orgb2f0913">
+<div class="textanswer" id="orgb2c7e8e">
 <p>
 SKIPPED: Timing diagram
 </p>
@@ -1682,7 +1682,7 @@ SKIPPED: Timing diagram
 <div id="outline-container-org0053acb" class="outline-3">
 <h3 id="org0053acb"><span class="todo TODO">TODO</span> Exercise 3.47</h3>
 <div class="outline-text-3" id="text-org0053acb">
-<div class="question" id="orga6a927d">
+<div class="question" id="org0b6569f">
 <p>
 A semaphore (of size n ) is a generalization of a mutex. Like a mutex, a
 semaphore supports acquire and release operations, but it is more general in

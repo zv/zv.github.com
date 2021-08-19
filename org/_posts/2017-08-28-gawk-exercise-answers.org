@@ -15,12 +15,12 @@
 
 * Input
 ** #1
-   #+BEGIN_QUESTION
+   #+begin_question
    Using the =FIELDWIDTHS= variable (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Constant-Size][Constant Size]]), write a program to read
    election data, where each record represents one voter’s votes. Come up with a
    way to define which columns are associated with each ballot item, and print the
    total votes, including abstentions, for each item.
-   #+END_QUESTION
+   #+end_question
 *** Answer
     #+BEGIN_SRC awk :in-file data/election_data :results value raw :exports both
       BEGIN  { FIELDWIDTHS = "18 9 15" }
@@ -43,12 +43,12 @@
     : Bush: 9 Gore: 10 Abstained: 1
 
 ** #2
-   #+BEGIN_QUESTION
+   #+begin_question
    Plain Getline, presented a program to remove C-style comments (‘/* … */’) from
    the input. That program does not work if one comment ends on one line and
    another one starts later on the same line. That can be fixed by making one
    simple change. What is it?
-   #+END_QUESTION
+   #+end_question
 
 *** Answer
     #+BEGIN_SRC awk :in-file data/tcdrain.c :results pp :exports both
@@ -102,9 +102,9 @@
 
 * Output
 ** #1
-   #+BEGIN_QUESTION
+   #+begin_question
    Rewrite the program from Output Separators, by using a new value of OFS.
-   #+END_QUESTION
+   #+end_question
    
    #+BEGIN_SRC awk :in-file data/inventory-shipped :results pp :exports both
      BEGIN { print "Month Crates"; print "----- ------" }
@@ -139,11 +139,11 @@
     : Dec     6
 * Library
 ** #1
-   #+BEGIN_QUESTION
+   #+begin_question
    In Empty Files, we presented the ~zerofile.awk~ program, which made use of gawk’s
    =ARGIND= variable. Can this problem be solved without relying on =ARGIND=? If so,
    how?
-   #+END_QUESTION
+   #+end_question
 
 *** Answer
     Use ~ENDFILE~ to run a function at the end of each file. You could match
@@ -159,10 +159,10 @@
     : data/empty 1
     : data/empty1 2
 ** #2
-   #+BEGIN_QUESTION
+   #+begin_question
    As a related challenge, revise that code to handle the case where an
    intervening value in ~ARGV~ is a variable assignment.
-   #+END_QUESTION
+   #+end_question
 
    #+BEGIN_SRC awk :cmd-line "--assign=nval=9" :in-file data/empty data/empty1 :results pp :exports both
      ENDFILE {
@@ -178,9 +178,9 @@
    : data/empty1 2
 * Programs
 ** #1
-   #+BEGIN_QUESTION
+   #+begin_question
    Rewrite cut.awk (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Cut-Program][Cut Program]]) using ~split()~ with "" as the separator.
-   #+END_QUESTION
+   #+end_question
 *** Answer
     #+BEGIN_SRC awk :in-file data/inventory-shipped :results pp :exports both
       # cut.awk --- implement cut in awk
@@ -325,22 +325,22 @@
 
     #+END_SRC
 ** #2
-   #+BEGIN_QUESTION
+   #+begin_question
    In [[https://www.gnu.org/software/gawk/manual/gawk.html#Egrep-Program][Egrep Program]], we mentioned that ~‘egrep -i’~ could be simulated in
    versions of =awk= without =IGNORECASE= by using =tolower()= on the line and the
    pattern. In a footnote there, we also mentioned that this solution has a
    bug: the translated line is output, and not the original one. Fix this
    problem.
-   #+END_QUESTION
+   #+end_question
 *** Answer
     Simply check the results of =tolower()= without assigning output.
 
 ** #3
-   #+BEGIN_QUESTION
+   #+begin_question
    The POSIX version of =id= takes options that control which information is
    printed. Modify the =awk= version (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Id-Program][Id Program]]) to accept the same
    arguments and perform in the same way.
-   #+END_QUESTION
+   #+end_question
 
 *** Answer
     #+BEGIN_SRC awk :results pp :exports both
@@ -426,10 +426,10 @@
 
 
 ** #6
-   #+BEGIN_QUESTION
+   #+begin_question
    Why can’t the =wc.awk= program (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Wc-Program][Wc Program]]) just use the value of =FNR= in
    =endfile()=? Hint: Examine the code in [[https://www.gnu.org/software/gawk/manual/gawk.html#Filetrans-Function][Filetrans Function]].
-   #+END_QUESTION
+   #+end_question
 *** Answer
     This is a confusing question because =ENDFILE= *can* use =FNR=, but this
     question concerns an arbitrary user-defined function coincidentally named
@@ -438,12 +438,12 @@
     the entire program.
 
 ** #7
-   #+BEGIN_QUESTION
+   #+begin_question
    Manipulation of individual characters in the =translate= program (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Translate-Program][Translate Program]]) 
    is painful using standard awk functions. Given that =gawk= can split strings
    into individual characters using "" as the separator, how might you use this
    feature to simplify the program?
-   #+END_QUESTION
+   #+end_question
 
 *** Answer
     #+BEGIN_SRC awk :results pp :exports both
@@ -485,10 +485,10 @@
       }
     #+END_SRC
 ** #8
-   #+BEGIN_QUESTION
+   #+begin_question
    The ~extract.awk~ program (see [[https://www.gnu.org/software/gawk/manual/gawk.html#Extract-Program][Extract Program]]) was written before =gawk= had
    the ~gensub()~ function. Use it to simplify the code.
-   #+END_QUESTION
+   #+end_question
 *** Answer
 
     #+BEGIN_SRC awk :in-file data/gawk.texti :results pp :exports both

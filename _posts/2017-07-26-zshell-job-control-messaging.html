@@ -17,11 +17,11 @@ might begin with this:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #6c3163; font-weight: bold;">compile_run</span> <span style="color: #3a81c3;">()</span> <span style="color: #3a81c3;">{</span>
-    <span style="color: #3a81c3;">local</span> <span style="color: #715ab1;">exepath</span>=<span style="color: #2d9574;">"$(</span><span style="color: #6c3163;">mktemp</span><span style="color: #2d9574;">)"</span>
-    cc -g <span style="color: #2d9574;">"$1"</span> -o $<span style="color: #715ab1;">exepath</span>
-    <span style="color: #2d9574;">"$exepath"</span> <span style="color: #2d9574;">"$@"</span>
-<span style="color: #3a81c3;">}</span>
+<pre class="src src-sh"><span style="color: #268bd2;">compile_run</span> <span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #657b83; font-weight: bold;">local</span> <span style="color: #268bd2;">exepath</span>=<span style="color: #2aa198;">"$(</span><span style="color: #6c71c4; font-weight: bold;">mktemp</span><span style="color: #2aa198;">)"</span>
+    cc -g <span style="color: #2aa198;">"$1"</span> -o $<span style="color: #268bd2;">exepath</span>
+    <span style="color: #2aa198;">"$exepath"</span> <span style="color: #2aa198;">"$@"</span>
+<span style="color: #2aa198;">}</span>
 </pre>
 </div>
 
@@ -71,13 +71,13 @@ to the foreground:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #6c3163; font-weight: bold;">compile_run</span> <span style="color: #3a81c3;">()</span> <span style="color: #3a81c3;">{</span>
-    <span style="color: #3a81c3;">local</span> <span style="color: #715ab1;">exepath</span>=<span style="color: #2d9574;">"$(</span><span style="color: #6c3163;">mktemp</span><span style="color: #2d9574;">)"</span>
-    cc -g <span style="color: #2d9574;">"$1"</span> -o $<span style="color: #715ab1;">exepath</span>
-    <span style="color: #2aa1ae; background-color: #ecf3ec;">## </span><span style="color: #2aa1ae; background-color: #ecf3ec;">Magic Happens Here: ###############</span>
-    <span style="color: #2d9574;">"$exepath"</span> <span style="color: #2d9574;">"$@"</span> &amp; <span style="color: #3a81c3;">fg</span>
-    <span style="color: #2aa1ae; background-color: #ecf3ec;">######################################</span>
-<span style="color: #3a81c3;">}</span>
+<pre class="src src-sh"><span style="color: #268bd2;">compile_run</span> <span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #657b83; font-weight: bold;">local</span> <span style="color: #268bd2;">exepath</span>=<span style="color: #2aa198;">"$(</span><span style="color: #6c71c4; font-weight: bold;">mktemp</span><span style="color: #2aa198;">)"</span>
+    cc -g <span style="color: #2aa198;">"$1"</span> -o $<span style="color: #268bd2;">exepath</span>
+    <span style="color: #93a1a1;">## </span><span style="color: #93a1a1;">Magic Happens Here: ###############</span>
+    <span style="color: #2aa198;">"$exepath"</span> <span style="color: #2aa198;">"$@"</span> &amp; <span style="color: #657b83; font-weight: bold;">fg</span>
+    <span style="color: #93a1a1;">######################################</span>
+<span style="color: #2aa198;">}</span>
 </pre>
 </div>
 
@@ -87,22 +87,22 @@ some additional logic:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #6c3163; font-weight: bold;">compile_run</span> <span style="color: #3a81c3;">()</span> <span style="color: #3a81c3;">{</span>
-    <span style="color: #3a81c3;">local</span> <span style="color: #715ab1;">file</span>=$<span style="color: #4e3163;">1</span>
-    <span style="color: #3a81c3;">shift</span>
-    <span style="color: #3a81c3;">local</span> <span style="color: #715ab1;">exepath</span>=<span style="color: #2d9574;">"$(</span><span style="color: #6c3163;">mktemp</span><span style="color: #2d9574;">)"</span>
+<pre class="src src-sh"><span style="color: #268bd2;">compile_run</span> <span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #657b83; font-weight: bold;">local</span> <span style="color: #268bd2;">file</span>=$<span style="color: #6c71c4;">1</span>
+    <span style="color: #657b83; font-weight: bold;">shift</span>
+    <span style="color: #657b83; font-weight: bold;">local</span> <span style="color: #268bd2;">exepath</span>=<span style="color: #2aa198;">"$(</span><span style="color: #6c71c4; font-weight: bold;">mktemp</span><span style="color: #2aa198;">)"</span>
 
-    <span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #6c3163;">[</span><span style="color: #2d9574;">[</span> $<span style="color: #715ab1;">file</span> = *.cc <span style="color: #2d9574;">]</span><span style="color: #6c3163;">]</span>; <span style="color: #3a81c3; font-weight: bold;">then</span>
-        c++ -std=c++1z -g -Wall -Weffc++ $<span style="color: #715ab1;">file</span> -o $<span style="color: #715ab1;">exepath</span>
-    <span style="color: #3a81c3; font-weight: bold;">elif</span> <span style="color: #6c3163;">[</span><span style="color: #2d9574;">[</span> $<span style="color: #715ab1;">file</span> = *.c <span style="color: #2d9574;">]</span><span style="color: #6c3163;">]</span>; <span style="color: #3a81c3; font-weight: bold;">then</span>
-        cc -g -Wall $<span style="color: #715ab1;">file</span> -o $<span style="color: #715ab1;">exepath</span>
-    <span style="color: #3a81c3; font-weight: bold;">else</span>
-        <span style="color: #3a81c3;">echo</span> <span style="color: #2d9574;">"no filetype detected"</span>
-        <span style="color: #3a81c3; font-weight: bold;">return</span> <span style="color: #4e3163;">126</span>
-    <span style="color: #3a81c3; font-weight: bold;">fi</span>  || <span style="color: #3a81c3; font-weight: bold;">return</span> $<span style="color: #715ab1;">?</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">[</span><span style="color: #268bd2;">[</span> $<span style="color: #268bd2;">file</span> = *.cc <span style="color: #268bd2;">]</span><span style="color: #b58900;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
+        c++ -std=c++1z -g -Wall -Weffc++ $<span style="color: #268bd2;">file</span> -o $<span style="color: #268bd2;">exepath</span>
+    <span style="color: #859900; font-weight: bold;">elif</span> <span style="color: #b58900;">[</span><span style="color: #268bd2;">[</span> $<span style="color: #268bd2;">file</span> = *.c <span style="color: #268bd2;">]</span><span style="color: #b58900;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
+        cc -g -Wall $<span style="color: #268bd2;">file</span> -o $<span style="color: #268bd2;">exepath</span>
+    <span style="color: #859900; font-weight: bold;">else</span>
+        <span style="color: #657b83; font-weight: bold;">echo</span> <span style="color: #2aa198;">"no filetype detected"</span>
+        <span style="color: #859900; font-weight: bold;">return</span> <span style="color: #6c71c4;">126</span>
+    <span style="color: #859900; font-weight: bold;">fi</span>  || <span style="color: #859900; font-weight: bold;">return</span> $<span style="color: #268bd2;">?</span>
 
-    <span style="color: #2d9574;">"$exepath"</span> <span style="color: #2d9574;">"$@"</span> &amp; <span style="color: #3a81c3;">fg</span>
-<span style="color: #3a81c3;">}</span>
+    <span style="color: #2aa198;">"$exepath"</span> <span style="color: #2aa198;">"$@"</span> &amp; <span style="color: #657b83; font-weight: bold;">fg</span>
+<span style="color: #2aa198;">}</span>
 </pre>
 </div>
 </div>
@@ -117,16 +117,16 @@ exit status of the program you ran yourself.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #6c3163; font-weight: bold;">compile_run</span> <span style="color: #3a81c3;">()</span> <span style="color: #3a81c3;">{</span>
-    <span style="color: #3a81c3;">local</span> <span style="color: #715ab1;">exepath</span>=<span style="color: #2d9574;">"$(</span><span style="color: #6c3163;">mktemp</span><span style="color: #2d9574;">)"</span>
-    cc -g <span style="color: #2d9574;">"$1"</span> -o $<span style="color: #715ab1;">exepath</span>
+<pre class="src src-sh"><span style="color: #268bd2;">compile_run</span> <span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+    <span style="color: #657b83; font-weight: bold;">local</span> <span style="color: #268bd2;">exepath</span>=<span style="color: #2aa198;">"$(</span><span style="color: #6c71c4; font-weight: bold;">mktemp</span><span style="color: #2aa198;">)"</span>
+    cc -g <span style="color: #2aa198;">"$1"</span> -o $<span style="color: #268bd2;">exepath</span>
 
-    $<span style="color: #715ab1;">exepath</span> <span style="color: #2d9574;">"$@"</span>
-    integer <span style="color: #715ab1;">stat</span>=$<span style="color: #715ab1;">status</span>
-    <span style="color: #3a81c3; font-weight: bold;">if</span> <span style="color: #6c3163;">(</span><span style="color: #2d9574;">(</span> stat &gt; <span style="color: #4e3163;">128</span> <span style="color: #2d9574;">)</span><span style="color: #6c3163;">)</span>; <span style="color: #3a81c3; font-weight: bold;">then</span> print -u2 -- $<span style="color: #6c3163;">{</span><span style="color: #715ab1;">exepath</span><span style="color: #6c3163;">}</span>: exited with 
-    SIG$<span style="color: #6c3163;">{</span><span style="color: #715ab1;">signals</span><span style="color: #2d9574;">[</span>stat-127<span style="color: #2d9574;">]</span><span style="color: #6c3163;">}</span>; <span style="color: #3a81c3; font-weight: bold;">fi</span>
-    <span style="color: #3a81c3; font-weight: bold;">return</span> stat
-<span style="color: #3a81c3;">}</span>
+    $<span style="color: #268bd2;">exepath</span> <span style="color: #2aa198;">"$@"</span>
+    integer <span style="color: #268bd2;">stat</span>=$<span style="color: #268bd2;">status</span>
+    <span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span> stat &gt; <span style="color: #6c71c4;">128</span> <span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>; <span style="color: #859900; font-weight: bold;">then</span> print -u2 -- $<span style="color: #b58900;">{</span><span style="color: #268bd2;">exepath</span><span style="color: #b58900;">}</span>: exited with 
+    SIG$<span style="color: #b58900;">{</span><span style="color: #268bd2;">signals</span><span style="color: #268bd2;">[</span>stat-127<span style="color: #268bd2;">]</span><span style="color: #b58900;">}</span>; <span style="color: #859900; font-weight: bold;">fi</span>
+    <span style="color: #859900; font-weight: bold;">return</span> stat
+<span style="color: #2aa198;">}</span>
 </pre>
 </div>
 </div>
