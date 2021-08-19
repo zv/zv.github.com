@@ -1,14 +1,6 @@
-#+HTML_DOCTYPE: html5
-#+OPTIONS: H:4
-#+BEGIN_EXPORT html
----
-layout: page
-title: A test thing
-category: note
-excerpt: asdfasdf
----
-#+END_EXPORT
-
+#+TITLE: A test thing
+#+FILETAGS: test
+#+include: "_include.org"
 
 * Heading 1
 Word
@@ -24,17 +16,45 @@ Word
 Word
 
 * A More Humble Beginning
- Lorem ipsum adsfa sit amet, consectetur adipiscing elit. Pellentesque pretium
+    :PROPERTIES:
+    :Title:     Goldberg Variations
+    :Composer:  J.S. Bach
+    :Artist:    Glenn Gould
+    :Publisher: Deutsche Grammophon
+    :NDisks:    1
+    :END:
+ "Lorem ipsum adsfa sit amet, consectetur adipiscing elit. Pellentesque pretium
 ornare dolor, vel tempus leo fringilla non. Praesent ut orci condimentum,
 egestas nisi non, aliquam eros. +strikethrough+ euismod fringilla diam, in vulputate
 dolor consectetur eu. Pellentesque euismod, libero eu _underline_ iaculis, velit
-velit ~code~ orci, eu /italic/ ipsum metus nec mi. Cum sociis natoque
-penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-Praesent *bold* sagittis nunc. Maecenas ultrices, est a =verbose= iaculis, quam
+velit ~code~ orci, eu /italic/ ipsum metus nec mi. Cum sociis natoque"
+------------
+penatibus e't magnis's dis parturient montes, nascetur ridiculus mus.
+Praesent *bold* 'sagittis' nunc. Maecenas ultrices, est a =verbose= iaculis, quam
 enim vehicula libero, in dignissim lacus massa nec nunc. \sup1
 Integer finibus rhoncus malesuada. Aenean ultricies lorem sed enim
 consectetur, kjin convallis odio lacinia. [fn:1]
 
+** Link Types
+   [[shell: ls /tmp]]
+   [[shell:ls /tmp/][hell]]
+
+*** TODO write article about the Earth for the Guide
+    DEADLINE: <2004-02-29 Sun>
+    The editor in charge is [[bbdb:Ford Prefect]]
+    #+begin_export ascii
+    asdfasdfasdf
+    #+end_export
+ Here is an example
+   : Some example from a text file.   
+   
+ #+BEGIN_SRC emacs-lisp -n -r
+  (save-excursion                 (ref:sc)
+     (goto-char (point-min))      (ref:jump)
+#+END_SRC  
+
+:  (save-excursion                 (ref:sc)
+:     (goto-char (point-min))      (ref:jump)
 
 #+BEGIN_QUOTE
 Using a term like nonlinear science is like referring to the bulk of zoology as the study of non-elephant animals.
@@ -99,9 +119,20 @@ A Quote
 
 
 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to 
+
 This is a new verse
 
-There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to 
+#+BEGIN_VERSE
+There are many variations of passages of Lorem Ipsum available, 
+  - but the majority have suffered alteration in some form,
+
+     by injected humour, or randomised words which don't look even slightly believable.
+
+ If you are going to use a passage of Lorem Ipsum, you need to be sure there
+ isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum
+ generators on the Internet tend to
+#+END_VERSE
+
 This is centered
 
      #+BEGIN_CENTER
@@ -136,7 +167,16 @@ dsf
 asdf
 adsfads
 **** A Bold Header 4
-
+     
+* TODO Organize party [3/7]
+  - [-] call people [1/3]
+    - [ ] Peter
+    - [X] Sarah
+    - [ ] Sam
+  - [X] order food
+  - [ ] think about what music to play
+  - [X] talk to the neighbors
+  - [ ] 
 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to 
 
 1. [ ] ONE (contains checkmark)
@@ -156,6 +196,7 @@ adfadfasdfasdf
 
 
 ** A table! [fn::adfasdfasdfadfasdf]
+#+CAPTION: This is the caption for the next table (or link)
 | A | B | C | D | E |
 |---+---+---+---+---|
 | F | G | H | I | J |

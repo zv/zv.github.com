@@ -2,13 +2,25 @@
 #+EMAIL: zv@nxvr.org
 #+HTML_DOCTYPE: html5
 #+CATEGORY: note
-#+OPTIONS: html5-fancy:t pri:nil toc:nil
+#+HTML_CONTAINER: section
+#+OPTIONS: html5-fancy:t pri:nil toc:nil e:t ':t -:t ::t
 #+STARTUP: noinlineimages showall
-#+BEGIN_EXPORT html
----
+#+LANGUAGE: en
+#+BIND: org-export-filter-final-output-functions (tmp-f-build-frontmatter)
+#+BEGIN_SRC emacs-lisp :exports results :results none
+    (defun tmp-f-build-frontmatter (s backend info)
+      (let ((title (org-no-properties (car (plist-get (org-export-get-environment) :title))))
+            (tags (append '("post") (mapcar 'org-no-properties org-file-tags))))
+        (format
+"---
 layout: page
-title: ${title}
+title: %s
 category: note
-${tagslist}
+tags:
+%s
 ---
-#+END_EXPORT
+%s"
+         title
+         (mapconcat (lambda (tag) (format " - %s" tag)) tags "\n")
+         s)))
+#+END_SRC

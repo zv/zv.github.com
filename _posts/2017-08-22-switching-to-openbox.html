@@ -3,36 +3,35 @@ layout: page
 title: Using Openbox as a Tiling Window Manager
 category: note
 tags:
-  - post
-  - window_manager
+ - post
+ - window_manager
 ---
-
-<section id="outline-container-org53c669a" class="outline-2">
-<h2 id="org53c669a">Advantages</h2>
-<div class="outline-text-2" id="text-org53c669a">
+<section id="outline-container-org1a4e0a1" class="outline-2">
+<h2 id="org1a4e0a1">Advantages</h2>
+<div class="outline-text-2" id="text-org1a4e0a1">
 <p>
-I've been satisfied with pure tiling window managers for the past decade, but
-I recently used Openbox on a friends machine and I've instantly realized that
+I&rsquo;ve been satisfied with pure tiling window managers for the past decade, but
+I recently used Openbox on a friends machine and I&rsquo;ve instantly realized that
 it was a better way.
 </p>
 
 <p>
-I'm not ready to give up on the benefits of tiling entirely however and I've
-tried to setup my workstation as a hybrid tiling/stacking setup which I've
+I&rsquo;m not ready to give up on the benefits of tiling entirely however and I&rsquo;ve
+tried to setup my workstation as a hybrid tiling/stacking setup which I&rsquo;ve
 described below.
 </p>
 </div>
 
-<div id="outline-container-org49aa139" class="outline-3">
-<h3 id="org49aa139">What is Openbox?</h3>
-<div class="outline-text-3" id="text-org49aa139">
+<div id="outline-container-orgce51480" class="outline-3">
+<h3 id="orgce51480">What is Openbox?</h3>
+<div class="outline-text-3" id="text-orgce51480">
 <p>
 Openbox is a stacking window manager that comes as part of the <a href="http://lxde.org/">LXDE desktop</a>.
 </p>
 
 <p>
 In contrast to widely-used lightweight tiling window managers, LXDE comes
-'opinionated' with a traditional menu and generally adheres to the desktop
+&rsquo;opinionated&rsquo; with a traditional menu and generally adheres to the desktop
 metaphor found on OSX and Windows.
 </p>
 
@@ -44,37 +43,37 @@ defaults, etc.
 </div>
 </div>
 
-<div id="outline-container-org3211d27" class="outline-3">
-<h3 id="org3211d27">Menu</h3>
-<div class="outline-text-3" id="text-org3211d27">
+<div id="outline-container-org10b632d" class="outline-3">
+<h3 id="org10b632d">Menu</h3>
+<div class="outline-text-3" id="text-org10b632d">
 <p>
 Many larger Linux applications introduce a way to start their programs into a
-"start menu", categorized by application 'type'. Menus eliminate the problem
-of <i>unknown unknowns</i> - programs you've once installed but forgotten or came
+&ldquo;start menu&rdquo;, categorized by application &rsquo;type&rsquo;. Menus eliminate the problem
+of <i>unknown unknowns</i> - programs you&rsquo;ve once installed but forgotten or came
 included with another program you installed.
 </p>
 
 <p>
 If you use a distribution which frequently integrates the newest changes in
-Linux, sometimes you can miss new tooling if you don't have a menu which lists
+Linux, sometimes you can miss new tooling if you don&rsquo;t have a menu which lists
 all the installed graphical applications on your system. As a matter of using
-Openbox, I found out that the firewall I've been configuring through a CLI for years
+Openbox, I found out that the firewall I&rsquo;ve been configuring through a CLI for years
 has an extremely sophisticated GUI - found through a menu entry.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgc6903a4" class="outline-3">
-<h3 id="orgc6903a4">Applets</h3>
-<div class="outline-text-3" id="text-orgc6903a4">
+<div id="outline-container-org76b29ec" class="outline-3">
+<h3 id="org76b29ec">Applets</h3>
+<div class="outline-text-3" id="text-org76b29ec">
 <p>
-It's possible to get a bar in any tiling window manager, but I'm partial to
-<span class="verbatim">lxpanel</span>.
+It&rsquo;s possible to get a bar in any tiling window manager, but I&rsquo;m partial to
+<code>lxpanel</code>.
 </p>
 
 
-<figure>
-<img src="/static/img/openbox/bar.png" alt="bar.png" width="100%">
+<figure id="orgc97865d">
+<img src="../../static/img/openbox/bar.png" alt="bar.png" width="100%">
 
 </figure>
 
@@ -82,7 +81,7 @@ It's possible to get a bar in any tiling window manager, but I'm partial to
 LXDE has gone to considerable lengths to preserve some degree of
 compatibility with the interface guidelines and standards set forth by
 organizations like the GNOME Project, which means you no longer need to get
-inside of your <span class="verbatim">xinitrc</span> to start up the appropriate services.
+inside of your <code>xinitrc</code> to start up the appropriate services.
 </p>
 
 <p>
@@ -91,63 +90,63 @@ Which brings me to the final point.
 </div>
 </div>
 
-<div id="outline-container-orge2dd89b" class="outline-3">
-<h3 id="orge2dd89b">It's Complicated</h3>
-<div class="outline-text-3" id="text-orge2dd89b">
+<div id="outline-container-orgbf3b891" class="outline-3">
+<h3 id="orgbf3b891">It&rsquo;s Complicated</h3>
+<div class="outline-text-3" id="text-orgbf3b891">
 <p>
-From <span class="verbatim">abrt</span> to <span class="verbatim">libnotify</span>, there's a lot of stuff under the hood of a modern
+From <code>abrt</code> to <code>libnotify</code>, there&rsquo;s a lot of stuff under the hood of a modern
 desktop.
 </p>
 
 <p>
-If you want to go the <i>"lightweight"</i> route, you've got to prepare yourself
-for quite a bit. You'll need to install and configure a notification daemon,
-you'll need to make sure to start NetworkManager, <span class="verbatim">abrt</span>. You'll need to test
-to make sure that <span class="verbatim">secon</span> notifications are getting triggered in the event
-that SELinux wants to let you know something is amiss. You'll need to have
+If you want to go the <i>&ldquo;lightweight&rdquo;</i> route, you&rsquo;ve got to prepare yourself
+for quite a bit. You&rsquo;ll need to install and configure a notification daemon,
+you&rsquo;ll need to make sure to start NetworkManager, <code>abrt</code>. You&rsquo;ll need to test
+to make sure that <code>secon</code> notifications are getting triggered in the event
+that SELinux wants to let you know something is amiss. You&rsquo;ll need to have
 keybindings for handling <code>🔊</code> and <code>🔇</code>, not to mention the host of other
 specialized keys on a modern keyboard. Using existing tooling from a
-configuration panel like <span class="verbatim">gnome-control-center</span> will occassionally fail for
+configuration panel like <code>gnome-control-center</code> will occassionally fail for
 important pieces of your system like monitors and bluetooth.
 </p>
 
 <p>
-Yes, you can write the dunst configuration, you can use <span class="verbatim">xrandr</span>, configure
-your keys, write the unit file to accommodate <span class="verbatim">gnome-keyring-daemon</span>, along with
-the shell protocol. You can dive through poorly documented code that doesn't really
+Yes, you can write the dunst configuration, you can use <code>xrandr</code>, configure
+your keys, write the unit file to accommodate <code>gnome-keyring-daemon</code>, along with
+the shell protocol. You can dive through poorly documented code that doesn&rsquo;t really
 contain any special insights into computers.
 </p>
 
 <p>
-There's something vaguely neat about learning the details of all this. I did
+There&rsquo;s something vaguely neat about learning the details of all this. I did
 it and I have a large <a href="https://github.com/zv/dotfilez">dotfiles repo</a> that bears witness to this vast network
-of rc files, <span class="verbatim">$XDG_CONFIG</span> and shell scripts I've assembled over the past
+of rc files, <code>$XDG_CONFIG</code> and shell scripts I&rsquo;ve assembled over the past
 decade.
 </p>
 
 <p>
-I'm ready for another way however.
+I&rsquo;m ready for another way however.
 </p>
 </div>
 </div>
 </section>
 
-<section id="outline-container-org19787b8" class="outline-2">
-<h2 id="org19787b8">The Setup</h2>
-<div class="outline-text-2" id="text-org19787b8">
+<section id="outline-container-orgad5c12b" class="outline-2">
+<h2 id="orgad5c12b">The Setup</h2>
+<div class="outline-text-2" id="text-orgad5c12b">
 <p>
 If you want to directly use my configuration, you can find my openbox
 configuration <a href="https://github.com/zv/dotfilez/blob/master/rc/lxde-rc.xml">here</a>
 </p>
 
 <p>
-I use the symbol "<span class="verbatim">🗔</span>" below to mean <i>Super</i> (also known as the 'Windows' key).
+I use the symbol &ldquo;<code>🗔</code>&rdquo; below to mean <i>Super</i> (also known as the &rsquo;Windows&rsquo; key).
 </p>
 </div>
 
-<div id="outline-container-org3a616bb" class="outline-3">
-<h3 id="org3a616bb">Desktops</h3>
-<div class="outline-text-3" id="text-org3a616bb">
+<div id="outline-container-orga94d862" class="outline-3">
+<h3 id="orga94d862">Desktops</h3>
+<div class="outline-text-3" id="text-orga94d862">
 <p>
 LXDE includes the concept of a <i>desktop</i>, a workspace that isolates the
 windows from each other.
@@ -155,7 +154,7 @@ windows from each other.
 
 <p>
 I maintain 8 desktops, each bound to one of the keys above the home row, with
-the final <span class="verbatim">p</span> key used to invoke <a href="http://tools.suckless.org/dmenu/">dmenu</a>.
+the final <code>p</code> key used to invoke <a href="http://tools.suckless.org/dmenu/">dmenu</a>.
 </p>
 
 <p>
@@ -217,16 +216,16 @@ emacs and slack very quickly.
 </table>
 </div>
 
-<div id="outline-container-orgce0f4b3" class="outline-4">
-<h4 id="orgce0f4b3">Keys</h4>
-<div class="outline-text-4" id="text-orgce0f4b3">
+<div id="outline-container-orgeb8e456" class="outline-4">
+<h4 id="orgeb8e456">Keys</h4>
+<div class="outline-text-4" id="text-orgeb8e456">
 <p>
 Pressing shift with any of these keys causes your current window to be
 <i>moved</i> to that desktop. 
 </p>
 
 <p>
-For example, <code>🗔-Shift-o</code> moves the currently focused window to the <span class="verbatim">o</span>
+For example, <code>🗔-Shift-o</code> moves the currently focused window to the <code>o</code>
 desktop.
 </p>
 <table>
@@ -295,41 +294,47 @@ desktop.
 </div>
 
 
-<div id="outline-container-orgbdccc2c" class="outline-3">
-<h3 id="orgbdccc2c">Windows</h3>
-<div class="outline-text-3" id="text-orgbdccc2c">
+<div id="outline-container-org48e6f3b" class="outline-3">
+<h3 id="org48e6f3b">Windows</h3>
+<div class="outline-text-3" id="text-org48e6f3b">
 <p>
-A desktop typically has one application ("window"), but more can be split
+A desktop typically has one application (&ldquo;window&rdquo;), but more can be split
 into a number of adjacent windows, toggled between horizontal &amp; vertical
 splits (as well as returned to full-screen configuration).
 </p>
 
 <p>
-Windows each have 'focus', which refers to which application recieved input
+Windows each have &rsquo;focus&rsquo;, which refers to which application recieved input
 when keys are pressed on the keyboard. Both position &amp; window focus can be
 switched with the classic <a href="https://en.wikipedia.org/wiki/Vi">Vi</a> HJKL keybindings described below.
 </p>
 </div>
 
-<div id="outline-container-org09dcf7a" class="outline-4">
-<h4 id="org09dcf7a">Keys</h4>
-<div class="outline-text-4" id="text-org09dcf7a">
+<div id="outline-container-orgeea956c" class="outline-4">
+<h4 id="orgeea956c">Keys</h4>
+<div class="outline-text-4" id="text-orgeea956c">
 <p>
 Pressing shift with any of these keys causes your currently focused window
 to be swapped with the window in the direction you specified.
 </p>
 
 <p>
-For example, <code>🗔-Shift-o</code> moves the currently focused window to the <span class="verbatim">o</span>
+For example, <code>🗔-Shift-o</code> moves the currently focused window to the <code>o</code>
 desktop.
 </p>
 
 <p>
-For example, this is a desktop that begins with a window 'documentation' and
-a focused window 'terminal' (indicated by <span class="verbatim">[</span> and <span class="verbatim">]</span>)
+For example, this is a desktop that begins with a window &rsquo;documentation&rsquo; and
+a focused window &rsquo;terminal&rsquo; (indicated by <code>[</code> and <code>]</code>)
 </p>
 
 <center>
+
+<figure id="orgbea4809">
+<img src="../../static/img/openbox/twopiece.png" alt="twopiece.png">
+
+</figure>
+
 </center>
 
 <p>
@@ -337,6 +342,12 @@ Pressing <code>🗔-Shift-h</code> swaps their position.
 </p>
 
 <center>
+
+<figure id="orge632d30">
+<img src="../../static/img/openbox/twopieceinvert.png" alt="twopieceinvert.png">
+
+</figure>
+
 </center>
 
 <table>
@@ -395,26 +406,26 @@ Pressing <code>🗔-Shift-h</code> swaps their position.
 </div>
 </div>
 
-<div id="outline-container-org6d401aa" class="outline-3">
-<h3 id="org6d401aa">Other</h3>
-<div class="outline-text-3" id="text-org6d401aa">
+<div id="outline-container-orge208979" class="outline-3">
+<h3 id="orge208979">Other</h3>
+<div class="outline-text-3" id="text-orge208979">
 <p>
 The most important final key is <code>🗔-p</code> which runs dmenu.
 </p>
 
 <p>
-dmenu (<i>"dynamic menu"</i>) autocompletes system binaries and invokes them when
+dmenu (<i>&ldquo;dynamic menu&rdquo;</i>) autocompletes system binaries and invokes them when
 ⏎ is hit.
 </p>
 
 <p>
-If I wanted to spawn <span class="verbatim">google-chrome</span>, I might type in <span class="verbatim">goo</span> and dmenu would
+If I wanted to spawn <code>google-chrome</code>, I might type in <code>goo</code> and dmenu would
 show something like the following.
 </p>
 
 
-<figure>
-<img src="/static/img/openbox/dmenu.png" alt="dmenu.png" style="margin-left: auto; margin-right: auto;">
+<figure id="org568817b">
+<img src="../../static/img/openbox/dmenu.png" alt="dmenu.png" style="margin-left: auto; margin-right: auto;">
 
 </figure>
 
@@ -424,9 +435,9 @@ binaries with left/right keys as well.
 </p>
 </div>
 
-<div id="outline-container-org8f03da8" class="outline-4">
-<h4 id="org8f03da8">Keys</h4>
-<div class="outline-text-4" id="text-org8f03da8">
+<div id="outline-container-org964aa01" class="outline-4">
+<h4 id="org964aa01">Keys</h4>
+<div class="outline-text-4" id="text-org964aa01">
 <table>
 
 
