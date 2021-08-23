@@ -8,10 +8,12 @@ tags:
  - zshell
  - zsh
 ---
+<section id="outline-container-orgf04babd" class="outline-2">
+<h2 id="orgf04babd"></h2>
+<div class="outline-text-2" id="text-orgf04babd">
 <p>
-*
-  If you write a zshell function for compiling &amp; running a piece of C code, you
-  might begin with this:
+If you write a zshell function for compiling &amp; running a piece of C code, you
+might begin with this:
 </p>
 
 <div class="org-src-container">
@@ -57,10 +59,11 @@ Shell-defined functions which run external programs (like <code>compile_run</cod
 considered to be running within the current shell however, so job status
 messages for the exit status of the function are not printed.
 </p>
+</div>
 
-<section id="outline-container-orge4733b7" class="outline-2">
-<h2 id="orge4733b7">Cycling background jobs hack</h2>
-<div class="outline-text-2" id="text-orge4733b7">
+<div id="outline-container-orge4733b7" class="outline-3">
+<h3 id="orge4733b7">Cycling background jobs hack</h3>
+<div class="outline-text-3" id="text-orge4733b7">
 <p>
 To get around this, you can get zsh to print the segmentation fault message
 from the job if you start it as a background job and then immediately bring it
@@ -103,11 +106,11 @@ some additional logic:
 </pre>
 </div>
 </div>
-</section>
+</div>
 
-<section id="outline-container-org3386844" class="outline-2">
-<h2 id="org3386844">Custom messages</h2>
-<div class="outline-text-2" id="text-org3386844">
+<div id="outline-container-org3386844" class="outline-3">
+<h3 id="org3386844">Custom messages</h3>
+<div class="outline-text-3" id="text-org3386844">
 <p>
 If you want control over the exact message printed, you can also examine the
 exit status of the program you ran yourself.
@@ -127,11 +130,11 @@ exit status of the program you ran yourself.
 </pre>
 </div>
 </div>
-</section>
+</div>
 
-<section id="outline-container-org1b8b1fa" class="outline-2">
-<h2 id="org1b8b1fa">Using <code>setopt print_exit_value</code></h2>
-<div class="outline-text-2" id="text-org1b8b1fa">
+<div id="outline-container-org1b8b1fa" class="outline-3">
+<h3 id="org1b8b1fa">Using <code>setopt print_exit_value</code></h3>
+<div class="outline-text-3" id="text-org1b8b1fa">
 <p>
 Finally, zshell has an option <code>print_exit_value</code> that won&rsquo;t display messages
 identically to job control messages, but will let you know what the exit
@@ -143,5 +146,6 @@ status code of your program is:
 <img src="../../static/img/job_control_3.png" alt="job_control_3.png">
 
 </figure>
+</div>
 </div>
 </section>
