@@ -96,4 +96,4 @@ compile_run () {
    status code of your program is:
 
    #+NAME:   fig:print_exit_value
-   [[/static/img/job_control_3.png]]
+  file:../../static/img/job_control_3.png
