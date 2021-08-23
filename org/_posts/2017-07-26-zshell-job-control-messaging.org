@@ -3,7 +3,7 @@
 #+INCLUDE: "_include.org"
 
 
-* 
+*
   If you write a zshell function for compiling & running a piece of C code, you
   might begin with this:
 
@@ -18,13 +18,13 @@ compile_run () {
   Which works as expected for well-behaved programs:
 
   #+NAME:   fig:crun
-  [[/static/img/job_control_1.png]]
+  file:../../static/img/job_control_1.png
 
   If your program contains a segmentation fault however, job control messages
   will be hidden from you as if your program printed no input at all.
 
   #+NAME:   fig:crun1
-  [[/static/img/job_control_2.png]]
+  [[file:../../static/img/job_control_2.png]]
 
   You may have known that messages like =[1] 21212 segmentation fault (core
   dumped) ./faulty= aren't ordinary messages in the sense you can't capture them
@@ -84,7 +84,7 @@ compile_run () {
 
      $exepath "$@"
      integer stat=$status
-     if (( stat > 128 )); then print -u2 -- ${exepath}: exited with 
+     if (( stat > 128 )); then print -u2 -- ${exepath}: exited with
      SIG${signals[stat-127]}; fi
      return stat
  }
