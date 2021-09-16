@@ -13,7 +13,7 @@
     "webpack-cli": "^4.8.0"
   },
   "scripts": {
-    "build": "webpack -p"
+    "build": "webpack build"
   },
   "repository": {
     "type": "git",

@@ -18,3 +18,6 @@ notes.org
 
 org/_drafts
 ts/node_modules/
+ts/*.js
+!ts/webpack.config.js
+

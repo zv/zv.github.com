@@ -19,7 +19,6 @@ export const repositionFootnotes = (refNodes: HTMLCollectionOf<HTMLElement>) => 
   for (let ref of Array.from(refNodes)) {
     const def = findDefinition(ref)
     const { top } = cumulativeOffset(ref)
-    console.log('assigning ', ref, ' to ', def)
     def.classList.add("footnote-definition")
     eltAbsoluteTop = (top > lastBottom) ? top : lastBottom
     def.style.top = `${eltAbsoluteTop}px`

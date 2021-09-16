@@ -34,13 +34,9 @@ sass:
 exclude:
   - LICENSE
   - README
-  - node_modules/
   - org/
   - .git/
-  - package.json
-  - tsconfig.json
-  - webpack.config.js
-  - js
+  - ts/
 
 defaults:
   - scope:
