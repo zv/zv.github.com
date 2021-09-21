@@ -168,6 +168,7 @@ permalink: genp
               setDigest("alnum16", result.replace('+', 'A').replace('/', 'a').replace('=', '0'));
               setDigest("short", translateB64(result, b64_lower_map).substr(0, 9));
               setDigest("pin", translateB64(result, b64_digit_map).substr(0, 4));
+              setDigest("pin8", translateB64(result, b64_digit_map).substr(0, 8));
             }, 200);
           } else {
             document
@@ -250,6 +251,10 @@ permalink: genp
           <label>
             PIN
             <input type="text" id="pin" name="pin" readonly />
+          </label>
+          <label>
+            PIN8
+            <input type="text" id="pin8" name="pin8" readonly />
           </label>
         </fieldset>
       </form>
