@@ -27,6 +27,7 @@ layout: default
 
 <!-- Tree Container -->
 <!-- If you like this tree, you can view the source code here: -->
+<script type="text/javascript" src="/static/js/zv-tree.js" async defer onload="ZVTree.draw(document.getElementById('tree'))"></script>
 <p align="center">
   <canvas id="tree" width="500" height="500"></canvas>
 </p>
@@ -45,12 +46,3 @@ layout: default
   </div>
   {% endfor %}
 </div>
-
-
-<script type="text/javascript" src="/static/js/zv-tree.js"></script>
-<script>
- window.onload = function() {
-   ZVTree.draw();
- }
- console.log('%c Like the tree? -- read the source here: https://github.com/zv/tree', 'background: #111; color: #fff');
-</script>
