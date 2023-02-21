@@ -100,14 +100,14 @@ permalink: genp
             name: "PBKDF2",
             hash: "SHA-256",
             salt: new TextEncoder().encode(salt),
-            iterations: iterations
+            iterations: iterations,
           },
           cryptoKey,
           96
         );
 
         const bytes = Array.from(new Uint8Array(keyBuffer))
-          .map(byte => String.fromCharCode(byte))
+          .map((byte) => String.fromCharCode(byte))
           .join("");
 
         return btoa(bytes);
@@ -121,6 +121,12 @@ permalink: genp
         "abcdefghijklmnopqrstuvwxyz" +
         "0123456789" +
         "+/=";
+
+      const b64_alnum_map =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+        "abcdefghijklmnopqrstuvwxyz" +
+        "0123456789" +
+        "Aa0";
 
       const b64_digit_map =
         "01234567890123456789012345" +
@@ -137,17 +143,17 @@ permalink: genp
       function translateB64(str, dstAlphabet, srcAlphabet = b64_alphabet) {
         return str
           .split("")
-          .map(ch => dstAlphabet[srcAlphabet.indexOf(ch)])
+          .map((ch) => dstAlphabet[srcAlphabet.indexOf(ch)])
           .join("");
       }
 
       function togglePasswordInput(e) {
-        e.target.parentElement.querySelectorAll("input").forEach(i => {
+        e.target.parentElement.querySelectorAll("input").forEach((i) => {
           i.type = i.type == "text" ? "password" : "text";
         });
       }
 
-      window.onload = function() {
+      window.onload = function () {
         const urlParams = new URLSearchParams(window.location.search),
           $keyInput = document.querySelector("input#key"),
           $saltInput = document.querySelector("input#salt"),
@@ -155,7 +161,8 @@ permalink: genp
 
         if (urlParams.has("salt")) $saltInput.value = urlParams.get("salt");
 
-        let $focus = $keyInput, timeout = null;
+        let $focus = $keyInput,
+          timeout = null;
 
         function debounceDigests() {
           clearTimeout(timeout);
@@ -165,34 +172,46 @@ permalink: genp
               const result = await pbkdf2($keyInput.value, $saltInput.value);
               setDigest("raw", result);
               setDigest("shadow", "$Zv3$".concat(result));
-              setDigest("alnum16", result.replace('+', 'A').replace('/', 'a').replace('=', '0'));
-              setDigest("short", translateB64(result, b64_lower_map).substr(0, 9));
-              setDigest("pin", translateB64(result, b64_digit_map).substr(0, 4));
-              setDigest("pin8", translateB64(result, b64_digit_map).substr(0, 8));
+              setDigest(
+                "alnum16",
+                translateB64(result, b64_alnum_map).substr(0, 16)
+              );
+              setDigest(
+                "short",
+                translateB64(result, b64_lower_map).substr(0, 9)
+              );
+              setDigest(
+                "pin",
+                translateB64(result, b64_digit_map).substr(0, 4)
+              );
+              setDigest(
+                "pin8",
+                translateB64(result, b64_digit_map).substr(0, 8)
+              );
             }, 200);
           } else {
             document
               .querySelectorAll("fieldset#keyout input")
-              .forEach(t => setDigest(t.id, ""));
+              .forEach((t) => setDigest(t.id, ""));
           }
         }
 
         for (let $input of [$keyInput, $saltInput]) {
-          $input.addEventListener("focus", e => ($focus = e.target));
+          $input.addEventListener("focus", (e) => ($focus = e.target));
           $input.addEventListener("input", debounceDigests);
         }
 
-        $keyboard.querySelectorAll("li").forEach($key =>
-          $key.addEventListener("click", _ => {
+        $keyboard.querySelectorAll("li").forEach(($key) =>
+          $key.addEventListener("click", (_) => {
             if (
               $key.classList.contains("shift") ||
               $key.classList.contains("capslock")
             ) {
               $keyboard
                 .querySelectorAll("li.letter")
-                .forEach(l => l.classList.toggle("uppercase"));
+                .forEach((l) => l.classList.toggle("uppercase"));
 
-              $keyboard.querySelectorAll("li.symbol span").forEach(l => {
+              $keyboard.querySelectorAll("li.symbol span").forEach((l) => {
                 l.classList.toggle("off");
                 l.classList.toggle("on");
               });
