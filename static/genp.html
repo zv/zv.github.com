@@ -151,8 +151,8 @@ permalink: genp
 
         let outputTargets = null;
 
-        const digestHandler = (salt, key) =>
-            pbkdf2(new TextEncoder().encode(salt), new TextEncoder().encode(key))
+        const digestHandler = (key, salt) =>
+            pbkdf2(new TextEncoder().encode(key), new TextEncoder().encode(salt))
                 .then((u8) => new Uint8Array(u8).toBase64({ omitPadding: true }))
                 .then((b64) => {
                     for (const o of outputTargets) {
@@ -186,8 +186,8 @@ permalink: genp
                     timeout = setTimeout(
                         digestHandler,
                         200,
+                        window.keyInput.value,
                         window.saltInput.value,
-                        window.keyInput.value
                     );
                 }
             };
