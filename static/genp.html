@@ -314,9 +314,9 @@ permalink: genp
             }
         };
 
-        window.addEventListener("load", inputFieldSetup);
-        window.addEventListener("load", digestOutputSetup);
-        window.addEventListener("load", virtualKeyboardSetup);
+        window.addEventListener("load", inputFieldSetup, { once: true });
+        window.addEventListener("load", digestOutputSetup, { once: true });
+        window.addEventListener("load", virtualKeyboardSetup, { once: true });
     </script>
 </head>
 
