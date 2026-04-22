@@ -132,28 +132,6 @@ permalink: genp
             }
         );
 
-        const toBase64 =
-            typeof Uint8Array.prototype.toBase64 === "function"
-                ? (arr, options) => new Uint8Array(arr).toBase64(options)
-                : (arr, options) => {
-                    const str = btoa(new TextDecoder().decode(arr));
-
-                    if (options?.omitPadding) {
-                        str = str.replace(/={0, 3}/, "");
-                    }
-
-                    switch (options?.alphabet) {
-                        case undefined:
-                        case "base64":
-                            return str;
-                        case "base64url":
-                            return str.replaceAll("+", "-").replaceAll("/", "_");
-                        default:
-                            return mapB64[options.alphabet.toUpperCase()](str);
-                    }
-                };
-
-
         /* Get some key material to use as input to the deriveBits method.
             * The key material is a password supplied by the user.  For
             * deriveBits, the key material must be in the form of a
@@ -183,7 +161,7 @@ permalink: genp
                 new TextEncoder().encode(salt),
                 new TextEncoder().encode(key)
             )
-                .then((u8) => toBase64(u8, { omitPadding: true }))
+                .then((u8) => new Uint8Array(u8).toBase64({ omitPadding: true }))
                 .then((b64) =>
                     outputTargets.forEach((o) => o.target.setAttribute('value', o.handler(b64)))
                 );
