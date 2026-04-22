@@ -227,9 +227,9 @@ permalink: genp
                 { passive: true }
             );
 
-            const focusinSelect = ({ target }) => {
-                target.focus();
-                target.select();
+            const focusinSelect = (e) => {
+                e.target.focus();
+                e.target.select();
             };
 
             for (const o of outputTargets) {
