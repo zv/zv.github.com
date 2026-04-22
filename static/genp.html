@@ -269,25 +269,13 @@ permalink: genp
                 });
 
             /* Register click handlers for the virtual keyboard, which will
-             * toggle the uppercase state of the keys if they are case modifiers,
-             * or toggle the symbol if they are symbol keys. */
-            const toggleLiOff = (e) => e.target.classList.toggle("off");
-            keyboard
-                .querySelectorAll("li.symbol span")
-                .forEach((elt) => elt.addEventListener("click", toggleLiOff));
-
-            const toggleUppercase = (e) => e.target.classList.toggle("uppercase");
-            keyboard
-                .querySelectorAll("li[data-case-modifier]")
-                .forEach((elt) => elt.addEventListener("click", toggleUppercase));
-
-            /* Register click handlers for the virtual keyboard, which will
              * transform the currently focused input field if there is one. */
             function appendCharHandler(v) {
                 return v.concat(this.target.innerText);
             }
 
-            const focusTransformListener = (keyElt, func, eventType = "click") => {
+            const focusTransformListener = (keyElt, func) => {
+                const eventType = "click";
                 const listener = (event) => {
                     // const elt = documetthis.currentFocus?.deref();
                     const prev = currFocus.value;
@@ -310,8 +298,23 @@ permalink: genp
                 ["letter", appendCharHandler],
                 ["symbol", appendCharHandler],
             ]) {
-                focusTransformListener(keyElt, handlerFunc, "click");
+                focusTransformListener(keyElt, handlerFunc);
             }
+
+            /* Register click handlers for the virtual keyboard, which will
+             * toggle the uppercase state of the keys if they are case modifiers,
+             * or toggle the symbol if they are symbol keys. */
+            const toggleLiOff = (e) => e.target.classList.toggle("off");
+            keyboard
+                .querySelectorAll("li.symbol span")
+                .forEach((elt) => elt.addEventListener("click", toggleLiOff));
+
+            const toggleUppercase = (e) => e.target.classList.toggle("uppercase");
+            keyboard
+                .querySelectorAll("li[data-case-modifier]")
+                .forEach((elt) => elt.addEventListener("click", toggleUppercase));
+
+
         };
 
         window.addEventListener("load", inputFieldSetup, { once: true });
