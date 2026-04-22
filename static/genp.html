@@ -153,202 +153,101 @@ permalink: genp
                     }
                 };
 
-        class DigestField {
-            static made = new Map();
 
-            name;
-            #target = undefined;
+        /* Get some key material to use as input to the deriveBits method.
+            * The key material is a password supplied by the user.  For
+            * deriveBits, the key material must be in the form of a
+            * CryptoKey object,, which we only gather 96 bits (12 bytes)
+            * of, since after b64 this is 16 characters.
+            */
+        const pbkdf2 = (
+            password,
+            salt,
+            iterations = 100000,
+            hash = "SHA-256"
+        ) =>
+            crypto.subtle
+                .importKey("raw", password, "PBKDF2", false, ["deriveBits"])
+                .then((key) =>
+                    crypto.subtle.deriveBits(
+                        { name: "PBKDF2", iterations, salt, hash },
+                        key,
+                        96
+                    )
+                );
 
-            constructor(name) {
-                this.name = name;
-            }
 
-            static make(name, ...args) {
-                const obj = Reflect.construct(this, [name, ...args]);
-                this.made.set(name, obj);
-                return obj;
-            }
+        const outputTargets = [];
+        const digestHandler = (key, salt) =>
+            pbkdf2(
+                new TextEncoder().encode(salt),
+                new TextEncoder().encode(key)
+            )
+                .then((u8) => toBase64(u8, { omitPadding: true }))
+                .then((b64) =>
+                    outputTargets.forEach((o) => o.target.setAttribute('value', o.handler(b64)))
+                );
 
-            static inputRoot() {
-                return document.querySelector("form#digest");
-            }
-
-            static elements() {
-                return this.inputRoot().getElementsByTagName("input");
-            }
-
-            static element(name) {
-                return this.elements().namedItem(name);
-            }
-
-            get target() {
-                this.#target ??= this.constructor.element(this.name);
-                if (this.#target.getAttribute("name") !== this.name) {
-                    throw new Error(
-                        `No input element with name "${name}" found in the input root.`
-                    );
-                }
-                return this.#target;
-            }
-        }
-
-        class KeyMaterial extends DigestField {
-            constructor(name) {
-                super(name);
-                this.target.addEventListener("input", this.constructor.inputHandler);
-            }
-
-            static #timeout;
-            static inputHandler = (event) => {
-                clearTimeout(KeyMaterial.#timeout);
-
-                /* Check that every node has a valid input before queueing the
-                 * digest handler, to avoid unnecessary calls while the user is
-                 * still typing. */
-                const key = this.made.get("key").target;
-                const salt = this.made.get("salt").target;
-                if (key.checkValidity() && salt.checkValidity()) {
-                    KeyMaterial.#timeout = setTimeout(
-                        DigestOutput.digestHandler,
-                        150,
-                        key.getAttribute("value"),
-                        salt.getAttribute("value")
-                    );
-                }
-            };
-
-            static inputRoot() {
-                return document.querySelector("fieldset#keyin");
-            }
-
-            static focusTransformListener(keyElt, func, eventType = "click") {
-                const listener = (event) => {
-                    let elt = document.getSelection().focusNode;
-                    if (elt?.tagName !== "INPUT") {
-                        elt = this.inputRoot().querySelector("input[autofocus]");
-                    }
-                    console.log("elt", elt);
-                    // const elt = documetthis.currentFocus?.deref();
-                    if (elt instanceof HTMLInputElement) {
-                        const prev = elt.value;
-                        const curr = func.call(event, prev);
-                        if (prev !== curr) {
-                            elt.setAttribute("value", curr);
-                            event.stopPropagation();
-                            this.inputRoot().dispatchEvent(new Event("input"));
-                        }
-                    }
-                };
-
-                document
-                    .querySelectorAll(`ul#keyboard li[data-keyelt="${keyElt}"]`)
-                    .forEach((elt) => elt.addEventListener(eventType, listener));
-            }
-        }
-
-        class DigestOutput extends DigestField {
-            handler;
-
-            constructor(name, handler) {
-                super(name);
-                this.handler = handler;
-                this.target.addEventListener("focus", this.focus);
-            }
-
-            static make(name, handler = undefined, maxLength = undefined) {
-                let obj;
-                handler ??= (ss) => ss;
-                if (typeof maxLength === "number") {
-                    obj = new DigestOutput(name, (sss) =>
-                        handler(...xs).slice(0, maxLength)
-                    );
-                } else {
-                    obj = new DigestOutput(name, handler);
-                }
-                super.made.set(name, obj);
-                return obj;
-            }
-
-            static inputRoot() {
-                return document.querySelector("fieldset#keyout");
-            }
-
-            /* Get some key material to use as input to the deriveBits method.
-             * The key material is a password supplied by the user.  For
-             * deriveBits, the key material must be in the form of a
-             * CryptoKey object,, which we only gather 96 bits (12 bytes)
-             * of, since after b64 this is 16 characters.
-             */
-            static pbkdf2 = (
-                password,
-                salt,
-                iterations = 100000,
-                hash = "SHA-256"
-            ) =>
-                crypto.subtle
-                    .importKey("raw", password, "PBKDF2", false, ["deriveBits"])
-                    .then((key) =>
-                        crypto.subtle.deriveBits(
-                            { name: "PBKDF2", iterations, salt, hash },
-                            key,
-                            96
-                        )
-                    );
-
-            static digestHandler = (key, salt) =>
-                this.pbkdf2(
-                    new TextEncoder().encode(salt),
-                    new TextEncoder().encode(key)
-                )
-                    .then((u8) => toBase64(u8, { omitPadding: true }))
-                    .then((b64) =>
-                        this.made
-                            .values()
-                            .filter((o) => o instanceof DigestOutput)
-                            .forEach((o) => o.setDigest(b64))
-                    );
-
-            focus(e) {
-                if (e.target === this.target) {
-                    e.target.select();
-                    e.preventDefault();
-                }
-            }
-
-            setDigest(digest) {
-                this.target.setAttribute("value", this.handler(digest));
-            }
-        }
 
         const inputFieldSetup = () => {
             /* create the input fields, which will listen for user input and
              * trigger the digest generation. */
-            const saltField = KeyMaterial.make("salt");
-            const keyField = KeyMaterial.make("key");
-
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has("salt")) {
-                saltField.target.setAttribute("value", encode(urlParams.get("salt")));
+                window.saltInput.setAttribute("value", encode(urlParams.get("salt")));
             }
+
+            let timeout = null;
+            const inputHandler = (event) => {
+                if (timeout !== null) {
+                    clearTimeout(timeout);
+                    timeout = null;
+                }
+
+                /* Check that every node has a valid input before queueing the
+                 * digest handler, to avoid unnecessary calls while the user is
+                 * still typing. */
+                if (window.keyInput.checkValidity() && window.saltInput.checkValidity()) {
+                    timeout = setTimeout(
+                        (key, salt) => {
+                            timeout = null;
+                            digestHandler(key, salt);
+                        },
+                        150,
+                        window.keyInput.value,
+                        window.saltInput.value
+                    );
+                }
+            };
+
+            window.keyInput.addEventListener("input", inputHandler);
+            window.saltInput.addEventListener("input", inputHandler);
+
         };
 
         const digestOutputSetup = () => {
             /* create the various output fields, which will listen for the
              * "kdfdigest" event and transform the digest as needed. */
-            const rawOutput = DigestOutput.make("raw", (ss) => ss);
-            const shadowOutput = DigestOutput.make("shadow", (ss) =>
-                "$Zv3$".concat(ss)
-            );
-            const alnum16Output = DigestOutput.make(
-                "alnum16",
-                mapB64.ALPHANUMERIC /*, 16 */
-            );
-            const shortOutput = DigestOutput.make(
-                "short",
-                mapB64.LOWERCASE /*, 8*/
-            );
-            const pinOutput = DigestOutput.make(
-                "pin",
+            const focusHandler = (e) => {
+                e.currentTarget.focus();
+                e.currentTarget.select();
+            }
+
+            const make = (target, handler, maxLength) => {
+                let obj = { target, handler };
+                if (typeof maxLength === "number") {
+                    obj.handler = (...xs) => handler(...xs).slice(0, maxLength)
+                }
+                obj.target.addEventListener("focus", focusHandler, { passive: true });
+                outputTargets.push(obj);
+            }
+
+            make(window.rawOut, (ss) => ss);
+            make(window.shadowOut, (ss) => "$Zv3$".concat(ss));
+            make(window.alnum16Out, mapB64.ALPHANUMERIC);
+            make(window.shortOut, mapB64.LOWERCASE /*, 8*/);
+            make(
+                window.pinOut,
                 function (str) {
                     const r = mapB64.NUMERIC(str);
                     return this.target.hasAttribute("data-pin-separate")
@@ -358,7 +257,7 @@ permalink: genp
                 /* , 8 */
             );
 
-            pinOutput.target.addEventListener(
+            window.pinOut.addEventListener(
                 "keydown",
                 (event) => {
                     if (event.code == "Enter") {
@@ -370,6 +269,15 @@ permalink: genp
         };
 
         const virtualKeyboardSetup = () => {
+            /* Register focus handlers */
+            let [currFocus, nextFocus] = [window.keyInput, window.saltInput];
+            function recievedFocusHandler(_event) {
+                [currFocus, nextFocus] = [nextFocus, currFocus];
+                nextFocus.addEventListener('focus', recievedFocusHandler, { once: true, passive: true });
+            }
+
+            nextFocus.addEventListener('focus', recievedFocusHandler, { once: true, passive: true });
+
             /* Register a click handler for the input fieldset legend, which will
              * toggle the visibility of the input fields. */
             let [prevType, currType] = ["password", "text"];
@@ -384,6 +292,7 @@ permalink: genp
                         });
                     [prevType, currType] = [currType, prevType];
                 });
+
 
             /* Register click handlers for the virtual keyboard, which will
              * toggle the uppercase state of the keys if they are case modifiers,
@@ -404,13 +313,32 @@ permalink: genp
                 return v.concat(this.target.innerText);
             }
 
+            const focusTransformListener = (keyElt, func, eventType = "click") => {
+                const listener = (event) => {
+                    // const elt = documetthis.currentFocus?.deref();
+                    const elt = currFocus;
+                    const prev = elt.value;
+                    const curr = func.call(event, prev);
+                    if (prev !== curr) {
+                        elt.setAttribute("value", curr);
+                        event.stopPropagation();
+                        window.keyout.dispatchEvent(new Event("input"));
+                    }
+                };
+
+                document
+                    .querySelectorAll(`ul#keyboard li[data-keyelt="${keyElt}"]`)
+                    .forEach((elt) => elt.addEventListener(eventType, listener));
+            }
+
+
             for (const [keyElt, handlerFunc] of [
                 ["space", (v) => v.concat(" ")],
                 ["delete", (v) => (v.length ? v.slice(0, -1) : v)],
                 ["letter", appendCharHandler],
                 ["symbol", appendCharHandler],
             ]) {
-                KeyMaterial.focusTransformListener(keyElt, handlerFunc, "click");
+                focusTransformListener(keyElt, handlerFunc, "click");
             }
         };
 
@@ -427,13 +355,13 @@ permalink: genp
                 <legend>Input</legend>
                 <label>
                     Key
-                    <input type="password" id="key" name="key" class="keyinput" autocapitalize="off"
+                    <input type="password" id="keyInput" name="key" class="keyinput" autocapitalize="off"
                         autocomplete="current-password" inputmode="text" required autofocus />
                 </label>
                 <label>
                     Salt
-                    <input type="text" id="salt" name="salt" class="keyinput" autocapitalize="off" autocomplete="off"
-                        inputmode="text" required />
+                    <input type="text" id="saltInput" name="salt" class="keyinput" autocapitalize="off"
+                        autocomplete="off" inputmode="text" required />
                 </label>
             </fieldset>
 
@@ -442,23 +370,24 @@ permalink: genp
             <fieldset class="digest" id="keyout">
                 <legend>Output</legend>
                 <label for="raw">Raw
-                    <input type="text" id="raw" name="raw" placeholder="Base64 encoding of 16 PBKDF2-generated bytes"
+                    <input type="text" id="rawOut" name="raw" placeholder="Base64 encoding of 16 PBKDF2-generated bytes"
                         readonly />
                 </label>
                 <label for="shadow">Shadow
-                    <input type="text" id="shadow" name="shadow" placeholder="Raw with an shadow-file prefix"
+                    <input type="text" id="shadowOut" name="shadow" placeholder="Raw with an shadow-file prefix"
                         readonly />
                 </label>
                 <label for="alnum16">A16
-                    <input type="text" id="alnum16" name="alnum16" placeholder="16 alphanumeric characters"
+                    <input type="text" id="alnum16Out" name="alnum16" placeholder="16 alphanumeric characters"
                         maxlength="16" readonly />
                 </label>
                 <label for="short">Short
-                    <input type="text" id="short" name="short" placeholder="8 lowercase characters" maxlength="8"
+                    <input type="text" id="shortOut" name="short" placeholder="8 lowercase characters" maxlength="8"
                         readonly />
                 </label>
                 <label for="pin">PIN
-                    <input type="text" id="pin" name="pin" placeholder="4 Groups of 4 digits" maxlength="20" readonly />
+                    <input type="text" id="pinOut" name="pin" placeholder="4 Groups of 4 digits" maxlength="20"
+                        readonly />
                 </label>
             </fieldset>
         </form>
