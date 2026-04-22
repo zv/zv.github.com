@@ -249,12 +249,11 @@ permalink: genp
         const virtualKeyboardSetup = () => {
             /* Register focus handlers */
             let [currFocus, nextFocus] = [window.keyInput, window.saltInput];
-            function recievedFocusHandler(_event) {
+            function recievedFocusHandler() {
                 [currFocus, nextFocus] = [nextFocus, currFocus];
-                nextFocus.addEventListener('focus', recievedFocusHandler, { once: true, passive: true });
+                nextFocus.addEventListener('focusin', recievedFocusHandler, { once: true, passive: true });
             }
-
-            nextFocus.addEventListener('focus', recievedFocusHandler, { once: true, passive: true });
+            nextFocus.addEventListener('focusin', recievedFocusHandler, { once: true, passive: true });
 
             /* Register a click handler for the input fieldset legend, which will
              * toggle the visibility of the input fields. */
@@ -294,13 +293,12 @@ permalink: genp
             const focusTransformListener = (keyElt, func, eventType = "click") => {
                 const listener = (event) => {
                     // const elt = documetthis.currentFocus?.deref();
-                    const elt = currFocus;
-                    const prev = elt.value;
+                    const prev = currFocus.value;
                     const curr = func.call(event, prev);
                     if (prev !== curr) {
-                        elt.setAttribute("value", curr);
+                        currFocus.value = curr;
                         event.stopPropagation();
-                        window.keyout.dispatchEvent(new Event("input"));
+                        currFocus.dispatchEvent(new Event("input"));
                     }
                 };
 
