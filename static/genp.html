@@ -36,11 +36,11 @@ permalink: genp
             font: 1em/1.5 "Source Code Pro", monospace;
         }
 
-        fieldset#keyin input:not(:valid) {
+        fieldset#digestInput input:not(:valid) {
             outline: dashed thin red;
         }
 
-        fieldset#keyin input:focus-visible {
+        fieldset#digestInput input:focus-visible {
             background-color: hsl(50 33% 50%);
             accent-color: gold;
         }
@@ -133,17 +133,12 @@ permalink: genp
         );
 
         /* Get some key material to use as input to the deriveBits method.
-            * The key material is a password supplied by the user.  For
-            * deriveBits, the key material must be in the form of a
-            * CryptoKey object,, which we only gather 96 bits (12 bytes)
-            * of, since after b64 this is 16 characters.
-            */
-        const pbkdf2 = (
-            password,
-            salt,
-            iterations = 100000,
-            hash = "SHA-256"
-        ) =>
+         * The key material is a password supplied by the user.  For
+         * deriveBits, the key material must be in the form of a
+         * CryptoKey object,, which we only gather 96 bits (12 bytes)
+         * of, since after b64 this is 16 characters.
+         */
+        const pbkdf2 = (password, salt, iterations = 100000, hash = "SHA-256") =>
             crypto.subtle
                 .importKey("raw", password, "PBKDF2", false, ["deriveBits"])
                 .then((key) =>
@@ -154,18 +149,16 @@ permalink: genp
                     )
                 );
 
+        let outputTargets = null;
 
-        const outputTargets = [];
-        const digestHandler = (key, salt) =>
-            pbkdf2(
-                new TextEncoder().encode(salt),
-                new TextEncoder().encode(key)
-            )
+        const digestHandler = (salt, key) =>
+            pbkdf2(new TextEncoder().encode(salt), new TextEncoder().encode(key))
                 .then((u8) => new Uint8Array(u8).toBase64({ omitPadding: true }))
-                .then((b64) =>
-                    outputTargets.forEach((o) => o.target.setAttribute('value', o.handler(b64)))
-                );
-
+                .then((b64) => {
+                    for (const o of outputTargets) {
+                        o.target.value = o.handler(b64);
+                    }
+                });
 
         const inputFieldSetup = () => {
             /* create the input fields, which will listen for user input and
@@ -176,7 +169,8 @@ permalink: genp
             }
 
             let timeout = null;
-            const inputHandler = (event) => {
+
+            const inputHandler = () => {
                 if (timeout !== null) {
                     clearTimeout(timeout);
                     timeout = null;
@@ -185,82 +179,86 @@ permalink: genp
                 /* Check that every node has a valid input before queueing the
                  * digest handler, to avoid unnecessary calls while the user is
                  * still typing. */
-                if (window.keyInput.checkValidity() && window.saltInput.checkValidity()) {
+                if (
+                    window.keyInput.checkValidity() &&
+                    window.saltInput.checkValidity()
+                ) {
                     timeout = setTimeout(
-                        (key, salt) => {
-                            timeout = null;
-                            digestHandler(key, salt);
-                        },
-                        150,
-                        window.keyInput.value,
-                        window.saltInput.value
+                        digestHandler,
+                        200,
+                        window.saltInput.value,
+                        window.keyInput.value
                     );
                 }
             };
 
             window.keyInput.addEventListener("input", inputHandler);
             window.saltInput.addEventListener("input", inputHandler);
-
         };
 
         const digestOutputSetup = () => {
             /* create the various output fields, which will listen for the
              * "kdfdigest" event and transform the digest as needed. */
-            const focusHandler = (e) => {
-                e.currentTarget.focus();
-                e.currentTarget.select();
-            }
-
-            const make = (target, handler, maxLength) => {
-                let obj = { target, handler };
-                if (typeof maxLength === "number") {
-                    obj.handler = (...xs) => handler(...xs).slice(0, maxLength)
-                }
-                obj.target.addEventListener("focus", focusHandler, { passive: true });
-                outputTargets.push(obj);
-            }
-
-            make(window.rawOut, (ss) => ss);
-            make(window.shadowOut, (ss) => "$Zv3$".concat(ss));
-            make(window.alnum16Out, mapB64.ALPHANUMERIC);
-            make(window.shortOut, mapB64.LOWERCASE /*, 8*/);
-            make(
-                window.pinOut,
-                function (str) {
-                    const r = mapB64.NUMERIC(str);
-                    return this.target.hasAttribute("data-pin-separate")
-                        ? r.replaceAll(/(\d{4})(?=\d)/g, "$1 ")
-                        : r;
-                }
-                /* , 8 */
-            );
+            outputTargets = [
+                { target: window.rawOut, handler: (ss) => ss },
+                { target: window.shadowOut, handler: (ss) => "$Zv3$".concat(ss) },
+                { target: window.alnum16Out, handler: mapB64.ALPHANUMERIC },
+                { target: window.shortOut, handler: mapB64.LOWERCASE },
+                {
+                    target: window.pinOut,
+                    handler: (str) => {
+                        const r = mapB64.NUMERIC(str);
+                        return window.pinOut.hasAttribute("data-pin-separate")
+                            ? r.replaceAll(/(\d{4})(?=\d)/g, "$1 ")
+                            : r;
+                    },
+                },
+            ];
 
             window.pinOut.addEventListener(
                 "keydown",
                 (event) => {
-                    if (event.code == "Enter") {
-                        event.target?.toggleAttribute("data-pin-separate");
+                    switch (event.code) {
+                        case "Enter":
+                            event.target?.toggleAttribute("data-pin-separate");
+                            return;
                     }
                 },
                 { passive: true }
             );
+
+            const focusinSelect = ({ target }) => {
+                target.focus();
+                target.select();
+            };
+
+            for (const o of outputTargets) {
+                o.target.addEventListener("focusin", focusinSelect, {
+                    passive: true,
+                });
+            }
         };
 
         const virtualKeyboardSetup = () => {
-            /* Register focus handlers */
-            let [currFocus, nextFocus] = [window.keyInput, window.saltInput];
-            function recievedFocusHandler() {
-                [currFocus, nextFocus] = [nextFocus, currFocus];
-                nextFocus.addEventListener('focusin', recievedFocusHandler, { once: true, passive: true });
-            }
-            nextFocus.addEventListener('focusin', recievedFocusHandler, { once: true, passive: true });
+            /* Register focus handlers that indicate where a virtual keyboard press should be sent to */
+            let [currFocus, lastFocus] = [window.saltInput, window.keyInput];
+
+            const setInputFocus = (event) => {
+                [currFocus, lastFocus] = [lastFocus, currFocus];
+                lastFocus.addEventListener("focusin", setInputFocus, {
+                    once: true,
+                    passive: true,
+                });
+            };
+
+            setInputFocus(null);
 
             /* Register a click handler for the input fieldset legend, which will
              * toggle the visibility of the input fields. */
             let [prevType, currType] = ["password", "text"];
 
-            document
-                .querySelector("fieldset#keyin > legend")
+            window.digestInput
+                .querySelector("legend")
                 .addEventListener("click", (event) => {
                     event.target.parentElement
                         .querySelectorAll(`input[type=${CSS.escape(prevType)}]`)
@@ -270,18 +268,17 @@ permalink: genp
                     [prevType, currType] = [currType, prevType];
                 });
 
-
             /* Register click handlers for the virtual keyboard, which will
              * toggle the uppercase state of the keys if they are case modifiers,
              * or toggle the symbol if they are symbol keys. */
             const toggleLiOff = (e) => e.target.classList.toggle("off");
-            document
-                .querySelectorAll("ul#keyboard li.symbol span")
+            keyboard
+                .querySelectorAll("li.symbol span")
                 .forEach((elt) => elt.addEventListener("click", toggleLiOff));
 
             const toggleUppercase = (e) => e.target.classList.toggle("uppercase");
-            document
-                .querySelectorAll("ul#keyboard li[data-case-modifier]")
+            keyboard
+                .querySelectorAll("li[data-case-modifier]")
                 .forEach((elt) => elt.addEventListener("click", toggleUppercase));
 
             /* Register click handlers for the virtual keyboard, which will
@@ -302,11 +299,10 @@ permalink: genp
                     }
                 };
 
-                document
-                    .querySelectorAll(`ul#keyboard li[data-keyelt="${keyElt}"]`)
+                keyboard
+                    .querySelectorAll(`li[data-keyelt="${CSS.escape(keyElt)}"]`)
                     .forEach((elt) => elt.addEventListener(eventType, listener));
-            }
-
+            };
 
             for (const [keyElt, handlerFunc] of [
                 ["space", (v) => v.concat(" ")],
@@ -327,17 +323,17 @@ permalink: genp
 <body>
     <div id="container">
         <form id="digest">
-            <fieldset class="digest" id="keyin">
+            <fieldset class="digest" id="digestInput">
                 <legend>Input</legend>
-                <label>
+                <label for="keyInput">
                     Key
-                    <input type="password" id="keyInput" name="key" class="keyinput" autocapitalize="off"
-                        autocomplete="current-password" inputmode="text" required autofocus />
+                    <input type="password" id="keyInput" name="key" autocapitalize="off" autocomplete="current-password"
+                        inputmode="text" required autofocus />
                 </label>
-                <label>
+                <label for="saltInput">
                     Salt
-                    <input type="text" id="saltInput" name="salt" class="keyinput" autocapitalize="off"
-                        autocomplete="off" inputmode="text" required />
+                    <input type="text" id="saltInput" name="salt" autocapitalize="off" autocomplete="off"
+                        inputmode="text" required />
                 </label>
             </fieldset>
 
@@ -345,23 +341,27 @@ permalink: genp
 
             <fieldset class="digest" id="keyout">
                 <legend>Output</legend>
-                <label for="raw">Raw
+                <label for="rawOut">
+                    Raw
                     <input type="text" id="rawOut" name="raw" placeholder="Base64 encoding of 16 PBKDF2-generated bytes"
                         readonly />
                 </label>
-                <label for="shadow">Shadow
+                <label for="shadowOut">
+                    Shadow
                     <input type="text" id="shadowOut" name="shadow" placeholder="Raw with an shadow-file prefix"
                         readonly />
                 </label>
-                <label for="alnum16">A16
+                <label for="alnum16Out">
+                    A16
                     <input type="text" id="alnum16Out" name="alnum16" placeholder="16 alphanumeric characters"
                         maxlength="16" readonly />
                 </label>
-                <label for="short">Short
+                <label for="shortOut">
+                    Short
                     <input type="text" id="shortOut" name="short" placeholder="8 lowercase characters" maxlength="8"
                         readonly />
                 </label>
-                <label for="pin">PIN
+                <label for="pinOut">PIN
                     <input type="text" id="pinOut" name="pin" placeholder="4 Groups of 4 digits" maxlength="20"
                         readonly />
                 </label>
